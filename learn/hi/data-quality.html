@@ -62,8 +62,23 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
         }
       ]
     },
@@ -185,19 +200,21 @@ models:
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. Pipeline mein jaldi, automated checks se</strong>: Jitna jaldi pakdoge, utne kam systems usse kharab honge.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kaunse tools madad karte hain?</summary><p data-read>dbt tests, Great Expectations, Soda aur warehouse ke built in constraints. Kuch SQL checks se simple shuru karo.</p></details><details class="deep-faq"><summary data-read>Data contract kya hai?</summary><p data-read>Data banane wali team aur use karne wali teams ke beech schema, matlab aur quality ka agreement, taaki changes chupke se cheezein na todein.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Missing values kaise sambhaalte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Pehle poochta hoon value missing kyun hai, kyunki isse fix badalta hai. Agar income isliye missing hai ki logon ne batana nahi chaaha, to missing hona khud ek signal ho sakta hai. Options: bahut kam missing hon to rows hatao; median ya sabse common value se bharo; model ya group average se bharo; ya bhari hui value ke saath &quot;was missing&quot; flag column jodo. XGBoost jaise tree models missing values khud sambhaal lete hain. Jo bhi karo, bharne ka logic sirf training data pe fit karo.</p><p class="prep-label">✅ </p><ul><li data-read>Pehle samjho kyun missing hai</li><li data-read>Hatao, bharo (median, mode, model), ya missing flag jodo</li><li data-read>Leakage se bachne ke liye imputation sirf train pe fit karo</li></ul><p class="prep-check" data-read><strong>:</strong> Data cleaning ki samajh, sirf ek pandas command nahi.</p></div></details><details class="deep-faq"><summary data-read>Click through rate raaton raat 20% gir gaya, par input distributions normal dikhte hain. Model drift hai ya bug?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Achanak raaton raat girna slow drift nahi, bug ya badlaav jaisa lagta hai. Main is order mein check karunga: kya kuch deploy hua, jaise naya model, feature pipeline ya front end change? Kya logging ya metric khud toota hai, jaise clicks record hi nahi ho rahe? Kya features der se ya default values ke saath aa rahe hain, jo aggregate distributions mein na dikhe? Kya saare users mein hai ya ek platform, region ya app version mein? Holdout ya pichhle model se compare karunga. Sab theek nikle tabhi concept drift sochunga, jaise tyohaar ya competitor ka event, aur retrain karunga.</p><p class="prep-label">✅ </p><ul><li data-read>Achanak = pehle badlaav ya bug pe shaq</li><li data-read>Deploys, logging, der se ya default features check karo</li><li data-read>Platform, region, version se segment karo</li><li data-read>Phir asli drift socho</li></ul><p class="prep-check" data-read><strong>:</strong> Shaant, systematic incident debugging.</p></div></details><details class="deep-faq"><summary data-read>Pipeline aise kaise design karoge ki reruns aur backfills se data double count na ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Har step idempotent banao: do baar chalaao to wahi result jo ek baar chalaane pe. Practically, data partition se process karta hoon, jaise ek baar mein ek date, aur us partition ko overwrite ya unique key pe MERGE karke likhta hoon, bina soche append kabhi nahi. Partition tay karne ke liye processing time nahi, data ki event date use karta hoon. Phir pichhle mahine ka backfill bas un dates ko dobara chalaana hai. Run ke baad check jodta hoon ki row counts aur totals source se match karein.</p><p class="prep-label">✅ </p><ul><li data-read>Idempotency ki definition</li><li data-read>Date se partition; partition overwrite ya keys pe MERGE/upsert</li><li data-read>Event time vs processing time</li><li data-read>Reconciliation checks</li></ul><p class="prep-check" data-read><strong>:</strong> Reliability ki soch; 2026 ka bada data engineering topic.</p></div></details><details class="deep-faq"><summary data-read>Pipeline mein kaunse data quality checks lagaoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Boundaries pe checks: jab data aaye aur publish hone se pehle. Schema: expected columns aur types. Completeness: row counts pichhle dino ke mukaable expected range mein, aur zaroori fields NULL nahi. Validity: values allowed range ya list mein, jaise age 0 se 120. Uniqueness: primary keys unique. Freshness: sabse naya data kaafi recent. Consistency: totals source se match. dbt tests ya Great Expectations jaise tools ise aasaan banate hain. Critical failures pipeline rokte hain; chhote waale alert bhejte hain.</p><p class="prep-label">✅ </p><ul><li data-read>Schema, volume, nulls, ranges, uniqueness, freshness, reconciliation</li><li data-read>Ingestion pe aur publish se pehle</li><li data-read>Critical pe roko, chhote pe alert</li><li data-read>Tools: dbt tests, Great Expectations</li></ul><p class="prep-check" data-read><strong>:</strong> Kharab data chupke se AI models todta hai; woh bachaav dekhna chahte hain.</p></div></details><details class="deep-faq"><summary data-read>Daily sales analytics aur ML demand forecast ko data dene wali pipeline design karo.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Sources: change data capture se order database, product catalogue aur store data. Raw data date se partition karke lake ya warehouse mein lao. dbt se saaf staging tables mein transform, phir orders fact table aur product, store aur date dimensions wala star schema. ML team same models se bani feature table padhti hai, taaki analytics aur ML ek baat bolein. Airflow se orchestrate, har task date se idempotent, layers ke beech data quality tests, aur data der se ya galat ho to alerts. Backfills bas date partitions ke reruns. Lineage aur owners document karo taaki log jaanein numbers kahan se aate hain.</p><p class="prep-label">✅ </p><ul><li data-read>Sources aur ingestion (CDC)</li><li data-read>Raw → staging → modelled layers (star schema)</li><li data-read>ML ke liye shared feature tables</li><li data-read>Orchestration, idempotency, quality tests, backfills, lineage</li></ul><p class="prep-check" data-read><strong>:</strong> End to end data architecture.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Completeness, validity, uniqueness, consistency aur freshness automatically check karo.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/data-drift.html" title="Jab live model ko milne wala data uske training data se alag dikhne lage.">Data drift</a></li><li><a class="chip" href="../../glossary/data-pipeline.html" title="Apne aap chalne wale steps jo sources se data laate, saaf aur transform karte, aur reports ya models tak pahunchaate hain.">Data pipeline</a></li><li><a class="chip" href="../../glossary/dataset.html" title="Model train, validate ya test karne ke liye examples ka collection.">Dataset</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-features.html">← Feature engineering: raw data ko kaam ke inputs mein badalna</a>
-        <a href="embeddings.html">Embeddings aur vector databases: matlab se search karna →</a>
+        <a href="pandas.html">← Pandas: data ki tables ke saath kaam karna</a>
+        <a href="stats-center-spread.html">Average aur spread: mean, median, variance →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=data-engineer-ai&amp;lesson=data-quality&amp;lang=hi">Data Engineer (AI focus)</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=data-engineer-ai&amp;lesson=data-quality&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=data-quality&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=data-quality&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=data-quality&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=data-quality&amp;lang=hi">MLOps / AI Platform Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=data-quality&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

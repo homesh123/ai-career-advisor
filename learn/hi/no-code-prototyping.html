@@ -62,6 +62,16 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Manager course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
@@ -179,18 +189,20 @@ Week 1: 200 emails, 84% classified right, payroll drafts need work → clear spe
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. Asli users aur data ke saath jaldi test karna ki idea kaam ka hai ya nahi</strong>: Prototypes bade investment se pehle jaldi aur saste mein seekhkar risk kam karte hain.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Non coders kaunse tools use kar sakte hain?</summary><p data-read>AI steps wale workflow tools (jaise Zapier ya n8n), spreadsheet AI functions, aur AI app builders. Jo company allow kare woh chuno.</p></details><details class="deep-faq"><summary data-read>Prototype mein kitna time lagna chahiye?</summary><p data-read>Din, mahine nahi. Zyaada lage to scope bahut bada hai; use sabse zaroori ek task tak kaato.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Engineers ko banane ke liye kehne se pehle naye AI product idea ko 48 ghante mein kaise validate karte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Poora PRD likhne ya sprint capacity mangne se pehle main 30 se 50 asli, gande user inputs (jaise support tickets ya documents) ikattha karta hoon aur seedhe model playground ya chhote Streamlit / low-code workflow mein task test karta hoon. Main un 30 outputs ko haath se ek simple rubric pe score karta hoon yeh dekhne ke liye ki aaj ke models problem solve kar bhi sakte hain ya nahi, kaunsa context kam hai, aur har task ka token cost kaisa dikhta hai. Phir main woh chalta hua prototype paanch asli users ke saamne rakhta hoon yeh dekhne ke liye ki woh output pe bharosa karte hain ya nahi. Jab model quality aur user workflow dono paas hon tabhi hum production engineering mein invest karte hain.</p><p class="prep-label">✅ </p><ul><li data-read>Pehle playground ya low-code prototype mein 30–50 asli, gande inputs pe test karo</li><li data-read>Feasibility jaanchne aur failure modes dhoondhne ke liye outputs haath se score karo</li><li data-read>Engineering sprints commit karne se pehle 5 asli users ko prototype use karte dekho</li><li data-read>Un 30–50 examples ko AI PRD ke pehle golden evaluation set mein badal do</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 mein AI PMs aur FDEs se khud haath se prototype aur eval sets banane ki umeed hoti hai.</p></div></details><details class="deep-faq"><summary data-read>Multimodal (vision ya voice) AI feature launch karte waqt unit economics aur UX trade-offs kaise evaluate karte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>High-resolution images, multi-page PDFs aur live audio saade text se kahin zyaada tokens aur bandwidth khaate hain, aur ek user retry ya multi-step loop cost ko 3× se 5× badha sakta hai. Main sirf cost per API call nahi, balki cost per successfully completed task nikaalta hoon, aur uski tulna user ki dene ki ichha ya bache hue operational kharche se karta hoon. Margins healthy rakhne ke liye main bhejne se pehle images resize karta hoon, simple extractions chhote vision model pe bhejta hoon, repeat documents cache karta hoon, aur UI ko turant visual/audio feedback aur kam confidence pe saaf human fallback ke saath design karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>Sirf cost per API call nahi, cost per completed task (retries samet) naapo</li><li data-read>High-res images aur live voice ka token/compute kharcha text se kahin zyaada hota hai</li><li data-read>Gross margin bachane ke liye image resizing, model routing aur caching use karo</li><li data-read>Latency (streaming/barge-in) aur extracted fields ki verification ke liye UX design karo</li></ul><p class="prep-check" data-read><strong>:</strong> AI unit economics aur multimodal product samajh check karta hai.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Dino mein prototype, asli users ke saath test, phir spec likho.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="llm-prompting.html">← Prompting: LLM ko saaf instructions dena</a>
-        <a href="sql-basics.html">SQL basics: database se sawaal poochna →</a>
+        <a href="multimodal-ai.html">← Multimodal AI: images, messy PDFs, audio aur structured extraction</a>
+        <a href="build-vs-buy.html">Decisions ke liye AI literacy: build vs buy, cost aur limits →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-product-manager&amp;lesson=no-code-prototyping&amp;lang=hi">AI Product Manager</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=ai-product-manager&amp;lesson=no-code-prototyping&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=no-code-prototyping&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=no-code-prototyping&amp;lang=hi">AI Forward Deployed Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=no-code-prototyping&amp;lang=hi">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=no-code-prototyping&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

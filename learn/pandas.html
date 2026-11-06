@@ -74,6 +74,11 @@
           "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
         }
       ]
     },
@@ -190,17 +195,19 @@ print(by_city.head(3))               # top 3 cities by sales</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. groupby()</strong>: groupby splits rows by city, then sum() adds up the sales in each group.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Pandas or SQL: which should I use?</summary><p data-read>Both. Use SQL to pull and aggregate data inside the database, then pandas for exploration, cleaning and ML preparation in Python.</p></details><details class="deep-faq"><summary data-read>My file is too big for pandas. What now?</summary><p data-read>Read only needed columns (usecols), read in chunks (chunksize), or use tools built for big data like Polars, DuckDB or Spark.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How do you deal with missing values?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First I ask why they&#39;re missing, because that changes the fix. If income is missing because people didn&#39;t want to share it, the fact that it&#39;s missing may itself be a signal. Options: drop rows if very few are missing; fill with the median or most common value; fill using a model or a group average; or add a &quot;was missing&quot; flag column alongside the filled value. Tree models like XGBoost can handle missing values natively. Whatever I do, I fit the filling logic on the training data only.</p><p class="prep-label">✅ </p><ul><li data-read>Understand why it&#39;s missing first</li><li data-read>Drop, impute (median, mode, model), or add a missing flag</li><li data-read>Fit imputation on train only to avoid leakage</li></ul><p class="prep-check" data-read><strong>:</strong> Data cleaning judgement, not just a pandas command.</p></div></details><details class="deep-faq"><summary data-read>You get a new dataset. How do you explore it?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I start with the shape and column types, then look at the first few rows to understand what each column means. Next, missing values per column, duplicates, and basic statistics like mean, median, minimum and maximum, which reveal impossible values like negative ages. I plot distributions with histograms and count the categories. Then I look at relationships: how each feature relates to the target, and correlations between features. I write down surprises and questions for the data owner, because many problems are understood only by asking.</p><p class="prep-label">✅ </p><ul><li data-read>Shape, types, sample rows</li><li data-read>Missing values, duplicates, summary stats, outliers</li><li data-read>Distributions and relationships with the target</li><li data-read>Note questions for the data owner</li></ul><p class="prep-check" data-read><strong>:</strong> Practical data sense; freshers are often asked to describe this step by step.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>DataFrame = table. Most AI projects start with load → clean → groupby.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="git-github.html">← Git and GitHub: saving and sharing your work</a>
-        <a href="stats-center-spread.html">Averages and spread: mean, median, variance →</a>
+        <a href="numpy-arrays.html">← NumPy and vectorisation: fast maths on arrays</a>
+        <a href="data-quality.html">Data quality: catching bad data early →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=pandas">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=pandas">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=pandas">Data Engineer (AI focus)</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=pandas">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=pandas">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=pandas">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=pandas">AI Research Engineer</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=pandas">Continue in the course</a>
       </section>
     </article>

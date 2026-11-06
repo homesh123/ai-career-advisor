@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Research Engineer Interview Questions and Answers (2026): 52 Questions With Easy Answers | AI Path Finder</title>
-  <meta name="description" content="52 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <title>AI Research Engineer Interview Questions and Answers (2026): 65 Questions With Easy Answers | AI Path Finder</title>
+  <meta name="description" content="65 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
   <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/interview/ai-research-engineer.html" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -16,16 +16,16 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI Path Finder" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="AI Research Engineer Interview Questions and Answers (2026): 52 Questions With Easy Answers | AI Path Finder" />
-  <meta property="og:description" content="52 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta property="og:title" content="AI Research Engineer Interview Questions and Answers (2026): 65 Questions With Easy Answers | AI Path Finder" />
+  <meta property="og:description" content="65 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/interview/ai-research-engineer.html" />
   <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:modified_time" content="2026-10-28" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Research Engineer Interview Questions and Answers (2026): 52 Questions With Easy Answers | AI Path Finder" />
-  <meta name="twitter:description" content="52 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta name="twitter:title" content="AI Research Engineer Interview Questions and Answers (2026): 65 Questions With Easy Answers | AI Path Finder" />
+  <meta name="twitter:description" content="65 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <link rel="stylesheet" href="../styles.css" />
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
       "@type": "WebPage",
       "@id": "https://homesh123.github.io/ai-career-advisor/interview/ai-research-engineer.html",
       "url": "https://homesh123.github.io/ai-career-advisor/interview/ai-research-engineer.html",
-      "name": "AI Research Engineer Interview Questions and Answers (2026): 52 Questions With Easy Answers",
-      "description": "52 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
+      "name": "AI Research Engineer Interview Questions and Answers (2026): 65 Questions With Easy Answers",
+      "description": "65 AI Research Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
       "inLanguage": "en",
       "datePublished": "2026-10-27",
       "dateModified": "2026-10-28",
@@ -178,6 +178,30 @@
         },
         {
           "@type": "Question",
+          "name": "How do you use Git and pull requests in an AI project, and what should never be committed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is NumPy vectorisation so much faster than Python loops, and what is broadcasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In a Python loop, the interpreter checks types and dispatches operations element by element, which has huge overhead. A NumPy array stores numbers of one fixed type in a contiguous block of memory, so vectorised operations like a * b or X @ W run in compiled C and SIMD instructions across the whole array at once, often 50 to 100 times faster. Broadcasting lets NumPy do arithmetic on arrays of different shapes without copying data by stretching dimensions of size 1, such as subtracting a 1D column mean (1, d) from every row of a 2D matrix (n, d)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Explain conditional probability and Bayes' rule with a real example. Why does the base rate matter so much?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes' rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there's only about a 9% chance it's actually fraud."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "What is cross validation and when would you not use standard k fold?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -190,6 +214,30 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "I'd explain the steps, then code them in NumPy. One, initialise weights and bias to zeros. Two, compute z = X·w + b and the prediction p = sigmoid(z). Three, the loss is binary cross entropy. Four, the gradient is simple: dw = Xᵀ(p − y) / n and db = mean(p − y). Five, update w and b by subtracting learning rate times the gradient, and loop for some epochs. I'd add a check that the loss goes down, clip probabilities to avoid log of zero, and test on a tiny dataset where I know the answer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do k-means clustering, PCA and anomaly detection work, and why must you scale features first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "K-means groups unlabelled rows into K clusters by repeatedly assigning each point to the nearest cluster centre and then moving each centre to the average of its assigned points. PCA finds the directions of maximum variance and projects high dimensional features onto a few orthogonal components. Isolation Forest spots anomalies by randomly splitting features—outliers sit alone and get isolated in very few splits. Because k-means and PCA rely on Euclidean distance and variance, an unscaled feature like salary in rupees (0 to 2,000,000) will completely dominate age (18 to 70), so I always standardise features to zero mean and unit variance first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Walk through a PyTorch training loop and explain why optimizer.zero_grad(), model.eval() and torch.no_grad() matter.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inside each batch of a PyTorch epoch there are five steps: move inputs and targets to the device, call optimizer.zero_grad() because PyTorch accumulates gradients by default, run the forward pass logits = model(x), compute the loss, call loss.backward() to compute gradients via autograd, and call optimizer.step() to update weights. During validation or inference I call model.eval() so Dropout is turned off and BatchNorm uses running statistics, and I wrap the forward pass in with torch.no_grad(): so PyTorch doesn't build the computation graph, cutting memory use roughly in half. For large models I add bf16 mixed precision, gradient clipping, and Distributed Data Parallel (DDP) or FSDP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you structure an end-to-end ML system design interview, such as feed ranking or search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I use a six step structure. First, clarify the business objective, latency budget (say 150 ms) and scale. Second, frame the ML task and choose offline metrics (like Recall@100 and NDCG@10) plus online north-star and guardrail metrics. Third, describe the data and feature store: user history, item metadata, and real-time session signals joined point-in-time without leakage. Fourth, use a two-stage funnel: fast candidate generation (two-tower embeddings + BM25 narrowing millions of items to 500) followed by a rich GBDT or neural ranker scoring those 500, plus a re-ranker for diversity and business rules. Fifth, cover cold start and position bias. Sixth, cover shadow/A-B rollout and drift monitoring."
           }
         },
         {
@@ -238,6 +286,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "LoRA, low rank adaptation, fine tunes a big model by freezing the original weights and learning a small update for some weight matrices, written as the product of two thin matrices, A and B. Because the rank is small, you train maybe less than 1% of the parameters, which needs far less GPU memory and storage. You can keep one base model and swap small LoRA adapters for different tasks. QLoRA goes further by keeping the base model in 4 bit precision, so you can fine tune large models on a single GPU."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Compare SFT, RLHF (PPO) and DPO for post-training an LLM. Why is the KL penalty needed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Supervised Fine-Tuning (SFT) teaches the base model to follow instructions by imitating curated (prompt, response) demos. RLHF goes further using human preference pairs (chosen vs rejected): it trains a separate reward model and uses PPO reinforcement learning to maximise reward while keeping a KL-divergence penalty so the policy doesn't drift too far from the SFT reference and 'reward-hack' with gibberish or sycophancy. Direct Preference Optimization (DPO) mathematically rewrites that reward + KL objective into a simple binary cross-entropy loss directly on the preference pairs, eliminating the separate reward model and unstable PPO loop. For verifiable tasks like math or code, GRPO/RLVR trains reasoning chains against unit-test rewards."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does post-training quantisation (INT8/INT4, AWQ, GPTQ) work, and why do activation outliers break naive INT4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quantisation maps 16-bit floating-point weights (FP16/BF16) onto a narrow grid of 8-bit or 4-bit integers using a scale factor, cutting GPU memory by 2× to 4× and speeding up memory-bandwidth-bound token generation. Naive round-to-nearest INT4 degrades accuracy because transformer activations above ~6B parameters develop huge outlier channels (100× larger than normal); stretching 16 integer buckets across that range squashes all normal weights to zero. AWQ and GPTQ fix this using a small calibration set: AWQ scales up the 1% of weight channels that multiply large activation outliers before quantising, preserving accuracy."
           }
         },
         {
@@ -370,6 +434,14 @@
         },
         {
           "@type": "Question",
+          "name": "Why is `np.dot(X, w)` 50–100× faster than a Python `for` loop over the rows of `X`?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead. Vectorised NumPy operations avoid Python's per-element type checking and dispatch overhead."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Salaries in a team are mostly around ₹8 LPA, with one executive at ₹2 crore. Which best describes a typical salary?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -418,6 +490,22 @@
         },
         {
           "@type": "Question",
+          "name": "Before running k-means clustering or PCA on customer features (age in years, annual spend in rupees), what should you do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standardise the features (zero mean, unit variance) so spend in lakhs doesn't dominate distance calculations. Distance-based and variance-based methods are skewed by large-scale units unless features are standardised first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do large-scale recommendation and search systems use a two-stage retrieve-then-rank architecture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget. Scoring millions of items with a deep or GBDT ranker per request is too slow; retrieval + ranking balances speed and precision."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Training loss jumps around wildly and never settles. What do you try first?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -454,6 +542,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Saturating activations like sigmoid in many stacked layers, and are eased by ReLU, residual connections and normalisation. Repeatedly multiplying small derivatives shrinks gradients towards zero. Modern architectures add shortcuts and normalisation to fix this."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do you call `optimizer.zero_grad()` on each batch in a PyTorch training loop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To clear gradients from the previous batch, because PyTorch accumulates gradients into `.grad` by default. PyTorch adds new gradients onto existing `.grad` buffers unless you clear them before the next backward pass."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does 4-bit post-training quantisation (such as AWQ) mainly achieve for an LLM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It cuts GPU memory for weights by ~3–4× and speeds up token generation with minimal accuracy loss. Storing weights in 4-bit integers instead of 16-bit floats shrinks VRAM footprint and memory-bandwidth bottlenecks."
           }
         },
         {
@@ -524,14 +628,14 @@
       <header>
         <p class="eyebrow">Interview preparation · Updated <time datetime="2026-10-28">28 October 2026</time></p>
         <h1>AI Research Engineer interview questions and answers</h1>
-        <p class="lead">34 questions AI Research Engineer candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 18 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=ai-research-engineer">interview practice</a>.</p>
+        <p class="lead">42 questions AI Research Engineer candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 23 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=ai-research-engineer">interview practice</a>.</p>
       </header>
       <section class="rounds-box">
         <h2>How an AI Research Engineer interview usually goes</h2>
         <ol><li>Recruiter screen</li><li>ML coding: implement attention, a training loop or a loss from scratch in PyTorch or NumPy</li><li>Math and fundamentals: gradients, softmax and cross entropy, optimisation</li><li>Research discussion: a paper you know well, your past work, experiment design and ablations</li><li>Behavioural and team fit</li></ol>
         <p class="small muted">Based on 2026 candidate reports. Companies vary, so use this as a map.</p>
       </section>
-      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (3)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (9)</li><li><a href="#stage-core">🛠️ Role skills</a> (13)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (1)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (18)</li></ol></nav>
+      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (3)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (12)</li><li><a href="#stage-core">🛠️ Role skills</a> (18)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (1)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (23)</li></ol></nav>
       <section id="stage-start">
         <h2>👋 Opening: about you</h2>
         <p class="muted">Almost every interview starts here. These answers set the tone, so prepare them word for word and practise them out loud.</p>
@@ -686,6 +790,42 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-git-pr-workflow">
+          <details><summary><span class="prep-n">13</span>How do you use Git and pull requests in an AI project, and what should never be committed?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Feature branches, small commits, clear PR descriptions with eval results</li><li>Never commit .env secrets, raw customer data, or huge model files</li><li>Use .gitignore, secret managers and artifact storage</li><li>Review code and prompt changes with the same discipline</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Checks basic software engineering hygiene before letting you near a production repo.</p>
+              <p class="small">📖 Learn it: <a href="../learn/git-github.html">Git and GitHub: saving and sharing your work</a> · <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-numpy-vectorisation">
+          <details><summary><span class="prep-n">14</span>Why is NumPy vectorisation so much faster than Python loops, and what is broadcasting?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>In a Python loop, the interpreter checks types and dispatches operations element by element, which has huge overhead. A NumPy array stores numbers of one fixed type in a contiguous block of memory, so vectorised operations like a * b or X @ W run in compiled C and SIMD instructions across the whole array at once, often 50 to 100 times faster. Broadcasting lets NumPy do arithmetic on arrays of different shapes without copying data by stretching dimensions of size 1, such as subtracting a 1D column mean (1, d) from every row of a 2D matrix (n, d).</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Contiguous typed memory + C/SIMD loops vs Python interpreter overhead</li><li>Matrix multiplication (@), reductions with axis, and checking .shape</li><li>Broadcasting stretches dimensions of size 1 without copying memory</li><li>Watch out for unintentional (n, 1) + (1, n) creating an (n, n) matrix</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Foundation for ML coding rounds in NumPy and PyTorch.</p>
+              <p class="small">📖 Learn it: <a href="../learn/numpy-arrays.html">NumPy and vectorisation: fast maths on arrays</a> · <a href="../learn/math-vectors.html">Vectors and matrices: the language of AI</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-bayes-probability">
+          <details><summary><span class="prep-n">15</span>Explain conditional probability and Bayes&#39; rule with a real example. Why does the base rate matter so much?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes&#39; rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there&#39;s only about a 9% chance it&#39;s actually fraud.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>P(A | B) = probability of A given B; Bayes flips P(signal | event) to P(event | signal)</li><li>Walk through a rare event example showing how false positives dominate when base rate is low</li><li>Connect directly to precision vs recall in fraud, medical screening or content moderation</li><li>Mention skewed/long tailed distributions vs normal distributions</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> A classic probability question that separates people who memorise formulas from people who understand rare events.</p>
+              <p class="small">📖 Learn it: <a href="../learn/stats-probability.html">Probability and distributions</a> · <a href="../learn/stats-center-spread.html">Averages and spread: mean, median, variance</a> · <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a></p>
+            </div>
+          </details>
+        </li>
         </ol>
       </section>
       <section id="stage-core">
@@ -693,7 +833,7 @@
         <p class="muted">The technical heart of the interview for this role. Interviewers go deeper with follow up questions, so understand the why, not just the definition.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-cross-validation">
-          <details><summary><span class="prep-n">13</span>What is cross validation and when would you not use standard k fold?</summary>
+          <details><summary><span class="prep-n">16</span>What is cross validation and when would you not use standard k fold?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>K fold cross validation splits training data into k parts, trains on k minus 1 and validates on the remaining part, rotating through all parts. Averaging gives a more reliable estimate than a single split, which matters with small data. I wouldn&#39;t use plain k fold for time series, because it lets the model see the future; I&#39;d use time based splits instead. And if one user has many rows, I&#39;d use group k fold so the same user isn&#39;t in both training and validation.</p>
@@ -705,7 +845,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-logreg-scratch">
-          <details><summary><span class="prep-n">14</span>How would you implement logistic regression from scratch?</summary>
+          <details><summary><span class="prep-n">17</span>How would you implement logistic regression from scratch?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>I&#39;d explain the steps, then code them in NumPy. One, initialise weights and bias to zeros. Two, compute z = X·w + b and the prediction p = sigmoid(z). Three, the loss is binary cross entropy. Four, the gradient is simple: dw = Xᵀ(p − y) / n and db = mean(p − y). Five, update w and b by subtracting learning rate times the gradient, and loop for some epochs. I&#39;d add a check that the loss goes down, clip probabilities to avoid log of zero, and test on a tiny dataset where I know the answer.</p>
@@ -716,8 +856,44 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-unsupervised-clustering">
+          <details><summary><span class="prep-n">18</span>How do k-means clustering, PCA and anomaly detection work, and why must you scale features first?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>K-means groups unlabelled rows into K clusters by repeatedly assigning each point to the nearest cluster centre and then moving each centre to the average of its assigned points. PCA finds the directions of maximum variance and projects high dimensional features onto a few orthogonal components. Isolation Forest spots anomalies by randomly splitting features—outliers sit alone and get isolated in very few splits. Because k-means and PCA rely on Euclidean distance and variance, an unscaled feature like salary in rupees (0 to 2,000,000) will completely dominate age (18 to 70), so I always standardise features to zero mean and unit variance first.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>K-means: assign to nearest centroid, update centroids; pick K via elbow/silhouette + domain sense</li><li>PCA: compress correlated columns along directions of max variance</li><li>Isolation Forest: anomalies are isolated in fewer random splits</li><li>Standardise features first so large-unit columns don&#39;t dominate distances</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you understand distance-based unsupervised learning beyond calling fit().</p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-unsupervised.html">Unsupervised learning: clustering, PCA and anomaly detection</a> · <a href="../learn/stats-correlation.html">Correlation vs causation, and sampling bias</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pytorch-training-loop">
+          <details><summary><span class="prep-n">19</span>Walk through a PyTorch training loop and explain why optimizer.zero_grad(), model.eval() and torch.no_grad() matter.</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Inside each batch of a PyTorch epoch there are five steps: move inputs and targets to the device, call optimizer.zero_grad() because PyTorch accumulates gradients by default, run the forward pass logits = model(x), compute the loss, call loss.backward() to compute gradients via autograd, and call optimizer.step() to update weights. During validation or inference I call model.eval() so Dropout is turned off and BatchNorm uses running statistics, and I wrap the forward pass in with torch.no_grad(): so PyTorch doesn&#39;t build the computation graph, cutting memory use roughly in half. For large models I add bf16 mixed precision, gradient clipping, and Distributed Data Parallel (DDP) or FSDP.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>5-step loop: zero_grad → forward → loss → backward → step</li><li>Why zero_grad matters: gradients accumulate across batches by default</li><li>model.eval() + torch.no_grad() for validation and inference</li><li>Production training: bf16 mixed precision, grad clipping, DDP vs FSDP</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Standard PyTorch coding and debugging question in ML and Research interviews.</p>
+              <p class="small">📖 Learn it: <a href="../learn/dl-pytorch-training.html">PyTorch in practice: tensors, autograd and the training loop</a> · <a href="../learn/dl-neural-networks.html">Neural networks: layers that learn</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-ml-sysdesign-loop">
+          <details><summary><span class="prep-n">20</span>How do you structure an end-to-end ML system design interview, such as feed ranking or search?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I use a six step structure. First, clarify the business objective, latency budget (say 150 ms) and scale. Second, frame the ML task and choose offline metrics (like Recall@100 and NDCG@10) plus online north-star and guardrail metrics. Third, describe the data and feature store: user history, item metadata, and real-time session signals joined point-in-time without leakage. Fourth, use a two-stage funnel: fast candidate generation (two-tower embeddings + BM25 narrowing millions of items to 500) followed by a rich GBDT or neural ranker scoring those 500, plus a re-ranker for diversity and business rules. Fifth, cover cold start and position bias. Sixth, cover shadow/A-B rollout and drift monitoring.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Clarify business goal, scale and latency budget first</li><li>Offline ranking metrics (Recall@K, NDCG) vs online business &amp; guardrail metrics</li><li>Two-stage architecture: fast candidate retrieval → feature-rich ranker → business rules</li><li>Address cold start, position bias, point-in-time features and monitoring</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you can design a complete production ML funnel rather than just talking about a loss function.</p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-system-design.html">ML system design: recommendations, search and fraud at scale</a> · <a href="../learn/ab-testing.html">Metrics and A/B testing for AI features</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-attention">
-          <details><summary><span class="prep-n">15</span>Explain self attention. Why do we divide by the square root of d_k?</summary>
+          <details><summary><span class="prep-n">21</span>Explain self attention. Why do we divide by the square root of d_k?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Each token creates three vectors: a query, &quot;what am I looking for?&quot;, a key, &quot;what do I contain?&quot;, and a value, &quot;what do I pass on?&quot;. For each token, we compare its query with every key using a dot product, which gives relevance scores. Softmax turns the scores into weights, and the output is a weighted sum of the values. So each token builds a new representation by looking at the others. We divide by the square root of d_k because dot products grow with dimension; without scaling, softmax becomes very peaked and its gradients become tiny, which slows training.</p>
@@ -729,7 +905,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-attention-cost">
-          <details><summary><span class="prep-n">16</span>What&#39;s the computational cost of self attention, and how can it be reduced?</summary>
+          <details><summary><span class="prep-n">22</span>What&#39;s the computational cost of self attention, and how can it be reduced?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>For a sequence of n tokens with dimension d, attention compares every token with every other token, so time is roughly O(n² · d) and the attention matrix needs O(n²) memory. That&#39;s why long contexts are expensive. Approaches to reduce it include FlashAttention, which computes exact attention in tiles to save memory and is much faster on GPUs; sparse or sliding window attention, which only looks at nearby tokens; linear attention approximations; and at inference, the KV cache plus grouped query attention to reduce memory per token.</p>
@@ -741,7 +917,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-kv-cache">
-          <details><summary><span class="prep-n">17</span>What is the KV cache in LLM inference?</summary>
+          <details><summary><span class="prep-n">23</span>What is the KV cache in LLM inference?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>When an LLM generates text one token at a time, each new token needs attention over all previous tokens. Without a cache, we&#39;d recompute the keys and values of every previous token at every step, which is wasteful. The KV cache stores the keys and values computed so far, so each step only computes them for the new token. That makes generation much faster, but the cache uses a lot of GPU memory, growing with sequence length and batch size, which is why techniques like grouped query attention and paged attention, as in vLLM, matter.</p>
@@ -753,7 +929,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-softmax-ce">
-          <details><summary><span class="prep-n">18</span>What&#39;s the gradient of softmax combined with cross entropy loss?</summary>
+          <details><summary><span class="prep-n">24</span>What&#39;s the gradient of softmax combined with cross entropy loss?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>If p is the softmax output and y is the one hot true label, the gradient of the cross entropy loss with respect to the logits is simply p − y. Intuitively, for the correct class the gradient is p − 1, which is negative, so training pushes that logit up; for wrong classes it&#39;s p, pushing those logits down in proportion to how confident the model wrongly was. This clean result is why softmax and cross entropy are combined in one function in frameworks, which is also more numerically stable using the log sum exp trick.</p>
@@ -765,7 +941,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-implement-mha">
-          <details><summary><span class="prep-n">19</span>Walk me through implementing multi head attention with a causal mask.</summary>
+          <details><summary><span class="prep-n">25</span>Walk me through implementing multi head attention with a causal mask.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Input x has shape batch × sequence × d_model. One, project x with three linear layers into Q, K and V. Two, reshape each to batch × heads × sequence × head_dim, where head_dim = d_model / heads. Three, scores = Q·Kᵀ / √head_dim, giving batch × heads × seq × seq. Four, for a causal mask, set scores above the diagonal to minus infinity, so a token can&#39;t see the future. Five, softmax over the last dimension, optional dropout, then multiply by V. Six, merge the heads back to batch × sequence × d_model and apply an output projection. I&#39;d test shapes at each step and check that changing a future token doesn&#39;t change earlier outputs.</p>
@@ -777,7 +953,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-lora">
-          <details><summary><span class="prep-n">20</span>What is LoRA, and why is it popular?</summary>
+          <details><summary><span class="prep-n">26</span>What is LoRA, and why is it popular?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>LoRA, low rank adaptation, fine tunes a big model by freezing the original weights and learning a small update for some weight matrices, written as the product of two thin matrices, A and B. Because the rank is small, you train maybe less than 1% of the parameters, which needs far less GPU memory and storage. You can keep one base model and swap small LoRA adapters for different tasks. QLoRA goes further by keeping the base model in 4 bit precision, so you can fine tune large models on a single GPU.</p>
@@ -788,8 +964,32 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-dpo-rlhf-alignment">
+          <details><summary><span class="prep-n">27</span>Compare SFT, RLHF (PPO) and DPO for post-training an LLM. Why is the KL penalty needed?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Supervised Fine-Tuning (SFT) teaches the base model to follow instructions by imitating curated (prompt, response) demos. RLHF goes further using human preference pairs (chosen vs rejected): it trains a separate reward model and uses PPO reinforcement learning to maximise reward while keeping a KL-divergence penalty so the policy doesn&#39;t drift too far from the SFT reference and &#39;reward-hack&#39; with gibberish or sycophancy. Direct Preference Optimization (DPO) mathematically rewrites that reward + KL objective into a simple binary cross-entropy loss directly on the preference pairs, eliminating the separate reward model and unstable PPO loop. For verifiable tasks like math or code, GRPO/RLVR trains reasoning chains against unit-test rewards.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>SFT imitates demos; RLHF/DPO align using (prompt, chosen, rejected) preference pairs</li><li>KL-divergence penalty stops the model from drifting and reward-hacking</li><li>DPO optimises preferences directly with cross-entropy without a separate reward model</li><li>RLVR / GRPO uses verifiable code or math rewards for reasoning models</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Core 2026 post-training and alignment question for Research, ML and Agent engineers.</p>
+              <p class="small">📖 Learn it: <a href="../learn/dl-alignment-quant.html">Post-training: RLHF, DPO, quantisation and reasoning models</a> · <a href="../learn/dl-fine-tuning.html">Fine-tuning and LoRA: specialising a model</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-quantisation-outliers">
+          <details><summary><span class="prep-n">28</span>How does post-training quantisation (INT8/INT4, AWQ, GPTQ) work, and why do activation outliers break naive INT4?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Quantisation maps 16-bit floating-point weights (FP16/BF16) onto a narrow grid of 8-bit or 4-bit integers using a scale factor, cutting GPU memory by 2× to 4× and speeding up memory-bandwidth-bound token generation. Naive round-to-nearest INT4 degrades accuracy because transformer activations above ~6B parameters develop huge outlier channels (100× larger than normal); stretching 16 integer buckets across that range squashes all normal weights to zero. AWQ and GPTQ fix this using a small calibration set: AWQ scales up the 1% of weight channels that multiply large activation outliers before quantising, preserving accuracy.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Maps FP16/BF16 weights to INT8/INT4 grids; cuts VRAM 2–4× and speeds up token decoding</li><li>Transformer activation outliers stretch the quantisation grid and crush normal values</li><li>AWQ / GPTQ use calibration data to protect salient weight channels</li><li>Also quantise the KV cache (FP8/INT8) for long contexts and big batch sizes</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests deep understanding of LLM efficiency and quantisation.</p>
+              <p class="small">📖 Learn it: <a href="../learn/dl-alignment-quant.html">Post-training: RLHF, DPO, quantisation and reasoning models</a> · <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-vanishing">
-          <details><summary><span class="prep-n">21</span>What are vanishing gradients, and what fixed them in modern networks?</summary>
+          <details><summary><span class="prep-n">29</span>What are vanishing gradients, and what fixed them in modern networks?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>In deep networks, gradients are multiplied through many layers during backpropagation. If those factors are below one, the gradient shrinks to nearly zero by the time it reaches early layers, so they stop learning. Fixes that made deep networks work: activations like ReLU instead of sigmoid; residual or skip connections, which give gradients a direct path back; normalisation layers like LayerNorm; careful weight initialisation; and optimisers like Adam. Transformers rely heavily on residual connections and LayerNorm.</p>
@@ -801,7 +1001,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-reproduce-paper">
-          <details><summary><span class="prep-n">22</span>How do you reproduce a paper, and what do you do when your results don&#39;t match?</summary>
+          <details><summary><span class="prep-n">30</span>How do you reproduce a paper, and what do you do when your results don&#39;t match?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>I read the paper for its core claim and the exact setup: data, preprocessing, model size, hyperparameters and evaluation. If code exists, I run it first to get a reference. Then I implement step by step, testing each part on tiny data, and match the simplest experiment before the full one. If results don&#39;t match, I check the usual suspects: evaluation differences, data preprocessing, random seeds and variance across runs, learning rate schedule, and details hidden in the appendix. I log every experiment, and if a gap remains, I write it up honestly; that&#39;s useful research too.</p>
@@ -813,7 +1013,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-ablation">
-          <details><summary><span class="prep-n">23</span>What is an ablation study and why does it matter?</summary>
+          <details><summary><span class="prep-n">31</span>What is an ablation study and why does it matter?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>An ablation study removes or changes one part of a system at a time to see how much each part contributes. If my new model has three changes and improves accuracy by 4 points, ablations tell me whether all three matter or one change does all the work. It matters because it turns &quot;it works&quot; into &quot;we know why it works&quot;, prevents unnecessary complexity, and is expected in any credible paper. Good ablations change one thing at a time and use several random seeds, so differences aren&#39;t just noise.</p>
@@ -825,7 +1025,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-reproducible">
-          <details><summary><span class="prep-n">24</span>How do you make model training reproducible?</summary>
+          <details><summary><span class="prep-n">32</span>How do you make model training reproducible?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Version everything that affects the result: the code with git, the data with a snapshot or tool like DVC, the environment with a Docker image and pinned packages, and the configuration and hyperparameters in a tracked config file. Set random seeds. Log every run, with its code commit, data version, parameters, metrics and the resulting model, in an experiment tracker like MLflow. Then anyone can rerun or explain a model months later, which also matters for audits.</p>
@@ -837,7 +1037,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-llm-serving-gpu">
-          <details><summary><span class="prep-n">25</span>How do you serve an open source LLM efficiently on GPUs?</summary>
+          <details><summary><span class="prep-n">33</span>How do you serve an open source LLM efficiently on GPUs?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Use an inference server built for LLMs, like vLLM or TGI, rather than a plain web server. They provide continuous batching, which adds new requests into the running batch so the GPU stays busy, and paged attention to manage KV cache memory. Choose the smallest model that meets quality, and consider quantisation, like 8 bit or 4 bit, to fit on cheaper GPUs. Then autoscale on queue length or tokens per second, set max token limits, and monitor time to first token, tokens per second, GPU memory and cost per request.</p>
@@ -855,14 +1055,14 @@
         <p class="muted">Open questions with no single right answer. Clarify first, then structure your answer, then talk about trade offs, measurement and failure cases.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-design-llm-serving">
-          <details><summary><span class="prep-n">26</span>Design a platform to serve an LLM to 1,000 requests per second.</summary>
+          <details><summary><span class="prep-n">34</span>Design a platform to serve an LLM to 1,000 requests per second.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Clarify model size, prompt and output lengths, and latency targets, especially time to first token. Requests go through a gateway with authentication, rate limits per customer and routing. Behind it, a pool of GPU servers running an inference engine like vLLM with continuous batching and paged KV cache, autoscaled on queue depth. Add a prefix and response cache for repeated prompts, and route simple requests to a smaller model. Estimate capacity from tokens per second per GPU, plan headroom for peaks, and spread across zones. Monitor time to first token, tokens per second, queue time, errors and cost per thousand tokens, and roll out new model versions with canaries.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Clarify sizes and latency targets</li><li>Gateway: auth, rate limits, routing</li><li>Inference engine with batching, autoscaling on queue</li><li>Caching, model routing, capacity planning, monitoring, canaries</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> LLM infrastructure system design.</p>
-              <p class="small">📖 Learn it: <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a> · <a href="../learn/kubernetes.html">Kubernetes: running containers at scale</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a> · <a href="../learn/llmops-tracing.html">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</a> · <a href="../learn/kubernetes.html">Kubernetes: running containers at scale</a></p>
             </div>
           </details>
         </li>
@@ -873,7 +1073,7 @@
         <p class="muted">Use the STAR method: Situation, Task, Action, Result. Include a number in the result whenever you can.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-b-project">
-          <details><summary><span class="prep-n">27</span>Walk me through a project you&#39;re proud of.</summary>
+          <details><summary><span class="prep-n">35</span>Walk me through a project you&#39;re proud of.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Use STAR and go deep on your own decisions. &quot;Situation: our support team was overwhelmed with repeated questions. Task: I wanted to build an assistant that answers from our help docs. Action: I built a RAG pipeline, but the first version answered only 60% of test questions correctly. I created an evaluation set of 80 real questions, found that most failures came from chunks splitting tables, switched to structure aware chunking and added reranking. Result: correct answers rose to 86%, and in a pilot it resolved about a quarter of tickets without an agent.&quot; Be ready for &quot;why did you choose that?&quot; at every step.</p>
@@ -885,7 +1085,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-failure">
-          <details><summary><span class="prep-n">28</span>Tell me about a time something you built failed.</summary>
+          <details><summary><span class="prep-n">36</span>Tell me about a time something you built failed.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick a real failure with a lesson, not a fake one. &quot;I shipped a classification model that looked great offline, with 92% accuracy, but within two weeks users complained. I had split data randomly, and the same customers appeared in both training and test, so the score was too optimistic. I owned it with my manager, re split by customer, got a realistic 81%, and improved features to reach 86%. Since then, I always ask how the data is grouped before splitting, and I add a review of the evaluation setup to my checklist.&quot;</p>
@@ -897,7 +1097,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-conflict">
-          <details><summary><span class="prep-n">29</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
+          <details><summary><span class="prep-n">37</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Show you disagree with data and respect. &quot;A product manager wanted to launch our AI reply feature to all customers. I was worried because our tests showed it sometimes made up refund policies. Instead of just saying no, I showed five real examples and the error rate from our eval set, and proposed launching to 10% of tickets with agent approval first. We agreed on criteria to expand. Two weeks later the error rate was below our threshold and we expanded. We kept a good relationship because we focused on the shared goal.&quot;</p>
@@ -909,7 +1109,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-explain">
-          <details><summary><span class="prep-n">30</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
+          <details><summary><span class="prep-n">38</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick something from your work and use an everyday analogy. For example, explaining RAG: &quot;Imagine a very smart new employee who has read a lot but knows nothing about our company. If you ask them a policy question, they might confidently guess. RAG is like giving them the right pages of our policy manual before they answer, and asking them to point to the page. So answers are based on our actual documents, and you can check them.&quot; Then check understanding: &quot;Does that make sense?&quot;</p>
@@ -921,7 +1121,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-keep-up">
-          <details><summary><span class="prep-n">31</span>How do you keep up with the fast changes in AI?</summary>
+          <details><summary><span class="prep-n">39</span>How do you keep up with the fast changes in AI?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be specific and show you filter noise. &quot;I follow a few high quality sources instead of everything: release notes from the main model providers, a couple of newsletters, and papers when something important comes up. But mostly I learn by building: when something new appears, like a new tool calling feature, I try it on a small project within a week and write a short note about what worked. I also review what changed in our own evals when we upgrade models, which teaches me more than reading headlines.&quot;</p>
@@ -933,7 +1133,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-ai-tools">
-          <details><summary><span class="prep-n">32</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
+          <details><summary><span class="prep-n">40</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be honest and responsible. &quot;I use AI assistants daily for boilerplate, tests, unfamiliar libraries and explaining code. But I treat the output like code from a new colleague: I read every line before accepting it, I make sure there are tests, I check security sensitive parts like authentication and SQL myself, and I never paste secrets or confidential data into tools that aren&#39;t approved. It makes me faster, but I&#39;m still responsible for what I ship.&quot;</p>
@@ -951,7 +1151,7 @@
         <p class="muted">The last five minutes matter. Good questions show you&#39;re serious; a calm salary answer protects your offer.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-ask-them">
-          <details><summary><span class="prep-n">33</span>Do you have any questions for us?</summary>
+          <details><summary><span class="prep-n">41</span>Do you have any questions for us?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Always say yes and ask two or three real questions. Good ones: &quot;What would success look like for this role in the first 6 months?&quot;, &quot;What&#39;s the biggest challenge the team is facing with AI right now?&quot;, &quot;How do you evaluate model or feature quality before shipping?&quot;, &quot;How is the team split between building new features and maintaining existing ones?&quot;, and &quot;What do people who do well here have in common?&quot;. Avoid asking about leave or salary in a technical round, and don&#39;t ask things that are on their website.</p>
@@ -963,7 +1163,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-salary">
-          <details><summary><span class="prep-n">34</span>What are your salary expectations?</summary>
+          <details><summary><span class="prep-n">42</span>What are your salary expectations?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Research first, using sites like Glassdoor, AmbitionBox, levels.fyi and people in similar roles, then give a range based on the role, not on your current pay. &quot;Based on my research for this role and level in Bangalore, and my experience, I&#39;m looking at a range of ₹22 to ₹28 lakh fixed. I&#39;m flexible depending on the overall package, and I&#39;m most interested in the role itself.&quot; If they insist on your current salary, you can share it, but steer back to the market range for the new role. Never accept or reject on the spot; ask for the offer in writing.</p>
@@ -990,6 +1190,11 @@
           <p class="quiz-q">What does df.groupby(&#39;city&#39;)[&#39;amount&#39;].mean() return?</p>
           <ol type="A"><li>The overall mean amount</li><li>The cities sorted by amount</li><li>One average amount per city</li><li>A count of rows per city</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>One average amount per city</strong>. groupby splits the rows by city, then mean() averages &#39;amount&#39; within each group, giving a Series indexed by city.</p><p class="small">Learn: <a href="../learn/pandas.html">Pandas: working with tables of data</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Why is `np.dot(X, w)` 50–100× faster than a Python `for` loop over the rows of `X`?</p>
+          <ol type="A"><li>NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead</li><li>NumPy skips half the rows</li><li>Python loops only work on strings</li><li>NumPy automatically uploads every array to the cloud</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead</strong>. Vectorised NumPy operations avoid Python&#39;s per-element type checking and dispatch overhead.</p><p class="small">Learn: <a href="../learn/numpy-arrays.html">NumPy and vectorisation: fast maths on arrays</a> · <a href="../learn/math-vectors.html">Vectors and matrices: the language of AI</a></p></details>
         </li>
         </ol>
         <h3 id="area-2">Statistics &amp; data</h3>
@@ -1027,8 +1232,27 @@
           <ol type="A"><li>It gives a more reliable performance estimate by averaging over several train/validation splits</li><li>It replaces the need for a test set entirely</li><li>It trains the final model faster</li><li>It removes the need for features</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>It gives a more reliable performance estimate by averaging over several train/validation splits</strong>. One split can be lucky or unlucky. Averaging across folds reduces that variance.</p><p class="small">Learn: <a href="../learn/ml-train-test.html">Train/test split and overfitting</a></p></details>
         </li>
+        <li class="iv-static">
+          <p class="quiz-q">Before running k-means clustering or PCA on customer features (age in years, annual spend in rupees), what should you do?</p>
+          <ol type="A"><li>Sort the rows alphabetically</li><li>Standardise the features (zero mean, unit variance) so spend in lakhs doesn&#39;t dominate distance calculations</li><li>Drop the age column</li><li>Convert numbers into strings</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Standardise the features (zero mean, unit variance) so spend in lakhs doesn&#39;t dominate distance calculations</strong>. Distance-based and variance-based methods are skewed by large-scale units unless features are standardised first.</p><p class="small">Learn: <a href="../learn/ml-unsupervised.html">Unsupervised learning: clustering, PCA and anomaly detection</a></p></details>
+        </li>
         </ol>
-        <h3 id="area-4">Deep learning</h3>
+        <h3 id="area-4">ML system design</h3>
+        <ol class="iv-list">
+        <li class="iv-static">
+          <p class="quiz-q">Why do large-scale recommendation and search systems use a two-stage retrieve-then-rank architecture?</p>
+          <ol type="A"><li>Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget</li><li>Because ranking models cannot take user features</li><li>To use twice as many servers</li><li>To avoid using embeddings</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget</strong>. Scoring millions of items with a deep or GBDT ranker per request is too slow; retrieval + ranking balances speed and precision.</p><p class="small">Learn: <a href="../learn/ml-system-design.html">ML system design: recommendations, search and fraud at scale</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Design a fraud-detection system for UPI payments. <span class="badge-time">open question</span></p>
+          <p class="small"><strong>A strong answer covers:</strong></p>
+          <ul class="small"><li>Requirements: latency budget (e.g. under 100 ms), volume, the cost of a miss vs a false alarm</li><li>Features: real-time (amount vs the user&#39;s usual, velocity) and historical, with no leakage</li><li>Model choice (e.g. gradient boosting) and threshold set by business cost</li><li>Serving: a low-latency API plus a streaming feature store</li><li>Monitoring: drift, delayed fraud labels as feedback, and retraining</li><li>A human review queue for borderline cases</li></ul>
+          <details class="answer-reveal"><summary>Show model answer</summary><p>I&#39;d start from requirements: decisions in under 100 ms at peak volume, and an explicit cost for missed fraud vs blocking a genuine payment. Features combine real-time signals, such as amount versus the user&#39;s usual, transactions in the last 10 minutes and a new device or payee, with historical aggregates from a feature store, all computed only from data available at payment time. A gradient-boosted model fits tabular signals well. I&#39;d set the threshold to minimise expected cost and send a middle band to manual review. It would be served behind a low-latency API with streaming feature updates. I&#39;d monitor input drift and precision and recall as chargeback labels arrive weeks later, and retrain on a schedule.</p><p class="small">Learn: <a href="../learn/ml-features.html">Feature engineering: turning raw data into useful inputs</a> · <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p></details>
+        </li>
+        </ol>
+        <h3 id="area-5">Deep learning</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Training loss jumps around wildly and never settles. What do you try first?</p>
@@ -1056,13 +1280,23 @@
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>Saturating activations like sigmoid in many stacked layers, and are eased by ReLU, residual connections and normalisation</strong>. Repeatedly multiplying small derivatives shrinks gradients towards zero. Modern architectures add shortcuts and normalisation to fix this.</p><p class="small">Learn: <a href="../learn/dl-neural-networks.html">Neural networks: layers that learn</a></p></details>
         </li>
         <li class="iv-static">
+          <p class="quiz-q">Why do you call `optimizer.zero_grad()` on each batch in a PyTorch training loop?</p>
+          <ol type="A"><li>To clear gradients from the previous batch, because PyTorch accumulates gradients into `.grad` by default</li><li>To reset the model weights to random numbers</li><li>To move tensors from CPU to GPU</li><li>To turn off dropout during evaluation</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>To clear gradients from the previous batch, because PyTorch accumulates gradients into `.grad` by default</strong>. PyTorch adds new gradients onto existing `.grad` buffers unless you clear them before the next backward pass.</p><p class="small">Learn: <a href="../learn/dl-pytorch-training.html">PyTorch in practice: tensors, autograd and the training loop</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">What does 4-bit post-training quantisation (such as AWQ) mainly achieve for an LLM?</p>
+          <ol type="A"><li>It replaces the need for attention layers</li><li>It cuts GPU memory for weights by ~3–4× and speeds up token generation with minimal accuracy loss</li><li>It doubles the context window automatically</li><li>It trains the model from scratch without data</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>It cuts GPU memory for weights by ~3–4× and speeds up token generation with minimal accuracy loss</strong>. Storing weights in 4-bit integers instead of 16-bit floats shrinks VRAM footprint and memory-bandwidth bottlenecks.</p><p class="small">Learn: <a href="../learn/dl-alignment-quant.html">Post-training: RLHF, DPO, quantisation and reasoning models</a></p></details>
+        </li>
+        <li class="iv-static">
           <p class="quiz-q">Explain how a transformer works to an engineer, and how you&#39;d reduce its training cost. <span class="badge-time">open question</span></p>
           <p class="small"><strong>A strong answer covers:</strong></p>
           <ul class="small"><li>Tokens become embeddings, plus positional information</li><li>Self-attention: queries, keys and values, mixing information across tokens</li><li>Multi-head attention, feed-forward layers, residuals and normalisation</li><li>The next-token prediction objective</li><li>Cost levers: mixed precision, efficient attention, LoRA/PEFT, data quality, smaller models</li></ul>
           <details class="answer-reveal"><summary>Show model answer</summary><p>Text is tokenised and each token mapped to a vector, with positional information added. In each layer, self-attention projects tokens into queries, keys and values; the attention weights from queries and keys mix the values, so each token&#39;s representation reflects its context. Multiple heads capture different relationships, followed by a feed-forward network, with residual connections and normalisation for stable training. The model is trained to predict the next token. To cut cost I&#39;d use mixed precision, efficient attention kernels, a cleaner and deduplicated dataset, and parameter-efficient fine-tuning instead of full training where possible.</p><p class="small">Learn: <a href="../learn/dl-transformers.html">Transformers and attention: how LLMs read</a> · <a href="../learn/dl-fine-tuning.html">Fine-tuning and LoRA: specialising a model</a></p></details>
         </li>
         </ol>
-        <h3 id="area-5">Communication</h3>
+        <h3 id="area-6">Communication</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Tell me about yourself and why you&#39;re moving into this AI role. <span class="badge-time">open question</span></p>
@@ -1081,15 +1315,6 @@
           <p class="small"><strong>A strong answer covers:</strong></p>
           <ul class="small"><li>The situation, briefly (STAR format)</li><li>Your own responsibility, without blaming others</li><li>How you diagnosed it, step by step</li><li>The outcome, with numbers if possible</li><li>What you changed so it doesn&#39;t happen again</li></ul>
           <details class="answer-reveal"><summary>Show model answer</summary><p>Our nightly data pipeline silently loaded duplicate orders for three days, inflating revenue on a dashboard by 12%. I owned that pipeline. I traced it to a retry that re-appended a partial load, so the job wasn&#39;t idempotent. I fixed the data, switched the load to overwrite-by-partition, and added a uniqueness check that fails the run. Since then we&#39;ve had no duplicate incidents, and I now design every pipeline to be safely re-runnable.</p><p class="small">Learn: <a href="../learn/job-search.html">Landing the AI role: resume, applications and interviews</a></p></details>
-        </li>
-        </ol>
-        <h3 id="area-6">ML system design</h3>
-        <ol class="iv-list">
-        <li class="iv-static">
-          <p class="quiz-q">Design a fraud-detection system for UPI payments. <span class="badge-time">open question</span></p>
-          <p class="small"><strong>A strong answer covers:</strong></p>
-          <ul class="small"><li>Requirements: latency budget (e.g. under 100 ms), volume, the cost of a miss vs a false alarm</li><li>Features: real-time (amount vs the user&#39;s usual, velocity) and historical, with no leakage</li><li>Model choice (e.g. gradient boosting) and threshold set by business cost</li><li>Serving: a low-latency API plus a streaming feature store</li><li>Monitoring: drift, delayed fraud labels as feedback, and retraining</li><li>A human review queue for borderline cases</li></ul>
-          <details class="answer-reveal"><summary>Show model answer</summary><p>I&#39;d start from requirements: decisions in under 100 ms at peak volume, and an explicit cost for missed fraud vs blocking a genuine payment. Features combine real-time signals, such as amount versus the user&#39;s usual, transactions in the last 10 minutes and a new device or payee, with historical aggregates from a feature store, all computed only from data available at payment time. A gradient-boosted model fits tabular signals well. I&#39;d set the threshold to minimise expected cost and send a middle band to manual review. It would be served behind a low-latency API with streaming feature updates. I&#39;d monitor input drift and precision and recall as chargeback labels arrive weeks later, and retrain on a schedule.</p><p class="small">Learn: <a href="../learn/ml-features.html">Feature engineering: turning raw data into useful inputs</a> · <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p></details>
         </li>
         </ol>
       </section>

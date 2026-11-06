@@ -62,8 +62,18 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
         }
       ]
     },
@@ -178,19 +188,21 @@ print(model.score(X_test, y_test))
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>C. Gradient-boosted trees</strong>: Boosted trees are fast, accurate and explainable on tabular data. Try them before deep learning.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Do trees need scaled features?</summary><p data-read>No. Trees split on thresholds, so scaling doesn&#39;t change them. That&#39;s one reason they&#39;re easy to use.</p></details><details class="deep-faq"><summary data-read>Why not use deep learning for tables?</summary><p data-read>On typical business tables, gradient boosting is usually as good or better, faster to train and easier to explain.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What&#39;s the difference between a random forest and gradient boosting?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Both combine many decision trees. A random forest trains lots of deep trees independently on random samples of rows and features, then averages their votes. That reduces variance and is hard to break. Gradient boosting trains small trees one after another, where each new tree fixes the errors of the ones before it. Boosting, like XGBoost or LightGBM, usually gives the best accuracy on tabular data but needs more careful tuning and can overfit if you add too many trees.</p><p class="prep-label">✅ </p><ul><li data-read>Forest = parallel trees, averaged, reduces variance</li><li data-read>Boosting = sequential trees correcting errors, reduces bias</li><li data-read>Boosting is often the strongest for tables; forests are robust defaults</li></ul><p class="prep-check" data-read><strong>:</strong> Practical model knowledge for tabular data, which is still most industry ML.</p></div></details><details class="deep-faq"><summary data-read>How do you choose which model to use?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I start with a simple baseline, like logistic regression or even a rule, so I know what &quot;good&quot; means. For tabular data, I&#39;d then try gradient boosting because it&#39;s usually strongest. For images, text or audio, I&#39;d use pretrained deep learning models or an LLM. Then I consider constraints: latency, cost, how much data I have, and whether the result must be explainable, for example in lending. I pick the simplest model that meets the target on validation data, because it&#39;s easier to maintain.</p><p class="prep-label">✅ </p><ul><li data-read>Start with a baseline</li><li data-read>Data type guides the family (tables → boosting; text/images → pretrained deep models)</li><li data-read>Constraints: latency, interpretability, data size, cost</li><li data-read>Simplest model that meets the goal</li></ul><p class="prep-check" data-read><strong>:</strong> Engineering judgement over chasing the fanciest model.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Tables → try boosted trees first.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/decision-tree.html" title="A model that predicts by asking a series of yes or no questions about the input.">Decision tree</a></li><li><a class="chip" href="../glossary/early-stopping.html" title="Stopping training when the validation score stops improving, to avoid overfitting.">Early stopping</a></li><li><a class="chip" href="../glossary/gradient-boosting.html" title="Building many small decision trees one after another, each fixing the previous ones&#39; mistakes.">Gradient boosting</a></li><li><a class="chip" href="../glossary/random-forest.html" title="Many decision trees trained on random samples whose votes are averaged.">Random forest</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="ml-features.html">← Feature engineering: turning raw data into useful inputs</a>
-        <a href="math-vectors.html">Vectors and matrices: the language of AI →</a>
+        <a href="ml-unsupervised.html">Unsupervised learning: clustering, PCA and anomaly detection →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ml-engineer&amp;lesson=ml-trees">ML Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=ml-trees">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=ml-trees">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=ml-trees">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=ml-trees">Data Engineer (AI focus)</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=ml-trees">Continue in the course</a>
       </section>
     </article>
   </main>

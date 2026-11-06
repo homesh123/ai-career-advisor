@@ -62,6 +62,36 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Manager course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
@@ -177,19 +207,21 @@ Decision: buy now, revisit build if volume ×5 or custom insights are needed</co
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>C. Policy documents pe RAG ke saath model API</strong>: API + RAG sasta, fast hai aur jawaab current rakhta hai. Zero se training bahut zyaada hai.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Mahine ka LLM cost kaise estimate karun?</summary><p data-read>Mahine ki requests × (input tokens × input price + output tokens × output price). Retries aur growth ke liye margin jodo.</p></details><details class="deep-faq"><summary data-read>Kya open source models kaafi acche hain?</summary><p data-read>Kai tasks ke liye haan, khaaskar fine tuning ke baad. Decide karne se pehle apne eval set pe API model ke against test karo.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Prompting, RAG ya fine tuning kab use karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Main cost ke order mein jaata hoon. Pehle prompting: saaf instructions aur examples bahut problems hafton nahi, ghanton mein solve kar dete hain. Agar model ko aisi knowledge chahiye jo uske paas nahi, jaise humari policies ya naya data, to RAG, kyunki update karna aasaan hai aur citations milte hain. Fine tune tab karunga jab problem behaviour ki ho, knowledge ki nahi: bahut specific output style ya format, bahut bade volume pe ek narrow task jahan chhota fine tuned model sasta aur tez ho, ya domain ki bhasha jo model theek se nahi sambhaalta. Aksar best system RAG aur halka fine tuned model milakar banta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Pehle prompting: sabse tez aur sasta</li><li data-read>Knowledge ke liye RAG, khaaskar badalta ya private data</li><li data-read>Behaviour, format, scale pe cost ke liye fine tuning</li><li data-read>Inhe mila bhi sakte hain</li></ul><p class="prep-check" data-read><strong>:</strong> Cost aur fit ki samajh; PMs se bhi poochha jaata hai.</p></div></details><details class="deep-faq"><summary data-read>LLM gateway mein distributed tracing, prompt caching, semantic caching aur model routing ek saath kaise kaam karte hain?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Har user request ko ek trace ID milti hai aur query rewriting, retrieval, reranking, LLM calls aur tool calls ke liye child spans, jo exact inputs, outputs, latency, token counts aur cost record karte hain. Gateway mein prompt/prefix caching static system instructions aur few-shot examples ka KV cache requests ke beech dobara use karta hai, jisse input token cost 50–90% ghat jaati hai. Semantic caching query ko embed karke milte-julte repeat FAQs ke liye jaancha hua cached jawaab deta hai (tenant aur permissions ke hisaab se alag). Aakhir mein model router 70–80% simple classification ya FAQ queries ko tez, saste chhote model pe bhejta hai aur sirf mushkil reasoning ko frontier model pe, aur provider 429 ya 503 de to automatic fallback karta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Trace + child spans har step pe latency, tokens, cost aur prompt version pakadte hain</li><li data-read>Prompt/prefix caching static system prompts aur examples ka KV cache dobara use karta hai</li><li data-read>Semantic caching repeat FAQs serve karta hai (tenant/permissions aur freshness se bandha)</li><li data-read>Model routing simple traffic chhote models pe bhejta hai + automatic provider fallbacks</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 ka core LLMOps aur AI Platform architecture sawaal.</p></div></details><details class="deep-faq"><summary data-read>Problem solve karne ke liye AI kab use NAHI karna chahiye?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Jab simple rule ya normal software use reliably solve kar de, jaise PIN code ka format check karna. Jab galtiyaan bahut mehngi hon aur pakdi na ja sakein, jab tak insaan har output review na kare. Jab data na ho, ya kharab ho. Jab users ko exact, samjhaane layak decisions chahiye, jaise kuch regulated decisions. Aur jab per use cost value se zyaada ho. Main hamesha poochhta hoon: sabse simple chalne wala solution kya hai, aur kya AI ki flexibility uske error rate aur cost ke layak hai?</p><p class="prep-label">✅ </p><ul><li data-read>Rules kaam karte hain</li><li data-read>Na sehne layak ya na pakdi jaane wali galtiyaan</li><li data-read>Data nahi ya kharab</li><li data-read>Explainability ya regulation ki zaroorat</li><li data-read>Cost value se zyaada</li></ul><p class="prep-check" data-read><strong>:</strong> Samajh. Sahi case mein &quot;AI mat use karo&quot; kehna strong signal hai.</p></div></details><details class="deep-faq"><summary data-read>Apna model banana, fine tune karna, ya GPT ya Claude jaisi API use karna, kaise decide karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Strong provider ki API se shuru karo, kyunki yeh seekhne ka sabse tez tarika hai ki feature mein value hai ya nahi. Banane ya fine tune karne ka tab socho jab saaf wajah ho: humare volume pe cost bahut zyaada hai aur chhota tuned model quality match kar sakta hai; data humare environment se bahar nahi ja sakta; latency ki sakht zaroorat hai; ya task bahut specialised hai aur humare paas accha data hai. Total cost compare karta hoon, use maintain karne wale engineers samet, apne eval set pe quality, privacy aur vendor lock in, aur system aisa banata hoon ki model badla ja sake.</p><p class="prep-label">✅ </p><ul><li data-read>Value validate karne ke liye pehle API</li><li data-read>Banane ki wajah: scale pe cost, privacy, latency, specialisation</li><li data-read>Total cost aur apne evals pe quality compare</li><li data-read>Model badalne layak rakho</li></ul><p class="prep-check" data-read><strong>:</strong> Business aur technical trade off ki soch.</p></div></details><details class="deep-faq"><summary data-read>Multimodal (vision ya voice) AI feature launch karte waqt unit economics aur UX trade-offs kaise evaluate karte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>High-resolution images, multi-page PDFs aur live audio saade text se kahin zyaada tokens aur bandwidth khaate hain, aur ek user retry ya multi-step loop cost ko 3× se 5× badha sakta hai. Main sirf cost per API call nahi, balki cost per successfully completed task nikaalta hoon, aur uski tulna user ki dene ki ichha ya bache hue operational kharche se karta hoon. Margins healthy rakhne ke liye main bhejne se pehle images resize karta hoon, simple extractions chhote vision model pe bhejta hoon, repeat documents cache karta hoon, aur UI ko turant visual/audio feedback aur kam confidence pe saaf human fallback ke saath design karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>Sirf cost per API call nahi, cost per completed task (retries samet) naapo</li><li data-read>High-res images aur live voice ka token/compute kharcha text se kahin zyaada hota hai</li><li data-read>Gross margin bachane ke liye image resizing, model routing aur caching use karo</li><li data-read>Latency (streaming/barge-in) aur extracted fields ki verification ke liye UX design karo</li></ul><p class="prep-check" data-read><strong>:</strong> AI unit economics aur multimodal product samajh check karta hai.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Buy → API → RAG → fine-tune → build. Zaroorat ho tabhi upar chadho.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/fine-tuning.html" title="Pretrained model ko apne examples pe aage train karke uska behaviour specialise karna.">Fine tuning</a></li><li><a class="chip" href="../../glossary/foundation-model.html" title="Bade aur vyapak data pe train hua bada model jise kai kaamon ke liye adapt kiya ja sakta hai.">Foundation model</a></li><li><a class="chip" href="../../glossary/open-weights-model.html" title="Aisa model jiske trained weights publish hain, taaki koi bhi download, chala aur fine tune kar sake.">Open weights model</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-how-machines-learn.html">← Machines kaise seekhti hain: features, labels aur training</a>
-        <a href="llm-prompting.html">Prompting: LLM ko saaf instructions dena →</a>
+        <a href="streaming.html">← Streaming data: Kafka aur real-time pipelines</a>
+        <a href="mlops-tracking.html">MLOps: experiment tracking aur model registries →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-product-manager&amp;lesson=build-vs-buy&amp;lang=hi">AI Product Manager</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=ai-product-manager&amp;lesson=build-vs-buy&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=build-vs-buy&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=build-vs-buy&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=build-vs-buy&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=build-vs-buy&amp;lang=hi">MLOps / AI Platform Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=build-vs-buy&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=build-vs-buy&amp;lang=hi">AI Forward Deployed Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=build-vs-buy&amp;lang=hi">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ml-engineer&amp;lesson=build-vs-buy&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

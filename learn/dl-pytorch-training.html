@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyTorch in practice: tensors, autograd and the training loop: Explained Simply With Real-Life Examples | AI Path Finder</title>
+  <meta name="description" content="PyTorch is the standard deep learning framework in both research and production. Data lives in Tensors (NumPy-like arrays that run on GPUs with .to(&#39;cuda&#39;))." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="PyTorch in practice: tensors, autograd and the training loop: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta property="og:description" content="PyTorch is the standard deep learning framework in both research and production. Data lives in Tensors (NumPy-like arrays that run on GPUs with .to(&#39;cuda&#39;))." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PyTorch in practice: tensors, autograd and the training loop: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta name="twitter:description" content="PyTorch is the standard deep learning framework in both research and production. Data lives in Tensors (NumPy-like arrays that run on GPUs with .to(&#39;cuda&#39;))." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/dl-pytorch-training.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html",
+      "name": "PyTorch in practice: tensors, autograd and the training loop",
+      "description": "PyTorch is the standard deep learning framework in both research and production. Data lives in Tensors (NumPy-like arrays that run on GPUs with .to('cuda')).",
+      "inLanguage": "en",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Autograd",
+        "zero_grad()",
+        "DDP / FSDP (ZeRO)"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "PyTorch in practice: tensors, autograd and the training loop",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What happens if you forget 'optimizer.zero_grad()' inside a PyTorch training loop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gradients from every batch accumulate on top of each other, corrupting the weight updates. PyTorch accumulates gradients into .grad by design (useful for gradient accumulation), so you must clear them before each step."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between DataParallel (DP) and DistributedDataParallel (DDP)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Always use DDP, never DP. DP uses a single Python process and suffers from GIL contention and uneven GPU memory; DDP runs one process per GPU and synchronises gradients with fast all-reduce."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When do I need FSDP or DeepSpeed ZeRO instead of DDP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When a single GPU cannot hold a full copy of the model, gradients and Adam optimizer states. FSDP (ZeRO Stage 3) shards all three across GPUs and gathers layers on the fly."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#paths" data-nav="roles">AI roles</a>
+      <a href="../learn.html" data-nav="learn">Learn</a>
+      <a href="../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">AI Path Finder</a> › <a href="../learn.html">Learn</a> › <span aria-current="page">PyTorch in practice: tensors, autograd and the training loop</span></nav>
+    <article lang="en">
+      <header>
+        <p class="eyebrow">Lesson · ⏱ 8 min read</p>
+        <h1 data-read>🔥 PyTorch in practice: tensors, autograd and the training loop</h1>
+        <p class="lang-switch"><span>English</span><a href="hi/dl-pytorch-training.html" hreflang="hi" lang="hi-Latn">Hinglish</a></p>
+        <div class="listen-bar" data-reader data-listen="Listen" data-pause="Pause" data-resume="Resume" data-reading="Reading aloud…" data-paused="Paused" data-unsupported="Your browser can't read aloud">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Listen</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Stop</button>
+      <label class="listen-rate"><span class="sr-only">Reading speed</span><select data-tts="rate" aria-label="Reading speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Real-life example</h2><p>Practising free throws in basketball has a fixed five-step rhythm: clear your head from the last shot, take the shot, see how far you missed the hoop, feel which way to adjust your wrist, and make that small adjustment. A PyTorch training step follows the exact same five lines: zero_grad, forward pass, loss, backward, step.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 In simple words</h2><p>PyTorch is the standard deep learning framework in both research and production. Data lives in Tensors (NumPy-like arrays that run on GPUs with .to(&#39;cuda&#39;)). When a tensor has requires_grad=True, PyTorch&#39;s autograd engine records every operation and computes all derivatives automatically when you call loss.backward(). Inside each batch of the training loop you must call optimizer.zero_grad() first (because PyTorch adds gradients up by default), run the model, compute the loss, call loss.backward(), and call optimizer.step(). During evaluation, switch to model.eval() and wrap predictions in &#39;with torch.no_grad():&#39; to save memory and disable dropout.</p></section>
+      
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Wrap your dataset in a torch.utils.data.Dataset and DataLoader(batch_size=32, shuffle=True) so batches stream efficiently.</li><li data-read>Move model and batches to the same device: device = &#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;.</li><li data-read>In each training step: optimizer.zero_grad() → out = model(x) → loss = criterion(out, y) → loss.backward() → torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) → optimizer.step().</li><li data-read>Use torch.amp.autocast(&#39;cuda&#39;, dtype=torch.bfloat16) for mixed-precision training: it cuts GPU memory nearly in half and speeds up tensor cores.</li><li data-read>After each epoch, switch to model.eval() and &#39;with torch.no_grad():&#39; to compute validation loss and save the best checkpoint.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Key terms</h2>
+        <dl class="terms"><div data-read><dt>Autograd</dt><dd>PyTorch&#39;s automatic differentiation engine that computes gradients during loss.backward().</dd></div><div data-read><dt>zero_grad()</dt><dd>Clears old gradients from the previous batch so they don&#39;t add onto the new batch.</dd></div><div data-read><dt>DDP / FSDP (ZeRO)</dt><dd>Distributed Data Parallel copies the model across GPUs; FSDP shards weights, gradients and optimiser states across GPUs to fit huge models.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 See it in action</h2>
+        <div class="code-wrap"><span class="code-lang">python</span><pre><code>model.train()
+for x, y in train_loader:
+    optimizer.zero_grad()          # 1. clear old gradients
+    preds = model(x)               # 2. forward pass
+    loss = loss_fn(preds, y)       # 3. measure error
+    loss.backward()                # 4. compute gradients
+    optimizer.step()               # 5. update weights
+
+model.eval()
+with torch.no_grad():
+    val_preds = model(val_x)</code></pre></div>
+        <p class="small muted" data-read>The 5-line PyTorch training loop, followed by memory-safe evaluation.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Common mistakes to avoid</h2><ul class="deep-mistakes"><li data-read>Forgetting model.eval() during validation or inference: Dropout keeps dropping neurons randomly and BatchNorm uses batch stats instead of learned running stats!</li><li data-read>Storing loss tensors in a Python list for logging (&#39;losses.append(loss)&#39; instead of &#39;losses.append(loss.item())&#39;), which keeps the entire computation graph in GPU memory and causes CUDA Out-Of-Memory!</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Quick check</h2>
+        <p class="quiz-q" data-read data-read-prefix="Quick check">What happens if you forget &#39;optimizer.zero_grad()&#39; inside a PyTorch training loop?</p>
+        <ol type="A"><li data-read data-read-text="Option A: PyTorch refuses to run">PyTorch refuses to run</li><li data-read data-read-text="Option B: Gradients from every batch accumulate on top of each other, corrupting the weight updates">Gradients from every batch accumulate on top of each other, corrupting the weight updates</li><li data-read data-read-text="Option C: The model automatically switches to CPU">The model automatically switches to CPU</li></ol>
+        <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. Gradients from every batch accumulate on top of each other, corrupting the weight updates</strong>: PyTorch accumulates gradients into .grad by design (useful for gradient accumulation), so you must clear them before each step.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>What is the difference between DataParallel (DP) and DistributedDataParallel (DDP)?</summary><p data-read>Always use DDP, never DP. DP uses a single Python process and suffers from GIL contention and uneven GPU memory; DDP runs one process per GPU and synchronises gradients with fast all-reduce.</p></details><details class="deep-faq"><summary data-read>When do I need FSDP or DeepSpeed ZeRO instead of DDP?</summary><p data-read>When a single GPU cannot hold a full copy of the model, gradients and Adam optimizer states. FSDP (ZeRO Stage 3) shards all three across GPUs and gathers layers on the fly.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>Walk through a PyTorch training loop and explain why optimizer.zero_grad(), model.eval() and torch.no_grad() matter.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Inside each batch of a PyTorch epoch there are five steps: move inputs and targets to the device, call optimizer.zero_grad() because PyTorch accumulates gradients by default, run the forward pass logits = model(x), compute the loss, call loss.backward() to compute gradients via autograd, and call optimizer.step() to update weights. During validation or inference I call model.eval() so Dropout is turned off and BatchNorm uses running statistics, and I wrap the forward pass in with torch.no_grad(): so PyTorch doesn&#39;t build the computation graph, cutting memory use roughly in half. For large models I add bf16 mixed precision, gradient clipping, and Distributed Data Parallel (DDP) or FSDP.</p><p class="prep-label">✅ </p><ul><li data-read>5-step loop: zero_grad → forward → loss → backward → step</li><li data-read>Why zero_grad matters: gradients accumulate across batches by default</li><li data-read>model.eval() + torch.no_grad() for validation and inference</li><li data-read>Production training: bf16 mixed precision, grad clipping, DDP vs FSDP</li></ul><p class="prep-check" data-read><strong>:</strong> Standard PyTorch coding and debugging question in ML and Research interviews.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Train: zero_grad → forward → loss → backward → step. Eval: model.eval() + with torch.no_grad().</p></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="dl-neural-networks.html">← Neural networks: layers that learn</a>
+        <a href="dl-transformers.html">Transformers and attention: how LLMs read →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Learn this as part of a full course</h2>
+        <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=dl-pytorch-training">ML Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=dl-pytorch-training">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=dl-pytorch-training">AI Research Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=dl-pytorch-training">Continue in the course</a>
+      </section>
+    </article>
+  </main>
+  <script src="../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "en"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../for/software-testers-qa.html">QA / testers</a></li><li><a href="../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../guide/how-it-works.html">How the consultation works</a></li><li><a href="../#app">Free AI career consultation</a></li><li><a href="../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../interview.html">Interview practice</a></li><li><a href="../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../resumes/">ATS resume samples</a></li><li><a href="../glossary/">AI dictionary (A to Z)</a></li><li><a href="../kids/">AI for kids (ages 5+)</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

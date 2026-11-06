@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Engineer (AI focus) Interview Questions and Answers (2026): 68 Questions With Easy Answers | AI Path Finder</title>
-  <meta name="description" content="68 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <title>Data Engineer (AI focus) Interview Questions and Answers (2026): 84 Questions With Easy Answers | AI Path Finder</title>
+  <meta name="description" content="84 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
   <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/interview/ai-data-engineer.html" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -16,16 +16,16 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI Path Finder" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Data Engineer (AI focus) Interview Questions and Answers (2026): 68 Questions With Easy Answers | AI Path Finder" />
-  <meta property="og:description" content="68 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta property="og:title" content="Data Engineer (AI focus) Interview Questions and Answers (2026): 84 Questions With Easy Answers | AI Path Finder" />
+  <meta property="og:description" content="84 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/interview/ai-data-engineer.html" />
   <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:modified_time" content="2026-10-28" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Data Engineer (AI focus) Interview Questions and Answers (2026): 68 Questions With Easy Answers | AI Path Finder" />
-  <meta name="twitter:description" content="68 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta name="twitter:title" content="Data Engineer (AI focus) Interview Questions and Answers (2026): 84 Questions With Easy Answers | AI Path Finder" />
+  <meta name="twitter:description" content="84 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <link rel="stylesheet" href="../styles.css" />
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
       "@type": "WebPage",
       "@id": "https://homesh123.github.io/ai-career-advisor/interview/ai-data-engineer.html",
       "url": "https://homesh123.github.io/ai-career-advisor/interview/ai-data-engineer.html",
-      "name": "Data Engineer (AI focus) Interview Questions and Answers (2026): 68 Questions With Easy Answers",
-      "description": "68 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
+      "name": "Data Engineer (AI focus) Interview Questions and Answers (2026): 84 Questions With Easy Answers",
+      "description": "84 Data Engineer (AI focus) interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
       "inLanguage": "en",
       "datePublished": "2026-10-27",
       "dateModified": "2026-10-28",
@@ -210,6 +210,46 @@
         },
         {
           "@type": "Question",
+          "name": "What is a CTE (WITH clause) in SQL, and why can NOT IN with NULL values silently return zero rows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A CTE, or Common Table Expression, is a named temporary result written with WITH at the top of a query. It makes complex SQL readable by breaking it into step by step blocks instead of deeply nested subqueries. For the NULL trap: in SQL, NULL means unknown, so comparing anything to NULL gives UNKNOWN. Because x NOT IN (1, 2, NULL) means x != 1 AND x != 2 AND x != NULL, the whole condition becomes UNKNOWN and returns zero rows whenever the subquery has even one NULL. I use NOT EXISTS or a LEFT JOIN ... WHERE right.id IS NULL instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you safely read files, call an external API and handle rate limits or network errors in Python?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For files, I always use a with open(..., encoding='utf-8') block so the file closes automatically even if an exception happens, and I stream large datasets with JSON Lines (.jsonl) one line at a time. For API calls, I always pass an explicit timeout so a hung server never freezes my worker, check the HTTP status code, and catch specific exceptions like TimeoutError or HTTPError rather than a bare except. When an LLM API returns 429 (rate limit) or 503, I retry a few times with exponential backoff and random jitter so all workers don't retry at the exact same second."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you use Git and pull requests in an AI project, and what should never be committed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is NumPy vectorisation so much faster than Python loops, and what is broadcasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In a Python loop, the interpreter checks types and dispatches operations element by element, which has huge overhead. A NumPy array stores numbers of one fixed type in a contiguous block of memory, so vectorised operations like a * b or X @ W run in compiled C and SIMD instructions across the whole array at once, often 50 to 100 times faster. Broadcasting lets NumPy do arithmetic on arrays of different shapes without copying data by stretching dimensions of size 1, such as subtracting a 1D column mean (1, d) from every row of a 2D matrix (n, d)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Explain conditional probability and Bayes' rule with a real example. Why does the base rate matter so much?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes' rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there's only about a 9% chance it's actually fraud."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "What's the difference between correlation and causation? How would you prove causation?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -234,6 +274,22 @@
         },
         {
           "@type": "Question",
+          "name": "How do k-means clustering, PCA and anomaly detection work, and why must you scale features first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "K-means groups unlabelled rows into K clusters by repeatedly assigning each point to the nearest cluster centre and then moving each centre to the average of its assigned points. PCA finds the directions of maximum variance and projects high dimensional features onto a few orthogonal components. Isolation Forest spots anomalies by randomly splitting features—outliers sit alone and get isolated in very few splits. Because k-means and PCA rely on Euclidean distance and variance, an unscaled feature like salary in rupees (0 to 2,000,000) will completely dominate age (18 to 70), so I always standardise features to zero mean and unit variance first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you structure an end-to-end ML system design interview, such as feed ranking or search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I use a six step structure. First, clarify the business objective, latency budget (say 150 ms) and scale. Second, frame the ML task and choose offline metrics (like Recall@100 and NDCG@10) plus online north-star and guardrail metrics. Third, describe the data and feature store: user history, item metadata, and real-time session signals joined point-in-time without leakage. Fourth, use a two-stage funnel: fast candidate generation (two-tower embeddings + BM25 narrowing millions of items to 500) followed by a rich GBDT or neural ranker scoring those 500, plus a re-ranker for diversity and business rules. Fifth, cover cold start and position bias. Sixth, cover shadow/A-B rollout and drift monitoring."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Explain RAG. Why would you use it?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -246,6 +302,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Chunks should be big enough to hold a complete idea, but small enough to be precise. I start by respecting the document's structure: split by headings, sections or paragraphs instead of every fixed number of characters, so a table or a step list isn't cut in half. A typical starting size is a few hundred tokens with a small overlap. I attach metadata like title, section and date to each chunk, which helps filtering and citations. Then I test different sizes against an evaluation set of real questions, and keep whatever gives the best retrieval recall."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you evaluate and improve a production RAG pipeline on complex PDFs and tables?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I separate retrieval metrics from generation metrics. For retrieval, I track Recall@k and MRR on a golden question-to-source-chunk dataset; for generation, I measure faithfulness (zero unsupported claims) and answer relevance. Complex PDFs usually fail because naive character chunking slices tables and loses section headers. I fix that with layout-aware parsing that keeps tables intact as Markdown, prepends the document title and section breadcrumb to every chunk before embedding, combines BM25 + dense vectors with Reciprocal Rank Fusion, and uses a cross-encoder reranker to pick the top 5 chunks."
           }
         },
         {
@@ -318,6 +382,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "A fact table stores events or measurements, like each order with quantity and amount, plus keys to dimensions. Dimension tables store descriptive context, like customer, product, date and store. It's called a star because the fact table sits in the middle with dimensions around it. This makes analytics queries simple and fast: \"total sales by product category by month\" is a join from the fact to two dimensions and a group by. Getting the grain right, meaning what one row in the fact table represents, is the most important design decision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does a feature store work, and what is a point-in-time (ASOF) join?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A feature store defines a feature once and materialises it to two storage layers: an offline store (Parquet/Delta/warehouse) for large historical training sets, and an online key-value store (like Redis or DynamoDB) for single-digit-millisecond lookups during live inference. When building historical training data, a regular join on user_id leaks the future because it pulls today's feature values for an event that happened six months ago. A point-in-time or ASOF join matches each historical label at timestamp T with the latest feature value recorded at or before T, guaranteeing zero time-travel leakage."
           }
         },
         {
@@ -442,6 +514,22 @@
         },
         {
           "@type": "Question",
+          "name": "Your script calls an LLM API and occasionally receives HTTP 429 (Too Many Requests). What is the right way to handle it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Catch the 429 error and retry a few times with exponential backoff and random jitter. Exponential backoff (1s, 2s, 4s…) with jitter gives the rate limit window time to reset without a thundering herd of retries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is `np.dot(X, w)` 50–100× faster than a Python `for` loop over the rows of `X`?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead. Vectorised NumPy operations avoid Python's per-element type checking and dispatch overhead."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Salaries in a team are mostly around ₹8 LPA, with one executive at ₹2 crore. Which best describes a typical salary?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -490,6 +578,14 @@
         },
         {
           "@type": "Question",
+          "name": "Why do you wrap `DENSE_RANK() OVER (...) AS rnk` inside a CTE (`WITH ranked AS (...)`) when finding the top 3 products per category?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SQL evaluates WHERE before window functions, so you filter `WHERE rnk \u003c= 3` in the outer query. WHERE runs before SELECT window functions are computed, so a CTE computes `rnk` first and the outer query filters on it."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Training accuracy is 98% and test accuracy is 65%. What's happening, and what's a reasonable fix?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -522,6 +618,22 @@
         },
         {
           "@type": "Question",
+          "name": "Before running k-means clustering or PCA on customer features (age in years, annual spend in rupees), what should you do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standardise the features (zero mean, unit variance) so spend in lakhs doesn't dominate distance calculations. Distance-based and variance-based methods are skewed by large-scale units unless features are standardised first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do large-scale recommendation and search systems use a two-stage retrieve-then-rank architecture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget. Scoring millions of items with a deep or GBDT ranker per request is too slow; retrieval + ranking balances speed and precision."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Your RAG assistant gives wrong answers. The right document exists but is never retrieved. What do you fix first?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -542,6 +654,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Hybrid search: combine keyword (BM25) and vector search. Embeddings capture meaning but are weak on exact identifiers. Keyword search catches those, and hybrid gets both."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do production RAG pipelines retrieve top 40 chunks with hybrid search and then pass them to a cross-encoder reranker?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bi-encoder + BM25 retrieval is fast for recall over millions of chunks, while a cross-encoder scores query-chunk pairs together for high precision on the top 5. Two-stage retrieval combines fast broad recall (hybrid search) with accurate joint scoring (cross-encoder reranking)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When building historical training data from a feature store, what does a point-in-time (ASOF) join prevent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Time-travel data leakage, by matching each label at time T only with feature values known at or before time T. A regular join pulls current feature values into past events; a point-in-time join reconstructs exactly what was known at prediction time."
           }
         },
         {
@@ -652,14 +780,14 @@
       <header>
         <p class="eyebrow">Interview preparation · Updated <time datetime="2026-10-28">28 October 2026</time></p>
         <h1>Data Engineer (AI focus) interview questions and answers</h1>
-        <p class="lead">42 questions Data Engineer (AI focus) candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 26 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=data-engineer-ai">interview practice</a>.</p>
+        <p class="lead">51 questions Data Engineer (AI focus) candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 33 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=data-engineer-ai">interview practice</a>.</p>
       </header>
       <section class="rounds-box">
         <h2>How a Data Engineer (AI focus) interview usually goes</h2>
         <ol><li>Recruiter screen</li><li>SQL round: joins, window functions, top N per group, deduplication</li><li>Python or Spark round: transformations, skew, performance</li><li>Pipeline and data modelling design: batch vs streaming, idempotency, backfills, data for AI (documents, embeddings)</li><li>Behavioural: incidents and data quality stories</li></ol>
         <p class="small muted">Based on 2026 candidate reports. Companies vary, so use this as a map.</p>
       </section>
-      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (13)</li><li><a href="#stage-core">🛠️ Role skills</a> (16)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (1)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (26)</li></ol></nav>
+      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (18)</li><li><a href="#stage-core">🛠️ Role skills</a> (20)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (1)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (33)</li></ol></nav>
       <section id="stage-start">
         <h2>👋 Opening: about you</h2>
         <p class="muted">Almost every interview starts here. These answers set the tone, so prepare them word for word and practise them out loud.</p>
@@ -846,7 +974,7 @@
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Compute over a window of rows, keeping every row</li><li>PARTITION BY groups, ORDER BY sets order</li><li>ROW_NUMBER vs RANK vs DENSE_RANK on ties</li><li>Uses: top N per group, running totals, LAG and LEAD for changes</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Window functions are the core of most data SQL rounds in 2026.</p>
-              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a> · <a href="../learn/sql-joins.html">SQL JOINs: combining tables</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a> · <a href="../learn/sql-joins.html">SQL JOINs: combining tables</a> · <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a></p>
             </div>
           </details>
         </li>
@@ -858,12 +986,72 @@
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>CTE to aggregate revenue per product</li><li>Window rank partitioned by category</li><li>Filter rank ≤ 3 in the outer query (you can&#39;t filter a window function in WHERE directly)</li><li>State how ties are handled</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> A classic SQL task. Explaining tie handling shows maturity.</p>
-              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a> · <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-sql-cte-null">
+          <details><summary><span class="prep-n">17</span>What is a CTE (WITH clause) in SQL, and why can NOT IN with NULL values silently return zero rows?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>A CTE, or Common Table Expression, is a named temporary result written with WITH at the top of a query. It makes complex SQL readable by breaking it into step by step blocks instead of deeply nested subqueries. For the NULL trap: in SQL, NULL means unknown, so comparing anything to NULL gives UNKNOWN. Because x NOT IN (1, 2, NULL) means x != 1 AND x != 2 AND x != NULL, the whole condition becomes UNKNOWN and returns zero rows whenever the subquery has even one NULL. I use NOT EXISTS or a LEFT JOIN ... WHERE right.id IS NULL instead.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>CTE = named step with WITH; cleaner than nested subqueries</li><li>NULL = unknown, so != NULL is never TRUE</li><li>NOT IN with any NULL returns 0 rows</li><li>Safe alternatives: NOT EXISTS or LEFT JOIN ... IS NULL</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you write readable SQL and know real world NULL bugs.</p>
+              <p class="small">📖 Learn it: <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a> · <a href="../learn/sql-joins.html">SQL JOINs: combining tables</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-py-api-retries">
+          <details><summary><span class="prep-n">18</span>How do you safely read files, call an external API and handle rate limits or network errors in Python?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>For files, I always use a with open(..., encoding=&#39;utf-8&#39;) block so the file closes automatically even if an exception happens, and I stream large datasets with JSON Lines (.jsonl) one line at a time. For API calls, I always pass an explicit timeout so a hung server never freezes my worker, check the HTTP status code, and catch specific exceptions like TimeoutError or HTTPError rather than a bare except. When an LLM API returns 429 (rate limit) or 503, I retry a few times with exponential backoff and random jitter so all workers don&#39;t retry at the exact same second.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Use with context managers for files and .jsonl for large data</li><li>Always set an explicit timeout on HTTP / LLM API calls</li><li>Catch specific exceptions, never bare except</li><li>Retry 429 / 5xx errors with exponential backoff and jitter</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Every AI engineer calls APIs and reads files daily; interviewers look for production habits.</p>
+              <p class="small">📖 Learn it: <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a> · <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/py-logic.html">Python logic: if/else, loops and functions</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-git-pr-workflow">
+          <details><summary><span class="prep-n">19</span>How do you use Git and pull requests in an AI project, and what should never be committed?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Feature branches, small commits, clear PR descriptions with eval results</li><li>Never commit .env secrets, raw customer data, or huge model files</li><li>Use .gitignore, secret managers and artifact storage</li><li>Review code and prompt changes with the same discipline</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Checks basic software engineering hygiene before letting you near a production repo.</p>
+              <p class="small">📖 Learn it: <a href="../learn/git-github.html">Git and GitHub: saving and sharing your work</a> · <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-numpy-vectorisation">
+          <details><summary><span class="prep-n">20</span>Why is NumPy vectorisation so much faster than Python loops, and what is broadcasting?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>In a Python loop, the interpreter checks types and dispatches operations element by element, which has huge overhead. A NumPy array stores numbers of one fixed type in a contiguous block of memory, so vectorised operations like a * b or X @ W run in compiled C and SIMD instructions across the whole array at once, often 50 to 100 times faster. Broadcasting lets NumPy do arithmetic on arrays of different shapes without copying data by stretching dimensions of size 1, such as subtracting a 1D column mean (1, d) from every row of a 2D matrix (n, d).</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Contiguous typed memory + C/SIMD loops vs Python interpreter overhead</li><li>Matrix multiplication (@), reductions with axis, and checking .shape</li><li>Broadcasting stretches dimensions of size 1 without copying memory</li><li>Watch out for unintentional (n, 1) + (1, n) creating an (n, n) matrix</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Foundation for ML coding rounds in NumPy and PyTorch.</p>
+              <p class="small">📖 Learn it: <a href="../learn/numpy-arrays.html">NumPy and vectorisation: fast maths on arrays</a> · <a href="../learn/math-vectors.html">Vectors and matrices: the language of AI</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-bayes-probability">
+          <details><summary><span class="prep-n">21</span>Explain conditional probability and Bayes&#39; rule with a real example. Why does the base rate matter so much?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes&#39; rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there&#39;s only about a 9% chance it&#39;s actually fraud.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>P(A | B) = probability of A given B; Bayes flips P(signal | event) to P(event | signal)</li><li>Walk through a rare event example showing how false positives dominate when base rate is low</li><li>Connect directly to precision vs recall in fraud, medical screening or content moderation</li><li>Mention skewed/long tailed distributions vs normal distributions</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> A classic probability question that separates people who memorise formulas from people who understand rare events.</p>
+              <p class="small">📖 Learn it: <a href="../learn/stats-probability.html">Probability and distributions</a> · <a href="../learn/stats-center-spread.html">Averages and spread: mean, median, variance</a> · <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-correlation-causation">
-          <details><summary><span class="prep-n">17</span>What&#39;s the difference between correlation and causation? How would you prove causation?</summary>
+          <details><summary><span class="prep-n">22</span>What&#39;s the difference between correlation and causation? How would you prove causation?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Correlation means two things move together; causation means one actually causes the other. Ice cream sales and drownings are correlated because both rise in summer, not because ice cream causes drowning. In products, users who use a new feature might retain better simply because they were already more engaged. To show causation, the best tool is a randomised A/B test: randomly give the feature to half the users, so the only systematic difference is the feature, then compare outcomes.</p>
@@ -881,7 +1069,7 @@
         <p class="muted">The technical heart of the interview for this role. Interviewers go deeper with follow up questions, so understand the why, not just the definition.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-missing-values">
-          <details><summary><span class="prep-n">18</span>How do you deal with missing values?</summary>
+          <details><summary><span class="prep-n">23</span>How do you deal with missing values?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>First I ask why they&#39;re missing, because that changes the fix. If income is missing because people didn&#39;t want to share it, the fact that it&#39;s missing may itself be a signal. Options: drop rows if very few are missing; fill with the median or most common value; fill using a model or a group average; or add a &quot;was missing&quot; flag column alongside the filled value. Tree models like XGBoost can handle missing values natively. Whatever I do, I fit the filling logic on the training data only.</p>
@@ -893,19 +1081,43 @@
           </details>
         </li>
         <li class="prep-q" id="q-train-serve-skew">
-          <details><summary><span class="prep-n">19</span>What is training serving skew, and how do you prevent it?</summary>
+          <details><summary><span class="prep-n">24</span>What is training serving skew, and how do you prevent it?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>It&#39;s when the data the model sees in production is computed differently from the data it was trained on, so the model quietly performs worse. For example, in training &quot;average spend&quot; was computed over 30 days in SQL, but the live service computes it over 7 days in Python. Prevention: use one shared feature pipeline or a feature store for both training and serving, log the features used at prediction time and compare them with training data, and add tests that run the same input through both paths.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Definition and a concrete example</li><li>Cause: two different code paths for features</li><li>Fix: shared pipeline or feature store, logging, comparison tests</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Production ML maturity.</p>
-              <p class="small">📖 Learn it: <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a> · <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-unsupervised-clustering">
+          <details><summary><span class="prep-n">25</span>How do k-means clustering, PCA and anomaly detection work, and why must you scale features first?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>K-means groups unlabelled rows into K clusters by repeatedly assigning each point to the nearest cluster centre and then moving each centre to the average of its assigned points. PCA finds the directions of maximum variance and projects high dimensional features onto a few orthogonal components. Isolation Forest spots anomalies by randomly splitting features—outliers sit alone and get isolated in very few splits. Because k-means and PCA rely on Euclidean distance and variance, an unscaled feature like salary in rupees (0 to 2,000,000) will completely dominate age (18 to 70), so I always standardise features to zero mean and unit variance first.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>K-means: assign to nearest centroid, update centroids; pick K via elbow/silhouette + domain sense</li><li>PCA: compress correlated columns along directions of max variance</li><li>Isolation Forest: anomalies are isolated in fewer random splits</li><li>Standardise features first so large-unit columns don&#39;t dominate distances</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you understand distance-based unsupervised learning beyond calling fit().</p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-unsupervised.html">Unsupervised learning: clustering, PCA and anomaly detection</a> · <a href="../learn/stats-correlation.html">Correlation vs causation, and sampling bias</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-ml-sysdesign-loop">
+          <details><summary><span class="prep-n">26</span>How do you structure an end-to-end ML system design interview, such as feed ranking or search?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I use a six step structure. First, clarify the business objective, latency budget (say 150 ms) and scale. Second, frame the ML task and choose offline metrics (like Recall@100 and NDCG@10) plus online north-star and guardrail metrics. Third, describe the data and feature store: user history, item metadata, and real-time session signals joined point-in-time without leakage. Fourth, use a two-stage funnel: fast candidate generation (two-tower embeddings + BM25 narrowing millions of items to 500) followed by a rich GBDT or neural ranker scoring those 500, plus a re-ranker for diversity and business rules. Fifth, cover cold start and position bias. Sixth, cover shadow/A-B rollout and drift monitoring.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Clarify business goal, scale and latency budget first</li><li>Offline ranking metrics (Recall@K, NDCG) vs online business &amp; guardrail metrics</li><li>Two-stage architecture: fast candidate retrieval → feature-rich ranker → business rules</li><li>Address cold start, position bias, point-in-time features and monitoring</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you can design a complete production ML funnel rather than just talking about a loss function.</p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-system-design.html">ML system design: recommendations, search and fraud at scale</a> · <a href="../learn/ab-testing.html">Metrics and A/B testing for AI features</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-rag-explain">
-          <details><summary><span class="prep-n">20</span>Explain RAG. Why would you use it?</summary>
+          <details><summary><span class="prep-n">27</span>Explain RAG. Why would you use it?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>RAG means retrieval augmented generation. It&#39;s like an open book exam for the LLM. First, we index our documents: split them into chunks, turn each chunk into an embedding and store it in a vector database. When a user asks a question, we embed the question, retrieve the most relevant chunks, put them into the prompt with an instruction like &quot;answer only from these sources and cite them&quot;, and the LLM writes the answer. We use it because the model doesn&#39;t know our private or recent data, and RAG gives grounded answers with sources, without retraining the model.</p>
@@ -917,19 +1129,31 @@
           </details>
         </li>
         <li class="prep-q" id="q-chunking">
-          <details><summary><span class="prep-n">21</span>How do you choose a chunking strategy for RAG?</summary>
+          <details><summary><span class="prep-n">28</span>How do you choose a chunking strategy for RAG?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Chunks should be big enough to hold a complete idea, but small enough to be precise. I start by respecting the document&#39;s structure: split by headings, sections or paragraphs instead of every fixed number of characters, so a table or a step list isn&#39;t cut in half. A typical starting size is a few hundred tokens with a small overlap. I attach metadata like title, section and date to each chunk, which helps filtering and citations. Then I test different sizes against an evaluation set of real questions, and keep whatever gives the best retrieval recall.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Structure aware splitting (headings, paragraphs, tables)</li><li>Starting size plus overlap; tune by evals</li><li>Metadata on each chunk</li><li>Measure with retrieval recall on real questions</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Practical RAG experience versus tutorial knowledge.</p>
-              <p class="small">📖 Learn it: <a href="../learn/rag.html">RAG: letting an LLM answer from your documents</a> · <a href="../learn/embeddings.html">Embeddings and vector databases: searching by meaning</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/rag.html">RAG: letting an LLM answer from your documents</a> · <a href="../learn/rag-advanced.html">Production RAG: chunking, hybrid search, reranking and debugging</a> · <a href="../learn/embeddings.html">Embeddings and vector databases: searching by meaning</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-rag-production-debug">
+          <details><summary><span class="prep-n">29</span>How do you evaluate and improve a production RAG pipeline on complex PDFs and tables?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I separate retrieval metrics from generation metrics. For retrieval, I track Recall@k and MRR on a golden question-to-source-chunk dataset; for generation, I measure faithfulness (zero unsupported claims) and answer relevance. Complex PDFs usually fail because naive character chunking slices tables and loses section headers. I fix that with layout-aware parsing that keeps tables intact as Markdown, prepends the document title and section breadcrumb to every chunk before embedding, combines BM25 + dense vectors with Reciprocal Rank Fusion, and uses a cross-encoder reranker to pick the top 5 chunks.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Evaluate retrieval (Recall@k, MRR) separately from generation faithfulness</li><li>Layout-aware parsing that keeps Markdown tables intact and prepends section headers</li><li>Hybrid search (BM25 + dense embeddings) merged with Reciprocal Rank Fusion (RRF)</li><li>Cross-encoder reranking + query rewriting for multi-turn chats</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you have built RAG beyond a 20-line tutorial.</p>
+              <p class="small">📖 Learn it: <a href="../learn/rag-advanced.html">Production RAG: chunking, hybrid search, reranking and debugging</a> · <a href="../learn/rag.html">RAG: letting an LLM answer from your documents</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-rag-permissions">
-          <details><summary><span class="prep-n">22</span>In an enterprise RAG system, how do you make sure users only see documents they&#39;re allowed to see?</summary>
+          <details><summary><span class="prep-n">30</span>In an enterprise RAG system, how do you make sure users only see documents they&#39;re allowed to see?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>The filtering must happen at retrieval, not in the prompt. When indexing, I store each chunk with access metadata, like the groups or users allowed to see it, copied from the source system. At query time, I get the user&#39;s identity and permissions from the login system and apply them as a filter in the vector search, so forbidden chunks never reach the model. I keep permissions in sync when they change in the source, and I test it with users of different roles. Asking the LLM to &quot;not reveal&quot; things is not a security control.</p>
@@ -941,7 +1165,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-etl-elt">
-          <details><summary><span class="prep-n">23</span>What&#39;s the difference between ETL and ELT? Which is more common today?</summary>
+          <details><summary><span class="prep-n">31</span>What&#39;s the difference between ETL and ELT? Which is more common today?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>ETL means extract, transform, then load: data is cleaned and reshaped before landing in the warehouse. ELT means extract, load raw data first, then transform inside the warehouse with SQL, often using dbt. ELT is more common now because cloud warehouses like BigQuery, Snowflake and Databricks are powerful and cheap to scale, and keeping raw data lets you rebuild transformations later when logic changes. ETL is still used when data must be cleaned or masked before landing, for example removing personal data for compliance.</p>
@@ -953,7 +1177,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-idempotent">
-          <details><summary><span class="prep-n">24</span>How do you design a pipeline so reruns and backfills don&#39;t double count data?</summary>
+          <details><summary><span class="prep-n">32</span>How do you design a pipeline so reruns and backfills don&#39;t double count data?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Make every step idempotent: running it twice gives the same result as running it once. Practically, I process data by partition, like one date at a time, and write with overwrite of that partition or a MERGE on a unique key, never a blind append. I use the event date from the data, not the processing time, to decide the partition. Then a backfill of last month is just rerunning those dates. I add checks that row counts and totals match the source after the run.</p>
@@ -965,7 +1189,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-spark-shuffle">
-          <details><summary><span class="prep-n">25</span>In Spark, what&#39;s a shuffle, and how do you deal with data skew?</summary>
+          <details><summary><span class="prep-n">33</span>In Spark, what&#39;s a shuffle, and how do you deal with data skew?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Narrow transformations like filter or map work within each partition. Wide transformations like groupBy or join need rows with the same key on the same machine, so Spark moves data across the network. That&#39;s a shuffle, and it&#39;s usually the slowest part. Skew is when one key has far more rows than others, like one huge customer, so one task runs for ages while others sit idle. Fixes: broadcast the small table in a join so there&#39;s no shuffle; salt the hot key by adding a random suffix to spread it; filter or pre aggregate early; and let adaptive query execution split skewed partitions.</p>
@@ -977,7 +1201,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-partitioning">
-          <details><summary><span class="prep-n">26</span>Why use Parquet and partitioning in a data lake?</summary>
+          <details><summary><span class="prep-n">34</span>Why use Parquet and partitioning in a data lake?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Parquet is a columnar file format: it stores each column together and compresses it well. Analytics queries usually read a few columns, so Parquet reads much less data than CSV, and it also keeps schema and types. Partitioning splits data into folders by a column like date, so a query for last week only reads those folders, which is called partition pruning. I&#39;d pick partition columns that queries filter on and avoid too many tiny files, which slow everything down, by compacting them regularly.</p>
@@ -989,7 +1213,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-data-quality-checks">
-          <details><summary><span class="prep-n">27</span>What data quality checks would you put in a pipeline?</summary>
+          <details><summary><span class="prep-n">35</span>What data quality checks would you put in a pipeline?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Checks at the boundaries: when data arrives and before it&#39;s published. Schema: expected columns and types. Completeness: row counts within an expected range compared with past days, and required fields not null. Validity: values in allowed ranges or lists, like age between 0 and 120. Uniqueness: primary keys are unique. Freshness: the latest data is recent enough. Consistency: totals reconcile with the source. Tools like dbt tests or Great Expectations make this easy. Critical failures stop the pipeline; minor ones send an alert.</p>
@@ -1001,7 +1225,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-batch-stream">
-          <details><summary><span class="prep-n">28</span>When would you choose streaming over batch processing?</summary>
+          <details><summary><span class="prep-n">36</span>When would you choose streaming over batch processing?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Batch processes data in chunks on a schedule, like every hour or night; it&#39;s simpler, cheaper and easier to fix. Streaming processes events continuously within seconds, using tools like Kafka and Flink or Spark Streaming. I&#39;d choose streaming only when the business needs fast reactions: fraud detection while a payment is happening, live recommendations, or real time alerts. For daily reports or model training, batch is better. Many systems use both: streaming for real time features, batch for corrections and history.</p>
@@ -1013,7 +1237,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-scd">
-          <details><summary><span class="prep-n">29</span>What is a slowly changing dimension, type 2?</summary>
+          <details><summary><span class="prep-n">37</span>What is a slowly changing dimension, type 2?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Dimensions like customer address change over time. Type 1 just overwrites the old value, so history is lost. Type 2 keeps history: when something changes, we close the old row by setting an end date and is_current = false, and insert a new row with the new value, a new start date and is_current = true. That way, a sale from last year joins to the address the customer had then. It&#39;s important for correct historical reports and for building training data that reflects what was known at the time.</p>
@@ -1025,7 +1249,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-star-schema">
-          <details><summary><span class="prep-n">30</span>Explain fact and dimension tables in a star schema.</summary>
+          <details><summary><span class="prep-n">38</span>Explain fact and dimension tables in a star schema.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>A fact table stores events or measurements, like each order with quantity and amount, plus keys to dimensions. Dimension tables store descriptive context, like customer, product, date and store. It&#39;s called a star because the fact table sits in the middle with dimensions around it. This makes analytics queries simple and fast: &quot;total sales by product category by month&quot; is a join from the fact to two dimensions and a group by. Getting the grain right, meaning what one row in the fact table represents, is the most important design decision.</p>
@@ -1036,8 +1260,20 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-feature-store-point-in-time">
+          <details><summary><span class="prep-n">39</span>How does a feature store work, and what is a point-in-time (ASOF) join?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>A feature store defines a feature once and materialises it to two storage layers: an offline store (Parquet/Delta/warehouse) for large historical training sets, and an online key-value store (like Redis or DynamoDB) for single-digit-millisecond lookups during live inference. When building historical training data, a regular join on user_id leaks the future because it pulls today&#39;s feature values for an event that happened six months ago. A point-in-time or ASOF join matches each historical label at timestamp T with the latest feature value recorded at or before T, guaranteeing zero time-travel leakage.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>One feature definition → offline store (training batches) + online KV store (low-latency serving)</li><li>Eliminates training–serving skew across SQL and Python paths</li><li>Point-in-time (ASOF) join matches each label at T with features from &lt;= T</li><li>For labeling: combine weak/LLM pre-labels with human verification and inter-annotator agreement</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> High-signal question for AI Data Engineers, ML Engineers and MLOps Engineers.</p>
+              <p class="small">📖 Learn it: <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a> · <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-llm-pipeline">
-          <details><summary><span class="prep-n">31</span>Design a pipeline that processes 10,000 documents a day with an LLM, for example extracting fields from invoices.</summary>
+          <details><summary><span class="prep-n">40</span>Design a pipeline that processes 10,000 documents a day with an LLM, for example extracting fields from invoices.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Ingest new documents into object storage and put a job per document on a queue. Workers pull jobs, extract text with OCR if needed, call the LLM with a structured output schema, validate the result in code and write it to a table with the document ID, model version and prompt version. Handle the LLM&#39;s rate limits with a controlled number of workers and retries with exponential backoff. Make processing idempotent by document ID, so retries don&#39;t duplicate. Send failures and low confidence results to a review queue. Track cost per document against a budget, and sample outputs regularly for an accuracy check.</p>
@@ -1049,7 +1285,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-vector-fresh">
-          <details><summary><span class="prep-n">32</span>How do you keep a vector index in sync when source documents are updated or deleted?</summary>
+          <details><summary><span class="prep-n">41</span>How do you keep a vector index in sync when source documents are updated or deleted?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Treat the index like any other derived dataset. Give each chunk a stable ID based on the document ID and position, and store a hash of the content. A sync job, triggered by change events or on a schedule, finds new, changed and deleted documents; for changed ones it re embeds only chunks whose hash changed and upserts them; for deleted ones it removes their chunks, so the bot never cites removed content. I also keep the embedding model version on each vector, because changing models means re embedding everything.</p>
@@ -1061,7 +1297,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-eda">
-          <details><summary><span class="prep-n">33</span>You get a new dataset. How do you explore it?</summary>
+          <details><summary><span class="prep-n">42</span>You get a new dataset. How do you explore it?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>I start with the shape and column types, then look at the first few rows to understand what each column means. Next, missing values per column, duplicates, and basic statistics like mean, median, minimum and maximum, which reveal impossible values like negative ages. I plot distributions with histograms and count the categories. Then I look at relationships: how each feature relates to the target, and correlations between features. I write down surprises and questions for the data owner, because many problems are understood only by asking.</p>
@@ -1079,14 +1315,14 @@
         <p class="muted">Open questions with no single right answer. Clarify first, then structure your answer, then talk about trade offs, measurement and failure cases.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-design-pipeline">
-          <details><summary><span class="prep-n">34</span>Design the data pipeline that feeds daily sales analytics and an ML demand forecast.</summary>
+          <details><summary><span class="prep-n">43</span>Design the data pipeline that feeds daily sales analytics and an ML demand forecast.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Sources: order database via change data capture, product catalogue, and store data. Land raw data in a lake or warehouse partitioned by date. Transform with dbt into clean staging tables, then a star schema with an orders fact table and product, store and date dimensions. The ML team reads a feature table built from the same models, so analytics and ML agree. Orchestrate with Airflow, each task idempotent by date, with data quality tests between layers, and alerts if data is late or wrong. Backfills are reruns of date partitions. Document lineage and owners, so people know where numbers come from.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Sources and ingestion (CDC)</li><li>Raw → staging → modelled layers (star schema)</li><li>Shared feature tables for ML</li><li>Orchestration, idempotency, quality tests, backfills, lineage</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> End to end data architecture.</p>
-              <p class="small">📖 Learn it: <a href="../learn/data-pipelines.html">Data pipelines: ETL, Airflow, dbt and Spark</a> · <a href="../learn/data-modeling.html">Data modelling: designing tables for analysis</a> · <a href="../learn/data-quality.html">Data quality: catching bad data early</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/data-pipelines.html">Data pipelines: ETL, Airflow, dbt and Spark</a> · <a href="../learn/data-modeling.html">Data modelling: designing tables for analysis</a> · <a href="../learn/data-quality.html">Data quality: catching bad data early</a> · <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a></p>
             </div>
           </details>
         </li>
@@ -1097,7 +1333,7 @@
         <p class="muted">Use the STAR method: Situation, Task, Action, Result. Include a number in the result whenever you can.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-b-project">
-          <details><summary><span class="prep-n">35</span>Walk me through a project you&#39;re proud of.</summary>
+          <details><summary><span class="prep-n">44</span>Walk me through a project you&#39;re proud of.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Use STAR and go deep on your own decisions. &quot;Situation: our support team was overwhelmed with repeated questions. Task: I wanted to build an assistant that answers from our help docs. Action: I built a RAG pipeline, but the first version answered only 60% of test questions correctly. I created an evaluation set of 80 real questions, found that most failures came from chunks splitting tables, switched to structure aware chunking and added reranking. Result: correct answers rose to 86%, and in a pilot it resolved about a quarter of tickets without an agent.&quot; Be ready for &quot;why did you choose that?&quot; at every step.</p>
@@ -1109,7 +1345,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-failure">
-          <details><summary><span class="prep-n">36</span>Tell me about a time something you built failed.</summary>
+          <details><summary><span class="prep-n">45</span>Tell me about a time something you built failed.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick a real failure with a lesson, not a fake one. &quot;I shipped a classification model that looked great offline, with 92% accuracy, but within two weeks users complained. I had split data randomly, and the same customers appeared in both training and test, so the score was too optimistic. I owned it with my manager, re split by customer, got a realistic 81%, and improved features to reach 86%. Since then, I always ask how the data is grouped before splitting, and I add a review of the evaluation setup to my checklist.&quot;</p>
@@ -1121,7 +1357,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-conflict">
-          <details><summary><span class="prep-n">37</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
+          <details><summary><span class="prep-n">46</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Show you disagree with data and respect. &quot;A product manager wanted to launch our AI reply feature to all customers. I was worried because our tests showed it sometimes made up refund policies. Instead of just saying no, I showed five real examples and the error rate from our eval set, and proposed launching to 10% of tickets with agent approval first. We agreed on criteria to expand. Two weeks later the error rate was below our threshold and we expanded. We kept a good relationship because we focused on the shared goal.&quot;</p>
@@ -1133,7 +1369,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-explain">
-          <details><summary><span class="prep-n">38</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
+          <details><summary><span class="prep-n">47</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick something from your work and use an everyday analogy. For example, explaining RAG: &quot;Imagine a very smart new employee who has read a lot but knows nothing about our company. If you ask them a policy question, they might confidently guess. RAG is like giving them the right pages of our policy manual before they answer, and asking them to point to the page. So answers are based on our actual documents, and you can check them.&quot; Then check understanding: &quot;Does that make sense?&quot;</p>
@@ -1145,7 +1381,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-keep-up">
-          <details><summary><span class="prep-n">39</span>How do you keep up with the fast changes in AI?</summary>
+          <details><summary><span class="prep-n">48</span>How do you keep up with the fast changes in AI?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be specific and show you filter noise. &quot;I follow a few high quality sources instead of everything: release notes from the main model providers, a couple of newsletters, and papers when something important comes up. But mostly I learn by building: when something new appears, like a new tool calling feature, I try it on a small project within a week and write a short note about what worked. I also review what changed in our own evals when we upgrade models, which teaches me more than reading headlines.&quot;</p>
@@ -1157,7 +1393,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-ai-tools">
-          <details><summary><span class="prep-n">40</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
+          <details><summary><span class="prep-n">49</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be honest and responsible. &quot;I use AI assistants daily for boilerplate, tests, unfamiliar libraries and explaining code. But I treat the output like code from a new colleague: I read every line before accepting it, I make sure there are tests, I check security sensitive parts like authentication and SQL myself, and I never paste secrets or confidential data into tools that aren&#39;t approved. It makes me faster, but I&#39;m still responsible for what I ship.&quot;</p>
@@ -1175,7 +1411,7 @@
         <p class="muted">The last five minutes matter. Good questions show you&#39;re serious; a calm salary answer protects your offer.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-ask-them">
-          <details><summary><span class="prep-n">41</span>Do you have any questions for us?</summary>
+          <details><summary><span class="prep-n">50</span>Do you have any questions for us?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Always say yes and ask two or three real questions. Good ones: &quot;What would success look like for this role in the first 6 months?&quot;, &quot;What&#39;s the biggest challenge the team is facing with AI right now?&quot;, &quot;How do you evaluate model or feature quality before shipping?&quot;, &quot;How is the team split between building new features and maintaining existing ones?&quot;, and &quot;What do people who do well here have in common?&quot;. Avoid asking about leave or salary in a technical round, and don&#39;t ask things that are on their website.</p>
@@ -1187,7 +1423,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-salary">
-          <details><summary><span class="prep-n">42</span>What are your salary expectations?</summary>
+          <details><summary><span class="prep-n">51</span>What are your salary expectations?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Research first, using sites like Glassdoor, AmbitionBox, levels.fyi and people in similar roles, then give a range based on the role, not on your current pay. &quot;Based on my research for this role and level in Bangalore, and my experience, I&#39;m looking at a range of ₹22 to ₹28 lakh fixed. I&#39;m flexible depending on the overall package, and I&#39;m most interested in the role itself.&quot; If they insist on your current salary, you can share it, but steer back to the market range for the new role. Never accept or reject on the spot; ask for the offer in writing.</p>
@@ -1219,6 +1455,16 @@
           <p class="quiz-q">What does df.groupby(&#39;city&#39;)[&#39;amount&#39;].mean() return?</p>
           <ol type="A"><li>The overall mean amount</li><li>The cities sorted by amount</li><li>One average amount per city</li><li>A count of rows per city</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>One average amount per city</strong>. groupby splits the rows by city, then mean() averages &#39;amount&#39; within each group, giving a Series indexed by city.</p><p class="small">Learn: <a href="../learn/pandas.html">Pandas: working with tables of data</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Your script calls an LLM API and occasionally receives HTTP 429 (Too Many Requests). What is the right way to handle it?</p>
+          <ol type="A"><li>Delete the API key</li><li>Catch the 429 error and retry a few times with exponential backoff and random jitter</li><li>Retry immediately in a tight while True loop</li><li>Ignore the error and return an empty string</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Catch the 429 error and retry a few times with exponential backoff and random jitter</strong>. Exponential backoff (1s, 2s, 4s…) with jitter gives the rate limit window time to reset without a thundering herd of retries.</p><p class="small">Learn: <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a> · <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Why is `np.dot(X, w)` 50–100× faster than a Python `for` loop over the rows of `X`?</p>
+          <ol type="A"><li>NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead</li><li>NumPy skips half the rows</li><li>Python loops only work on strings</li><li>NumPy automatically uploads every array to the cloud</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead</strong>. Vectorised NumPy operations avoid Python&#39;s per-element type checking and dispatch overhead.</p><p class="small">Learn: <a href="../learn/numpy-arrays.html">NumPy and vectorisation: fast maths on arrays</a> · <a href="../learn/math-vectors.html">Vectors and matrices: the language of AI</a></p></details>
         </li>
         </ol>
         <h3 id="area-2">Statistics &amp; data</h3>
@@ -1254,7 +1500,12 @@
         <li class="iv-static">
           <p class="quiz-q">Which expression gives each store&#39;s running revenue total, ordered by date?</p>
           <ol type="A"><li>MAX(amount) OVER (ORDER BY store_id)</li><li>COUNT(*) OVER ()</li><li>SUM(amount) GROUP BY store_id</li><li>SUM(amount) OVER (PARTITION BY store_id ORDER BY sale_date)</li></ol>
-          <details class="answer-reveal"><summary>Show answer</summary><p><strong>SUM(amount) OVER (PARTITION BY store_id ORDER BY sale_date)</strong>. A window function with PARTITION BY store and ORDER BY date accumulates the sum row by row within each store.</p><p class="small">Learn: <a href="../learn/data-modeling.html">Data modelling: designing tables for analysis</a></p></details>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>SUM(amount) OVER (PARTITION BY store_id ORDER BY sale_date)</strong>. A window function with PARTITION BY store and ORDER BY date accumulates the sum row by row within each store.</p><p class="small">Learn: <a href="../learn/data-modeling.html">Data modelling: designing tables for analysis</a> · <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Why do you wrap `DENSE_RANK() OVER (...) AS rnk` inside a CTE (`WITH ranked AS (...)`) when finding the top 3 products per category?</p>
+          <ol type="A"><li>CTEs automatically delete duplicate rows</li><li>Window functions are not allowed in SELECT</li><li>SQL evaluates WHERE before window functions, so you filter `WHERE rnk &lt;= 3` in the outer query</li><li>DENSE_RANK only works inside a CTE</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>SQL evaluates WHERE before window functions, so you filter `WHERE rnk &lt;= 3` in the outer query</strong>. WHERE runs before SELECT window functions are computed, so a CTE computes `rnk` first and the outer query filters on it.</p><p class="small">Learn: <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a></p></details>
         </li>
         </ol>
         <h3 id="area-4">ML fundamentals</h3>
@@ -1274,6 +1525,11 @@
           <ol type="A"><li>A chatbot</li><li>Gradient-boosted trees such as XGBoost or LightGBM</li><li>A large transformer</li><li>K-means clustering</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>Gradient-boosted trees such as XGBoost or LightGBM</strong>. Boosted trees are usually the most accurate, fastest and most explainable option for tabular data.</p><p class="small">Learn: <a href="../learn/ml-trees.html">Decision trees, random forests and boosting</a></p></details>
         </li>
+        <li class="iv-static">
+          <p class="quiz-q">Before running k-means clustering or PCA on customer features (age in years, annual spend in rupees), what should you do?</p>
+          <ol type="A"><li>Sort the rows alphabetically</li><li>Standardise the features (zero mean, unit variance) so spend in lakhs doesn&#39;t dominate distance calculations</li><li>Drop the age column</li><li>Convert numbers into strings</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Standardise the features (zero mean, unit variance) so spend in lakhs doesn&#39;t dominate distance calculations</strong>. Distance-based and variance-based methods are skewed by large-scale units unless features are standardised first.</p><p class="small">Learn: <a href="../learn/ml-unsupervised.html">Unsupervised learning: clustering, PCA and anomaly detection</a></p></details>
+        </li>
         </ol>
         <h3 id="area-5">Serving &amp; MLOps</h3>
         <ol class="iv-list">
@@ -1288,7 +1544,15 @@
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>&#39;Works on my machine&#39; problems, by packaging the app with its exact environment</strong>. A container image carries the code, runtime and libraries, so the app runs the same everywhere.</p><p class="small">Learn: <a href="../learn/docker.html">Docker: packaging your app so it runs anywhere</a></p></details>
         </li>
         </ol>
-        <h3 id="area-6">RAG &amp; retrieval</h3>
+        <h3 id="area-6">ML system design</h3>
+        <ol class="iv-list">
+        <li class="iv-static">
+          <p class="quiz-q">Why do large-scale recommendation and search systems use a two-stage retrieve-then-rank architecture?</p>
+          <ol type="A"><li>Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget</li><li>Because ranking models cannot take user features</li><li>To use twice as many servers</li><li>To avoid using embeddings</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget</strong>. Scoring millions of items with a deep or GBDT ranker per request is too slow; retrieval + ranking balances speed and precision.</p><p class="small">Learn: <a href="../learn/ml-system-design.html">ML system design: recommendations, search and fraud at scale</a></p></details>
+        </li>
+        </ol>
+        <h3 id="area-7">RAG &amp; retrieval</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Your RAG assistant gives wrong answers. The right document exists but is never retrieved. What do you fix first?</p>
@@ -1305,9 +1569,19 @@
           <ol type="A"><li>Lowering the temperature</li><li>Removing product codes from documents</li><li>A bigger embedding model only</li><li>Hybrid search: combine keyword (BM25) and vector search</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>Hybrid search: combine keyword (BM25) and vector search</strong>. Embeddings capture meaning but are weak on exact identifiers. Keyword search catches those, and hybrid gets both.</p><p class="small">Learn: <a href="../learn/embeddings.html">Embeddings and vector databases: searching by meaning</a></p></details>
         </li>
+        <li class="iv-static">
+          <p class="quiz-q">Why do production RAG pipelines retrieve top 40 chunks with hybrid search and then pass them to a cross-encoder reranker?</p>
+          <ol type="A"><li>To make the prompt as long as possible</li><li>Because vector databases can only return 40 chunks</li><li>To skip chunking altogether</li><li>Bi-encoder + BM25 retrieval is fast for recall over millions of chunks, while a cross-encoder scores query-chunk pairs together for high precision on the top 5</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Bi-encoder + BM25 retrieval is fast for recall over millions of chunks, while a cross-encoder scores query-chunk pairs together for high precision on the top 5</strong>. Two-stage retrieval combines fast broad recall (hybrid search) with accurate joint scoring (cross-encoder reranking).</p><p class="small">Learn: <a href="../learn/rag-advanced.html">Production RAG: chunking, hybrid search, reranking and debugging</a> · <a href="../learn/rag.html">RAG: letting an LLM answer from your documents</a></p></details>
+        </li>
         </ol>
-        <h3 id="area-7">Data engineering</h3>
+        <h3 id="area-8">Data engineering</h3>
         <ol class="iv-list">
+        <li class="iv-static">
+          <p class="quiz-q">When building historical training data from a feature store, what does a point-in-time (ASOF) join prevent?</p>
+          <ol type="A"><li>Slow SQL sorting</li><li>Time-travel data leakage, by matching each label at time T only with feature values known at or before time T</li><li>Duplicate column names</li><li>Missing primary keys</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Time-travel data leakage, by matching each label at time T only with feature values known at or before time T</strong>. A regular join pulls current feature values into past events; a point-in-time join reconstructs exactly what was known at prediction time.</p><p class="small">Learn: <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a> · <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a></p></details>
+        </li>
         <li class="iv-static">
           <p class="quiz-q">What does it mean for a pipeline to be idempotent?</p>
           <ol type="A"><li>It doesn&#39;t need a schedule</li><li>It runs only once</li><li>Running it again for the same period gives the same result, with no duplicates</li><li>It never fails</li></ol>
@@ -1335,7 +1609,7 @@
           <details class="answer-reveal"><summary>Show model answer</summary><p>Sources emit change events through webhooks or periodic scans comparing content hashes. Changed documents are parsed, chunked with overlap and tagged with source, section, timestamp and access groups. Only changed chunks are re-embedded and upserted, and chunks from deleted documents are removed. Jobs are idempotent and keyed by document version, so retries and backfills are safe. I&#39;d monitor freshness lag, failed parses and the share of chunks with missing metadata, and run a nightly retrieval check against a small eval set.</p><p class="small">Learn: <a href="../learn/data-pipelines.html">Data pipelines: ETL, Airflow, dbt and Spark</a> · <a href="../learn/embeddings.html">Embeddings and vector databases: searching by meaning</a> · <a href="../learn/data-quality.html">Data quality: catching bad data early</a></p></details>
         </li>
         </ol>
-        <h3 id="area-8">Communication</h3>
+        <h3 id="area-9">Communication</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Tell me about yourself and why you&#39;re moving into this AI role. <span class="badge-time">open question</span></p>
@@ -1356,7 +1630,7 @@
           <details class="answer-reveal"><summary>Show model answer</summary><p>Our nightly data pipeline silently loaded duplicate orders for three days, inflating revenue on a dashboard by 12%. I owned that pipeline. I traced it to a retry that re-appended a partial load, so the job wasn&#39;t idempotent. I fixed the data, switched the load to overwrite-by-partition, and added a uniqueness check that fails the run. Since then we&#39;ve had no duplicate incidents, and I now design every pipeline to be safely re-runnable.</p><p class="small">Learn: <a href="../learn/job-search.html">Landing the AI role: resume, applications and interviews</a></p></details>
         </li>
         </ol>
-        <h3 id="area-9">AI system design</h3>
+        <h3 id="area-10">AI system design</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Design a &#39;chat with company documents&#39; assistant for 10,000 employees. <span class="badge-time">open question</span></p>

@@ -67,6 +67,16 @@
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "MLOps / AI Platform Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
         }
@@ -186,18 +196,20 @@ CMD [&quot;uvicorn&quot;, &quot;app:app&quot;, &quot;--host&quot;, &quot;0.0.0.0
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. &#39;Mere laptop pe chalta hai, server pe nahi&#39;</strong>: Containers exact environment pack karte hain, isliye app har jagah ek jaisi chalti hai.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kya Docker virtual machine jaisa hi hai?</summary><p data-read>Nahi. Containers host ke operating system kernel ko share karte hain, isliye bahut halke hain aur seconds mein start hote hain.</p></details><details class="deep-faq"><summary data-read>Kya containers GPU use kar sakte hain?</summary><p data-read>Haan, NVIDIA container toolkit aur CUDA base images ke saath.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Model train ho gaya. Ise production mein kaise le jaoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Pehle model ko uske preprocessing ke saath ek pipeline ke roop mein, version number ke saath model registry mein save karo. Phir use API mein wrap karo, jaise FastAPI, input validation ke saath. Docker image mein pack karo aur load balancer ke peeche deploy karo, Kubernetes ya managed service pe. Poore rollout se pehle shadow mode ya chhote traffic pe canary chalao. Phir latency, errors, input drift aur business metric monitor karo, aur pichhle version pe aasaani se rollback ka raasta rakho.</p><p class="prep-label">✅ </p><ul><li data-read>Model aur preprocessing saath, versioned</li><li data-read>Validation wali API; containerise karo</li><li data-read>Dheere rollout: shadow ya canary</li><li data-read>Monitoring aur rollback</li></ul><p class="prep-check" data-read><strong>:</strong> Kya aap notebook se aage sochte ho?</p></div></details><details class="deep-faq"><summary data-read>Model ko containerise karke Kubernetes pe kaise serve karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Ek chhoti API likho, jaise FastAPI, jo startup pe model ek baar load kare aur predict endpoint aur health check de. Dockerfile likho slim base image, pinned dependencies aur model ke saath, ya to image mein ya start pe registry se download. Kubernetes pe kai replicas wala Deployment banao, resource requests aur limits ke saath, health endpoint pe readiness aur liveness probes, aage ek Service, aur CPU ya request rate pe Horizontal Pod Autoscaler. GPU ke liye nvidia.com/gpu resources maango aur GPU node pools use karo.</p><p class="prep-label">✅ </p><ul><li data-read>Model ek baar load karne wali API; health endpoint</li><li data-read>Dockerfile: slim image, pinned versions</li><li data-read>Deployment, Service, probes, resource limits</li><li data-read>Autoscaling; zaroorat ho to GPU requests</li></ul><p class="prep-check" data-read><strong>:</strong> Deployment ki hands on skills.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Dockerfile (recipe) → image (package) → container (chalti app).</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/deployment.html" title="Model ko asli use ke liye available karna, aam taur pe API ya scheduled job ke roop mein.">Deployment</a></li><li><a class="chip" href="../../glossary/docker.html" title="Tool jo app ko uski har zaroori cheez ke saath pack karta hai taaki har jagah ek jaisa chale.">Docker</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="api-serving.html">← Model ko FastAPI se API ke roop mein serve karna</a>
-        <a href="mlops-tracking.html">MLOps: experiment tracking aur model registries →</a>
+        <a href="kubernetes.html">Kubernetes: containers ko bade scale pe chalaana →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=docker&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=docker&amp;lang=hi">MLOps / AI Platform Engineer</a></p>
+        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=docker&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=docker&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=docker&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=docker&amp;lang=hi">MLOps / AI Platform Engineer</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ml-engineer&amp;lesson=docker&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

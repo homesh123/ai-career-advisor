@@ -67,8 +67,18 @@
         },
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -183,17 +193,19 @@ WHERE o.id IS NULL;</code></pre></div>
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. Products se sales tak LEFT JOIN</strong>: LEFT JOIN saare products rakhta hai, chahe sales ki koi row match na kare. INNER JOIN unhe hata deta.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>RIGHT ya FULL OUTER JOIN kab use karun?</summary><p data-read>RIGHT JOIN bas tables ulat kar LEFT JOIN hai, isliye zyaadatar log LEFT use karte hain. FULL OUTER dono taraf ki unmatched rows rakhta hai, do systems ko reconcile karne mein kaam aata hai.</p></details><details class="deep-faq"><summary data-read>Kya joins slow hote hain?</summary><p data-read>Join keys pe indexes aur sahi filters ho to nahi. Warehouses mein bahut badi tables join karna mehenga ho sakta hai, isliye pehle filter karo.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>INNER JOIN aur LEFT JOIN example ke saath samjhao.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>INNER JOIN sirf woh rows deta hai jo dono tables mein match hon. LEFT JOIN left table ki har row deta hai, saath mein right ke matches; match na ho to right ke columns NULL. Example: customers aur orders. Inner join se sirf woh customers jinhone order kiya. Customers se left join karo to saare customers, aur jinka order ID NULL hai woh kabhi order nahi kiye, inactive customers dhoondhne ka common tarika.</p><p class="prep-label">✅ </p><ul><li data-read>Inner = sirf matching rows</li><li data-read>Left = saari left rows, match na ho to NULL</li><li data-read>Left join plus IS NULL se missing matches dhoondho</li><li data-read>Join key unique na ho to duplicate rows ka dhyaan rakho</li></ul><p class="prep-check" data-read><strong>:</strong> Sabse common SQL basic. Duplicate rows ke trap ka zikr alag dikhata hai.</p></div></details><details class="deep-faq"><summary data-read>Window functions kya hain? ROW_NUMBER, RANK aur DENSE_RANK samjhao.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Window functions related rows pe calculation karte hain bina unhe GROUP BY ki tarah ek row mein samete. Jaise running total ya har employee ki apne department mein salary rank, OVER (PARTITION BY department ORDER BY salary DESC) se. Ties pe: ROW_NUMBER ties mein bhi 1, 2, 3 jaise unique numbers deta hai, isliye deterministic banane ke liye tie breaker column jodo. RANK ties ko same number deta hai aur phir skip karta hai, jaise 1, 1, 3. DENSE_RANK same number deta hai bina gap, jaise 1, 1, 2. LAG aur LEAD se row ko pichhli ya agli row se compare karte ho.</p><p class="prep-label">✅ </p><ul><li data-read>Rows ki window pe calculation, har row bani rehti hai</li><li data-read>PARTITION BY groups banata hai, ORDER BY order tay karta hai</li><li data-read>Ties pe ROW_NUMBER vs RANK vs DENSE_RANK</li><li data-read>Uses: har group mein top N, running totals, badlaav ke liye LAG aur LEAD</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 mein zyaadatar data SQL rounds ka core window functions hain.</p></div></details><details class="deep-faq"><summary data-read>SQL mein CTE (WITH clause) kya hai, aur NULL values ke saath NOT IN chupke se zero rows kyun lauta sakta hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>CTE ya Common Table Expression ek naam wala temporary result hai jo query ke upar WITH se likha jaata hai. Yeh gehre nested subqueries ke bajaye complex SQL ko step-by-step padhne layak blocks mein tod deta hai. NULL trap ke liye: SQL mein NULL ka matlab unknown hai, to NULL se kisi bhi cheez ki comparison UNKNOWN deti hai. Kyunki x NOT IN (1, 2, NULL) ka matlab x != 1 AND x != 2 AND x != NULL hota hai, agar subquery mein ek bhi NULL ho to poori condition UNKNOWN ho jaati hai aur zero rows lautati hai. Main iske bajaye NOT EXISTS ya LEFT JOIN ... WHERE right.id IS NULL use karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>CTE = WITH ke saath naam wala step; nested subqueries se saaf</li><li data-read>NULL = unknown, isliye != NULL kabhi TRUE nahi hota</li><li data-read>Kisi bhi NULL ke saath NOT IN 0 rows lautata hai</li><li data-read>Surakshit tarike: NOT EXISTS ya LEFT JOIN ... IS NULL</li></ul><p class="prep-check" data-read><strong>:</strong> Dekhta hai ki aap padhne layak SQL likhte ho aur asli duniya ke NULL bugs jaante ho.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>INNER = sirf matches. LEFT = left ki saari rows rakho.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="sql-basics.html">← SQL basics: database se sawaal poochna</a>
-        <a href="ml-how-machines-learn.html">Machines kaise seekhti hain: features, labels aur training →</a>
+        <a href="sql-window-cte.html">Advanced SQL: CTEs, subqueries aur window functions →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=sql-joins&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=sql-joins&amp;lang=hi">Data Engineer (AI focus)</a></p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=sql-joins&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=sql-joins&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=sql-joins&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=sql-joins&amp;lang=hi">AI Product Manager</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=sql-joins&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

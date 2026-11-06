@@ -62,6 +62,36 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Manager course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
@@ -178,19 +208,21 @@ Decision: roll out to 100%</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. So the feature is the only systematic difference between groups</strong>: Randomisation balances everything else, so the difference can be attributed to the feature.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>What is statistical significance in simple words?</summary><p data-read>How unlikely the difference would be if the change had no real effect. It doesn&#39;t tell you the effect is big or valuable.</p></details><details class="deep-faq"><summary data-read>What if we can&#39;t randomise?</summary><p data-read>Use a phased rollout by region or team, compare before and after carefully, and be honest that the evidence is weaker.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What&#39;s the difference between correlation and causation? How would you prove causation?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Correlation means two things move together; causation means one actually causes the other. Ice cream sales and drownings are correlated because both rise in summer, not because ice cream causes drowning. In products, users who use a new feature might retain better simply because they were already more engaged. To show causation, the best tool is a randomised A/B test: randomly give the feature to half the users, so the only systematic difference is the feature, then compare outcomes.</p><p class="prep-label">✅ </p><ul><li data-read>Correlation ≠ causation; hidden third factors (confounders)</li><li data-read>Selection bias: who opts in is different</li><li data-read>Randomised experiment is the gold standard</li></ul><p class="prep-check" data-read><strong>:</strong> Statistical thinking for decisions; critical for PMs and analysts.</p></div></details><details class="deep-faq"><summary data-read>How do you structure an end-to-end ML system design interview, such as feed ranking or search?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I use a six step structure. First, clarify the business objective, latency budget (say 150 ms) and scale. Second, frame the ML task and choose offline metrics (like Recall@100 and NDCG@10) plus online north-star and guardrail metrics. Third, describe the data and feature store: user history, item metadata, and real-time session signals joined point-in-time without leakage. Fourth, use a two-stage funnel: fast candidate generation (two-tower embeddings + BM25 narrowing millions of items to 500) followed by a rich GBDT or neural ranker scoring those 500, plus a re-ranker for diversity and business rules. Fifth, cover cold start and position bias. Sixth, cover shadow/A-B rollout and drift monitoring.</p><p class="prep-label">✅ </p><ul><li data-read>Clarify business goal, scale and latency budget first</li><li data-read>Offline ranking metrics (Recall@K, NDCG) vs online business &amp; guardrail metrics</li><li data-read>Two-stage architecture: fast candidate retrieval → feature-rich ranker → business rules</li><li data-read>Address cold start, position bias, point-in-time features and monitoring</li></ul><p class="prep-check" data-read><strong>:</strong> Tests whether you can design a complete production ML funnel rather than just talking about a loss function.</p></div></details><details class="deep-faq"><summary data-read>A new model looked better offline but you&#39;re worried about production. How do you roll it out safely?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Step by step. First, shadow mode: the new model receives real traffic and makes predictions, but users still get the old model&#39;s output, so I can compare predictions, latency and errors safely. Then a canary: send a small share, like 5%, of traffic to the new model and watch technical and business metrics. If it holds up, increase gradually, or run a proper A/B test. Keep the old model ready, so rollback is one switch. Define the success and rollback criteria before starting.</p><p class="prep-label">✅ </p><ul><li data-read>Shadow deployment</li><li data-read>Canary with small traffic, then ramp up or A/B test</li><li data-read>Predefined success and rollback criteria</li><li data-read>One click rollback</li></ul><p class="prep-check" data-read><strong>:</strong> Risk management in production.</p></div></details><details class="deep-faq"><summary data-read>How would you define success metrics for an AI feature?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>In layers, so no single number hides problems. Model quality: accuracy, hallucination rate or rubric scores on an eval set. User outcome: did it help? Task completion, time saved, how much users edit the AI&#39;s output. Adoption and engagement: how many eligible users try it and come back. Business: revenue, cost per ticket or retention. Plus guardrail metrics that must not get worse, like complaints, latency and cost per use. A very accurate feature nobody uses is still a failure, and a popular one with a high error rate is a risk.</p><p class="prep-label">✅ </p><ul><li data-read>Layers: model quality, user outcome, adoption, business</li><li data-read>Guardrails: errors, latency, cost, complaints</li><li data-read>Leading vs lagging metrics</li><li data-read>No single metric stands alone</li></ul><p class="prep-check" data-read><strong>:</strong> The most common AI PM analytical question.</p></div></details><details class="deep-faq"><summary data-read>Design a recommendation system for an e commerce site with 2 million products.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify: where recommendations appear, the goal (clicks, purchases), latency budget and data available. Use two stages. Candidate generation: quickly narrow 2 million products to a few hundred, using collaborative filtering or two tower embeddings plus simple sources like popular in category. Ranking: a more detailed model, like gradient boosting or a neural ranker, scores candidates using user, product and context features, then business rules handle stock and diversity. Cold start: new users get popular and contextual items; new products use content features like category and text embeddings. Evaluate offline with recall and NDCG, then online with an A/B test on purchases. Serve with precomputed embeddings and a feature store for fresh features.</p><p class="prep-label">✅ </p><ul><li data-read>Clarify goal and latency</li><li data-read>Two stage: candidate generation, then ranking</li><li data-read>Cold start for users and items</li><li data-read>Offline metrics, then A/B test; serving with feature store</li></ul><p class="prep-check" data-read><strong>:</strong> Classic ML system design.</p></div></details><details class="deep-faq"><summary data-read>We launched an AI tutor. Under 10% of users love it, most find it useless. What do you do?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First, understand the split. Who are the 10%: which grades, subjects or use cases? And what does &quot;useless&quot; mean for the rest: wrong answers, too generic, too slow, or just not what they needed? I&#39;d read real conversations, look at where users drop off, and talk to both groups. If the 10% share a clear use case, like exam revision in maths, I&#39;d double down there: improve quality for that case with evals, and change onboarding so new users start with it. For the rest, fix the top failure reasons or stop showing the feature to segments where it doesn&#39;t fit.</p><p class="prep-label">✅ </p><ul><li data-read>Segment the lovers vs the rest</li><li data-read>Diagnose with conversations, funnels, interviews</li><li data-read>Double down on the use case that works</li><li data-read>Fix top failures or narrow the audience</li></ul><p class="prep-check" data-read><strong>:</strong> Analytical product thinking on a messy AI launch.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Define success and guardrails first, then randomise and wait for significance.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/a-b-test.html" title="Randomly showing two versions to different users to see which one really works better.">A/B test</a></li><li><a class="chip" href="../glossary/guardrail-metric.html" title="A metric that must not get worse while you improve the main metric.">Guardrail metric</a></li><li><a class="chip" href="../glossary/metric.html" title="A number you track to judge whether something is working.">Metric</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-metrics.html">← Measuring models: accuracy, precision and recall</a>
-        <a href="problem-framing.html">Problem framing: should AI solve this, and how? →</a>
+        <a href="stats-correlation.html">← Correlation vs causation, and sampling bias</a>
+        <a href="sql-basics.html">SQL basics: asking a database questions →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-product-manager&amp;lesson=ab-testing">AI Product Manager</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ai-product-manager&amp;lesson=ab-testing">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=ab-testing">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=ab-testing">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=ab-testing">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=ab-testing">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=ab-testing">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=ab-testing">AI Research Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=ab-testing">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=ab-testing">Continue in the course</a>
       </section>
     </article>
   </main>

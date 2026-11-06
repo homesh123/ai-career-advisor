@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Foundations Path Interview Questions and Answers (2026): 59 Questions With Easy Answers | AI Path Finder</title>
-  <meta name="description" content="59 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <title>AI Foundations Path Interview Questions and Answers (2026): 72 Questions With Easy Answers | AI Path Finder</title>
+  <meta name="description" content="72 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
   <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/interview/ai-foundations-beginner.html" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -16,16 +16,16 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI Path Finder" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="AI Foundations Path Interview Questions and Answers (2026): 59 Questions With Easy Answers | AI Path Finder" />
-  <meta property="og:description" content="59 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta property="og:title" content="AI Foundations Path Interview Questions and Answers (2026): 72 Questions With Easy Answers | AI Path Finder" />
+  <meta property="og:description" content="72 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/interview/ai-foundations-beginner.html" />
   <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:modified_time" content="2026-10-28" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Foundations Path Interview Questions and Answers (2026): 59 Questions With Easy Answers | AI Path Finder" />
-  <meta name="twitter:description" content="59 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta name="twitter:title" content="AI Foundations Path Interview Questions and Answers (2026): 72 Questions With Easy Answers | AI Path Finder" />
+  <meta name="twitter:description" content="72 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <link rel="stylesheet" href="../styles.css" />
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
       "@type": "WebPage",
       "@id": "https://homesh123.github.io/ai-career-advisor/interview/ai-foundations-beginner.html",
       "url": "https://homesh123.github.io/ai-career-advisor/interview/ai-foundations-beginner.html",
-      "name": "AI Foundations Path Interview Questions and Answers (2026): 59 Questions With Easy Answers",
-      "description": "59 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
+      "name": "AI Foundations Path Interview Questions and Answers (2026): 72 Questions With Easy Answers",
+      "description": "72 AI Foundations Path interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
       "inLanguage": "en",
       "datePublished": "2026-10-27",
       "dateModified": "2026-10-28",
@@ -242,6 +242,54 @@
         },
         {
           "@type": "Question",
+          "name": "What is a CTE (WITH clause) in SQL, and why can NOT IN with NULL values silently return zero rows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A CTE, or Common Table Expression, is a named temporary result written with WITH at the top of a query. It makes complex SQL readable by breaking it into step by step blocks instead of deeply nested subqueries. For the NULL trap: in SQL, NULL means unknown, so comparing anything to NULL gives UNKNOWN. Because x NOT IN (1, 2, NULL) means x != 1 AND x != 2 AND x != NULL, the whole condition becomes UNKNOWN and returns zero rows whenever the subquery has even one NULL. I use NOT EXISTS or a LEFT JOIN ... WHERE right.id IS NULL instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "In Python, what's the difference between mutable and immutable types, and between == and is?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Immutable types like int, float, str and tuple cannot be changed in place once created; changing them creates a new object. Mutable types like list, dict and set can be modified in place. That's why using a mutable list as a default function argument like def add(item, bucket=[]) is a classic bug: the same list is shared across every call, so I use None and create a new list inside. For comparisons, == checks whether two objects have the same value, whereas is checks whether they are the exact same object in memory, which I mainly use for is None."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you safely read files, call an external API and handle rate limits or network errors in Python?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For files, I always use a with open(..., encoding='utf-8') block so the file closes automatically even if an exception happens, and I stream large datasets with JSON Lines (.jsonl) one line at a time. For API calls, I always pass an explicit timeout so a hung server never freezes my worker, check the HTTP status code, and catch specific exceptions like TimeoutError or HTTPError rather than a bare except. When an LLM API returns 429 (rate limit) or 503, I retry a few times with exponential backoff and random jitter so all workers don't retry at the exact same second."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you use Git and pull requests in an AI project, and what should never be committed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is NumPy vectorisation so much faster than Python loops, and what is broadcasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In a Python loop, the interpreter checks types and dispatches operations element by element, which has huge overhead. A NumPy array stores numbers of one fixed type in a contiguous block of memory, so vectorised operations like a * b or X @ W run in compiled C and SIMD instructions across the whole array at once, often 50 to 100 times faster. Broadcasting lets NumPy do arithmetic on arrays of different shapes without copying data by stretching dimensions of size 1, such as subtracting a 1D column mean (1, d) from every row of a 2D matrix (n, d)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Explain conditional probability and Bayes' rule with a real example. Why does the base rate matter so much?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes' rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there's only about a 9% chance it's actually fraud."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "What's the difference between correlation and causation? How would you prove causation?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -278,6 +326,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "I start with a simple baseline, like logistic regression or even a rule, so I know what \"good\" means. For tabular data, I'd then try gradient boosting because it's usually strongest. For images, text or audio, I'd use pretrained deep learning models or an LLM. Then I consider constraints: latency, cost, how much data I have, and whether the result must be explainable, for example in lending. I pick the simplest model that meets the target on validation data, because it's easier to maintain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do k-means clustering, PCA and anomaly detection work, and why must you scale features first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "K-means groups unlabelled rows into K clusters by repeatedly assigning each point to the nearest cluster centre and then moving each centre to the average of its assigned points. PCA finds the directions of maximum variance and projects high dimensional features onto a few orthogonal components. Isolation Forest spots anomalies by randomly splitting features—outliers sit alone and get isolated in very few splits. Because k-means and PCA rely on Euclidean distance and variance, an unscaled feature like salary in rupees (0 to 2,000,000) will completely dominate age (18 to 70), so I always standardise features to zero mean and unit variance first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you build a reliable multimodal pipeline for messy scanned PDFs or real-time voice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For messy PDFs and invoices with multi-column tables or handwriting, plain OCR loses layout and misreads numbers. I render pages at 150–200 DPI, pass both the page image and extracted text into a Vision-Language Model with a strict Pydantic JSON schema, and run deterministic code checks afterwards—such as verifying that line-item amounts actually sum to the invoice total—routing mismatches to human review. For voice AI, chaining STT → LLM → TTS must stay under ~800 ms, so I stream partial transcripts on speech pauses, stream LLM sentences into TTS chunk by chunk, and support barge-in so the audio stops the instant the user speaks."
           }
         },
         {
@@ -418,6 +482,22 @@
         },
         {
           "@type": "Question",
+          "name": "Your script calls an LLM API and occasionally receives HTTP 429 (Too Many Requests). What is the right way to handle it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Catch the 429 error and retry a few times with exponential backoff and random jitter. Exponential backoff (1s, 2s, 4s…) with jitter gives the rate limit window time to reset without a thundering herd of retries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is `np.dot(X, w)` 50–100× faster than a Python `for` loop over the rows of `X`?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead. Vectorised NumPy operations avoid Python's per-element type checking and dispatch overhead."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Salaries in a team are mostly around ₹8 LPA, with one executive at ₹2 crore. Which best describes a typical salary?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -446,6 +526,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "LEFT JOIN orders and keep rows where the order id IS NULL. A LEFT JOIN keeps every customer. Those with no match have NULL order columns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do you wrap `DENSE_RANK() OVER (...) AS rnk` inside a CTE (`WITH ranked AS (...)`) when finding the top 3 products per category?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SQL evaluates WHERE before window functions, so you filter `WHERE rnk \u003c= 3` in the outer query. WHERE runs before SELECT window functions are computed, so a CTE computes `rnk` first and the outer query filters on it."
           }
         },
         {
@@ -490,6 +578,14 @@
         },
         {
           "@type": "Question",
+          "name": "Before running k-means clustering or PCA on customer features (age in years, annual spend in rupees), what should you do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standardise the features (zero mean, unit variance) so spend in lakhs doesn't dominate distance calculations. Distance-based and variance-based methods are skewed by large-scale units unless features are standardised first."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "You need consistent, repeatable answers for extracting invoice fields. How should you set temperature?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -502,6 +598,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "They generate plausible text and don't verify facts unless given sources or tools. Grounding answers in sources (RAG), using tools, and showing citations reduces hallucination."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "After extracting structured invoice fields from a scanned PDF using a Vision-Language Model, how do you catch extraction mistakes reliably?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Validate against a Pydantic schema and check deterministic rules like `sum(line_items) + tax == total_amount`, routing mismatches to review. Pairing VLM extraction with deterministic code and math checks catches subtle OCR/vision errors before they hit the database."
           }
         },
         {
@@ -580,14 +684,14 @@
       <header>
         <p class="eyebrow">Interview preparation · Updated <time datetime="2026-10-28">28 October 2026</time></p>
         <h1>AI Foundations Path interview questions and answers</h1>
-        <p class="lead">38 questions AI Foundations Path candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 21 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=ai-fresher">interview practice</a>.</p>
+        <p class="lead">46 questions AI Foundations Path candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 26 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=ai-fresher">interview practice</a>.</p>
       </header>
       <section class="rounds-box">
         <h2>How an AI Foundations Path interview usually goes</h2>
         <ol><li>HR or recruiter screen (15 to 30 min): background, why AI, notice period</li><li>Online test: aptitude, Python basics, a few SQL and ML MCQs</li><li>Technical interview: ML concepts in plain words, Python and SQL questions, a deep walk through of your project</li><li>Managerial or HR round: attitude, learning ability, salary</li></ol>
         <p class="small muted">Based on 2026 candidate reports. Companies vary, so use this as a map.</p>
       </section>
-      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (17)</li><li><a href="#stage-core">🛠️ Role skills</a> (7)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (2)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (21)</li></ol></nav>
+      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (23)</li><li><a href="#stage-core">🛠️ Role skills</a> (9)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (2)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (26)</li></ol></nav>
       <section id="stage-start">
         <h2>👋 Opening: about you</h2>
         <p class="muted">Almost every interview starts here. These answers set the tone, so prepare them word for word and practise them out loud.</p>
@@ -822,7 +926,7 @@
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Compute over a window of rows, keeping every row</li><li>PARTITION BY groups, ORDER BY sets order</li><li>ROW_NUMBER vs RANK vs DENSE_RANK on ties</li><li>Uses: top N per group, running totals, LAG and LEAD for changes</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Window functions are the core of most data SQL rounds in 2026.</p>
-              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a> · <a href="../learn/sql-joins.html">SQL JOINs: combining tables</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a> · <a href="../learn/sql-joins.html">SQL JOINs: combining tables</a> · <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a></p>
             </div>
           </details>
         </li>
@@ -834,12 +938,84 @@
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>CTE to aggregate revenue per product</li><li>Window rank partitioned by category</li><li>Filter rank ≤ 3 in the outer query (you can&#39;t filter a window function in WHERE directly)</li><li>State how ties are handled</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> A classic SQL task. Explaining tie handling shows maturity.</p>
-              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/sql-basics.html">SQL basics: asking a database questions</a> · <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-sql-cte-null">
+          <details><summary><span class="prep-n">21</span>What is a CTE (WITH clause) in SQL, and why can NOT IN with NULL values silently return zero rows?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>A CTE, or Common Table Expression, is a named temporary result written with WITH at the top of a query. It makes complex SQL readable by breaking it into step by step blocks instead of deeply nested subqueries. For the NULL trap: in SQL, NULL means unknown, so comparing anything to NULL gives UNKNOWN. Because x NOT IN (1, 2, NULL) means x != 1 AND x != 2 AND x != NULL, the whole condition becomes UNKNOWN and returns zero rows whenever the subquery has even one NULL. I use NOT EXISTS or a LEFT JOIN ... WHERE right.id IS NULL instead.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>CTE = named step with WITH; cleaner than nested subqueries</li><li>NULL = unknown, so != NULL is never TRUE</li><li>NOT IN with any NULL returns 0 rows</li><li>Safe alternatives: NOT EXISTS or LEFT JOIN ... IS NULL</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you write readable SQL and know real world NULL bugs.</p>
+              <p class="small">📖 Learn it: <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a> · <a href="../learn/sql-joins.html">SQL JOINs: combining tables</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-py-basics-types">
+          <details><summary><span class="prep-n">22</span>In Python, what&#39;s the difference between mutable and immutable types, and between == and is?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Immutable types like int, float, str and tuple cannot be changed in place once created; changing them creates a new object. Mutable types like list, dict and set can be modified in place. That&#39;s why using a mutable list as a default function argument like def add(item, bucket=[]) is a classic bug: the same list is shared across every call, so I use None and create a new list inside. For comparisons, == checks whether two objects have the same value, whereas is checks whether they are the exact same object in memory, which I mainly use for is None.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Immutable (int, str, tuple) vs mutable (list, dict, set)</li><li>Never use a mutable default argument; use None instead</li><li>== compares values; is compares memory identity (use for is None)</li><li>Watch type conversion when reading strings from JSON or env vars</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Checks whether you know the Python pitfalls that cause production bugs.</p>
+              <p class="small">📖 Learn it: <a href="../learn/py-basics.html">Python basics: variables and data types</a> · <a href="../learn/py-collections.html">Lists and dictionaries: storing many values</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-py-api-retries">
+          <details><summary><span class="prep-n">23</span>How do you safely read files, call an external API and handle rate limits or network errors in Python?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>For files, I always use a with open(..., encoding=&#39;utf-8&#39;) block so the file closes automatically even if an exception happens, and I stream large datasets with JSON Lines (.jsonl) one line at a time. For API calls, I always pass an explicit timeout so a hung server never freezes my worker, check the HTTP status code, and catch specific exceptions like TimeoutError or HTTPError rather than a bare except. When an LLM API returns 429 (rate limit) or 503, I retry a few times with exponential backoff and random jitter so all workers don&#39;t retry at the exact same second.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Use with context managers for files and .jsonl for large data</li><li>Always set an explicit timeout on HTTP / LLM API calls</li><li>Catch specific exceptions, never bare except</li><li>Retry 429 / 5xx errors with exponential backoff and jitter</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Every AI engineer calls APIs and reads files daily; interviewers look for production habits.</p>
+              <p class="small">📖 Learn it: <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a> · <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/py-logic.html">Python logic: if/else, loops and functions</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-git-pr-workflow">
+          <details><summary><span class="prep-n">24</span>How do you use Git and pull requests in an AI project, and what should never be committed?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Feature branches, small commits, clear PR descriptions with eval results</li><li>Never commit .env secrets, raw customer data, or huge model files</li><li>Use .gitignore, secret managers and artifact storage</li><li>Review code and prompt changes with the same discipline</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Checks basic software engineering hygiene before letting you near a production repo.</p>
+              <p class="small">📖 Learn it: <a href="../learn/git-github.html">Git and GitHub: saving and sharing your work</a> · <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-numpy-vectorisation">
+          <details><summary><span class="prep-n">25</span>Why is NumPy vectorisation so much faster than Python loops, and what is broadcasting?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>In a Python loop, the interpreter checks types and dispatches operations element by element, which has huge overhead. A NumPy array stores numbers of one fixed type in a contiguous block of memory, so vectorised operations like a * b or X @ W run in compiled C and SIMD instructions across the whole array at once, often 50 to 100 times faster. Broadcasting lets NumPy do arithmetic on arrays of different shapes without copying data by stretching dimensions of size 1, such as subtracting a 1D column mean (1, d) from every row of a 2D matrix (n, d).</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Contiguous typed memory + C/SIMD loops vs Python interpreter overhead</li><li>Matrix multiplication (@), reductions with axis, and checking .shape</li><li>Broadcasting stretches dimensions of size 1 without copying memory</li><li>Watch out for unintentional (n, 1) + (1, n) creating an (n, n) matrix</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Foundation for ML coding rounds in NumPy and PyTorch.</p>
+              <p class="small">📖 Learn it: <a href="../learn/numpy-arrays.html">NumPy and vectorisation: fast maths on arrays</a> · <a href="../learn/math-vectors.html">Vectors and matrices: the language of AI</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-bayes-probability">
+          <details><summary><span class="prep-n">26</span>Explain conditional probability and Bayes&#39; rule with a real example. Why does the base rate matter so much?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes&#39; rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there&#39;s only about a 9% chance it&#39;s actually fraud.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>P(A | B) = probability of A given B; Bayes flips P(signal | event) to P(event | signal)</li><li>Walk through a rare event example showing how false positives dominate when base rate is low</li><li>Connect directly to precision vs recall in fraud, medical screening or content moderation</li><li>Mention skewed/long tailed distributions vs normal distributions</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> A classic probability question that separates people who memorise formulas from people who understand rare events.</p>
+              <p class="small">📖 Learn it: <a href="../learn/stats-probability.html">Probability and distributions</a> · <a href="../learn/stats-center-spread.html">Averages and spread: mean, median, variance</a> · <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-correlation-causation">
-          <details><summary><span class="prep-n">21</span>What&#39;s the difference between correlation and causation? How would you prove causation?</summary>
+          <details><summary><span class="prep-n">27</span>What&#39;s the difference between correlation and causation? How would you prove causation?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Correlation means two things move together; causation means one actually causes the other. Ice cream sales and drownings are correlated because both rise in summer, not because ice cream causes drowning. In products, users who use a new feature might retain better simply because they were already more engaged. To show causation, the best tool is a randomised A/B test: randomly give the feature to half the users, so the only systematic difference is the feature, then compare outcomes.</p>
@@ -857,7 +1033,7 @@
         <p class="muted">The technical heart of the interview for this role. Interviewers go deeper with follow up questions, so understand the why, not just the definition.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-feature-eng">
-          <details><summary><span class="prep-n">22</span>How do you approach feature engineering for a new problem?</summary>
+          <details><summary><span class="prep-n">28</span>How do you approach feature engineering for a new problem?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>I start from the domain: what would a human expert look at to make this decision? For predicting late loan payments, that&#39;s things like income to EMI ratio, past late payments and recent changes in spending. Then I clean and encode: handle missing values, one hot encode categories, scale numbers if the model needs it, and create time based features like &quot;days since last purchase&quot;. I check every feature for leakage and measure value with validation scores and feature importance. Usually a few good domain features beat many random ones.</p>
@@ -869,7 +1045,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-imbalanced">
-          <details><summary><span class="prep-n">23</span>How do you handle an imbalanced dataset, like 1% fraud?</summary>
+          <details><summary><span class="prep-n">29</span>How do you handle an imbalanced dataset, like 1% fraud?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>First, choose the right metric: precision, recall, PR AUC, not accuracy. Then options: use class weights so mistakes on the rare class cost more; resample, either undersample the majority or oversample the minority (SMOTE), only on the training data; and tune the decision threshold to hit the recall or precision the business needs. Also make sure the validation split keeps the same ratio, using a stratified split. Often, getting more examples of the rare class or better features helps most.</p>
@@ -881,7 +1057,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-missing-values">
-          <details><summary><span class="prep-n">24</span>How do you deal with missing values?</summary>
+          <details><summary><span class="prep-n">30</span>How do you deal with missing values?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>First I ask why they&#39;re missing, because that changes the fix. If income is missing because people didn&#39;t want to share it, the fact that it&#39;s missing may itself be a signal. Options: drop rows if very few are missing; fill with the median or most common value; fill using a model or a group average; or add a &quot;was missing&quot; flag column alongside the filled value. Tree models like XGBoost can handle missing values natively. Whatever I do, I fit the filling logic on the training data only.</p>
@@ -893,7 +1069,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-model-choice">
-          <details><summary><span class="prep-n">25</span>How do you choose which model to use?</summary>
+          <details><summary><span class="prep-n">31</span>How do you choose which model to use?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>I start with a simple baseline, like logistic regression or even a rule, so I know what &quot;good&quot; means. For tabular data, I&#39;d then try gradient boosting because it&#39;s usually strongest. For images, text or audio, I&#39;d use pretrained deep learning models or an LLM. Then I consider constraints: latency, cost, how much data I have, and whether the result must be explainable, for example in lending. I pick the simplest model that meets the target on validation data, because it&#39;s easier to maintain.</p>
@@ -904,8 +1080,32 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-unsupervised-clustering">
+          <details><summary><span class="prep-n">32</span>How do k-means clustering, PCA and anomaly detection work, and why must you scale features first?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>K-means groups unlabelled rows into K clusters by repeatedly assigning each point to the nearest cluster centre and then moving each centre to the average of its assigned points. PCA finds the directions of maximum variance and projects high dimensional features onto a few orthogonal components. Isolation Forest spots anomalies by randomly splitting features—outliers sit alone and get isolated in very few splits. Because k-means and PCA rely on Euclidean distance and variance, an unscaled feature like salary in rupees (0 to 2,000,000) will completely dominate age (18 to 70), so I always standardise features to zero mean and unit variance first.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>K-means: assign to nearest centroid, update centroids; pick K via elbow/silhouette + domain sense</li><li>PCA: compress correlated columns along directions of max variance</li><li>Isolation Forest: anomalies are isolated in fewer random splits</li><li>Standardise features first so large-unit columns don&#39;t dominate distances</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you understand distance-based unsupervised learning beyond calling fit().</p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-unsupervised.html">Unsupervised learning: clustering, PCA and anomaly detection</a> · <a href="../learn/stats-correlation.html">Correlation vs causation, and sampling bias</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-multimodal-doc-voice">
+          <details><summary><span class="prep-n">33</span>How do you build a reliable multimodal pipeline for messy scanned PDFs or real-time voice?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>For messy PDFs and invoices with multi-column tables or handwriting, plain OCR loses layout and misreads numbers. I render pages at 150–200 DPI, pass both the page image and extracted text into a Vision-Language Model with a strict Pydantic JSON schema, and run deterministic code checks afterwards—such as verifying that line-item amounts actually sum to the invoice total—routing mismatches to human review. For voice AI, chaining STT → LLM → TTS must stay under ~800 ms, so I stream partial transcripts on speech pauses, stream LLM sentences into TTS chunk by chunk, and support barge-in so the audio stops the instant the user speaks.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Hybrid vision + OCR input with a strict JSON schema for documents</li><li>Deterministic validation (e.g., line items sum to total) + human review queue</li><li>Voice AI: streaming STT → LLM → TTS or native speech-to-speech under 800 ms</li><li>Handle barge-in interruption and redact PII in images/audio</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Multimodal document and voice pipelines are a major 2026 hiring focus.</p>
+              <p class="small">📖 Learn it: <a href="../learn/multimodal-ai.html">Multimodal AI: images, messy PDFs, audio and structured extraction</a> · <a href="../learn/py-async-typing.html">Production Python: async/await, Pydantic and testing</a> · <a href="../learn/ai-ux.html">UX for AI features: designing for uncertainty</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-ml-project-steps">
-          <details><summary><span class="prep-n">26</span>What steps do you follow in a machine learning project, from start to finish?</summary>
+          <details><summary><span class="prep-n">34</span>What steps do you follow in a machine learning project, from start to finish?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>One, understand the problem and the success metric with the people who need it. Two, collect the data and explore it: size, missing values, distributions and obvious errors. Three, clean the data and create features. Four, split into training, validation and test sets. Five, train a simple baseline, then better models, comparing them on validation data. Six, evaluate the final model once on the test set and check its mistakes. Seven, deploy it, for example as an API or a Streamlit app. Eight, monitor it and retrain when data changes.</p>
@@ -917,7 +1117,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-eda">
-          <details><summary><span class="prep-n">27</span>You get a new dataset. How do you explore it?</summary>
+          <details><summary><span class="prep-n">35</span>You get a new dataset. How do you explore it?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>I start with the shape and column types, then look at the first few rows to understand what each column means. Next, missing values per column, duplicates, and basic statistics like mean, median, minimum and maximum, which reveal impossible values like negative ages. I plot distributions with histograms and count the categories. Then I look at relationships: how each feature relates to the target, and correlations between features. I write down surprises and questions for the data owner, because many problems are understood only by asking.</p>
@@ -929,7 +1129,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-f-learning">
-          <details><summary><span class="prep-n">28</span>How did you learn AI, and what are you learning right now?</summary>
+          <details><summary><span class="prep-n">36</span>How did you learn AI, and what are you learning right now?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be concrete and honest. &quot;I started with Python and statistics, then did a structured machine learning course and built small projects on Kaggle datasets. The biggest jump came from building end to end projects: a loan default model I deployed on Streamlit, and a PDF question answering app with an LLM API. Right now I&#39;m learning how to evaluate LLM apps properly, because my first version gave wrong answers I didn&#39;t notice until I built a test set.&quot;</p>
@@ -947,7 +1147,7 @@
         <p class="muted">Open questions with no single right answer. Clarify first, then structure your answer, then talk about trade offs, measurement and failure cases.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-f-spam">
-          <details><summary><span class="prep-n">29</span>How would you build a spam email classifier?</summary>
+          <details><summary><span class="prep-n">37</span>How would you build a spam email classifier?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Clarify: what counts as spam, and which mistake is worse? Usually marking a real email as spam is worse, so precision matters. Data: emails labelled spam or not. Features: start with text turned into numbers, using TF IDF, plus simple signals like number of links or the sender&#39;s history. Model: a baseline with logistic regression or naive Bayes, which works well for text, then compare with a fine tuned small language model if needed. Evaluate with precision and recall on a test set, and pick a threshold that keeps false positives very low. Deploy it as a service, collect &quot;not spam&quot; corrections from users, and retrain regularly because spammers change tactics.</p>
@@ -959,7 +1159,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-f-notice-bot">
-          <details><summary><span class="prep-n">30</span>How would you build a chatbot that answers students&#39; questions from college notices and PDFs?</summary>
+          <details><summary><span class="prep-n">38</span>How would you build a chatbot that answers students&#39; questions from college notices and PDFs?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>I&#39;d use RAG. First, collect the notices and PDFs, extract their text, split it into chunks of a few paragraphs, create embeddings and store them in a vector database. When a student asks a question, embed the question, find the most similar chunks, and send them to an LLM with the instruction to answer only from them and to show which notice the answer came from. If nothing relevant is found, it should say so and point to the office. I&#39;d test it with 30 real student questions, fix the failures, deploy it with Streamlit, and add a feedback button.</p>
@@ -977,7 +1177,7 @@
         <p class="muted">Use the STAR method: Situation, Task, Action, Result. Include a number in the result whenever you can.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-b-project">
-          <details><summary><span class="prep-n">31</span>Walk me through a project you&#39;re proud of.</summary>
+          <details><summary><span class="prep-n">39</span>Walk me through a project you&#39;re proud of.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Use STAR and go deep on your own decisions. &quot;Situation: our support team was overwhelmed with repeated questions. Task: I wanted to build an assistant that answers from our help docs. Action: I built a RAG pipeline, but the first version answered only 60% of test questions correctly. I created an evaluation set of 80 real questions, found that most failures came from chunks splitting tables, switched to structure aware chunking and added reranking. Result: correct answers rose to 86%, and in a pilot it resolved about a quarter of tickets without an agent.&quot; Be ready for &quot;why did you choose that?&quot; at every step.</p>
@@ -989,7 +1189,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-failure">
-          <details><summary><span class="prep-n">32</span>Tell me about a time something you built failed.</summary>
+          <details><summary><span class="prep-n">40</span>Tell me about a time something you built failed.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick a real failure with a lesson, not a fake one. &quot;I shipped a classification model that looked great offline, with 92% accuracy, but within two weeks users complained. I had split data randomly, and the same customers appeared in both training and test, so the score was too optimistic. I owned it with my manager, re split by customer, got a realistic 81%, and improved features to reach 86%. Since then, I always ask how the data is grouped before splitting, and I add a review of the evaluation setup to my checklist.&quot;</p>
@@ -1001,7 +1201,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-conflict">
-          <details><summary><span class="prep-n">33</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
+          <details><summary><span class="prep-n">41</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Show you disagree with data and respect. &quot;A product manager wanted to launch our AI reply feature to all customers. I was worried because our tests showed it sometimes made up refund policies. Instead of just saying no, I showed five real examples and the error rate from our eval set, and proposed launching to 10% of tickets with agent approval first. We agreed on criteria to expand. Two weeks later the error rate was below our threshold and we expanded. We kept a good relationship because we focused on the shared goal.&quot;</p>
@@ -1013,7 +1213,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-explain">
-          <details><summary><span class="prep-n">34</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
+          <details><summary><span class="prep-n">42</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick something from your work and use an everyday analogy. For example, explaining RAG: &quot;Imagine a very smart new employee who has read a lot but knows nothing about our company. If you ask them a policy question, they might confidently guess. RAG is like giving them the right pages of our policy manual before they answer, and asking them to point to the page. So answers are based on our actual documents, and you can check them.&quot; Then check understanding: &quot;Does that make sense?&quot;</p>
@@ -1025,7 +1225,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-keep-up">
-          <details><summary><span class="prep-n">35</span>How do you keep up with the fast changes in AI?</summary>
+          <details><summary><span class="prep-n">43</span>How do you keep up with the fast changes in AI?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be specific and show you filter noise. &quot;I follow a few high quality sources instead of everything: release notes from the main model providers, a couple of newsletters, and papers when something important comes up. But mostly I learn by building: when something new appears, like a new tool calling feature, I try it on a small project within a week and write a short note about what worked. I also review what changed in our own evals when we upgrade models, which teaches me more than reading headlines.&quot;</p>
@@ -1037,7 +1237,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-ai-tools">
-          <details><summary><span class="prep-n">36</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
+          <details><summary><span class="prep-n">44</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be honest and responsible. &quot;I use AI assistants daily for boilerplate, tests, unfamiliar libraries and explaining code. But I treat the output like code from a new colleague: I read every line before accepting it, I make sure there are tests, I check security sensitive parts like authentication and SQL myself, and I never paste secrets or confidential data into tools that aren&#39;t approved. It makes me faster, but I&#39;m still responsible for what I ship.&quot;</p>
@@ -1055,7 +1255,7 @@
         <p class="muted">The last five minutes matter. Good questions show you&#39;re serious; a calm salary answer protects your offer.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-ask-them">
-          <details><summary><span class="prep-n">37</span>Do you have any questions for us?</summary>
+          <details><summary><span class="prep-n">45</span>Do you have any questions for us?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Always say yes and ask two or three real questions. Good ones: &quot;What would success look like for this role in the first 6 months?&quot;, &quot;What&#39;s the biggest challenge the team is facing with AI right now?&quot;, &quot;How do you evaluate model or feature quality before shipping?&quot;, &quot;How is the team split between building new features and maintaining existing ones?&quot;, and &quot;What do people who do well here have in common?&quot;. Avoid asking about leave or salary in a technical round, and don&#39;t ask things that are on their website.</p>
@@ -1067,7 +1267,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-salary">
-          <details><summary><span class="prep-n">38</span>What are your salary expectations?</summary>
+          <details><summary><span class="prep-n">46</span>What are your salary expectations?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Research first, using sites like Glassdoor, AmbitionBox, levels.fyi and people in similar roles, then give a range based on the role, not on your current pay. &quot;Based on my research for this role and level in Bangalore, and my experience, I&#39;m looking at a range of ₹22 to ₹28 lakh fixed. I&#39;m flexible depending on the overall package, and I&#39;m most interested in the role itself.&quot; If they insist on your current salary, you can share it, but steer back to the market range for the new role. Never accept or reject on the spot; ask for the offer in writing.</p>
@@ -1105,6 +1305,16 @@
           <ol type="A"><li>The overall mean amount</li><li>The cities sorted by amount</li><li>One average amount per city</li><li>A count of rows per city</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>One average amount per city</strong>. groupby splits the rows by city, then mean() averages &#39;amount&#39; within each group, giving a Series indexed by city.</p><p class="small">Learn: <a href="../learn/pandas.html">Pandas: working with tables of data</a></p></details>
         </li>
+        <li class="iv-static">
+          <p class="quiz-q">Your script calls an LLM API and occasionally receives HTTP 429 (Too Many Requests). What is the right way to handle it?</p>
+          <ol type="A"><li>Delete the API key</li><li>Catch the 429 error and retry a few times with exponential backoff and random jitter</li><li>Retry immediately in a tight while True loop</li><li>Ignore the error and return an empty string</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Catch the 429 error and retry a few times with exponential backoff and random jitter</strong>. Exponential backoff (1s, 2s, 4s…) with jitter gives the rate limit window time to reset without a thundering herd of retries.</p><p class="small">Learn: <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a> · <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Why is `np.dot(X, w)` 50–100× faster than a Python `for` loop over the rows of `X`?</p>
+          <ol type="A"><li>NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead</li><li>NumPy skips half the rows</li><li>Python loops only work on strings</li><li>NumPy automatically uploads every array to the cloud</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>NumPy runs compiled C/SIMD operations on contiguous typed memory without per-element Python overhead</strong>. Vectorised NumPy operations avoid Python&#39;s per-element type checking and dispatch overhead.</p><p class="small">Learn: <a href="../learn/numpy-arrays.html">NumPy and vectorisation: fast maths on arrays</a> · <a href="../learn/math-vectors.html">Vectors and matrices: the language of AI</a></p></details>
+        </li>
         </ol>
         <h3 id="area-2">Statistics &amp; data</h3>
         <ol class="iv-list">
@@ -1130,6 +1340,11 @@
           <p class="quiz-q">How do you find customers who have never placed an order?</p>
           <ol type="A"><li>INNER JOIN orders and keep the matches</li><li>SELECT DISTINCT customer_id FROM orders</li><li>GROUP BY customer_id HAVING COUNT(*) &gt; 0</li><li>LEFT JOIN orders and keep rows where the order id IS NULL</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>LEFT JOIN orders and keep rows where the order id IS NULL</strong>. A LEFT JOIN keeps every customer. Those with no match have NULL order columns.</p><p class="small">Learn: <a href="../learn/sql-joins.html">SQL JOINs: combining tables</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Why do you wrap `DENSE_RANK() OVER (...) AS rnk` inside a CTE (`WITH ranked AS (...)`) when finding the top 3 products per category?</p>
+          <ol type="A"><li>CTEs automatically delete duplicate rows</li><li>Window functions are not allowed in SELECT</li><li>SQL evaluates WHERE before window functions, so you filter `WHERE rnk &lt;= 3` in the outer query</li><li>DENSE_RANK only works inside a CTE</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>SQL evaluates WHERE before window functions, so you filter `WHERE rnk &lt;= 3` in the outer query</strong>. WHERE runs before SELECT window functions are computed, so a CTE computes `rnk` first and the outer query filters on it.</p><p class="small">Learn: <a href="../learn/sql-window-cte.html">Advanced SQL: CTEs, subqueries and window functions</a></p></details>
         </li>
         </ol>
         <h3 id="area-4">ML fundamentals</h3>
@@ -1160,6 +1375,11 @@
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>Recall</strong>. Missing a real case is far more costly than a false alarm, which only leads to another test.</p><p class="small">Learn: <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a></p></details>
         </li>
         <li class="iv-static">
+          <p class="quiz-q">Before running k-means clustering or PCA on customer features (age in years, annual spend in rupees), what should you do?</p>
+          <ol type="A"><li>Sort the rows alphabetically</li><li>Standardise the features (zero mean, unit variance) so spend in lakhs doesn&#39;t dominate distance calculations</li><li>Drop the age column</li><li>Convert numbers into strings</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Standardise the features (zero mean, unit variance) so spend in lakhs doesn&#39;t dominate distance calculations</strong>. Distance-based and variance-based methods are skewed by large-scale units unless features are standardised first.</p><p class="small">Learn: <a href="../learn/ml-unsupervised.html">Unsupervised learning: clustering, PCA and anomaly detection</a></p></details>
+        </li>
+        <li class="iv-static">
           <p class="quiz-q">Explain overfitting to a non-technical person, and how you&#39;d detect and fix it. <span class="badge-time">open question</span></p>
           <p class="small"><strong>A strong answer covers:</strong></p>
           <ul class="small"><li>A simple analogy (memorising past papers)</li><li>Detection: a gap between training and test scores</li><li>Cross-validation for a reliable estimate</li><li>Fixes: a simpler model, regularisation, more data, early stopping</li><li>A small numeric example</li></ul>
@@ -1177,6 +1397,11 @@
           <p class="quiz-q">Why do LLMs sometimes state wrong facts confidently?</p>
           <ol type="A"><li>Only small models do this</li><li>Their internet connection is slow</li><li>They are lying on purpose</li><li>They generate plausible text and don&#39;t verify facts unless given sources or tools</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>They generate plausible text and don&#39;t verify facts unless given sources or tools</strong>. Grounding answers in sources (RAG), using tools, and showing citations reduces hallucination.</p><p class="small">Learn: <a href="../learn/llm-what.html">What is an LLM? Tokens, context and temperature</a> · <a href="../learn/llm-safety.html">AI safety in products: hallucinations, prompt injection and guardrails</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">After extracting structured invoice fields from a scanned PDF using a Vision-Language Model, how do you catch extraction mistakes reliably?</p>
+          <ol type="A"><li>Raise the temperature to 1.2</li><li>Convert the PDF to audio</li><li>Ask the model if it is sure</li><li>Validate against a Pydantic schema and check deterministic rules like `sum(line_items) + tax == total_amount`, routing mismatches to review</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Validate against a Pydantic schema and check deterministic rules like `sum(line_items) + tax == total_amount`, routing mismatches to review</strong>. Pairing VLM extraction with deterministic code and math checks catches subtle OCR/vision errors before they hit the database.</p><p class="small">Learn: <a href="../learn/multimodal-ai.html">Multimodal AI: images, messy PDFs, audio and structured extraction</a></p></details>
         </li>
         <li class="iv-static">
           <p class="quiz-q">In simple words, what is an LLM, and what is one important limitation? <span class="badge-time">open question</span></p>

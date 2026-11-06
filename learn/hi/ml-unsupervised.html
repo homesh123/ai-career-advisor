@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsupervised learning: clustering, PCA aur anomaly detection: Hinglish mein aasaan explanation | AI Path Finder</title>
+  <meta name="description" content="Zyaadatar company data pe labels nahi hote. Unsupervised learning bina label wale data mein structure dhoondhta hai." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Unsupervised learning: clustering, PCA aur anomaly detection: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta property="og:description" content="Zyaadatar company data pe labels nahi hote. Unsupervised learning bina label wale data mein structure dhoondhta hai." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Unsupervised learning: clustering, PCA aur anomaly detection: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta name="twitter:description" content="Zyaadatar company data pe labels nahi hote. Unsupervised learning bina label wale data mein structure dhoondhta hai." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/ml-unsupervised.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/ml-unsupervised.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html",
+      "name": "Unsupervised learning: clustering, PCA aur anomaly detection",
+      "description": "Zyaadatar company data pe labels nahi hote. Unsupervised learning bina label wale data mein structure dhoondhta hai.",
+      "inLanguage": "hi-Latn",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT7M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "K-means clustering",
+        "PCA (Principal Component Analysis)",
+        "Anomaly detection"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Unsupervised learning: clustering, PCA aur anomaly detection",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "K-means clustering chalane se pehle features ko standardise (jaise StandardScaler) kyun karna chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "K-means distance naapta hai: bina scaling ke hazaaron wala column (salary) chhote number wale column (tenure) pe bhaari pad jaata hai. Jab tak saare features ek jaise scale pe na laaye jaayein, Euclidean distance pe sabse bade numbers wale feature ka hi kabza rehta hai."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "K-means kab fail hota hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Jab clusters gol na hon, size mein bahut alag hon, ya bahut outliers hon. DBSCAN ya HDBSCAN jaise density-based methods ajeeb shapes aur noise ko behtar sambhalte hain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kya unsupervised learning supervised models ki madad kar sakti hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Haan! Cluster IDs ya centroid se doori XGBoost ke liye acche features bante hain, aur anomaly scores batate hain ki insaanon ko pehle kaunsi rows label karni chahiye."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../#paths" data-nav="roles">AI roles</a>
+      <a href="../../learn.html" data-nav="learn">Learn</a>
+      <a href="../../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">AI Path Finder</a> › <a href="../../learn.html">Learn</a> › <span aria-current="page">Unsupervised learning: clustering, PCA aur anomaly detection</span></nav>
+    <article lang="hi-Latn">
+      <header>
+        <p class="eyebrow">Lesson · Hinglish · ⏱ 7 min padhne mein</p>
+        <h1 data-read>🫧 Unsupervised learning: clustering, PCA aur anomaly detection</h1>
+        <p class="lang-switch"><a href="../ml-unsupervised.html" hreflang="en" lang="en">English</a><span>Hinglish</span></p>
+        <div class="listen-bar" data-reader data-listen="Suno" data-pause="Roko" data-resume="Phir chalao" data-reading="Padh kar suna raha hai…" data-paused="Ruka hua" data-unsupported="Aapka browser padh kar nahi suna sakta">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Suno</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Band karo</button>
+      <label class="listen-rate"><span class="sr-only">Padhne ki speed</span><select data-tts="rate" aria-label="Padhne ki speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Asli zindagi ki misaal</h2><p>Socho aapne bina naam likhe sikkon ka ek dabba mez pe palat diya. Chahe koi unke naam na bataye, aap unhe size, wazan aur rang dekhkar alag dheriyon mein baant doge — aur agar beech mein ek plastic ka button chhupa hai, to woh turant alag dikhega. Unsupervised learning yahi karta hai: bina labels ke milte-julte rows ke group banata hai (clustering), bahut saare columns ko chhota karta hai (PCA), aur ajeeb outliers pakadta hai (anomaly detection).</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 Aasaan shabdon mein</h2><p>Zyaadatar company data pe labels nahi hote. Unsupervised learning bina label wale data mein structure dhoondhta hai. K-means clustering har point ko uske sabse paas wale cluster centre se jodkar rows ko K groups mein baant-ta hai (jaise shoppers ko &#39;discount dhoondhne wale&#39;, &#39;weekend families&#39; aur &#39;thok kharidne wale&#39; mein baantna). Principal Component Analysis (PCA) darjanon milte-julte columns ko 2 ya 3 main directions mein compress karta hai taaki aap plot kar sako ya model tez chala sako. Anomaly detection (jaise Isolation Forest) credit-card fraud ya server spike jaise ajeeb events pakadta hai.</p></section>
+      
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Numeric columns ko StandardScaler se saaf aur standardise karo taaki har feature ka mean 0 aur standard deviation 1 ho.</li><li data-read>Clustering ke liye K ki alag values (2 se 8) pe KMeans chalao aur elbow curve, silhouette score aur sabse zaroori: kya groups ka business matlab banta hai, yeh dekho.</li><li data-read>Har cluster ke average features dekhkar use insaani naam do (&#39;baar-baar chhota saamaan kharidne wale&#39;).</li><li data-read>Bahut columns wali tables mein 2D plot banane ke liye PCA(n_components=2) lagao, ya 95% variance bachaane jitne components rakho.</li><li data-read>Bina labels ke anomalies pakadne ke liye IsolationForest chalao aur top 1% sabse ajeeb rows ko domain experts ke saath check karo.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Zaroori shabd</h2>
+        <dl class="terms"><div data-read><dt>K-means clustering</dt><dd>Cluster centres (centroids) ko unke points ke average pe le jaakar data ko K groups mein baant-ta hai.</dd></div><div data-read><dt>PCA (Principal Component Analysis)</dt><dd>Bahut saare correlated features ko kuch uncorrelated components mein compress karta hai jo zyaadatar variance bacha kar rakhte hain.</dd></div><div data-read><dt>Anomaly detection</dt><dd>Aisi rare rows dhoondhta hai jo normal patterns se bilkul alag dikhti hain.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 Example dekho</h2>
+        <div class="code-wrap"><span class="code-lang">python</span><pre><code>from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+X_scaled = StandardScaler().fit_transform(customers[[&quot;orders_per_month&quot;, &quot;avg_bill&quot;]])
+kmeans = KMeans(n_clusters=3, random_state=42)
+customers[&quot;segment&quot;] = kmeans.fit_predict(X_scaled)</code></pre></div>
+        <p class="small muted" data-read>K-means ya PCA se pehle features hamesha scale karo taaki badi unit (rupaye) chhoti unit (order count) ko daba na de.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Aam galtiyaan jinse bachna hai</h2><ul class="deep-mistakes"><li data-read>Bina scale kiye features ya IDs pe k-means chalana, jisse bekaar clusters bante hain.</li><li data-read>Supervised pipeline mein train/test split se pehle poore data pe StandardScaler ya PCA fit karna (data leakage).</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Jaldi se check karo</h2>
+        <p class="quiz-q" data-read data-read-prefix="Jaldi se check karo">K-means clustering chalane se pehle features ko standardise (jaise StandardScaler) kyun karna chahiye?</p>
+        <ol type="A"><li data-read data-read-text="Option A: K-means distance naapta hai: bina scaling ke hazaaron wala column (salary) chhote number wale column (tenure) pe bhaari pad jaata hai">K-means distance naapta hai: bina scaling ke hazaaron wala column (salary) chhote number wale column (tenure) pe bhaari pad jaata hai</li><li data-read data-read-text="Option B: Scaling missing rows apne aap mita deta hai">Scaling missing rows apne aap mita deta hai</li><li data-read data-read-text="Option C: K-means sirf text columns leta hai">K-means sirf text columns leta hai</li></ol>
+        <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. K-means distance naapta hai: bina scaling ke hazaaron wala column (salary) chhote number wale column (tenure) pe bhaari pad jaata hai</strong>: Jab tak saare features ek jaise scale pe na laaye jaayein, Euclidean distance pe sabse bade numbers wale feature ka hi kabza rehta hai.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>K-means kab fail hota hai?</summary><p data-read>Jab clusters gol na hon, size mein bahut alag hon, ya bahut outliers hon. DBSCAN ya HDBSCAN jaise density-based methods ajeeb shapes aur noise ko behtar sambhalte hain.</p></details><details class="deep-faq"><summary data-read>Kya unsupervised learning supervised models ki madad kar sakti hai?</summary><p data-read>Haan! Cluster IDs ya centroid se doori XGBoost ke liye acche features bante hain, aur anomaly scores batate hain ki insaanon ko pehle kaunsi rows label karni chahiye.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>K-means clustering, PCA aur anomaly detection kaise kaam karte hain, aur pehle features scale karna kyun zaroori hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>K-means bina label wali rows ko K clusters mein baantta hai: baar-baar har point ko sabse kareebi cluster centre deta hai aur phir har centre ko uske points ke average pe le jaata hai. PCA sabse zyaada variance wali dishaayein dhoondhta hai aur high-dimensional features ko kuch orthogonal components pe project karta hai. Isolation Forest features ko randomly kaat ke anomalies pakadta hai—outliers akele hote hain aur bahut kam splits mein alag ho jaate hain. Kyunki k-means aur PCA Euclidean distance aur variance pe chalte hain, bina scale kiya feature jaise rupayon mein salary (0 se 2,000,000) age (18 se 70) ko poori tarah daba dega, isliye main pehle features ko zero mean aur unit variance pe standardise karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>K-means: kareebi centroid do, centroids update karo; K elbow/silhouette + domain samajh se chuno</li><li data-read>PCA: correlated columns ko max variance ki dishaon mein compress karo</li><li data-read>Isolation Forest: anomalies kam random splits mein alag ho jaati hain</li><li data-read>Pehle features standardise karo taaki bade unit wale columns distances pe haavi na hon</li></ul><p class="prep-check" data-read><strong>:</strong> Dekhta hai ki aap fit() call karne se aage distance-based unsupervised learning samajhte ho ya nahi.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Labels nahi hain? Milte-julte items cluster karo (k-means), columns compress karo (PCA), ya outliers pakdo — aur pehle scale zaroor karo.</p></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="ml-trees.html">← Decision trees, random forests aur boosting</a>
+        <a href="ml-training-vs-inference.html">Training vs inference: ML production mein kaise chalta hai →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Poora course, aapke roadmap ke hisaab se</h2>
+        <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=ml-unsupervised&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=ml-unsupervised&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=ml-unsupervised&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=ml-unsupervised&amp;lang=hi">AI Research Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=ml-unsupervised&amp;lang=hi">Course mein seekho</a>
+      </section>
+    </article>
+  </main>
+  <script src="../../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "hi"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../../for/software-testers-qa.html">QA / testers</a></li><li><a href="../../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../../guide/how-it-works.html">How the consultation works</a></li><li><a href="../../#app">Free AI career consultation</a></li><li><a href="../../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../../interview.html">Interview practice</a></li><li><a href="../../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../../resumes/">ATS resume samples</a></li><li><a href="../../glossary/">AI dictionary (A to Z)</a></li><li><a href="../../kids/">AI for kids (ages 5+)</a></li><li><a href="../../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

@@ -72,8 +72,18 @@
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
           "name": "AI Research Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -188,6 +198,8 @@ Lower threshold = catch more fraud, but annoy more honest customers.</code></pre
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. Spam hone ke chances zyaada hain, lekin pakka nahi</strong>: 0.6 ka matlab hai ki aisi bahut saari emails mein se lagbhag 10 mein se 6 spam hongi. Likely hai, pakka nahi.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>AI jobs ke liye kitni probability chahiye?</summary><p data-read>Zyaadatar engineering roles ke liye: basic probability, conditional probability aur distributions ka idea. Research roles mein bahut zyaada chahiye.</p></details><details class="deep-faq"><summary data-read>Kya model ka 0.9 score sach mein 90% chance hai?</summary><p data-read>Sirf tab jab model calibrated ho. Kai models zyaada confident hote hain; predicted scores ko asal mein kitni baar hua usse compare karke calibration check kar sakte ho.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Asli example ke saath conditional probability aur Bayes&#39; rule samjhao. Base rate itna maayne kyun rakhta hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Conditional probability P(A | B) ka matlab hai A ki sambhavna jab B pehle hi ho chuka ho. Bayes&#39; rule condition ko palat deta hai: P(fraud | flagged) barabar P(flagged | fraud) guna P(fraud) bhaag P(flagged). Base rate P(fraud) bahut maayne rakhta hai. Maan lo 1,000 mein se sirf 1 transaction fraud hai, aur detector fraud aur normal dono pe 99% sahi hai. 1,000,000 mein se 100,000 transactions mein woh 100 asli fraud mein se ~99 pakadta hai, par 99,900 normal mein se 1% ko galat flag bhi karta hai—lagbhag 999 jhoothe alarms. To jab model kisi transaction ko flag kare, uske asli fraud hone ka chance sirf ~9% hota hai.</p><p class="prep-label">✅ </p><ul><li data-read>P(A | B) = B hone pe A ki probability; Bayes P(signal | event) ko P(event | signal) mein palatta hai</li><li data-read>Rare event example se dikhao ki base rate kam hone pe false positives kaise haavi hote hain</li><li data-read>Fraud, medical screening ya moderation mein precision vs recall se seedha jodo</li><li data-read>Normal distributions ke mukaable skewed/long-tailed distributions ka zikr karo</li></ul><p class="prep-check" data-read><strong>:</strong> Classic probability sawaal jo formula ratne walon ko rare events samajhne walon se alag karta hai.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Model ka output aksar probability hota hai, aur threshold aap chunte ho.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
@@ -198,7 +210,7 @@ Lower threshold = catch more fraud, but annoy more honest customers.</code></pre
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=stats-probability&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=stats-probability&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=stats-probability&amp;lang=hi">AI Research Engineer</a></p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=stats-probability&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=stats-probability&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=stats-probability&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=stats-probability&amp;lang=hi">AI Research Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=stats-probability&amp;lang=hi">AI Product Manager</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=stats-probability&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

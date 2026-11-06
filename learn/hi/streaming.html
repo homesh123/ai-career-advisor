@@ -62,8 +62,18 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
         }
       ]
     },
@@ -178,19 +188,21 @@
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. Fraud payment ko hote hi block karna</strong>: Fraud ko seconds mein rokna hai. Kal ki report bahut der hai.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kya Kafka database hai?</summary><p data-read>Asal mein nahi. Yeh systems ke beech data le jaane ke liye durable event log hai. Results abhi bhi databases mein store karte ho.</p></details><details class="deep-faq"><summary data-read>Streaming AI mein kahan madad karti hai?</summary><p data-read>Fraud aur recommendations ke real time features, aur search ya vector indexes ko seconds mein up to date rakhne mein.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Batch ke bajaye streaming kab chunoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Batch data ko schedule pe chunks mein process karta hai, jaise har ghante ya raat ko; yeh simple, sasta aur theek karne mein aasaan hai. Streaming events ko lagaataar seconds mein process karta hai, Kafka aur Flink ya Spark Streaming jaise tools se. Streaming tabhi chunta hoon jab business ko tez reaction chahiye: payment ke dauraan fraud detection, live recommendations, ya real time alerts. Daily reports ya model training ke liye batch behtar. Kai systems dono use karte hain: real time features ke liye streaming, corrections aur history ke liye batch.</p><p class="prep-label">✅ </p><ul><li data-read>Batch: scheduled, simple, sasta</li><li data-read>Streaming: lagaataar, kam latency, zyaada complex</li><li data-read>Business ki latency zaroorat se chuno, examples ke saath</li><li data-read>Hybrid common hai</li></ul><p class="prep-check" data-read><strong>:</strong> Architecture ki samajh.</p></div></details><details class="deep-faq"><summary data-read>150 ms latency budget wala real time fraud detection system design karo.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify karo miss hue fraud aur galat decline ki keemat kya hai, aur review team kitna sambhaal sakti hai. Features: stream se nikle real time features jaise is card se pichhle 10 minute mein kitni transactions, plus feature store se historical features; latency ke liye kuch features ka thoda purana hona maan lo. Model: gradient boosting, tabular data pe tez aur mazboot, business trade off ke hisaab se threshold, aur beech ki band manual review ko. Serving: kam latency service, features memory ya Redis mein cached, aur model slow ho to fallback rule. Labels chargebacks se der se aate hain, to drift monitor karo aur regularly retrain karo, aur bilkul naye fraud patterns ke liye rules rakho.</p><p class="prep-label">✅ </p><ul><li data-read>Har galti ki keemat clarify</li><li data-read>Streaming plus stored features; staleness trade off</li><li data-read>Tez model, review band ke saath threshold</li><li data-read>Fallback ke saath low latency serving; der se labels, drift, retraining</li></ul><p class="prep-check" data-read><strong>:</strong> Latency, features aur business trade offs ek saath.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Batch = periodic, simple. Streaming = real-time, complex. Jab seconds matter karein tab use karo.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/feature-store.html" title="Shared system jo training aur live predictions dono ke liye taiyaar features rakhta hai.">Feature store</a></li><li><a class="chip" href="../../glossary/streaming.html" title="LLM ka jawaab poora hone ka intezaar karne ke bajaye shabd ba shabd dikhana jaise jaise banta hai.">Streaming</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="rag.html">← RAG: LLM ko aapke documents se jawaab dene dena</a>
-        <a href="portfolio.html">Aisa portfolio project banaana jo interviews dilaaye →</a>
+        <a href="gpu-serving.html">← LLMs ko efficiently serve karna: GPUs, batching aur cost</a>
+        <a href="build-vs-buy.html">Decisions ke liye AI literacy: build vs buy, cost aur limits →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=data-engineer-ai&amp;lesson=streaming&amp;lang=hi">Data Engineer (AI focus)</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=data-engineer-ai&amp;lesson=streaming&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=streaming&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=streaming&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=streaming&amp;lang=hi">MLOps / AI Platform Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ml-engineer&amp;lesson=streaming&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

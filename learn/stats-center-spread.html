@@ -69,6 +69,21 @@
           "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -183,17 +198,19 @@ print(round(st.stdev(salaries), 1))  # 306.7 ← huge spread</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. Median</strong>: A few villas pull the mean up. The median stays at the middle house.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>What&#39;s the difference between variance and standard deviation?</summary><p data-read>Standard deviation is the square root of variance. It&#39;s in the same units as your data (rupees, seconds), so it&#39;s easier to interpret.</p></details><details class="deep-faq"><summary data-read>Why do tech teams talk about p99 latency?</summary><p data-read>Because averages hide the slow cases users actually notice. p99 means 99% of requests are faster than this; the slowest 1% often matter most to unhappy users.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>Explain conditional probability and Bayes&#39; rule with a real example. Why does the base rate matter so much?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes&#39; rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there&#39;s only about a 9% chance it&#39;s actually fraud.</p><p class="prep-label">✅ </p><ul><li data-read>P(A | B) = probability of A given B; Bayes flips P(signal | event) to P(event | signal)</li><li data-read>Walk through a rare event example showing how false positives dominate when base rate is low</li><li data-read>Connect directly to precision vs recall in fraud, medical screening or content moderation</li><li data-read>Mention skewed/long tailed distributions vs normal distributions</li></ul><p class="prep-check" data-read><strong>:</strong> A classic probability question that separates people who memorise formulas from people who understand rare events.</p></div></details><details class="deep-faq"><summary data-read>You get a new dataset. How do you explore it?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I start with the shape and column types, then look at the first few rows to understand what each column means. Next, missing values per column, duplicates, and basic statistics like mean, median, minimum and maximum, which reveal impossible values like negative ages. I plot distributions with histograms and count the categories. Then I look at relationships: how each feature relates to the target, and correlations between features. I write down surprises and questions for the data owner, because many problems are understood only by asking.</p><p class="prep-label">✅ </p><ul><li data-read>Shape, types, sample rows</li><li data-read>Missing values, duplicates, summary stats, outliers</li><li data-read>Distributions and relationships with the target</li><li data-read>Note questions for the data owner</li></ul><p class="prep-check" data-read><strong>:</strong> Practical data sense; freshers are often asked to describe this step by step.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Use the median when there are outliers, and always look at the spread too.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="pandas.html">← Pandas: working with tables of data</a>
+        <a href="data-quality.html">← Data quality: catching bad data early</a>
         <a href="stats-probability.html">Probability and distributions →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=stats-center-spread">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=stats-center-spread">ML Engineer</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=stats-center-spread">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=stats-center-spread">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=stats-center-spread">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=stats-center-spread">AI Research Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=stats-center-spread">AI Product Manager</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=stats-center-spread">Continue in the course</a>
       </section>
     </article>

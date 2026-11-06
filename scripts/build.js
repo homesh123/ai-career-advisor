@@ -24,6 +24,7 @@ const { ROLE_TASKS } = require("../content/tasks.js");
 const { INTERVIEW } = require("../content/interview.js");
 const { RESUMES } = require("../content/resumes.js");
 const { INTERVIEW_PREP } = require("../content/interview-prep.js");
+const INTERVIEW_PREP_HI = Object.assign({}, ...[1, 2, 3].map(i => require(`../content/interview-prep-hi-${i}.js`).INTERVIEW_PREP_HI));
 const { KIDS } = require("../content/kids.js");
 const GLOSSARY_TERMS = [1, 2, 3].flatMap(i => require(`../content/glossary-${i}.js`).GLOSSARY_TERMS);
 global.GLOSSARY_SIMPLE = require("../content/glossary-simple.js").GLOSSARY_SIMPLE; // read by Glossary.terms()
@@ -682,6 +683,15 @@ ${jsonLd(graph)}`;
         <details class="answer-reveal"><summary>${hi ? "Jawaab dekho" : "Show answer"}</summary><p><strong>${"ABC"[optionOrder(id, x.quiz.options.length).indexOf(x.quiz.answer)]}. ${esc(pick(x.quiz.options[x.quiz.answer]))}</strong>: ${esc(pick(x.quiz.why))}</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 ${esc(ui("peopleAsk"))}</h2>${deep.faq.map(([q, ans]) => `<details class="deep-faq"><summary data-read>${esc(pick(q))}</summary><p data-read>${esc(pick(ans))}</p></details>`).join("")}</section>
+${(() => {
+        const iqs = INTERVIEW_PREP.questions.filter(q => q.topics.includes(id));
+        if (!iqs.length) return "";
+        return `      <section class="ls ls-interview-qs"><h2>🎯 ${esc(ui("askedInInterviews"))}</h2><p class="small muted">${esc(ui("askedInInterviewsSub"))}</p>${iqs.map(q => {
+          const h = hi && INTERVIEW_PREP_HI[q.id];
+          const text = h || q;
+          return `<details class="deep-faq"><summary data-read>${esc(text.q)}</summary><div class="prep-body"><p class="prep-label">💬 ${esc(ui("prepEasyAnswer"))}</p><p data-read>${esc(text.answer)}</p><p class="prep-label">✅ ${esc(ui("prepPoints"))}</p><ul>${text.points.map(pt => `<li data-read>${esc(pt)}</li>`).join("")}</ul><p class="prep-check" data-read><strong>${esc(ui("prepCheck"))}:</strong> ${esc(text.check)}</p></div></details>`;
+        }).join("")}</section>\n`;
+      })()}
       <section class="ls ls-remember" data-read><h2>📌 ${esc(ui("remember"))}</h2><p>${esc(pick(x.remember))}</p></section>
 ${(() => {
         const words = Glossary.terms(GLOSSARY_TERMS).filter(t => t.lessons.includes(id));

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced SQL: CTEs, subqueries and window functions: Explained Simply With Real-Life Examples | AI Path Finder</title>
+  <meta name="description" content="Real interview and warehouse queries rarely fit in one flat SELECT. A CTE (&#39;WITH step_name AS (...)&#39;) lets you break a complex question into named,…" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Advanced SQL: CTEs, subqueries and window functions: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta property="og:description" content="Real interview and warehouse queries rarely fit in one flat SELECT. A CTE (&#39;WITH step_name AS (...)&#39;) lets you break a complex question into named,…" />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Advanced SQL: CTEs, subqueries and window functions: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta name="twitter:description" content="Real interview and warehouse queries rarely fit in one flat SELECT. A CTE (&#39;WITH step_name AS (...)&#39;) lets you break a complex question into named,…" />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/sql-window-cte.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html",
+      "name": "Advanced SQL: CTEs, subqueries and window functions",
+      "description": "Real interview and warehouse queries rarely fit in one flat SELECT. A CTE ('WITH step_name AS (...)') lets you break a complex question into named,…",
+      "inLanguage": "en",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "CTE (WITH clause)",
+        "PARTITION BY",
+        "ROW_NUMBER / DENSE_RANK / LAG"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Advanced SQL: CTEs, subqueries and window functions",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does a window function (OVER (PARTITION BY ...)) differ from GROUP BY?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GROUP BY collapses each group into one row; a window function keeps every row and adds a calculated column. GROUP BY reduces N rows in a group to 1 summary row; OVER (...) keeps all N rows and computes across the window."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I use ROW_NUMBER vs DENSE_RANK in interviews?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ask the interviewer how ties should be handled! If they want exactly 3 rows even on ties, use ROW_NUMBER. If tied products should both appear in the top 3 without skipping rank 2, use DENSE_RANK."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are CTEs slower than subqueries?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In modern databases and warehouses (PostgreSQL, BigQuery, Snowflake), the query planner optimises CTEs just like subqueries, and CTEs are much easier to read and debug."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#paths" data-nav="roles">AI roles</a>
+      <a href="../learn.html" data-nav="learn">Learn</a>
+      <a href="../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">AI Path Finder</a> › <a href="../learn.html">Learn</a> › <span aria-current="page">Advanced SQL: CTEs, subqueries and window functions</span></nav>
+    <article lang="en">
+      <header>
+        <p class="eyebrow">Lesson · ⏱ 8 min read</p>
+        <h1 data-read>🪟 Advanced SQL: CTEs, subqueries and window functions</h1>
+        <p class="lang-switch"><span>English</span><a href="hi/sql-window-cte.html" hreflang="hi" lang="hi-Latn">Hinglish</a></p>
+        <div class="listen-bar" data-reader data-listen="Listen" data-pause="Pause" data-resume="Resume" data-reading="Reading aloud…" data-paused="Paused" data-unsupported="Your browser can't read aloud">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Listen</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Stop</button>
+      <label class="listen-rate"><span class="sr-only">Reading speed</span><select data-tts="rate" aria-label="Reading speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Real-life example</h2><p>When a teacher writes each student&#39;s class rank on their report card, no student is removed from the register: everyone keeps their own row, with an extra column showing where they stand in their section. A SQL window function does exactly that: it calculates ranks, running totals or previous values across a group without collapsing the rows.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 In simple words</h2><p>Real interview and warehouse queries rarely fit in one flat SELECT. A CTE (&#39;WITH step_name AS (...)&#39;) lets you break a complex question into named, readable steps. A window function (&#39;OVER (PARTITION BY ... ORDER BY ...)&#39;) computes values across related rows while keeping every row intact: use ROW_NUMBER() or DENSE_RANK() for &#39;top 3 per category&#39;, LAG() to compare today with yesterday, and SUM(...) OVER for running totals. Combine a CTE with a window function to solve the classic top-N-per-group interview question cleanly.</p></section>
+      
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Break complex logic into named steps with &#39;WITH step1 AS (...), step2 AS (...) SELECT ...&#39; instead of deeply nested subqueries.</li><li data-read>Add a window with &#39;OVER (PARTITION BY group_col ORDER BY sort_col)&#39; to compute per-group metrics while keeping every row.</li><li data-read>Rank rows within each group: ROW_NUMBER() gives 1,2,3 (no ties); RANK() gives 1,1,3; DENSE_RANK() gives 1,1,2.</li><li data-read>Compare across time with LAG(amount, 1) OVER (PARTITION BY store_id ORDER BY date) for day-over-day change, and SUM(amount) OVER (...) for running totals.</li><li data-read>Filter on a window result by wrapping the query in a CTE first, then writing &#39;WHERE rnk &lt;= 3&#39; in the outer SELECT.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Key terms</h2>
+        <dl class="terms"><div data-read><dt>CTE (WITH clause)</dt><dd>A named temporary result at the top of a query that keeps complex SQL readable.</dd></div><div data-read><dt>PARTITION BY</dt><dd>Splits the window into groups (e.g. per category or per customer) without collapsing rows.</dd></div><div data-read><dt>ROW_NUMBER / DENSE_RANK / LAG</dt><dd>Numbers rows 1,2,3…, ranks ties without gaps, or looks at the previous row&#39;s value.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 See it in action</h2>
+        <div class="code-wrap"><span class="code-lang">sql</span><pre><code>-- Top 3 products by revenue in each category
+WITH ranked AS (
+  SELECT category, product_id, revenue,
+         DENSE_RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rnk
+  FROM product_sales
+)
+SELECT category, product_id, revenue
+FROM ranked
+WHERE rnk &lt;= 3;</code></pre></div>
+        <p class="small muted" data-read>Compute the rank inside a CTE, then filter with WHERE rnk &lt;= 3 in the outer query.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Common mistakes to avoid</h2><ul class="deep-mistakes"><li data-read>Using &#39;WHERE id NOT IN (SELECT ...)&#39; when the subquery can contain NULL: if even one NULL is present, NOT IN returns zero rows! Use &#39;NOT EXISTS&#39; or &#39;LEFT JOIN ... WHERE ... IS NULL&#39;.</li><li data-read>Trying to filter a window function directly in WHERE (&#39;WHERE ROW_NUMBER() OVER (...) &lt;= 3&#39;). SQL runs WHERE before window functions; wrap it in a CTE first.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Quick check</h2>
+        <p class="quiz-q" data-read data-read-prefix="Quick check">How does a window function (OVER (PARTITION BY ...)) differ from GROUP BY?</p>
+        <ol type="A"><li data-read data-read-text="Option A: GROUP BY collapses each group into one row; a window function keeps every row and adds a calculated column">GROUP BY collapses each group into one row; a window function keeps every row and adds a calculated column</li><li data-read data-read-text="Option B: They are identical">They are identical</li><li data-read data-read-text="Option C: GROUP BY keeps every row; a window function deletes rows">GROUP BY keeps every row; a window function deletes rows</li></ol>
+        <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. GROUP BY collapses each group into one row; a window function keeps every row and adds a calculated column</strong>: GROUP BY reduces N rows in a group to 1 summary row; OVER (...) keeps all N rows and computes across the window.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>When should I use ROW_NUMBER vs DENSE_RANK in interviews?</summary><p data-read>Ask the interviewer how ties should be handled! If they want exactly 3 rows even on ties, use ROW_NUMBER. If tied products should both appear in the top 3 without skipping rank 2, use DENSE_RANK.</p></details><details class="deep-faq"><summary data-read>Are CTEs slower than subqueries?</summary><p data-read>In modern databases and warehouses (PostgreSQL, BigQuery, Snowflake), the query planner optimises CTEs just like subqueries, and CTEs are much easier to read and debug.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What are window functions? Explain ROW_NUMBER, RANK and DENSE_RANK.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Window functions calculate something across related rows without collapsing them like GROUP BY does. For example, a running total or each employee&#39;s salary rank within their department, using OVER (PARTITION BY department ORDER BY salary DESC). With ties: ROW_NUMBER gives unique numbers 1, 2, 3 even for ties, so add a tie breaker column to make it deterministic. RANK gives ties the same number and then skips, like 1, 1, 3. DENSE_RANK gives ties the same number without gaps, like 1, 1, 2. LAG and LEAD let you compare a row with the previous or next one.</p><p class="prep-label">✅ </p><ul><li data-read>Compute over a window of rows, keeping every row</li><li data-read>PARTITION BY groups, ORDER BY sets order</li><li data-read>ROW_NUMBER vs RANK vs DENSE_RANK on ties</li><li data-read>Uses: top N per group, running totals, LAG and LEAD for changes</li></ul><p class="prep-check" data-read><strong>:</strong> Window functions are the core of most data SQL rounds in 2026.</p></div></details><details class="deep-faq"><summary data-read>Write a query to get the top 3 products by revenue in each category.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I&#39;d rank products within each category and then filter. First, in a subquery or CTE, compute revenue per product and add DENSE_RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rnk. Then select rows WHERE rnk &lt;= 3. I&#39;d say out loud how I handle ties: DENSE_RANK keeps all tied products, which could return more than 3 rows; if they want exactly 3, I&#39;d use ROW_NUMBER with a tie breaker like product ID.</p><p class="prep-label">✅ </p><ul><li data-read>CTE to aggregate revenue per product</li><li data-read>Window rank partitioned by category</li><li data-read>Filter rank ≤ 3 in the outer query (you can&#39;t filter a window function in WHERE directly)</li><li data-read>State how ties are handled</li></ul><p class="prep-check" data-read><strong>:</strong> A classic SQL task. Explaining tie handling shows maturity.</p></div></details><details class="deep-faq"><summary data-read>What is a CTE (WITH clause) in SQL, and why can NOT IN with NULL values silently return zero rows?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>A CTE, or Common Table Expression, is a named temporary result written with WITH at the top of a query. It makes complex SQL readable by breaking it into step by step blocks instead of deeply nested subqueries. For the NULL trap: in SQL, NULL means unknown, so comparing anything to NULL gives UNKNOWN. Because x NOT IN (1, 2, NULL) means x != 1 AND x != 2 AND x != NULL, the whole condition becomes UNKNOWN and returns zero rows whenever the subquery has even one NULL. I use NOT EXISTS or a LEFT JOIN ... WHERE right.id IS NULL instead.</p><p class="prep-label">✅ </p><ul><li data-read>CTE = named step with WITH; cleaner than nested subqueries</li><li data-read>NULL = unknown, so != NULL is never TRUE</li><li data-read>NOT IN with any NULL returns 0 rows</li><li data-read>Safe alternatives: NOT EXISTS or LEFT JOIN ... IS NULL</li></ul><p class="prep-check" data-read><strong>:</strong> Tests whether you write readable SQL and know real world NULL bugs.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Use WITH (CTEs) to write step by step, and OVER (PARTITION BY ... ORDER BY ...) to rank or compare rows without losing detail.</p></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="sql-joins.html">← SQL JOINs: combining tables</a>
+        <a href="math-vectors.html">Vectors and matrices: the language of AI →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Learn this as part of a full course</h2>
+        <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=sql-window-cte">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=sql-window-cte">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=sql-window-cte">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=sql-window-cte">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=sql-window-cte">Continue in the course</a>
+      </section>
+    </article>
+  </main>
+  <script src="../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "en"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../for/software-testers-qa.html">QA / testers</a></li><li><a href="../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../guide/how-it-works.html">How the consultation works</a></li><li><a href="../#app">Free AI career consultation</a></li><li><a href="../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../interview.html">Interview practice</a></li><li><a href="../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../resumes/">ATS resume samples</a></li><li><a href="../glossary/">AI dictionary (A to Z)</a></li><li><a href="../kids/">AI for kids (ages 5+)</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

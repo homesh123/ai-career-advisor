@@ -233,6 +233,78 @@ var LESSON_DEEP = Object.assign(typeof LESSON_DEEP !== "undefined" ? LESSON_DEEP
       [["Where do I find good papers?", "Acche papers kahan milenge?"], ["arXiv for preprints, conference proceedings (NeurIPS, ICML, ACL), and curated lists or newsletters that summarise important work.", "Preprints ke liye arXiv, conference proceedings (NeurIPS, ICML, ACL), aur curated lists ya newsletters jo important kaam summarise karte hain."]],
       [["The maths is too hard. What do I do?", "Maths bahut mushkil hai. Kya karun?"], ["Skip it on the first pass, understand the idea from figures and code, then return to the equations one at a time with a notebook.", "Pehle pass mein chhod do, idea figures aur code se samjho, phir notebook ke saath ek ek equation pe wapas aao."]]
     ]
+  },
+
+  "ml-unsupervised": {
+    steps: [
+      ["Clean and standardise numeric columns with StandardScaler so every feature has mean 0 and standard deviation 1.", "Numeric columns ko StandardScaler se saaf aur standardise karo taaki har feature ka mean 0 aur standard deviation 1 ho."],
+      ["For clustering, run KMeans for several values of K (say 2 to 8) and check the elbow curve and silhouette score — plus whether the segments make business sense.", "Clustering ke liye K ki alag values (2 se 8) pe KMeans chalao aur elbow curve, silhouette score aur sabse zaroori: kya groups ka business matlab banta hai, yeh dekho."],
+      ["Inspect each cluster's average features to give it a human name ('high-frequency small-basket shoppers').", "Har cluster ke average features dekhkar use insaani naam do ('baar-baar chhota saamaan kharidne wale')."],
+      ["For high-dimensional tables, use PCA(n_components=2) to visualise clusters on a 2D scatter plot, or keep enough components to explain 95% of variance.", "Bahut columns wali tables mein 2D plot banane ke liye PCA(n_components=2) lagao, ya 95% variance bachaane jitne components rakho."],
+      ["For anomaly detection without labels, fit IsolationForest and review the top 1% most anomalous rows with domain experts.", "Bina labels ke anomalies pakadne ke liye IsolationForest chalao aur top 1% sabse ajeeb rows ko domain experts ke saath check karo."]
+    ],
+    mistakes: [
+      ["Running k-means on unscaled features or one-hot encoded IDs, producing meaningless clusters.", "Bina scale kiye features ya IDs pe k-means chalana, jisse bekaar clusters bante hain."],
+      ["Fitting StandardScaler or PCA on the entire dataset before train/test split when using them inside a supervised pipeline (data leakage).", "Supervised pipeline mein train/test split se pehle poore data pe StandardScaler ya PCA fit karna (data leakage)."]
+    ],
+    faq: [
+      [["When does k-means fail?", "K-means kab fail hota hai?"], ["When clusters have non-spherical shapes, very different sizes, or lots of outliers. Density-based methods like DBSCAN or HDBSCAN handle irregular shapes and noise better.", "Jab clusters gol na hon, size mein bahut alag hon, ya bahut outliers hon. DBSCAN ya HDBSCAN jaise density-based methods ajeeb shapes aur noise ko behtar sambhalte hain."]],
+      [["Can unsupervised learning help supervised models?", "Kya unsupervised learning supervised models ki madad kar sakti hai?"], ["Yes! Cluster IDs or distance-to-centroid can be great features for XGBoost, and anomaly scores help prioritise which unlabelled rows humans should label first.", "Haan! Cluster IDs ya centroid se doori XGBoost ke liye acche features bante hain, aur anomaly scores batate hain ki insaanon ko pehle kaunsi rows label karni chahiye."]]
+    ]
+  },
+
+  "dl-pytorch-training": {
+    steps: [
+      ["Wrap your dataset in a torch.utils.data.Dataset and DataLoader(batch_size=32, shuffle=True) so batches stream efficiently.", "Apne dataset ko torch.utils.data.Dataset aur DataLoader(batch_size=32, shuffle=True) mein rakho taaki batches aasaani se aayein."],
+      ["Move model and batches to the same device: device = 'cuda' if torch.cuda.is_available() else 'cpu'.", "Model aur batches ko ek hi device pe rakho: device = 'cuda' if torch.cuda.is_available() else 'cpu'."],
+      ["In each training step: optimizer.zero_grad() → out = model(x) → loss = criterion(out, y) → loss.backward() → torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) → optimizer.step().", "Har training step mein: optimizer.zero_grad() → out = model(x) → loss = criterion(out, y) → loss.backward() → clip_grad_norm_ → optimizer.step()."],
+      ["Use torch.amp.autocast('cuda', dtype=torch.bfloat16) for mixed-precision training: it cuts GPU memory nearly in half and speeds up tensor cores.", "Mixed-precision training ke liye torch.amp.autocast('cuda', dtype=torch.bfloat16) use karo: yeh GPU memory lagbhag aadhi kar deta hai aur speed badhata hai."],
+      ["After each epoch, switch to model.eval() and 'with torch.no_grad():' to compute validation loss and save the best checkpoint.", "Har epoch ke baad model.eval() aur 'with torch.no_grad():' lagakar validation loss nikalo aur best checkpoint save karo."]
+    ],
+    mistakes: [
+      ["Forgetting model.eval() during validation or inference: Dropout keeps dropping neurons randomly and BatchNorm uses batch stats instead of learned running stats!", "Validation ya inference mein model.eval() bhoolna: isse Dropout chalta rehta hai aur BatchNorm galat stats use karta hai!"],
+      ["Storing loss tensors in a Python list for logging ('losses.append(loss)' instead of 'losses.append(loss.item())'), which keeps the entire computation graph in GPU memory and causes CUDA Out-Of-Memory!", "Logging ke liye 'loss.item()' ke bajaye seedha 'losses.append(loss)' likhna, jisse poora computation graph GPU memory mein atka rehta hai aur CUDA OOM ho jaata hai!"]
+    ],
+    faq: [
+      [["What is the difference between DataParallel (DP) and DistributedDataParallel (DDP)?", "DataParallel (DP) aur DistributedDataParallel (DDP) mein kya fark hai?"], ["Always use DDP, never DP. DP uses a single Python process and suffers from GIL contention and uneven GPU memory; DDP runs one process per GPU and synchronises gradients with fast all-reduce.", "Hamesha DDP use karo, DP nahi. DP ek hi Python process mein chalta hai aur GIL ki wajah se slow hota hai; DDP har GPU pe alag process chalata hai aur fast all-reduce se gradients sync karta hai."]],
+      [["When do I need FSDP or DeepSpeed ZeRO instead of DDP?", "DDP ke bajaye FSDP ya DeepSpeed ZeRO kab chahiye?"], ["When a single GPU cannot hold a full copy of the model, gradients and Adam optimizer states. FSDP (ZeRO Stage 3) shards all three across GPUs and gathers layers on the fly.", "Jab ek GPU pe poore model, gradients aur Adam optimizer states ki copy fit na ho. FSDP (ZeRO Stage 3) in teenon ko GPUs mein baant deta hai aur zaroorat pe jodta hai."]]
+    ]
+  },
+
+  "dl-alignment-quant": {
+    steps: [
+      ["Start with Supervised Fine-Tuning (SFT) on clean (prompt, ideal response) examples so the model learns the target format and tone.", "Saaf (prompt, ideal response) examples pe Supervised Fine-Tuning (SFT) se shuru karo taaki model sahi format aur tone seekhe."],
+      ["Collect preference pairs: for the same prompt, one response is better ('chosen') and one is worse ('rejected'), graded by humans or a strong judge.", "Preference pairs ikattha karo: ek hi prompt ke liye ek behtar jawaab ('chosen') aur ek kamzor ('rejected')."],
+      ["Run DPO (or RLHF/GRPO for verifiable reasoning tasks) with a small learning rate and a KL penalty (beta) so the model doesn't drift too far from the base model.", "Chhote learning rate aur KL penalty (beta) ke saath DPO (ya verifiable reasoning ke liye GRPO/RL) chalao taaki model base model se bhatak na jaaye."],
+      ["Mix 10–20% general instruction data into domain fine-tuning so the model doesn't suffer catastrophic forgetting of general reasoning.", "Domain fine-tuning mein 10–20% general instruction data milao taaki model apni aam samajh na bhoole (catastrophic forgetting)."],
+      ["For deployment, quantise weights to INT8 or 4-bit AWQ/GPTQ and benchmark both accuracy on your eval set and latency/throughput before shipping.", "Deployment ke liye weights ko INT8 ya 4-bit AWQ/GPTQ mein quantise karo aur ship karne se pehle apne eval set pe accuracy aur speed dono test karo."]
+    ],
+    mistakes: [
+      ["Quantising a model to 4-bit and deploying without running your domain eval suite: math, code and exact entity extraction can degrade first.", "Model ko 4-bit mein quantise karke bina domain eval suite chalaye deploy kar dena: maths, code aur exact extraction pe sabse pehle asar pad sakta hai."],
+      ["Training DPO for too many epochs or with too low a beta, causing the model to output repetitive, unnatural or sycophantic text (reward hacking).", "DPO ko bahut zyaada epochs ya bahut kam beta pe train karna, jisse model baar-baar repeat hone wala ya nakli text dene lagta hai."]
+    ],
+    faq: [
+      [["Why do activation outliers make LLM quantisation hard, and how does AWQ fix it?", "Activation outliers LLM quantisation ko mushkil kyun banate hain, aur AWQ ise kaise theek karta hai?"], ["A tiny fraction (~0.1%) of weight channels carry huge activation values. Crushing those channels to 4 bits ruins accuracy. AWQ identifies those salient channels using a small calibration set and scales them to protect their precision.", "Lagbhag 0.1% weight channels mein bahut badi activation values aati hain. Unhe 4-bit mein dabane se accuracy kharab ho jaati hai. AWQ chhote calibration set se un zaroori channels ko pehchaankar unki precision bacha leta hai."]],
+      [["When should I use a reasoning model vs a standard fast LLM?", "Reasoning model aur normal fast LLM mein kab kaunsa use karun?"], ["Use a reasoning model for multi-step math, complex code generation, planning or root-cause analysis where accuracy beats latency. Use a standard fast model for chat, summarisation, extraction and routing where sub-second response time matters.", "Multi-step maths, mushkil code, planning ya gehre analysis mein reasoning model use karo jahan accuracy sabse zaroori hai. Chat, summarisation, extraction aur routing mein normal fast model lagao jahan 1 second se kam mein jawaab chahiye."]]
+    ]
+  },
+
+  "ml-system-design": {
+    steps: [
+      ["Step 1 — Clarify (3–5 min): ask about scale (users, items, QPS), latency SLA (e.g. p99 < 150 ms), how labels are collected, and business constraints.", "Step 1 — Clarify (3–5 min): scale (users, items, QPS), latency SLA (jaise p99 < 150 ms), labels kaise milte hain aur business constraints poocho."],
+      ["Step 2 — Frame & Metrics (5 min): translate the business goal into an ML objective (binary classification, ranking, regression) and pair an offline metric (PR-AUC, NDCG@10) with an online metric (CTR, conversion, fraud loss rate).", "Step 2 — Frame & Metrics (5 min): business goal ko ML task (classification, ranking, regression) mein badlo aur offline metric (PR-AUC, NDCG@10) ko online metric (CTR, conversion, fraud loss) ke saath jodo."],
+      ["Step 3 — Data & Features (8 min): list user, item, interaction and real-time context features; explain how an offline + online feature store prevents training-serving skew.", "Step 3 — Data & Features (8 min): user, item, interaction aur real-time context features batao; aur samjhao ki offline + online feature store training-serving skew kaise rokta hai."],
+      ["Step 4 — Model & Funnel (10 min): start with a simple baseline, then design a multi-stage funnel (candidate generation → ranking → re-ranking/business rules).", "Step 4 — Model & Funnel (10 min): simple baseline se shuru karo, phir multi-stage funnel banao (candidate generation → ranking → re-ranking/business rules)."],
+      ["Step 5 — Serving, Cold Start & Monitoring (10 min): cover caching, fallback when the model times out, cold start for new users/items, shadow deployment, A/B testing and drift alerts.", "Step 5 — Serving, Cold Start & Monitoring (10 min): caching, timeout pe fallback, naye users/items ke liye cold start, shadow deployment, A/B testing aur drift alerts cover karo."]
+    ],
+    mistakes: [
+      ["Spending 30 minutes drawing transformer layers while ignoring data pipelines, labels, latency budgets, cold start and online evaluation.", "Data pipelines, labels, latency budget, cold start aur online evaluation chhodkar 30 minute sirf neural network layers banane mein lagana."],
+      ["Treating user clicks as unbiased ground truth: items shown at position #1 get clicked more simply because they are at the top (position bias).", "User clicks ko bina bias ka sach maan lena: position #1 pe dikhne wale item pe sirf upar hone ki wajah se zyaada click aate hain (position bias)."]
+    ],
+    faq: [
+      [["How do you handle position bias in search and recommendation training data?", "Search aur recommendation ke training data mein position bias kaise sambhalte hain?"], ["Include the display position as a feature during training and set it to a constant (like position 1) at serving time, or weight training examples using Inverse Propensity Scoring (IPS).", "Training ke waqt display position ko feature ki tarah daalo aur serving ke waqt use constant (jaise position 1) rakh do, ya Inverse Propensity Scoring (IPS) se examples ko weight do."]],
+      [["What is a Two-Tower model in recommendation systems?", "Recommendation systems mein Two-Tower model kya hota hai?"], ["One neural network ('user tower') turns user features into a vector, and a second network ('item tower') turns item features into a vector in the same space. Item vectors are precomputed in a vector index so finding the top 200 items for any user takes milliseconds.", "Ek network ('user tower') user features ko vector banata hai, aur doosra ('item tower') item features ko usi space mein vector banata hai. Item vectors pehle se index mein save rehte hain, isliye kisi bhi user ke liye top 200 items dhoondhne mein bas kuch milliseconds lagte hain."]]
+    ]
   }
 });
 

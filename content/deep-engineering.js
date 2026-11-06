@@ -178,6 +178,42 @@ var LESSON_DEEP = Object.assign(typeof LESSON_DEEP !== "undefined" ? LESSON_DEEP
       [["Which laws matter in India?", "India mein kaunse kaanoon matter karte hain?"], ["The Digital Personal Data Protection Act (DPDP) governs personal data, plus sector rules (RBI for banking, for example). Global customers bring GDPR and others.", "Digital Personal Data Protection Act (DPDP) personal data pe laagu hota hai, saath mein sector rules (jaise banking ke liye RBI). Global customers ke saath GDPR aur doosre bhi."]],
       [["Can we use cloud LLMs with confidential data?", "Kya confidential data ke saath cloud LLMs use kar sakte hain?"], ["Often yes, with enterprise agreements, the right region, no training on your data and proper access controls. Some cases still need self hosted models.", "Aksar haan, enterprise agreements, sahi region, aapke data pe training nahi aur sahi access controls ke saath. Kuch cases mein abhi bhi self hosted models chahiye."]]
     ]
+  },
+
+  "feature-stores": {
+    steps: [
+      ["Define each feature transformation once in version-controlled code (SQL or Python/Spark) with a clear owner and entity key (e.g. user_id).", "Har feature transformation ko version-controlled code (SQL ya Python/Spark) mein saaf owner aur entity key (jaise user_id) ke saath ek baar define karo."],
+      ["Materialise historical feature values into the offline store (Snowflake, BigQuery, Parquet) with accurate event timestamps.", "Purani feature values ko sahi event timestamps ke saath offline store (Snowflake, BigQuery, Parquet) mein save karo."],
+      ["Build training datasets using point-in-time (ASOF) joins so each training label only sees feature values that existed before that label's timestamp.", "Point-in-time (ASOF) joins se training dataset banao taaki har label sirf usi waqt tak ke features dekhe."],
+      ["Sync the latest feature values to an online low-latency key-value store (Redis, DynamoDB) for real-time model serving.", "Real-time model serving ke liye latest feature values ko online low-latency store (Redis, DynamoDB) mein sync karo."],
+      ["For labeling, write a 1-page rubric with edge-case examples, check agreement across two annotators on a 5% sample, and use active learning to label hard failures first.", "Labeling ke liye edge-case examples ke saath saaf rubric likho, 5% sample pe do annotators ki sehmati check karo, aur active learning se mushkil cases pehle label karwao."]
+    ],
+    mistakes: [
+      ["Rewriting a Python/Pandas feature in Java or Go by hand for production without testing that both produce identical numbers on 1,000 real inputs.", "Python/Pandas mein likhe feature ko bina 1,000 real inputs pe match check kiye production ke liye haath se Java ya Go mein dobara likhna."],
+      ["Having 5 annotators label 10,000 rows with vague instructions and never measuring inter-annotator agreement, resulting in noisy labels that cap model accuracy.", "Adhure instructions ke saath 5 logon se 10,000 rows label karwana aur unki aapsi sehmati kabhi check na karna, jisse galat labels model ki accuracy gira dete hain."]
+    ],
+    faq: [
+      [["Does every team need a full feature store like Feast or Tecton?", "Kya har team ko Feast ya Tecton jaise poore feature store ki zaroorat hoti hai?"], ["No! If your models run in nightly batch, well-tested dbt tables are enough. You need an online feature store when real-time models need fresh historical aggregates in milliseconds.", "Nahi! Agar aapke models raat ke batch mein chalte hain, to dbt tables kaafi hain. Online feature store tab chahiye jab real-time models ko milliseconds mein fresh historical aggregates chahiye hon."]],
+      [["How do you handle streaming features like 'clicks in the last 5 minutes'?", "‘Pichhle 5 minute ke clicks’ jaise streaming features kaise bante hain?"], ["A stream processor (Kafka + Flink/Spark Streaming) updates a sliding-window counter in the online store and logs events to the offline store so training and serving stay aligned.", "Stream processor (Kafka + Flink/Spark Streaming) online store mein sliding-window counter update karta hai aur events ko offline store mein bhi save karta hai."]]
+    ]
+  },
+
+  "llmops-tracing": {
+    steps: [
+      ["Instrument every LLM call, retrieval query and tool execution with a trace ID and child spans (recording prompt version, model, tokens, cost and latency).", "Har LLM call, retrieval query aur tool execution ko trace ID aur child spans ke saath log karo (prompt version, model, tokens, kharch aur latency samet)."],
+      ["Measure Time to First Token (TTFT) and tokens-per-second separately from end-to-end latency, and stream responses to the UI.", "Time to First Token (TTFT) aur tokens-per-second ko kul latency se alag naapo, aur UI mein responses stream karo."],
+      ["Place static instructions, tool definitions and few-shot examples at the start of every prompt so provider prefix caching cuts input token cost and TTFT by 50–80%.", "Static instructions, tool definitions aur examples ko har prompt ke shuru mein rakho taaki prefix caching se input kharch aur TTFT 50–80% ghat jaaye."],
+      ["Put an LLM gateway in front of providers to handle rate limits, automatic retries, fallback models (e.g. Claude → GPT or primary region → backup region) and per-team cost budgets.", "Providers ke aage ek LLM gateway lagao jo rate limits, retries, fallback models aur team cost budgets sambhale."],
+      ["Route requests by complexity: use a small fast model (or classifier) for simple intents and extraction, and escalate only hard queries to a frontier model.", "Complexity ke hisaab se requests route karo: aasaan intents aur extraction chhote tez model se karwao, aur sirf mushkil sawaal frontier model ko bhejo."]
+    ],
+    mistakes: [
+      ["Putting a dynamic timestamp or user ID in the very first line of the system prompt, which invalidates prefix caching on every single request!", "System prompt ki pehli hi line mein badalta hua timestamp ya user ID daal dena, jisse har request pe prefix cache toot jaata hai!"],
+      ["Using semantic caching without scoping by tenant_id or user permissions, accidentally serving one customer's cached answer to another customer.", "Bina tenant_id ya user permissions check kiye semantic cache lagana, jisse ek customer ka cached jawaab galti se doosre ko chala jaaye."]
+    ],
+    faq: [
+      [["What is the difference between prefix caching and semantic caching?", "Prefix caching aur semantic caching mein kya fark hai?"], ["Prefix caching reuses the GPU KV-cache of the exact shared prompt prefix and still generates a fresh answer. Semantic caching embeds the user's question and, if a nearly identical question was just answered, returns the saved answer directly without calling the LLM.", "Prefix caching shared prompt ke aage ke hisse ka GPU KV-cache reuse karta hai aur naya jawaab banata hai. Semantic caching user ke sawaal ko embed karta hai aur agar bilkul waisa hi sawaal pehle aa chuka ho, to bina LLM call kiye save kiya hua jawaab de deta hai."]],
+      [["How do you debug a sudden 2× spike in LLM latency?", "LLM latency mein achanak 2× uchaal aaye to kaise debug karein?"], ["Check your trace spans by p95 duration: did retrieval/reranking slow down, did a prompt change double the output token count, or is the model provider's TTFT degraded (triggering your fallback)?", "Apne trace spans ka p95 time dekho: kya retrieval/reranking slow hua, kya prompt badalne se output tokens dugne ho gaye, ya provider ka TTFT gira hai?"]]
+    ]
   }
 });
 

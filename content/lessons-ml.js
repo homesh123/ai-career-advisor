@@ -388,6 +388,126 @@ var LESSON_TOPICS = Object.assign(typeof LESSON_TOPICS !== "undefined" ? LESSON_
       why: ["A quick first pass tells you whether the paper is worth a deep read.", "Pehla jaldi wala pass batata hai ki paper gehraai se padhne laayak hai ya nahi."]
     },
     remember: ["Skim first, then go deep, then reproduce. Reproduction is proof.", "Pehle skim, phir gehraai mein, phir reproduce. Reproduction hi saboot hai."]
+  },
+
+  "ml-unsupervised": {
+    icon: "🫧", mins: 7,
+    title: ["Unsupervised learning: clustering, PCA and anomaly detection", "Unsupervised learning: clustering, PCA aur anomaly detection"],
+    analogy: [
+      "Imagine dumping a jar of mixed coins on a table without labels. Even if nobody tells you their names, you naturally sort them into piles by size, weight and colour — and if one plastic button is hiding inside, it stands out immediately. Unsupervised learning does the same: it groups similar rows (clustering), summarises many columns (PCA), and spots weird outliers (anomaly detection) without needing labels.",
+      "Socho aapne bina naam likhe sikkon ka ek dabba mez pe palat diya. Chahe koi unke naam na bataye, aap unhe size, wazan aur rang dekhkar alag dheriyon mein baant doge — aur agar beech mein ek plastic ka button chhupa hai, to woh turant alag dikhega. Unsupervised learning yahi karta hai: bina labels ke milte-julte rows ke group banata hai (clustering), bahut saare columns ko chhota karta hai (PCA), aur ajeeb outliers pakadta hai (anomaly detection)."
+    ],
+    explain: [
+      "Most company data has no labels. Unsupervised learning finds structure in unlabelled data. K-means clustering groups rows into K clusters by putting each point with its nearest cluster centre (for example, grouping shoppers into 'bargain hunters', 'weekend families' and 'bulk buyers'). Principal Component Analysis (PCA) compresses dozens of correlated columns into 2 or 3 main directions so you can plot or speed up models. Anomaly detection (like Isolation Forest) flags unusual events such as rare credit-card fraud or server spikes.",
+      "Zyaadatar company data pe labels nahi hote. Unsupervised learning bina label wale data mein structure dhoondhta hai. K-means clustering har point ko uske sabse paas wale cluster centre se jodkar rows ko K groups mein baant-ta hai (jaise shoppers ko 'discount dhoondhne wale', 'weekend families' aur 'thok kharidne wale' mein baantna). Principal Component Analysis (PCA) darjanon milte-julte columns ko 2 ya 3 main directions mein compress karta hai taaki aap plot kar sako ya model tez chala sako. Anomaly detection (jaise Isolation Forest) credit-card fraud ya server spike jaise ajeeb events pakadta hai."
+    ],
+    terms: [
+      ["K-means clustering", "Splits data into K groups by iteratively moving cluster centres (centroids) to the average of their points.", "Cluster centres (centroids) ko unke points ke average pe le jaakar data ko K groups mein baant-ta hai."],
+      ["PCA (Principal Component Analysis)", "Compresses many correlated features into a few uncorrelated components that keep most of the variance.", "Bahut saare correlated features ko kuch uncorrelated components mein compress karta hai jo zyaadatar variance bacha kar rakhte hain."],
+      ["Anomaly detection", "Finds rare rows that look very different from normal patterns.", "Aisi rare rows dhoondhta hai jo normal patterns se bilkul alag dikhti hain."]
+    ],
+    example: {
+      lang: "python",
+      code: "from sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans\n\nX_scaled = StandardScaler().fit_transform(customers[[\"orders_per_month\", \"avg_bill\"]])\nkmeans = KMeans(n_clusters=3, random_state=42)\ncustomers[\"segment\"] = kmeans.fit_predict(X_scaled)",
+      note: ["Always scale features before k-means or PCA so big units (rupees) don't drown out small units (order count).", "K-means ya PCA se pehle features hamesha scale karo taaki badi unit (rupaye) chhoti unit (order count) ko daba na de."]
+    },
+    quiz: {
+      q: ["Why must you standardise features (e.g. StandardScaler) before running k-means clustering?", "K-means clustering chalane se pehle features ko standardise (jaise StandardScaler) kyun karna chahiye?"],
+      options: [["K-means uses distance: without scaling, a column in thousands (salary) dominates a column in single digits (tenure)", "K-means distance naapta hai: bina scaling ke hazaaron wala column (salary) chhote number wale column (tenure) pe bhaari pad jaata hai"], ["K-means only accepts text columns", "K-means sirf text columns leta hai"], ["Scaling deletes missing rows automatically", "Scaling missing rows apne aap mita deta hai"]],
+      answer: 0,
+      why: ["Euclidean distance is dominated by whichever feature has the largest numerical scale unless all features are put on a similar scale first.", "Jab tak saare features ek jaise scale pe na laaye jaayein, Euclidean distance pe sabse bade numbers wale feature ka hi kabza rehta hai."]
+    },
+    remember: ["No labels? Cluster similar items (k-means), compress columns (PCA), or flag outliers — and always scale first.", "Labels nahi hain? Milte-julte items cluster karo (k-means), columns compress karo (PCA), ya outliers pakdo — aur pehle scale zaroor karo."]
+  },
+
+  "dl-pytorch-training": {
+    icon: "🔥", mins: 8,
+    title: ["PyTorch in practice: tensors, autograd and the training loop", "PyTorch practice mein: tensors, autograd aur training loop"],
+    analogy: [
+      "Practising free throws in basketball has a fixed five-step rhythm: clear your head from the last shot, take the shot, see how far you missed the hoop, feel which way to adjust your wrist, and make that small adjustment. A PyTorch training step follows the exact same five lines: zero_grad, forward pass, loss, backward, step.",
+      "Basketball mein free throw practice ka ek tay paanch-step rhythm hota hai: pichhle shot ko dimaag se hatao, shot maaro, dekho basket se kitna chooqa, samjho haath kis taraf modna hai, aur woh chhota sudhaar karo. PyTorch ka training step bilkul inhi paanch lines pe chalta hai: zero_grad, forward pass, loss, backward, step."
+    ],
+    explain: [
+      "PyTorch is the standard deep learning framework in both research and production. Data lives in Tensors (NumPy-like arrays that run on GPUs with .to('cuda')). When a tensor has requires_grad=True, PyTorch's autograd engine records every operation and computes all derivatives automatically when you call loss.backward(). Inside each batch of the training loop you must call optimizer.zero_grad() first (because PyTorch adds gradients up by default), run the model, compute the loss, call loss.backward(), and call optimizer.step(). During evaluation, switch to model.eval() and wrap predictions in 'with torch.no_grad():' to save memory and disable dropout.",
+      "PyTorch research aur production dono mein standard deep learning framework hai. Data Tensors mein rehta hai (NumPy jaise arrays jo .to('cuda') se GPU pe chalte hain). Jab tensor pe requires_grad=True hota hai, to PyTorch ka autograd har operation record karta hai aur loss.backward() call karte hi saare derivatives apne aap nikal deta hai. Training loop ke har batch mein sabse pehle optimizer.zero_grad() call karna zaroori hai (kyunki PyTorch default mein gradients jodta rehta hai), phir model chalao, loss nikalo, loss.backward() aur optimizer.step() call karo. Evaluation ke waqt memory bachane aur dropout band karne ke liye model.eval() aur 'with torch.no_grad():' lagao."
+    ],
+    terms: [
+      ["Autograd", "PyTorch's automatic differentiation engine that computes gradients during loss.backward().", "PyTorch ka engine jo loss.backward() ke waqt apne aap gradients nikalta hai."],
+      ["zero_grad()", "Clears old gradients from the previous batch so they don't add onto the new batch.", "Pichhle batch ke purane gradients saaf karta hai taaki woh naye batch mein jud na jaayein."],
+      ["DDP / FSDP (ZeRO)", "Distributed Data Parallel copies the model across GPUs; FSDP shards weights, gradients and optimiser states across GPUs to fit huge models.", "DDP har GPU pe model copy karta hai; FSDP bade models fit karne ke liye weights, gradients aur optimiser states ko GPUs mein baant deta hai."]
+    ],
+    example: {
+      lang: "python",
+      code: "model.train()\nfor x, y in train_loader:\n    optimizer.zero_grad()          # 1. clear old gradients\n    preds = model(x)               # 2. forward pass\n    loss = loss_fn(preds, y)       # 3. measure error\n    loss.backward()                # 4. compute gradients\n    optimizer.step()               # 5. update weights\n\nmodel.eval()\nwith torch.no_grad():\n    val_preds = model(val_x)",
+      note: ["The 5-line PyTorch training loop, followed by memory-safe evaluation.", "5-line ka PyTorch training loop, aur uske baad memory-safe evaluation."]
+    },
+    quiz: {
+      q: ["What happens if you forget 'optimizer.zero_grad()' inside a PyTorch training loop?", "Agar aap PyTorch training loop mein 'optimizer.zero_grad()' likhna bhool jaao to kya hoga?"],
+      options: [["PyTorch refuses to run", "PyTorch chalne se mana kar dega"], ["Gradients from every batch accumulate on top of each other, corrupting the weight updates", "Har batch ke gradients ek doosre ke upar judte jaayenge aur weight updates galat ho jaayenge"], ["The model automatically switches to CPU", "Model apne aap CPU pe chala jaayega"]],
+      answer: 1,
+      why: ["PyTorch accumulates gradients into .grad by design (useful for gradient accumulation), so you must clear them before each step.", "PyTorch design ke hisaab se .grad mein gradients jodta hai, isliye har step se pehle unhe saaf karna zaroori hai."]
+    },
+    remember: ["Train: zero_grad → forward → loss → backward → step. Eval: model.eval() + with torch.no_grad().", "Training mein: zero_grad → forward → loss → backward → step. Eval mein: model.eval() + with torch.no_grad() lagao."]
+  },
+
+  "dl-alignment-quant": {
+    icon: "⚖️", mins: 8,
+    title: ["Post-training: RLHF, DPO, quantisation and reasoning models", "Post-training: RLHF, DPO, quantisation aur reasoning models"],
+    analogy: [
+      "A medical graduate who has read every textbook knows millions of facts, but still needs hospital residency to learn bedside manner: how to answer patients clearly, refuse unsafe requests, and think step by step on hard diagnoses. Pre-training is reading the textbooks; post-training (SFT, RLHF/DPO, and reasoning RL) is the residency. And quantisation is printing a pocket handbook in 4-bit shorthand so it fits in your coat pocket.",
+      "Jis medical graduate ne saari kitabein padh li hain, use laakhon facts pata hain, par mareez se tameez se baat karna, unsafe cheezon se mana karna aur mushkil cases mein step-by-step sochna hospital residency mein hi aata hai. Pre-training kitabein padhna hai; post-training (SFT, RLHF/DPO, aur reasoning RL) residency hai. Aur quantisation us bhaari kitab ko 4-bit shorthand pocket diary mein chhaapna hai taaki jeb mein aa jaaye."
+    ],
+    explain: [
+      "A pre-trained LLM only predicts the next word. Post-training turns it into a helpful assistant in stages: Supervised Fine-Tuning (SFT) on instruction examples, then preference alignment so it prefers helpful, safe answers over bad ones. RLHF (with PPO) trains a separate reward model and runs reinforcement learning, holding four models in GPU memory. DPO (Direct Preference Optimization) simplifies this by training directly on (chosen, rejected) answer pairs with just the policy and a frozen reference model. For maths and coding, reasoning models train with reinforcement learning on verifiable answers so the model spends extra 'test-time compute' checking its own steps. Finally, quantisation (FP16 → INT8 or INT4 with AWQ/GPTQ) shrinks model weights and KV cache by 2–4× so large models run cheaply on fewer GPUs.",
+      "Pre-trained LLM sirf agla shabd predict karta hai. Post-training use stages mein ek madadgaar assistant banata hai: pehle instruction examples pe Supervised Fine-Tuning (SFT), phir preference alignment taaki woh galat jawaabon ke bajaye sahi aur safe jawaab chune. RLHF (PPO ke saath) alag reward model train karta hai aur GPU memory mein chaar models rakhkar reinforcement learning chalata hai. DPO (Direct Preference Optimization) ise aasaan banata hai: sirf policy aur frozen reference model ke saath seedha (chosen, rejected) pairs pe train karta hai. Maths aur coding ke liye reasoning models verifiable answers pe RL se train hote hain taaki model jawaab dene se pehle 'test-time compute' kharch karke apne steps check kare. Aakhir mein, quantisation (FP16 → INT8 ya INT4, AWQ/GPTQ se) model weights aur KV cache ko 2–4× chhota kar deta hai."
+    ],
+    terms: [
+      ["DPO vs RLHF (PPO)", "Both align models to human preferences; DPO trains directly on preferred vs rejected pairs without a separate reward model.", "Dono model ko insaani pasand ke hisaab se dhalte hain; DPO bina alag reward model ke seedha preferred vs rejected pairs pe train karta hai."],
+      ["Post-Training Quantisation (PTQ)", "Compressing model weights from 16-bit floats to 8-bit or 4-bit integers (e.g. AWQ, GPTQ) after training to cut GPU memory.", "GPU memory ghataane ke liye training ke baad model weights ko 16-bit se 8-bit ya 4-bit integers (jaise AWQ, GPTQ) mein compress karna."],
+      ["Test-time compute (reasoning)", "Letting a model generate and verify a longer chain of thought before answering hard maths, logic or code questions.", "Mushkil maths, logic ya code sawaalon ka jawaab dene se pehle model ko lamba chain-of-thought sochne aur verify karne dena."]
+    ],
+    example: {
+      lang: "text",
+      code: "70B parameter model memory for weights alone:\n  FP16 (2 bytes/param)  → ~140 GB VRAM (needs 2× 80GB GPUs)\n  INT8 (1 byte/param)   →  ~70 GB VRAM (fits on 1× 80GB GPU)\n  INT4 AWQ (0.5 B/param)→  ~35 GB VRAM (fits on 1× 48GB GPU with room for KV cache)\n\nDPO training row:\n  prompt:   \"Explain recursion simply\"\n  chosen:   Clear 4-line explanation with a base case example\n  rejected: Rambling 500-word jargon wall",
+      note: ["4-bit quantisation cuts weight memory by 4×, and DPO learns directly from chosen vs rejected pairs.", "4-bit quantisation weight memory ko 4× ghata deta hai, aur DPO seedha chosen vs rejected pairs se seekhta hai."]
+    },
+    quiz: {
+      q: ["Why is DPO (Direct Preference Optimization) often easier to run than classic RLHF with PPO?", "Classic RLHF (PPO) ke mukaable DPO (Direct Preference Optimization) chalana aksar aasaan kyun hota hai?"],
+      options: [["DPO does not need any training data", "DPO ko kisi training data ki zaroorat nahi hoti"], ["DPO only works on CPU", "DPO sirf CPU pe chalta hai"], ["DPO optimises preference pairs directly with a cross-entropy-style loss, without training a separate reward model or running unstable PPO", "DPO bina alag reward model train kiye ya unstable PPO chalaye, seedha preference pairs pe cross-entropy jaise loss se seekhta hai"]],
+      answer: 2,
+      why: ["PPO requires coordinating four models in memory (actor, critic, reward, reference); DPO needs only the policy and a frozen reference model.", "PPO mein chaar models (actor, critic, reward, reference) memory mein sambhalne padte hain; DPO ko sirf policy aur frozen reference model chahiye."]
+    },
+    remember: ["SFT teaches format, DPO/RLHF aligns preferences, reasoning RL boosts hard problem-solving, and INT4/INT8 quantisation makes serving affordable.", "SFT format sikhata hai, DPO/RLHF pasand sikhata hai, reasoning RL mushkil sawaal hal karta hai, aur INT4/INT8 quantisation serving sasti banata hai."]
+  },
+
+  "ml-system-design": {
+    icon: "🏛️", mins: 9,
+    title: ["ML system design: recommendations, search and fraud at scale", "ML system design: bade scale pe recommendations, search aur fraud"],
+    analogy: [
+      "Think of hiring for a popular job role that gets 10,000 applications. You cannot interview all 10,000 people for an hour each. Instead, you run a fast two-stage funnel: first a quick 5-second resume screen narrows 10,000 down to 100 candidates (retrieval), and then a thorough interview ranks the top 10 (ranking). Almost every large-scale ML system — YouTube, Amazon, Swiggy, ads, search — uses this exact two-stage design.",
+      "Socho ek popular job ke liye 10,000 applications aayi hain. Aap 10,000 logon ka ek-ek ghante interview nahi le sakte. Isliye aap do-stage funnel chalate ho: pehle 5 second ki tez screening 10,000 mein se 100 candidates chunti hai (retrieval), phir gehra interview top 10 ko rank karta hai (ranking). Har bada ML system — YouTube, Amazon, Swiggy, ads, search — bilkul yahi do-stage design use karta hai."
+    ],
+    explain: [
+      "In ML system design interviews, never jump straight to 'I'll use a neural network'. Follow a clear 6-step structure: (1) Clarify requirements: business goal, scale, latency budget (e.g. 100 ms), and constraints. (2) Frame the ML task and choose both offline metrics (AUC, Precision@K, NDCG) and online business metrics (CTR, conversion, fraud loss). (3) Data & features: user, item and context features, served from an offline + online feature store. (4) Architecture: for millions of items, use two-stage candidate generation (fast embedding ANN search) + ranking (rich GBDT or deep model); for fraud/moderation, use a fast cascade (rules → lightweight model → heavy model). (5) Serving: batch vs real-time, caching, fallbacks. (6) Monitoring: drift, shadow rollout, A/B testing and feedback loops.",
+      "ML system design interviews mein kabhi seedha 'main neural network lagaunga' se shuru mat karo. Saaf 6-step structure follow karo: (1) Requirements clear karo: business goal, scale, latency budget (jaise 100 ms) aur constraints. (2) ML task frame karo aur offline metrics (AUC, Precision@K, NDCG) aur online business metrics (CTR, conversion, fraud loss) dono chuno. (3) Data aur features: user, item aur context features, offline + online feature store se. (4) Architecture: laakhon items ke liye two-stage candidate generation (fast embedding ANN search) + ranking (GBDT ya deep model); fraud/moderation ke liye fast cascade (rules → halka model → bhaari model). (5) Serving: batch vs real-time, caching, fallbacks. (6) Monitoring: drift, shadow rollout, A/B testing aur feedback loops."
+    ],
+    terms: [
+      ["Two-stage retrieve & rank", "Stage 1 fetches ~200 candidates in milliseconds from millions; Stage 2 scores those 200 with a rich ranking model.", "Stage 1 laakhon mein se milliseconds mein ~200 candidates nikalta hai; Stage 2 un 200 ko bhaari ranking model se score karta hai."],
+      ["Offline vs online metrics", "Offline metrics (AUC, NDCG) score held-out test data; online metrics (CTR, revenue, retention) measure real user impact in an A/B test.", "Offline metrics (AUC, NDCG) test data pe score karte hain; online metrics (CTR, revenue, retention) A/B test mein asli asar naapte hain."],
+      ["Cold start", "Serving good predictions for brand-new users or new products with no interaction history, using content features or popular defaults.", "Bina purani history wale naye users ya naye products ke liye content features ya popular defaults se acchi predictions dena."]
+    ],
+    example: {
+      lang: "text",
+      code: "E-commerce recommender (10M products, 120 ms budget):\n  1. Candidate generation (25 ms): user embedding → ANN search + trending → 300 items\n  2. Feature fetch (20 ms):        online feature store (user + item + session features)\n  3. Ranking model (45 ms):        GBDT / deep ranker scores 300 items → P(click), P(buy)\n  4. Re-ranking & rules (10 ms):   diversity, out-of-stock filter, business rules → top 20",
+      note: ["Each stage shrinks the item count while spending more compute per item.", "Har stage items ki ginti kam karta jaata hai aur bache hue items pe zyaada dhyaan deta hai."]
+    },
+    quiz: {
+      q: ["In an ML system design interview for a 10-million-item recommender, why can't you score every item with your heavy ranking model on each request?", "1 crore items wale recommender ke ML system design interview mein aap har request pe bhaari ranking model se saare items score kyun nahi kar sakte?"],
+      options: [["Scoring 10 million items per request would violate the ~100 ms latency budget and cost far too much compute", "Har request pe 1 crore items score karne se ~100 ms ka latency budget toot jaayega aur compute kharch bahut badh jaayega"], ["Ranking models can only score 2 items", "Ranking models sirf 2 items score kar sakte hain"], ["Users prefer random items", "Users ko random items pasand aate hain"]],
+      answer: 0,
+      why: ["A two-stage funnel uses fast retrieval (ANN/BM25) to narrow 10M items to a few hundred, so the heavy ranker easily finishes under 100 ms.", "Two-stage funnel tez retrieval (ANN/BM25) se 1 crore items ko kuch sau pe le aata hai, taaki bhaari ranker aasaani se 100 ms ke andar kaam poora kar le."]
+    },
+    remember: ["Clarify scale & latency → offline + online metrics → features → retrieve then rank → serve with fallbacks → monitor drift.", "Scale aur latency clear karo → offline + online metrics → features → retrieve phir rank → fallbacks ke saath serve → drift monitor karo."]
   }
 });
 

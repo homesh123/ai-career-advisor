@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLMOps: tracing, model routing, caching and cutting cost &amp; latency: Explained Simply With Real-Life Examples | AI Path Finder</title>
+  <meta name="description" content="In production, a single user question might trigger query rewriting, embedding search, reranking, two tool calls, and a final LLM answer." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="LLMOps: tracing, model routing, caching and cutting cost &amp; latency: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta property="og:description" content="In production, a single user question might trigger query rewriting, embedding search, reranking, two tool calls, and a final LLM answer." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LLMOps: tracing, model routing, caching and cutting cost &amp; latency: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta name="twitter:description" content="In production, a single user question might trigger query rewriting, embedding search, reranking, two tool calls, and a final LLM answer." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html",
+      "name": "LLMOps: tracing, model routing, caching and cutting cost & latency",
+      "description": "In production, a single user question might trigger query rewriting, embedding search, reranking, two tool calls, and a final LLM answer.",
+      "inLanguage": "en",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Trace & spans",
+        "Prompt / prefix caching",
+        "Model routing / cascading"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "LLMOps: tracing, model routing, caching and cutting cost & latency",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "To benefit from provider prompt/prefix caching, where should your static system instructions and few-shot examples be placed in the prompt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At the very beginning (a byte-identical prefix), with dynamic user content placed at the end. KV-cache reuse only works up to the first token that changes, so static instructions must form the leading prefix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between prefix caching and semantic caching?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prefix caching reuses the GPU KV-cache of the exact shared prompt prefix and still generates a fresh answer. Semantic caching embeds the user's question and, if a nearly identical question was just answered, returns the saved answer directly without calling the LLM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you debug a sudden 2× spike in LLM latency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check your trace spans by p95 duration: did retrieval/reranking slow down, did a prompt change double the output token count, or is the model provider's TTFT degraded (triggering your fallback)?"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#paths" data-nav="roles">AI roles</a>
+      <a href="../learn.html" data-nav="learn">Learn</a>
+      <a href="../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">AI Path Finder</a> › <a href="../learn.html">Learn</a> › <span aria-current="page">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</span></nav>
+    <article lang="en">
+      <header>
+        <p class="eyebrow">Lesson · ⏱ 8 min read</p>
+        <h1 data-read>📡 LLMOps: tracing, model routing, caching and cutting cost &amp; latency</h1>
+        <p class="lang-switch"><span>English</span><a href="hi/llmops-tracing.html" hreflang="hi" lang="hi-Latn">Hinglish</a></p>
+        <div class="listen-bar" data-reader data-listen="Listen" data-pause="Pause" data-resume="Resume" data-reading="Reading aloud…" data-paused="Paused" data-unsupported="Your browser can't read aloud">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Listen</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Stop</button>
+      <label class="listen-rate"><span class="sr-only">Reading speed</span><select data-tts="rate" aria-label="Reading speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Real-life example</h2><p>Think of a hospital triage desk and a courier tracking number. Not every patient with a mild cold needs a top neurosurgeon: the triage nurse routes simple cases to a general doctor and complex ones to a specialist. That&#39;s model routing. And when a parcel is delayed, the tracking number shows every hub it passed through and where it got stuck. That&#39;s LLM tracing.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 In simple words</h2><p>In production, a single user question might trigger query rewriting, embedding search, reranking, two tool calls, and a final LLM answer. Without tracing (OpenTelemetry, Langfuse, Arize Phoenix), you cannot tell which step was slow or why an answer went wrong. A trace records every nested span with its prompt version, inputs, outputs, token count, cost and latency. To cut latency and cost by 50–80%: (1) stream tokens so Time to First Token (TTFT) is under 500 ms, (2) use prompt/prefix caching for long system prompts and few-shot examples, (3) add semantic caching for repeated common questions, and (4) use an LLM gateway with model routing — sending simple classification/extraction to a fast, cheap small model and reserving frontier models for hard reasoning.</p></section>
+      
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Instrument every LLM call, retrieval query and tool execution with a trace ID and child spans (recording prompt version, model, tokens, cost and latency).</li><li data-read>Measure Time to First Token (TTFT) and tokens-per-second separately from end-to-end latency, and stream responses to the UI.</li><li data-read>Place static instructions, tool definitions and few-shot examples at the start of every prompt so provider prefix caching cuts input token cost and TTFT by 50–80%.</li><li data-read>Put an LLM gateway in front of providers to handle rate limits, automatic retries, fallback models (e.g. Claude → GPT or primary region → backup region) and per-team cost budgets.</li><li data-read>Route requests by complexity: use a small fast model (or classifier) for simple intents and extraction, and escalate only hard queries to a frontier model.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Key terms</h2>
+        <dl class="terms"><div data-read><dt>Trace &amp; spans</dt><dd>A full record of one user request (the trace) broken into each LLM, retrieval and tool step (spans) with latency and tokens.</dd></div><div data-read><dt>Prompt / prefix caching</dt><dd>Reusing the precomputed KV cache of a shared static prefix (system prompt + examples) across requests to cut cost and TTFT.</dd></div><div data-read><dt>Model routing / cascading</dt><dd>Sending simple queries to a small cheap model and escalating only hard queries to a large frontier model.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 See it in action</h2>
+        <div class="code-wrap"><span class="code-lang">text</span><pre><code>Trace tr_9821 (total: 640 ms, $0.0008):
+  ├─ Span 1: Semantic cache check          12 ms  (MISS)
+  ├─ Span 2: Router (small 8B model)       68 ms  → intent = &#39;order_status&#39; (simple)
+  ├─ Span 3: Tool get_order(#A123)         45 ms  → {status: &#39;Out for delivery&#39;}
+  └─ Span 4: Fast model response (prefix cached, TTFT 180 ms, 515 ms total)</code></pre></div>
+        <p class="small muted" data-read>Tracing pinpoints latency per step, and routing + prefix caching keep both TTFT and cost tiny.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Common mistakes to avoid</h2><ul class="deep-mistakes"><li data-read>Putting a dynamic timestamp or user ID in the very first line of the system prompt, which invalidates prefix caching on every single request!</li><li data-read>Using semantic caching without scoping by tenant_id or user permissions, accidentally serving one customer&#39;s cached answer to another customer.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Quick check</h2>
+        <p class="quiz-q" data-read data-read-prefix="Quick check">To benefit from provider prompt/prefix caching, where should your static system instructions and few-shot examples be placed in the prompt?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Shuffled randomly on every request">Shuffled randomly on every request</li><li data-read data-read-text="Option B: At the very beginning (a byte-identical prefix), with dynamic user content placed at the end">At the very beginning (a byte-identical prefix), with dynamic user content placed at the end</li><li data-read data-read-text="Option C: At the very end, after the user&#39;s dynamic question">At the very end, after the user&#39;s dynamic question</li></ol>
+        <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. At the very beginning (a byte-identical prefix), with dynamic user content placed at the end</strong>: KV-cache reuse only works up to the first token that changes, so static instructions must form the leading prefix.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>What is the difference between prefix caching and semantic caching?</summary><p data-read>Prefix caching reuses the GPU KV-cache of the exact shared prompt prefix and still generates a fresh answer. Semantic caching embeds the user&#39;s question and, if a nearly identical question was just answered, returns the saved answer directly without calling the LLM.</p></details><details class="deep-faq"><summary data-read>How do you debug a sudden 2× spike in LLM latency?</summary><p data-read>Check your trace spans by p95 duration: did retrieval/reranking slow down, did a prompt change double the output token count, or is the model provider&#39;s TTFT degraded (triggering your fallback)?</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>Your LLM feature is too slow and too expensive. What do you do?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First I measure where tokens and time go: prompt size, output size, number of calls. Then the main levers: stream the response so users see text immediately; shorten prompts and retrieved context; cache answers to repeated questions and use prompt caching for long fixed system prompts; route easy requests to a smaller, cheaper model and only hard ones to the big model; reduce agent steps; and batch background jobs. After each change, I rerun evals, so I know quality didn&#39;t drop.</p><p class="prep-label">✅ </p><ul><li data-read>Measure first: tokens, calls, time per step</li><li data-read>Streaming for perceived latency</li><li data-read>Shorter context, caching, smaller models via routing, fewer steps</li><li data-read>Check quality with evals after each change</li></ul><p class="prep-check" data-read><strong>:</strong> Cost and latency trade offs are a top 2026 theme.</p></div></details><details class="deep-faq"><summary data-read>What&#39;s different about operating LLM applications compared with classic ML models?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Several new things to manage. Prompts are code, so they need versioning, review and testing. Evaluation suites must run on every prompt or model change, because there&#39;s no single accuracy number. Cost has to be monitored per request and per feature, since it scales with tokens. Providers update models, so I pin versions and re run evals before upgrading. Logging and tracing every step of a chain or agent is essential for debugging. And there are safety checks: prompt injection, PII in logs, and content filters.</p><p class="prep-label">✅ </p><ul><li data-read>Prompt versioning and testing</li><li data-read>Eval suites as release gates</li><li data-read>Token cost monitoring</li><li data-read>Model version pinning, tracing, safety controls</li></ul><p class="prep-check" data-read><strong>:</strong> Interviews increasingly add LLMOps in 2026.</p></div></details><details class="deep-faq"><summary data-read>How do distributed tracing, prompt caching, semantic caching and model routing work together in an LLM gateway?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Every user request gets a trace ID and child spans for query rewriting, retrieval, reranking, LLM calls and tool calls, recording exact inputs, outputs, latency, token counts and cost. In the gateway, prompt/prefix caching reuses the KV cache of static system instructions and few-shot examples across requests, cutting input token cost by 50–90%. Semantic caching embeds the query and returns a vetted cached response for high-similarity repeat FAQs (scoped by tenant and permissions). Finally, a model router sends 70–80% of simple classification or FAQ queries to a fast, cheap small model and only escalates complex reasoning to a frontier model, with automatic fallback if a provider returns 429 or 503.</p><p class="prep-label">✅ </p><ul><li data-read>Trace + child spans capture latency, tokens, cost and prompt version at every step</li><li data-read>Prompt/prefix caching reuses KV cache for static system prompts and examples</li><li data-read>Semantic caching serves repeat FAQs (strictly scoped by tenant/permissions and freshness)</li><li data-read>Model routing sends simple traffic to small models + automatic provider fallbacks</li></ul><p class="prep-check" data-read><strong>:</strong> Core 2026 LLMOps and AI Platform architecture question.</p></div></details><details class="deep-faq"><summary data-read>Design a platform to serve an LLM to 1,000 requests per second.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify model size, prompt and output lengths, and latency targets, especially time to first token. Requests go through a gateway with authentication, rate limits per customer and routing. Behind it, a pool of GPU servers running an inference engine like vLLM with continuous batching and paged KV cache, autoscaled on queue depth. Add a prefix and response cache for repeated prompts, and route simple requests to a smaller model. Estimate capacity from tokens per second per GPU, plan headroom for peaks, and spread across zones. Monitor time to first token, tokens per second, queue time, errors and cost per thousand tokens, and roll out new model versions with canaries.</p><p class="prep-label">✅ </p><ul><li data-read>Clarify sizes and latency targets</li><li data-read>Gateway: auth, rate limits, routing</li><li data-read>Inference engine with batching, autoscaling on queue</li><li data-read>Caching, model routing, capacity planning, monitoring, canaries</li></ul><p class="prep-check" data-read><strong>:</strong> LLM infrastructure system design.</p></div></details><details class="deep-faq"><summary data-read>Your AI feature&#39;s response time doubled since yesterday. How do you investigate?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Check what changed: deploys, prompt changes, a model version change, or a provider status issue. Then look at traces to find which step got slower: retrieval, the LLM call, a tool call or our own code. If it&#39;s the LLM call, see whether prompts or outputs got longer, for example a bigger retrieved context or a prompt change that makes answers longer, or whether the provider&#39;s latency rose. If it&#39;s ours, check database queries, cache hit rate and traffic volume. Fix the cause, roll back if needed, and add a latency alert per step so we catch it sooner next time.</p><p class="prep-label">✅ </p><ul><li data-read>What changed? deploys, prompts, models, provider</li><li data-read>Use per step traces to localise</li><li data-read>Token count changes are a common cause</li><li data-read>Fix or roll back; add per step alerts</li></ul><p class="prep-check" data-read><strong>:</strong> Systematic debugging of AI systems.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Trace every span, put static instructions first for prefix caching, route easy tasks to small models, and always configure a fallback.</p></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="gpu-serving.html">← Serving LLMs efficiently: GPUs, batching and cost</a>
+        <a href="llm-tool-use.html">Tool use (function calling): letting an LLM take actions →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Learn this as part of a full course</h2>
+        <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=llmops-tracing">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=llmops-tracing">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=llmops-tracing">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=llmops-tracing">AI Research Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llmops-tracing">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=llmops-tracing">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=llmops-tracing">Continue in the course</a>
+      </section>
+    </article>
+  </main>
+  <script src="../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "en"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../for/software-testers-qa.html">QA / testers</a></li><li><a href="../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../guide/how-it-works.html">How the consultation works</a></li><li><a href="../#app">Free AI career consultation</a></li><li><a href="../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../interview.html">Interview practice</a></li><li><a href="../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../resumes/">ATS resume samples</a></li><li><a href="../glossary/">AI dictionary (A to Z)</a></li><li><a href="../kids/">AI for kids (ages 5+)</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

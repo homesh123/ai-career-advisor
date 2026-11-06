@@ -67,6 +67,11 @@
         },
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
         },
@@ -190,17 +195,19 @@ LIMIT 5;</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. WHERE amount &gt; 500</strong>: WHERE filters rows by a condition. ORDER BY only sorts them.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Which SQL should I learn: MySQL, PostgreSQL, SQL Server?</summary><p data-read>The basics are almost identical in all of them. PostgreSQL is a great default; you can switch easily later.</p></details><details class="deep-faq"><summary data-read>Why do AI roles need SQL?</summary><p data-read>Most company data lives in databases and warehouses. Training data, evaluation data and metrics usually start with a SQL query.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What are window functions? Explain ROW_NUMBER, RANK and DENSE_RANK.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Window functions calculate something across related rows without collapsing them like GROUP BY does. For example, a running total or each employee&#39;s salary rank within their department, using OVER (PARTITION BY department ORDER BY salary DESC). With ties: ROW_NUMBER gives unique numbers 1, 2, 3 even for ties, so add a tie breaker column to make it deterministic. RANK gives ties the same number and then skips, like 1, 1, 3. DENSE_RANK gives ties the same number without gaps, like 1, 1, 2. LAG and LEAD let you compare a row with the previous or next one.</p><p class="prep-label">✅ </p><ul><li data-read>Compute over a window of rows, keeping every row</li><li data-read>PARTITION BY groups, ORDER BY sets order</li><li data-read>ROW_NUMBER vs RANK vs DENSE_RANK on ties</li><li data-read>Uses: top N per group, running totals, LAG and LEAD for changes</li></ul><p class="prep-check" data-read><strong>:</strong> Window functions are the core of most data SQL rounds in 2026.</p></div></details><details class="deep-faq"><summary data-read>Write a query to get the top 3 products by revenue in each category.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I&#39;d rank products within each category and then filter. First, in a subquery or CTE, compute revenue per product and add DENSE_RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rnk. Then select rows WHERE rnk &lt;= 3. I&#39;d say out loud how I handle ties: DENSE_RANK keeps all tied products, which could return more than 3 rows; if they want exactly 3, I&#39;d use ROW_NUMBER with a tie breaker like product ID.</p><p class="prep-label">✅ </p><ul><li data-read>CTE to aggregate revenue per product</li><li data-read>Window rank partitioned by category</li><li data-read>Filter rank ≤ 3 in the outer query (you can&#39;t filter a window function in WHERE directly)</li><li data-read>State how ties are handled</li></ul><p class="prep-check" data-read><strong>:</strong> A classic SQL task. Explaining tie handling shows maturity.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>SELECT what → FROM where → WHERE which rows → GROUP BY → ORDER BY.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="stats-correlation.html">← Correlation vs causation, and sampling bias</a>
+        <a href="ab-testing.html">← Metrics and A/B testing for AI features</a>
         <a href="sql-joins.html">SQL JOINs: combining tables →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=sql-basics">AI Foundations Path</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=sql-basics">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=sql-basics">AI Product Manager</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=sql-basics">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=sql-basics">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=sql-basics">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=sql-basics">AI Product Manager</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=sql-basics">Continue in the course</a>
       </section>
     </article>

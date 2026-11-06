@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLOps / AI Platform Engineer Interview Questions and Answers (2026): 51 Questions With Easy Answers | AI Path Finder</title>
-  <meta name="description" content="51 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <title>MLOps / AI Platform Engineer Interview Questions and Answers (2026): 67 Questions With Easy Answers | AI Path Finder</title>
+  <meta name="description" content="67 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
   <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/interview/mlops-engineer.html" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -16,16 +16,16 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI Path Finder" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="MLOps / AI Platform Engineer Interview Questions and Answers (2026): 51 Questions With Easy Answers | AI Path Finder" />
-  <meta property="og:description" content="51 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta property="og:title" content="MLOps / AI Platform Engineer Interview Questions and Answers (2026): 67 Questions With Easy Answers | AI Path Finder" />
+  <meta property="og:description" content="67 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/interview/mlops-engineer.html" />
   <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:modified_time" content="2026-10-28" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MLOps / AI Platform Engineer Interview Questions and Answers (2026): 51 Questions With Easy Answers | AI Path Finder" />
-  <meta name="twitter:description" content="51 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta name="twitter:title" content="MLOps / AI Platform Engineer Interview Questions and Answers (2026): 67 Questions With Easy Answers | AI Path Finder" />
+  <meta name="twitter:description" content="67 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <link rel="stylesheet" href="../styles.css" />
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
       "@type": "WebPage",
       "@id": "https://homesh123.github.io/ai-career-advisor/interview/mlops-engineer.html",
       "url": "https://homesh123.github.io/ai-career-advisor/interview/mlops-engineer.html",
-      "name": "MLOps / AI Platform Engineer Interview Questions and Answers (2026): 51 Questions With Easy Answers",
-      "description": "51 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
+      "name": "MLOps / AI Platform Engineer Interview Questions and Answers (2026): 67 Questions With Easy Answers",
+      "description": "67 MLOps / AI Platform Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
       "inLanguage": "en",
       "datePublished": "2026-10-27",
       "dateModified": "2026-10-28",
@@ -154,6 +154,30 @@
         },
         {
           "@type": "Question",
+          "name": "In Python, what's the difference between mutable and immutable types, and between == and is?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Immutable types like int, float, str and tuple cannot be changed in place once created; changing them creates a new object. Mutable types like list, dict and set can be modified in place. That's why using a mutable list as a default function argument like def add(item, bucket=[]) is a classic bug: the same list is shared across every call, so I use None and create a new list inside. For comparisons, == checks whether two objects have the same value, whereas is checks whether they are the exact same object in memory, which I mainly use for is None."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you safely read files, call an external API and handle rate limits or network errors in Python?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For files, I always use a with open(..., encoding='utf-8') block so the file closes automatically even if an exception happens, and I stream large datasets with JSON Lines (.jsonl) one line at a time. For API calls, I always pass an explicit timeout so a hung server never freezes my worker, check the HTTP status code, and catch specific exceptions like TimeoutError or HTTPError rather than a bare except. When an LLM API returns 429 (rate limit) or 503, I retry a few times with exponential backoff and random jitter so all workers don't retry at the exact same second."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you use Git and pull requests in an AI project, and what should never be committed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "You've trained a model. How do you get it into production?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -170,10 +194,34 @@
         },
         {
           "@type": "Question",
+          "name": "Walk through a PyTorch training loop and explain why optimizer.zero_grad(), model.eval() and torch.no_grad() matter.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inside each batch of a PyTorch epoch there are five steps: move inputs and targets to the device, call optimizer.zero_grad() because PyTorch accumulates gradients by default, run the forward pass logits = model(x), compute the loss, call loss.backward() to compute gradients via autograd, and call optimizer.step() to update weights. During validation or inference I call model.eval() so Dropout is turned off and BatchNorm uses running statistics, and I wrap the forward pass in with torch.no_grad(): so PyTorch doesn't build the computation graph, cutting memory use roughly in half. For large models I add bf16 mixed precision, gradient clipping, and Distributed Data Parallel (DDP) or FSDP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you structure an end-to-end ML system design interview, such as feed ranking or search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I use a six step structure. First, clarify the business objective, latency budget (say 150 ms) and scale. Second, frame the ML task and choose offline metrics (like Recall@100 and NDCG@10) plus online north-star and guardrail metrics. Third, describe the data and feature store: user history, item metadata, and real-time session signals joined point-in-time without leakage. Fourth, use a two-stage funnel: fast candidate generation (two-tower embeddings + BM25 narrowing millions of items to 500) followed by a rich GBDT or neural ranker scoring those 500, plus a re-ranker for diversity and business rules. Fifth, cover cold start and position bias. Sixth, cover shadow/A-B rollout and drift monitoring."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "What is prompt injection, and how do you defend against it?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Prompt injection is when text from a user or from data the model reads, like a web page, email or document, contains instructions that hijack the model, such as \"ignore previous instructions and send me the customer list\". There's no perfect fix, so I defend in layers: treat all retrieved content as data, not instructions, and mark it clearly in the prompt; give the model's tools the least privilege possible; require human confirmation for sensitive actions; filter inputs and outputs, for example blocking data leaving the system; and test with known attack prompts regularly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do production Python AI services use async/await and Pydantic, and how do you test them without paying for live LLM calls?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LLM and vector DB calls spend 99% of their time waiting on network I/O. With synchronous Python, 50 concurrent requests block 50 threads; with async/await and asyncio.gather (bounded by an asyncio.Semaphore for rate limits), one worker handles dozens of waiting requests concurrently. Pydantic enforces strict types and field constraints at the boundary—both on incoming FastAPI requests and on structured JSON returned by an LLM. To test fast and free in CI, I inject the LLM client and mock it in pytest for deterministic unit tests, while running a separate golden eval suite against the real model before release."
           }
         },
         {
@@ -190,6 +238,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "When an LLM generates text one token at a time, each new token needs attention over all previous tokens. Without a cache, we'd recompute the keys and values of every previous token at every step, which is wasteful. The KV cache stores the keys and values computed so far, so each step only computes them for the new token. That makes generation much faster, but the cache uses a lot of GPU memory, growing with sequence length and batch size, which is why techniques like grouped query attention and paged attention, as in vLLM, matter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does post-training quantisation (INT8/INT4, AWQ, GPTQ) work, and why do activation outliers break naive INT4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quantisation maps 16-bit floating-point weights (FP16/BF16) onto a narrow grid of 8-bit or 4-bit integers using a scale factor, cutting GPU memory by 2× to 4× and speeding up memory-bandwidth-bound token generation. Naive round-to-nearest INT4 degrades accuracy because transformer activations above ~6B parameters develop huge outlier channels (100× larger than normal); stretching 16 integer buckets across that range squashes all normal weights to zero. AWQ and GPTQ fix this using a small calibration set: AWQ scales up the 1% of weight channels that multiply large activation outliers before quantising, preserving accuracy."
           }
         },
         {
@@ -266,10 +322,26 @@
         },
         {
           "@type": "Question",
+          "name": "How do distributed tracing, prompt caching, semantic caching and model routing work together in an LLM gateway?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every user request gets a trace ID and child spans for query rewriting, retrieval, reranking, LLM calls and tool calls, recording exact inputs, outputs, latency, token counts and cost. In the gateway, prompt/prefix caching reuses the KV cache of static system instructions and few-shot examples across requests, cutting input token cost by 50–90%. Semantic caching embeds the query and returns a vetted cached response for high-similarity repeat FAQs (scoped by tenant and permissions). Finally, a model router sends 70–80% of simple classification or FAQ queries to a fast, cheap small model and only escalates complex reasoning to a frontier model, with automatic fallback if a provider returns 429 or 503."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "What data quality checks would you put in a pipeline?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Checks at the boundaries: when data arrives and before it's published. Schema: expected columns and types. Completeness: row counts within an expected range compared with past days, and required fields not null. Validity: values in allowed ranges or lists, like age between 0 and 120. Uniqueness: primary keys are unique. Freshness: the latest data is recent enough. Consistency: totals reconcile with the source. Tools like dbt tests or Great Expectations make this easy. Critical failures stop the pipeline; minor ones send an alert."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does a feature store work, and what is a point-in-time (ASOF) join?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A feature store defines a feature once and materialises it to two storage layers: an offline store (Parquet/Delta/warehouse) for large historical training sets, and an online key-value store (like Redis or DynamoDB) for single-digit-millisecond lookups during live inference. When building historical training data, a regular join on user_id leaks the future because it pulls today's feature values for an event that happened six months ago. A point-in-time or ASOF join matches each historical label at timestamp T with the latest feature value recorded at or before T, guaranteeing zero time-travel leakage."
           }
         },
         {
@@ -378,6 +450,22 @@
         },
         {
           "@type": "Question",
+          "name": "Your script calls an LLM API and occasionally receives HTTP 429 (Too Many Requests). What is the right way to handle it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Catch the 429 error and retry a few times with exponential backoff and random jitter. Exponential backoff (1s, 2s, 4s…) with jitter gives the rate limit window time to reset without a thundering herd of retries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why use async/await with asyncio.gather (and a semaphore) when calling an LLM API for 30 chunks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It overlaps network waiting time so 30 I/O-bound calls finish in a fraction of sequential time. LLM API calls spend almost all their time waiting on the network; async concurrency overlaps that wait while the semaphore respects rate limits."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Training accuracy is 98% and test accuracy is 65%. What's happening, and what's a reasonable fix?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -394,10 +482,50 @@
         },
         {
           "@type": "Question",
+          "name": "Why do large-scale recommendation and search systems use a two-stage retrieve-then-rank architecture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget. Scoring millions of items with a deep or GBDT ranker per request is too slow; retrieval + ranking balances speed and precision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do you call `optimizer.zero_grad()` on each batch in a PyTorch training loop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To clear gradients from the previous batch, because PyTorch accumulates gradients into `.grad` by default. PyTorch adds new gradients onto existing `.grad` buffers unless you clear them before the next backward pass."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does 4-bit post-training quantisation (such as AWQ) mainly achieve for an LLM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It cuts GPU memory for weights by ~3–4× and speeds up token generation with minimal accuracy loss. Storing weights in 4-bit integers instead of 16-bit floats shrinks VRAM footprint and memory-bandwidth bottlenecks."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Where should an LLM API key live in your app?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "In an environment variable or a secrets manager. Keys in code end up in Git history and get stolen. Load them from the environment or a secrets manager."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does prompt (prefix) caching reduce LLM cost and latency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By reusing the precomputed KV cache of static system instructions and few-shot examples across requests. Putting static instructions and examples at the start of the prompt lets the inference engine reuse their KV cache."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When building historical training data from a feature store, what does a point-in-time (ASOF) join prevent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Time-travel data leakage, by matching each label at time T only with feature values known at or before time T. A regular join pulls current feature values into past events; a point-in-time join reconstructs exactly what was known at prediction time."
           }
         },
         {
@@ -516,14 +644,14 @@
       <header>
         <p class="eyebrow">Interview preparation · Updated <time datetime="2026-10-28">28 October 2026</time></p>
         <h1>MLOps / AI Platform Engineer interview questions and answers</h1>
-        <p class="lead">35 questions MLOps / AI Platform Engineer candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 16 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=mlops-engineer">interview practice</a>.</p>
+        <p class="lead">44 questions MLOps / AI Platform Engineer candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 23 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=mlops-engineer">interview practice</a>.</p>
       </header>
       <section class="rounds-box">
         <h2>How a MLOps / AI Platform Engineer interview usually goes</h2>
         <ol><li>Recruiter screen</li><li>Coding or scripting round: Python, Docker, sometimes Kubernetes YAML</li><li>MLOps concepts: CI/CD for models, registries, monitoring and drift</li><li>System design: serving and scaling models (including LLMs on GPUs), rollouts and rollbacks</li><li>Incident and behavioural round</li></ol>
         <p class="small muted">Based on 2026 candidate reports. Companies vary, so use this as a map.</p>
       </section>
-      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (5)</li><li><a href="#stage-core">🛠️ Role skills</a> (15)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (3)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (16)</li></ol></nav>
+      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (8)</li><li><a href="#stage-core">🛠️ Role skills</a> (21)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (3)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (6)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (23)</li></ol></nav>
       <section id="stage-start">
         <h2>👋 Opening: about you</h2>
         <p class="muted">Almost every interview starts here. These answers set the tone, so prepare them word for word and practise them out loud.</p>
@@ -642,6 +770,42 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-py-basics-types">
+          <details><summary><span class="prep-n">10</span>In Python, what&#39;s the difference between mutable and immutable types, and between == and is?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Immutable types like int, float, str and tuple cannot be changed in place once created; changing them creates a new object. Mutable types like list, dict and set can be modified in place. That&#39;s why using a mutable list as a default function argument like def add(item, bucket=[]) is a classic bug: the same list is shared across every call, so I use None and create a new list inside. For comparisons, == checks whether two objects have the same value, whereas is checks whether they are the exact same object in memory, which I mainly use for is None.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Immutable (int, str, tuple) vs mutable (list, dict, set)</li><li>Never use a mutable default argument; use None instead</li><li>== compares values; is compares memory identity (use for is None)</li><li>Watch type conversion when reading strings from JSON or env vars</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Checks whether you know the Python pitfalls that cause production bugs.</p>
+              <p class="small">📖 Learn it: <a href="../learn/py-basics.html">Python basics: variables and data types</a> · <a href="../learn/py-collections.html">Lists and dictionaries: storing many values</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-py-api-retries">
+          <details><summary><span class="prep-n">11</span>How do you safely read files, call an external API and handle rate limits or network errors in Python?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>For files, I always use a with open(..., encoding=&#39;utf-8&#39;) block so the file closes automatically even if an exception happens, and I stream large datasets with JSON Lines (.jsonl) one line at a time. For API calls, I always pass an explicit timeout so a hung server never freezes my worker, check the HTTP status code, and catch specific exceptions like TimeoutError or HTTPError rather than a bare except. When an LLM API returns 429 (rate limit) or 503, I retry a few times with exponential backoff and random jitter so all workers don&#39;t retry at the exact same second.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Use with context managers for files and .jsonl for large data</li><li>Always set an explicit timeout on HTTP / LLM API calls</li><li>Catch specific exceptions, never bare except</li><li>Retry 429 / 5xx errors with exponential backoff and jitter</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Every AI engineer calls APIs and reads files daily; interviewers look for production habits.</p>
+              <p class="small">📖 Learn it: <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a> · <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/py-logic.html">Python logic: if/else, loops and functions</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-git-pr-workflow">
+          <details><summary><span class="prep-n">12</span>How do you use Git and pull requests in an AI project, and what should never be committed?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Feature branches, small commits, clear PR descriptions with eval results</li><li>Never commit .env secrets, raw customer data, or huge model files</li><li>Use .gitignore, secret managers and artifact storage</li><li>Review code and prompt changes with the same discipline</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Checks basic software engineering hygiene before letting you near a production repo.</p>
+              <p class="small">📖 Learn it: <a href="../learn/git-github.html">Git and GitHub: saving and sharing your work</a> · <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a></p>
+            </div>
+          </details>
+        </li>
         </ol>
       </section>
       <section id="stage-core">
@@ -649,7 +813,7 @@
         <p class="muted">The technical heart of the interview for this role. Interviewers go deeper with follow up questions, so understand the why, not just the definition.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-deploy-model">
-          <details><summary><span class="prep-n">10</span>You&#39;ve trained a model. How do you get it into production?</summary>
+          <details><summary><span class="prep-n">13</span>You&#39;ve trained a model. How do you get it into production?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>First, save the model together with its preprocessing, as one pipeline, with a version number in a model registry. Then wrap it in an API, for example with FastAPI, with input validation. Package it in a Docker image and deploy it behind a load balancer, on Kubernetes or a managed service. Before full rollout, test it in shadow mode or as a canary on a small share of traffic. Then monitor latency, errors, input drift and the business metric, with an easy way to roll back to the previous version.</p>
@@ -661,19 +825,43 @@
           </details>
         </li>
         <li class="prep-q" id="q-train-serve-skew">
-          <details><summary><span class="prep-n">11</span>What is training serving skew, and how do you prevent it?</summary>
+          <details><summary><span class="prep-n">14</span>What is training serving skew, and how do you prevent it?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>It&#39;s when the data the model sees in production is computed differently from the data it was trained on, so the model quietly performs worse. For example, in training &quot;average spend&quot; was computed over 30 days in SQL, but the live service computes it over 7 days in Python. Prevention: use one shared feature pipeline or a feature store for both training and serving, log the features used at prediction time and compare them with training data, and add tests that run the same input through both paths.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Definition and a concrete example</li><li>Cause: two different code paths for features</li><li>Fix: shared pipeline or feature store, logging, comparison tests</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Production ML maturity.</p>
-              <p class="small">📖 Learn it: <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a> · <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pytorch-training-loop">
+          <details><summary><span class="prep-n">15</span>Walk through a PyTorch training loop and explain why optimizer.zero_grad(), model.eval() and torch.no_grad() matter.</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Inside each batch of a PyTorch epoch there are five steps: move inputs and targets to the device, call optimizer.zero_grad() because PyTorch accumulates gradients by default, run the forward pass logits = model(x), compute the loss, call loss.backward() to compute gradients via autograd, and call optimizer.step() to update weights. During validation or inference I call model.eval() so Dropout is turned off and BatchNorm uses running statistics, and I wrap the forward pass in with torch.no_grad(): so PyTorch doesn&#39;t build the computation graph, cutting memory use roughly in half. For large models I add bf16 mixed precision, gradient clipping, and Distributed Data Parallel (DDP) or FSDP.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>5-step loop: zero_grad → forward → loss → backward → step</li><li>Why zero_grad matters: gradients accumulate across batches by default</li><li>model.eval() + torch.no_grad() for validation and inference</li><li>Production training: bf16 mixed precision, grad clipping, DDP vs FSDP</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Standard PyTorch coding and debugging question in ML and Research interviews.</p>
+              <p class="small">📖 Learn it: <a href="../learn/dl-pytorch-training.html">PyTorch in practice: tensors, autograd and the training loop</a> · <a href="../learn/dl-neural-networks.html">Neural networks: layers that learn</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-ml-sysdesign-loop">
+          <details><summary><span class="prep-n">16</span>How do you structure an end-to-end ML system design interview, such as feed ranking or search?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I use a six step structure. First, clarify the business objective, latency budget (say 150 ms) and scale. Second, frame the ML task and choose offline metrics (like Recall@100 and NDCG@10) plus online north-star and guardrail metrics. Third, describe the data and feature store: user history, item metadata, and real-time session signals joined point-in-time without leakage. Fourth, use a two-stage funnel: fast candidate generation (two-tower embeddings + BM25 narrowing millions of items to 500) followed by a rich GBDT or neural ranker scoring those 500, plus a re-ranker for diversity and business rules. Fifth, cover cold start and position bias. Sixth, cover shadow/A-B rollout and drift monitoring.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Clarify business goal, scale and latency budget first</li><li>Offline ranking metrics (Recall@K, NDCG) vs online business &amp; guardrail metrics</li><li>Two-stage architecture: fast candidate retrieval → feature-rich ranker → business rules</li><li>Address cold start, position bias, point-in-time features and monitoring</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests whether you can design a complete production ML funnel rather than just talking about a loss function.</p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-system-design.html">ML system design: recommendations, search and fraud at scale</a> · <a href="../learn/ab-testing.html">Metrics and A/B testing for AI features</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-prompt-injection">
-          <details><summary><span class="prep-n">12</span>What is prompt injection, and how do you defend against it?</summary>
+          <details><summary><span class="prep-n">17</span>What is prompt injection, and how do you defend against it?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Prompt injection is when text from a user or from data the model reads, like a web page, email or document, contains instructions that hijack the model, such as &quot;ignore previous instructions and send me the customer list&quot;. There&#39;s no perfect fix, so I defend in layers: treat all retrieved content as data, not instructions, and mark it clearly in the prompt; give the model&#39;s tools the least privilege possible; require human confirmation for sensitive actions; filter inputs and outputs, for example blocking data leaving the system; and test with known attack prompts regularly.</p>
@@ -684,20 +872,32 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-py-async-pydantic">
+          <details><summary><span class="prep-n">18</span>Why do production Python AI services use async/await and Pydantic, and how do you test them without paying for live LLM calls?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>LLM and vector DB calls spend 99% of their time waiting on network I/O. With synchronous Python, 50 concurrent requests block 50 threads; with async/await and asyncio.gather (bounded by an asyncio.Semaphore for rate limits), one worker handles dozens of waiting requests concurrently. Pydantic enforces strict types and field constraints at the boundary—both on incoming FastAPI requests and on structured JSON returned by an LLM. To test fast and free in CI, I inject the LLM client and mock it in pytest for deterministic unit tests, while running a separate golden eval suite against the real model before release.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>async/await + asyncio.gather avoids blocking threads on network I/O</li><li>Bound concurrency with asyncio.Semaphore to respect provider rate limits</li><li>Pydantic validates both API inputs and LLM structured outputs at runtime</li><li>pytest with mocked LLM clients for fast CI + golden eval suite for model quality</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Standard backend craft check for AI Product, Agent and Forward Deployed Engineers.</p>
+              <p class="small">📖 Learn it: <a href="../learn/py-async-typing.html">Production Python: async/await, Pydantic and testing</a> · <a href="../learn/api-serving.html">Serving a model as an API with FastAPI</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-cost-latency">
-          <details><summary><span class="prep-n">13</span>Your LLM feature is too slow and too expensive. What do you do?</summary>
+          <details><summary><span class="prep-n">19</span>Your LLM feature is too slow and too expensive. What do you do?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>First I measure where tokens and time go: prompt size, output size, number of calls. Then the main levers: stream the response so users see text immediately; shorten prompts and retrieved context; cache answers to repeated questions and use prompt caching for long fixed system prompts; route easy requests to a smaller, cheaper model and only hard ones to the big model; reduce agent steps; and batch background jobs. After each change, I rerun evals, so I know quality didn&#39;t drop.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Measure first: tokens, calls, time per step</li><li>Streaming for perceived latency</li><li>Shorter context, caching, smaller models via routing, fewer steps</li><li>Check quality with evals after each change</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Cost and latency trade offs are a top 2026 theme.</p>
-              <p class="small">📖 Learn it: <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a> · <a href="../learn/llmops-tracing.html">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-kv-cache">
-          <details><summary><span class="prep-n">14</span>What is the KV cache in LLM inference?</summary>
+          <details><summary><span class="prep-n">20</span>What is the KV cache in LLM inference?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>When an LLM generates text one token at a time, each new token needs attention over all previous tokens. Without a cache, we&#39;d recompute the keys and values of every previous token at every step, which is wasteful. The KV cache stores the keys and values computed so far, so each step only computes them for the new token. That makes generation much faster, but the cache uses a lot of GPU memory, growing with sequence length and batch size, which is why techniques like grouped query attention and paged attention, as in vLLM, matter.</p>
@@ -708,8 +908,20 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-quantisation-outliers">
+          <details><summary><span class="prep-n">21</span>How does post-training quantisation (INT8/INT4, AWQ, GPTQ) work, and why do activation outliers break naive INT4?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Quantisation maps 16-bit floating-point weights (FP16/BF16) onto a narrow grid of 8-bit or 4-bit integers using a scale factor, cutting GPU memory by 2× to 4× and speeding up memory-bandwidth-bound token generation. Naive round-to-nearest INT4 degrades accuracy because transformer activations above ~6B parameters develop huge outlier channels (100× larger than normal); stretching 16 integer buckets across that range squashes all normal weights to zero. AWQ and GPTQ fix this using a small calibration set: AWQ scales up the 1% of weight channels that multiply large activation outliers before quantising, preserving accuracy.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Maps FP16/BF16 weights to INT8/INT4 grids; cuts VRAM 2–4× and speeds up token decoding</li><li>Transformer activation outliers stretch the quantisation grid and crush normal values</li><li>AWQ / GPTQ use calibration data to protect salient weight channels</li><li>Also quantise the KV cache (FP8/INT8) for long contexts and big batch sizes</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Tests deep understanding of LLM efficiency and quantisation.</p>
+              <p class="small">📖 Learn it: <a href="../learn/dl-alignment-quant.html">Post-training: RLHF, DPO, quantisation and reasoning models</a> · <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-drift">
-          <details><summary><span class="prep-n">15</span>What&#39;s the difference between data drift and concept drift? How do you detect them without labels?</summary>
+          <details><summary><span class="prep-n">22</span>What&#39;s the difference between data drift and concept drift? How do you detect them without labels?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Data drift is when the inputs change, like a new customer segment or a sensor recalibrated, while the relationship to the outcome is the same. Concept drift is when the relationship itself changes, like fraudsters changing tactics, so the same inputs now mean something different. Without fresh labels, I monitor input feature distributions against a training baseline using statistics like PSI or KS tests, watch the distribution of predictions and confidence scores, and track proxy business signals such as complaints or manual overrides. When labels arrive later, I compute real performance by time window.</p>
@@ -721,7 +933,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-monitoring-what">
-          <details><summary><span class="prep-n">16</span>What would you monitor for a model in production?</summary>
+          <details><summary><span class="prep-n">23</span>What would you monitor for a model in production?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Four layers. System health: latency, error rates, throughput, CPU, GPU and memory. Data: missing values, schema changes, feature distributions compared with training. Model: prediction distribution, confidence, and real accuracy when labels arrive. Business: the metric the model exists for, like fraud losses or conversion. Each alert should map to an action, like &quot;page on call&quot; or &quot;retrain&quot;, otherwise people ignore alerts. I&#39;d use something like Prometheus and Grafana for system metrics and a drift tool like Evidently for data.</p>
@@ -733,7 +945,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-ctr-drop">
-          <details><summary><span class="prep-n">17</span>Click through rate dropped 20% overnight, but input distributions look normal. Model drift or a bug?</summary>
+          <details><summary><span class="prep-n">24</span>Click through rate dropped 20% overnight, but input distributions look normal. Model drift or a bug?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>A sudden overnight drop smells like a bug or a change, not slow drift. I&#39;d check, in order: did anything deploy, like a new model, feature pipeline or front end change? Is logging or the metric itself broken, for example clicks not being recorded? Are features arriving late or as defaults, which might not show in aggregate distributions? Is it all users or one platform, region or app version? I&#39;d compare with a holdout or previous model if available. Only if everything checks out would I consider concept drift, like a holiday or competitor event, and retrain.</p>
@@ -745,7 +957,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-docker-k8s">
-          <details><summary><span class="prep-n">18</span>How would you containerise a model and serve it on Kubernetes?</summary>
+          <details><summary><span class="prep-n">25</span>How would you containerise a model and serve it on Kubernetes?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Write a small API, for example FastAPI, that loads the model once at startup and exposes a predict endpoint and a health check. Write a Dockerfile with a slim base image, pinned dependencies and the model either baked in or downloaded from a registry at start. On Kubernetes, create a Deployment with several replicas and resource requests and limits, readiness and liveness probes on the health endpoint, a Service in front, and a Horizontal Pod Autoscaler based on CPU or request rate. For GPUs, request nvidia.com/gpu resources and use GPU node pools.</p>
@@ -757,7 +969,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-cicd-ml">
-          <details><summary><span class="prep-n">19</span>What does CI/CD look like for machine learning?</summary>
+          <details><summary><span class="prep-n">26</span>What does CI/CD look like for machine learning?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Like normal CI/CD, plus data and models. CI: on every code change, run unit tests, data validation tests and a quick training run on a sample to catch errors. Training pipelines run on a schedule or when new data arrives, log parameters and metrics to an experiment tracker, and register the model in a registry. CD: a new model is promoted only if it beats the current one on a fixed evaluation set and passes checks like bias and latency, then it&#39;s rolled out gradually with canary or shadow deployment, with automatic rollback if metrics drop.</p>
@@ -769,7 +981,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-reproducible">
-          <details><summary><span class="prep-n">20</span>How do you make model training reproducible?</summary>
+          <details><summary><span class="prep-n">27</span>How do you make model training reproducible?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Version everything that affects the result: the code with git, the data with a snapshot or tool like DVC, the environment with a Docker image and pinned packages, and the configuration and hyperparameters in a tracked config file. Set random seeds. Log every run, with its code commit, data version, parameters, metrics and the resulting model, in an experiment tracker like MLflow. Then anyone can rerun or explain a model months later, which also matters for audits.</p>
@@ -781,7 +993,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-rollout">
-          <details><summary><span class="prep-n">21</span>A new model looked better offline but you&#39;re worried about production. How do you roll it out safely?</summary>
+          <details><summary><span class="prep-n">28</span>A new model looked better offline but you&#39;re worried about production. How do you roll it out safely?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Step by step. First, shadow mode: the new model receives real traffic and makes predictions, but users still get the old model&#39;s output, so I can compare predictions, latency and errors safely. Then a canary: send a small share, like 5%, of traffic to the new model and watch technical and business metrics. If it holds up, increase gradually, or run a proper A/B test. Keep the old model ready, so rollback is one switch. Define the success and rollback criteria before starting.</p>
@@ -793,7 +1005,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-llm-serving-gpu">
-          <details><summary><span class="prep-n">22</span>How do you serve an open source LLM efficiently on GPUs?</summary>
+          <details><summary><span class="prep-n">29</span>How do you serve an open source LLM efficiently on GPUs?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Use an inference server built for LLMs, like vLLM or TGI, rather than a plain web server. They provide continuous batching, which adds new requests into the running batch so the GPU stays busy, and paged attention to manage KV cache memory. Choose the smallest model that meets quality, and consider quantisation, like 8 bit or 4 bit, to fit on cheaper GPUs. Then autoscale on queue length or tokens per second, set max token limits, and monitor time to first token, tokens per second, GPU memory and cost per request.</p>
@@ -805,19 +1017,31 @@
           </details>
         </li>
         <li class="prep-q" id="q-llmops">
-          <details><summary><span class="prep-n">23</span>What&#39;s different about operating LLM applications compared with classic ML models?</summary>
+          <details><summary><span class="prep-n">30</span>What&#39;s different about operating LLM applications compared with classic ML models?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Several new things to manage. Prompts are code, so they need versioning, review and testing. Evaluation suites must run on every prompt or model change, because there&#39;s no single accuracy number. Cost has to be monitored per request and per feature, since it scales with tokens. Providers update models, so I pin versions and re run evals before upgrading. Logging and tracing every step of a chain or agent is essential for debugging. And there are safety checks: prompt injection, PII in logs, and content filters.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Prompt versioning and testing</li><li>Eval suites as release gates</li><li>Token cost monitoring</li><li>Model version pinning, tracing, safety controls</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Interviews increasingly add LLMOps in 2026.</p>
-              <p class="small">📖 Learn it: <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a> · <a href="../learn/llm-safety.html">AI safety in products: hallucinations, prompt injection and guardrails</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a> · <a href="../learn/llm-safety.html">AI safety in products: hallucinations, prompt injection and guardrails</a> · <a href="../learn/llmops-tracing.html">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-llmops-gateway-caching">
+          <details><summary><span class="prep-n">31</span>How do distributed tracing, prompt caching, semantic caching and model routing work together in an LLM gateway?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Every user request gets a trace ID and child spans for query rewriting, retrieval, reranking, LLM calls and tool calls, recording exact inputs, outputs, latency, token counts and cost. In the gateway, prompt/prefix caching reuses the KV cache of static system instructions and few-shot examples across requests, cutting input token cost by 50–90%. Semantic caching embeds the query and returns a vetted cached response for high-similarity repeat FAQs (scoped by tenant and permissions). Finally, a model router sends 70–80% of simple classification or FAQ queries to a fast, cheap small model and only escalates complex reasoning to a frontier model, with automatic fallback if a provider returns 429 or 503.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Trace + child spans capture latency, tokens, cost and prompt version at every step</li><li>Prompt/prefix caching reuses KV cache for static system prompts and examples</li><li>Semantic caching serves repeat FAQs (strictly scoped by tenant/permissions and freshness)</li><li>Model routing sends simple traffic to small models + automatic provider fallbacks</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Core 2026 LLMOps and AI Platform architecture question.</p>
+              <p class="small">📖 Learn it: <a href="../learn/llmops-tracing.html">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</a> · <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a> · <a href="../learn/build-vs-buy.html">AI literacy for decisions: build vs buy, cost and limits</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-data-quality-checks">
-          <details><summary><span class="prep-n">24</span>What data quality checks would you put in a pipeline?</summary>
+          <details><summary><span class="prep-n">32</span>What data quality checks would you put in a pipeline?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Checks at the boundaries: when data arrives and before it&#39;s published. Schema: expected columns and types. Completeness: row counts within an expected range compared with past days, and required fields not null. Validity: values in allowed ranges or lists, like age between 0 and 120. Uniqueness: primary keys are unique. Freshness: the latest data is recent enough. Consistency: totals reconcile with the source. Tools like dbt tests or Great Expectations make this easy. Critical failures stop the pipeline; minor ones send an alert.</p>
@@ -828,6 +1052,18 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-feature-store-point-in-time">
+          <details><summary><span class="prep-n">33</span>How does a feature store work, and what is a point-in-time (ASOF) join?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>A feature store defines a feature once and materialises it to two storage layers: an offline store (Parquet/Delta/warehouse) for large historical training sets, and an online key-value store (like Redis or DynamoDB) for single-digit-millisecond lookups during live inference. When building historical training data, a regular join on user_id leaks the future because it pulls today&#39;s feature values for an event that happened six months ago. A point-in-time or ASOF join matches each historical label at timestamp T with the latest feature value recorded at or before T, guaranteeing zero time-travel leakage.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>One feature definition → offline store (training batches) + online KV store (low-latency serving)</li><li>Eliminates training–serving skew across SQL and Python paths</li><li>Point-in-time (ASOF) join matches each label at T with features from &lt;= T</li><li>For labeling: combine weak/LLM pre-labels with human verification and inter-annotator agreement</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> High-signal question for AI Data Engineers, ML Engineers and MLOps Engineers.</p>
+              <p class="small">📖 Learn it: <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a> · <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a></p>
+            </div>
+          </details>
+        </li>
         </ol>
       </section>
       <section id="stage-design">
@@ -835,38 +1071,38 @@
         <p class="muted">Open questions with no single right answer. Clarify first, then structure your answer, then talk about trade offs, measurement and failure cases.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-design-fraud">
-          <details><summary><span class="prep-n">25</span>Design a real time fraud detection system with a 150 ms latency budget.</summary>
+          <details><summary><span class="prep-n">34</span>Design a real time fraud detection system with a 150 ms latency budget.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Clarify the cost of missed fraud versus false declines, and the review team&#39;s capacity. Features: real time features like the number of transactions from this card in the last 10 minutes, computed from a stream, plus historical features from a feature store; accept that some features are slightly stale to meet latency. Model: gradient boosting, fast and strong on tabular data, with a threshold chosen for the business trade off, and a middle band sent to manual review. Serving: a low latency service with features cached in memory or Redis, and a fallback rule if the model is slow. Labels arrive late through chargebacks, so monitor drift and retrain regularly, and keep rules for brand new fraud patterns.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Clarify costs of each error type</li><li>Streaming plus stored features; staleness trade off</li><li>Fast model, threshold with review band</li><li>Low latency serving with fallback; delayed labels, drift, retraining</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Latency, features and business trade offs together.</p>
-              <p class="small">📖 Learn it: <a href="../learn/streaming.html">Streaming data: Kafka and real-time pipelines</a> · <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/ml-system-design.html">ML system design: recommendations, search and fraud at scale</a> · <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a> · <a href="../learn/streaming.html">Streaming data: Kafka and real-time pipelines</a> · <a href="../learn/ml-metrics.html">Measuring models: accuracy, precision and recall</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-design-llm-serving">
-          <details><summary><span class="prep-n">26</span>Design a platform to serve an LLM to 1,000 requests per second.</summary>
+          <details><summary><span class="prep-n">35</span>Design a platform to serve an LLM to 1,000 requests per second.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Clarify model size, prompt and output lengths, and latency targets, especially time to first token. Requests go through a gateway with authentication, rate limits per customer and routing. Behind it, a pool of GPU servers running an inference engine like vLLM with continuous batching and paged KV cache, autoscaled on queue depth. Add a prefix and response cache for repeated prompts, and route simple requests to a smaller model. Estimate capacity from tokens per second per GPU, plan headroom for peaks, and spread across zones. Monitor time to first token, tokens per second, queue time, errors and cost per thousand tokens, and roll out new model versions with canaries.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Clarify sizes and latency targets</li><li>Gateway: auth, rate limits, routing</li><li>Inference engine with batching, autoscaling on queue</li><li>Caching, model routing, capacity planning, monitoring, canaries</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> LLM infrastructure system design.</p>
-              <p class="small">📖 Learn it: <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a> · <a href="../learn/kubernetes.html">Kubernetes: running containers at scale</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a> · <a href="../learn/llmops-tracing.html">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</a> · <a href="../learn/kubernetes.html">Kubernetes: running containers at scale</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-pe-latency-debug">
-          <details><summary><span class="prep-n">27</span>Your AI feature&#39;s response time doubled since yesterday. How do you investigate?</summary>
+          <details><summary><span class="prep-n">36</span>Your AI feature&#39;s response time doubled since yesterday. How do you investigate?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Check what changed: deploys, prompt changes, a model version change, or a provider status issue. Then look at traces to find which step got slower: retrieval, the LLM call, a tool call or our own code. If it&#39;s the LLM call, see whether prompts or outputs got longer, for example a bigger retrieved context or a prompt change that makes answers longer, or whether the provider&#39;s latency rose. If it&#39;s ours, check database queries, cache hit rate and traffic volume. Fix the cause, roll back if needed, and add a latency alert per step so we catch it sooner next time.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>What changed? deploys, prompts, models, provider</li><li>Use per step traces to localise</li><li>Token count changes are a common cause</li><li>Fix or roll back; add per step alerts</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Systematic debugging of AI systems.</p>
-              <p class="small">📖 Learn it: <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a> · <a href="../learn/llmops-tracing.html">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</a></p>
             </div>
           </details>
         </li>
@@ -877,7 +1113,7 @@
         <p class="muted">Use the STAR method: Situation, Task, Action, Result. Include a number in the result whenever you can.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-b-project">
-          <details><summary><span class="prep-n">28</span>Walk me through a project you&#39;re proud of.</summary>
+          <details><summary><span class="prep-n">37</span>Walk me through a project you&#39;re proud of.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Use STAR and go deep on your own decisions. &quot;Situation: our support team was overwhelmed with repeated questions. Task: I wanted to build an assistant that answers from our help docs. Action: I built a RAG pipeline, but the first version answered only 60% of test questions correctly. I created an evaluation set of 80 real questions, found that most failures came from chunks splitting tables, switched to structure aware chunking and added reranking. Result: correct answers rose to 86%, and in a pilot it resolved about a quarter of tickets without an agent.&quot; Be ready for &quot;why did you choose that?&quot; at every step.</p>
@@ -889,7 +1125,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-failure">
-          <details><summary><span class="prep-n">29</span>Tell me about a time something you built failed.</summary>
+          <details><summary><span class="prep-n">38</span>Tell me about a time something you built failed.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick a real failure with a lesson, not a fake one. &quot;I shipped a classification model that looked great offline, with 92% accuracy, but within two weeks users complained. I had split data randomly, and the same customers appeared in both training and test, so the score was too optimistic. I owned it with my manager, re split by customer, got a realistic 81%, and improved features to reach 86%. Since then, I always ask how the data is grouped before splitting, and I add a review of the evaluation setup to my checklist.&quot;</p>
@@ -901,7 +1137,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-conflict">
-          <details><summary><span class="prep-n">30</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
+          <details><summary><span class="prep-n">39</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Show you disagree with data and respect. &quot;A product manager wanted to launch our AI reply feature to all customers. I was worried because our tests showed it sometimes made up refund policies. Instead of just saying no, I showed five real examples and the error rate from our eval set, and proposed launching to 10% of tickets with agent approval first. We agreed on criteria to expand. Two weeks later the error rate was below our threshold and we expanded. We kept a good relationship because we focused on the shared goal.&quot;</p>
@@ -913,7 +1149,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-explain">
-          <details><summary><span class="prep-n">31</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
+          <details><summary><span class="prep-n">40</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick something from your work and use an everyday analogy. For example, explaining RAG: &quot;Imagine a very smart new employee who has read a lot but knows nothing about our company. If you ask them a policy question, they might confidently guess. RAG is like giving them the right pages of our policy manual before they answer, and asking them to point to the page. So answers are based on our actual documents, and you can check them.&quot; Then check understanding: &quot;Does that make sense?&quot;</p>
@@ -925,7 +1161,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-keep-up">
-          <details><summary><span class="prep-n">32</span>How do you keep up with the fast changes in AI?</summary>
+          <details><summary><span class="prep-n">41</span>How do you keep up with the fast changes in AI?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be specific and show you filter noise. &quot;I follow a few high quality sources instead of everything: release notes from the main model providers, a couple of newsletters, and papers when something important comes up. But mostly I learn by building: when something new appears, like a new tool calling feature, I try it on a small project within a week and write a short note about what worked. I also review what changed in our own evals when we upgrade models, which teaches me more than reading headlines.&quot;</p>
@@ -937,7 +1173,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-ai-tools">
-          <details><summary><span class="prep-n">33</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
+          <details><summary><span class="prep-n">42</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be honest and responsible. &quot;I use AI assistants daily for boilerplate, tests, unfamiliar libraries and explaining code. But I treat the output like code from a new colleague: I read every line before accepting it, I make sure there are tests, I check security sensitive parts like authentication and SQL myself, and I never paste secrets or confidential data into tools that aren&#39;t approved. It makes me faster, but I&#39;m still responsible for what I ship.&quot;</p>
@@ -955,7 +1191,7 @@
         <p class="muted">The last five minutes matter. Good questions show you&#39;re serious; a calm salary answer protects your offer.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-ask-them">
-          <details><summary><span class="prep-n">34</span>Do you have any questions for us?</summary>
+          <details><summary><span class="prep-n">43</span>Do you have any questions for us?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Always say yes and ask two or three real questions. Good ones: &quot;What would success look like for this role in the first 6 months?&quot;, &quot;What&#39;s the biggest challenge the team is facing with AI right now?&quot;, &quot;How do you evaluate model or feature quality before shipping?&quot;, &quot;How is the team split between building new features and maintaining existing ones?&quot;, and &quot;What do people who do well here have in common?&quot;. Avoid asking about leave or salary in a technical round, and don&#39;t ask things that are on their website.</p>
@@ -967,7 +1203,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-salary">
-          <details><summary><span class="prep-n">35</span>What are your salary expectations?</summary>
+          <details><summary><span class="prep-n">44</span>What are your salary expectations?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Research first, using sites like Glassdoor, AmbitionBox, levels.fyi and people in similar roles, then give a range based on the role, not on your current pay. &quot;Based on my research for this role and level in Bangalore, and my experience, I&#39;m looking at a range of ₹22 to ₹28 lakh fixed. I&#39;m flexible depending on the overall package, and I&#39;m most interested in the role itself.&quot; If they insist on your current salary, you can share it, but steer back to the market range for the new role. Never accept or reject on the spot; ask for the offer in writing.</p>
@@ -995,6 +1231,16 @@
           <ol type="A"><li>Nothing, it&#39;s idiomatic</li><li>The default list is created once and shared between calls, so items leak across calls</li><li>append returns None, so the function always returns None</li><li>Lists can&#39;t be default arguments</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>The default list is created once and shared between calls, so items leak across calls</strong>. Default values are evaluated once, when the function is defined. Use `basket=None` and create a new list inside the function.</p><p class="small">Learn: <a href="../learn/py-logic.html">Python logic: if/else, loops and functions</a></p></details>
         </li>
+        <li class="iv-static">
+          <p class="quiz-q">Your script calls an LLM API and occasionally receives HTTP 429 (Too Many Requests). What is the right way to handle it?</p>
+          <ol type="A"><li>Delete the API key</li><li>Catch the 429 error and retry a few times with exponential backoff and random jitter</li><li>Retry immediately in a tight while True loop</li><li>Ignore the error and return an empty string</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Catch the 429 error and retry a few times with exponential backoff and random jitter</strong>. Exponential backoff (1s, 2s, 4s…) with jitter gives the rate limit window time to reset without a thundering herd of retries.</p><p class="small">Learn: <a href="../learn/py-files-errors.html">Files, JSON, APIs and error handling</a> · <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Why use async/await with asyncio.gather (and a semaphore) when calling an LLM API for 30 chunks?</p>
+          <ol type="A"><li>It replaces the need for Pydantic validation</li><li>It makes the LLM generate fewer tokens</li><li>It overlaps network waiting time so 30 I/O-bound calls finish in a fraction of sequential time</li><li>It runs the LLM locally on CPU</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>It overlaps network waiting time so 30 I/O-bound calls finish in a fraction of sequential time</strong>. LLM API calls spend almost all their time waiting on the network; async concurrency overlaps that wait while the semaphore respects rate limits.</p><p class="small">Learn: <a href="../learn/py-async-typing.html">Production Python: async/await, Pydantic and testing</a> · <a href="../learn/api-serving.html">Serving a model as an API with FastAPI</a></p></details>
+        </li>
         </ol>
         <h3 id="area-2">ML fundamentals</h3>
         <ol class="iv-list">
@@ -1010,6 +1256,11 @@
           <p class="quiz-q">A model&#39;s accuracy has dropped slowly over six months with no code changes. What&#39;s the most likely cause?</p>
           <ol type="A"><li>The GPU is overheating</li><li>Too many unit tests</li><li>A memory leak</li><li>Data or concept drift: the real world changed, so monitor the inputs and retrain</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>Data or concept drift: the real world changed, so monitor the inputs and retrain</strong>. Models are frozen snapshots of the past. When the input data or its relationships change, quality degrades silently.</p><p class="small">Learn: <a href="../learn/mlops-monitoring.html">Monitoring models: drift and silent failures</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">How does prompt (prefix) caching reduce LLM cost and latency?</p>
+          <ol type="A"><li>By lowering model weights to 1-bit</li><li>By deleting the system prompt</li><li>By skipping tokenisation</li><li>By reusing the precomputed KV cache of static system instructions and few-shot examples across requests</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>By reusing the precomputed KV cache of static system instructions and few-shot examples across requests</strong>. Putting static instructions and examples at the start of the prompt lets the inference engine reuse their KV cache.</p><p class="small">Learn: <a href="../learn/llmops-tracing.html">LLMOps: tracing, model routing, caching and cutting cost &amp; latency</a> · <a href="../learn/gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost</a></p></details>
         </li>
         <li class="iv-static">
           <p class="quiz-q">In a model API, where should the model be loaded?</p>
@@ -1047,7 +1298,28 @@
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>So traffic is only sent once the model has loaded and the pod can serve</strong>. Without it, requests hit pods that are still loading the model and fail.</p><p class="small">Learn: <a href="../learn/kubernetes.html">Kubernetes: running containers at scale</a></p></details>
         </li>
         </ol>
-        <h3 id="area-4">LLMs &amp; prompting</h3>
+        <h3 id="area-4">ML system design</h3>
+        <ol class="iv-list">
+        <li class="iv-static">
+          <p class="quiz-q">Why do large-scale recommendation and search systems use a two-stage retrieve-then-rank architecture?</p>
+          <ol type="A"><li>Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget</li><li>Because ranking models cannot take user features</li><li>To use twice as many servers</li><li>To avoid using embeddings</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Fast candidate retrieval narrows millions of items to a few hundred so the heavy ranking model meets the ~100 ms latency budget</strong>. Scoring millions of items with a deep or GBDT ranker per request is too slow; retrieval + ranking balances speed and precision.</p><p class="small">Learn: <a href="../learn/ml-system-design.html">ML system design: recommendations, search and fraud at scale</a></p></details>
+        </li>
+        </ol>
+        <h3 id="area-5">Deep learning</h3>
+        <ol class="iv-list">
+        <li class="iv-static">
+          <p class="quiz-q">Why do you call `optimizer.zero_grad()` on each batch in a PyTorch training loop?</p>
+          <ol type="A"><li>To clear gradients from the previous batch, because PyTorch accumulates gradients into `.grad` by default</li><li>To reset the model weights to random numbers</li><li>To move tensors from CPU to GPU</li><li>To turn off dropout during evaluation</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>To clear gradients from the previous batch, because PyTorch accumulates gradients into `.grad` by default</strong>. PyTorch adds new gradients onto existing `.grad` buffers unless you clear them before the next backward pass.</p><p class="small">Learn: <a href="../learn/dl-pytorch-training.html">PyTorch in practice: tensors, autograd and the training loop</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">What does 4-bit post-training quantisation (such as AWQ) mainly achieve for an LLM?</p>
+          <ol type="A"><li>It replaces the need for attention layers</li><li>It cuts GPU memory for weights by ~3–4× and speeds up token generation with minimal accuracy loss</li><li>It doubles the context window automatically</li><li>It trains the model from scratch without data</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>It cuts GPU memory for weights by ~3–4× and speeds up token generation with minimal accuracy loss</strong>. Storing weights in 4-bit integers instead of 16-bit floats shrinks VRAM footprint and memory-bandwidth bottlenecks.</p><p class="small">Learn: <a href="../learn/dl-alignment-quant.html">Post-training: RLHF, DPO, quantisation and reasoning models</a></p></details>
+        </li>
+        </ol>
+        <h3 id="area-6">LLMs &amp; prompting</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Where should an LLM API key live in your app?</p>
@@ -1055,7 +1327,15 @@
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>In an environment variable or a secrets manager</strong>. Keys in code end up in Git history and get stolen. Load them from the environment or a secrets manager.</p><p class="small">Learn: <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a></p></details>
         </li>
         </ol>
-        <h3 id="area-5">Communication</h3>
+        <h3 id="area-7">Data engineering</h3>
+        <ol class="iv-list">
+        <li class="iv-static">
+          <p class="quiz-q">When building historical training data from a feature store, what does a point-in-time (ASOF) join prevent?</p>
+          <ol type="A"><li>Slow SQL sorting</li><li>Time-travel data leakage, by matching each label at time T only with feature values known at or before time T</li><li>Duplicate column names</li><li>Missing primary keys</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Time-travel data leakage, by matching each label at time T only with feature values known at or before time T</strong>. A regular join pulls current feature values into past events; a point-in-time join reconstructs exactly what was known at prediction time.</p><p class="small">Learn: <a href="../learn/feature-stores.html">Feature stores and data labeling: offline vs online data and avoiding skew</a> · <a href="../learn/ml-training-vs-inference.html">Training vs inference: how ML runs in production</a></p></details>
+        </li>
+        </ol>
+        <h3 id="area-8">Communication</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Tell me about yourself and why you&#39;re moving into this AI role. <span class="badge-time">open question</span></p>
@@ -1076,7 +1356,7 @@
           <details class="answer-reveal"><summary>Show model answer</summary><p>Our nightly data pipeline silently loaded duplicate orders for three days, inflating revenue on a dashboard by 12%. I owned that pipeline. I traced it to a retry that re-appended a partial load, so the job wasn&#39;t idempotent. I fixed the data, switched the load to overwrite-by-partition, and added a uniqueness check that fails the run. Since then we&#39;ve had no duplicate incidents, and I now design every pipeline to be safely re-runnable.</p><p class="small">Learn: <a href="../learn/job-search.html">Landing the AI role: resume, applications and interviews</a></p></details>
         </li>
         </ol>
-        <h3 id="area-6">AI system design</h3>
+        <h3 id="area-9">AI system design</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Design an LLM serving platform shared by multiple product teams. <span class="badge-time">open question</span></p>

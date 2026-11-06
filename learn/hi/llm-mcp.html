@@ -62,8 +62,18 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "LLM / Agent Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
         }
       ]
     },
@@ -182,19 +192,21 @@ mcp.run()</code></pre></div>
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. Tool connector ek baar banao aur AI apps mein reuse karo</strong>: MCP standard banata hai ki tools kaise expose hon, jaise AI integrations ke liye USB-C.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kya MCP sirf ek company ke models ke liye hai?</summary><p data-read>Nahi. Yeh open protocol hai jise kai AI apps aur model providers support karte hain.</p></details><details class="deep-faq"><summary data-read>MCP ya normal tool calling?</summary><p data-read>Dono saath kaam karte hain. Tool calling woh tarika hai jisse model action maangta hai; MCP un tools ko apps ke beech pack aur share karne ka standard tarika hai.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>MCP, yaani Model Context Protocol, kya hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>MCP AI applications ko tools aur data se jodne ka open standard hai. AI ke liye USB port jaisa socho: har app mein har tool ka custom integration likhne ke bajaye, tool provider ek MCP server banata hai jo tools, resources aur prompts deta hai, aur koi bhi MCP compatible client, jaise AI assistant ya IDE, use use kar sakta hai. Jaise company ke ticket system ka ek MCP server kai AI apps use kar sakti hain. Security phir bhi chahiye: authentication, permissions aur dhyaan se chunna ki har server kya kar sakta hai.</p><p class="prep-label">✅ </p><ul><li data-read>AI clients aur tool servers ke beech standard protocol</li><li data-read>Ek baar likho, kai AI apps mein use</li><li data-read>Tools, resources aur prompts deta hai</li><li data-read>Security zaroori: auth aur permissions</li></ul><p class="prep-check" data-read><strong>:</strong> Agent ecosystem ki up to date jaankari.</p></div></details><details class="deep-faq"><summary data-read>MCP Host–Client–Server architecture kaise kaam karta hai, aur enterprise production mein MCP tools ko kaise secure karte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>MCP mein Host AI app hai (jaise IDE ya support assistant), Client host ke andar 1-to-1 protocol connection rakhta hai, aur Server teen primitives deta hai: Resources (read-only context), Prompts (templates) aur Tools (chalne wale actions). Production mein secure karne ke liye main MCP server ko kabhi shared admin database key nahi deta; main logged-in user ka OAuth token ya scope bhejta hoon taaki har query row-level permissions maane. Main destructive tools pe confirmation gates lagata hoon taaki writes se pehle insaan approve kare, aur indirect prompt injection se bachne ke liye tool outputs sanitise karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>Host (app) → Client (1:1 connector) → Server (Resources, Prompts, Tools)</li><li data-read>Per-user identity aur least-privilege scopes, kabhi shared admin key nahi</li><li data-read>Destructive tool calls se pehle human-in-the-loop approval</li><li data-read>Untrusted tool outputs sanitise karo aur audit ke liye har call log karo</li></ul><p class="prep-check" data-read><strong>:</strong> Practical 2026 enterprise MCP architecture aur security check karta hai.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>MCP = AI apps aur aapke tools/data ke beech ek standard plug.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/mcp.html" title="AI apps ko tools aur data se jodne ka open standard, ek universal plug jaisa.">MCP</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="llm-agents.html">← AI agents: plan, act, observe, repeat</a>
-        <a href="embeddings.html">Embeddings aur vector databases: matlab se search karna →</a>
+        <a href="agent-workflows.html">← Bharosemand agent workflows: state graphs, memory, human-in-the-loop aur recovery</a>
+        <a href="portfolio.html">Aisa portfolio project banaana jo interviews dilaaye →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=llm-agent-engineer&amp;lesson=llm-mcp&amp;lang=hi">LLM / Agent Engineer</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=llm-agent-engineer&amp;lesson=llm-mcp&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-mcp&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=llm-mcp&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llm-mcp&amp;lang=hi">AI Forward Deployed Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-mcp&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

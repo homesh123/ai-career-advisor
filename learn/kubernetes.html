@@ -62,8 +62,23 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "MLOps / AI Platform Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
         }
       ]
     },
@@ -186,19 +201,21 @@ spec:
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. A HorizontalPodAutoscaler</strong>: The autoscaler watches load (e.g. CPU or requests) and changes the replica count.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Do I need Kubernetes for my first model?</summary><p data-read>Usually not. A managed service (Cloud Run, App Runner, a PaaS) is simpler. Kubernetes pays off when you run many services at scale.</p></details><details class="deep-faq"><summary data-read>What is Helm?</summary><p data-read>A package manager for Kubernetes: it templates the YAML for an app so you can install and upgrade it with one command.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How would you containerise a model and serve it on Kubernetes?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Write a small API, for example FastAPI, that loads the model once at startup and exposes a predict endpoint and a health check. Write a Dockerfile with a slim base image, pinned dependencies and the model either baked in or downloaded from a registry at start. On Kubernetes, create a Deployment with several replicas and resource requests and limits, readiness and liveness probes on the health endpoint, a Service in front, and a Horizontal Pod Autoscaler based on CPU or request rate. For GPUs, request nvidia.com/gpu resources and use GPU node pools.</p><p class="prep-label">✅ </p><ul><li data-read>API with model loaded once; health endpoint</li><li data-read>Dockerfile: slim image, pinned versions</li><li data-read>Deployment, Service, probes, resource limits</li><li data-read>Autoscaling; GPU requests if needed</li></ul><p class="prep-check" data-read><strong>:</strong> Hands on deployment skills.</p></div></details><details class="deep-faq"><summary data-read>Design a platform to serve an LLM to 1,000 requests per second.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify model size, prompt and output lengths, and latency targets, especially time to first token. Requests go through a gateway with authentication, rate limits per customer and routing. Behind it, a pool of GPU servers running an inference engine like vLLM with continuous batching and paged KV cache, autoscaled on queue depth. Add a prefix and response cache for repeated prompts, and route simple requests to a smaller model. Estimate capacity from tokens per second per GPU, plan headroom for peaks, and spread across zones. Monitor time to first token, tokens per second, queue time, errors and cost per thousand tokens, and roll out new model versions with canaries.</p><p class="prep-label">✅ </p><ul><li data-read>Clarify sizes and latency targets</li><li data-read>Gateway: auth, rate limits, routing</li><li data-read>Inference engine with batching, autoscaling on queue</li><li data-read>Caching, model routing, capacity planning, monitoring, canaries</li></ul><p class="prep-check" data-read><strong>:</strong> LLM infrastructure system design.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Declare the desired state, and Kubernetes keeps it true: restarts, scaling, updates.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/autoscaling.html" title="Automatically adding or removing servers as traffic goes up or down.">Autoscaling</a></li><li><a class="chip" href="../glossary/kubernetes.html" title="A system that runs and manages many containers across many servers: starting, scaling and healing them.">Kubernetes</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="gpu-serving.html">← Serving LLMs efficiently: GPUs, batching and cost</a>
-        <a href="mlops-tracking.html">MLOps: experiment tracking and model registries →</a>
+        <a href="docker.html">← Docker: packaging your app so it runs anywhere</a>
+        <a href="gpu-serving.html">Serving LLMs efficiently: GPUs, batching and cost →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=mlops-engineer&amp;lesson=kubernetes">MLOps / AI Platform Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=mlops-engineer&amp;lesson=kubernetes">Continue in the course</a>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=kubernetes">ML Engineer</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=kubernetes">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=kubernetes">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=kubernetes">AI Research Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=kubernetes">Continue in the course</a>
       </section>
     </article>
   </main>

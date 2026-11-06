@@ -62,8 +62,18 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "LLM / Agent Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
         }
       ]
     },
@@ -182,19 +192,21 @@ mcp.run()</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. Build a tool connector once and reuse it across AI apps</strong>: MCP standardises how tools are exposed, like USB-C for AI integrations.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Is MCP only for one company&#39;s models?</summary><p data-read>No. It&#39;s an open protocol supported by many AI apps and model providers.</p></details><details class="deep-faq"><summary data-read>MCP or normal tool calling?</summary><p data-read>They work together. Tool calling is how the model asks for an action; MCP is a standard way to package and share those tools across apps.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What is MCP, the Model Context Protocol?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>MCP is an open standard for connecting AI applications to tools and data. Think of it like a USB port for AI: instead of writing a custom integration for every tool in every app, a tool provider builds one MCP server that exposes its tools, resources and prompts, and any MCP compatible client, like an AI assistant or IDE, can use it. For example, one MCP server for your company&#39;s ticket system can be used by several AI apps. You still need security: authentication, permissions and careful choice of what each server can do.</p><p class="prep-label">✅ </p><ul><li data-read>Standard protocol between AI clients and tool servers</li><li data-read>Write once, use in many AI apps</li><li data-read>Exposes tools, resources and prompts</li><li data-read>Security still matters: auth and permissions</li></ul><p class="prep-check" data-read><strong>:</strong> Up to date knowledge of the agent ecosystem.</p></div></details><details class="deep-faq"><summary data-read>How does the MCP Host–Client–Server architecture work, and how do you secure MCP tools in enterprise production?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>In MCP, the Host is the AI app (such as an IDE or support assistant), the Client maintains a 1-to-1 protocol connection inside the host, and the Server exposes three primitives: Resources (read-only context), Prompts (templates) and Tools (executable actions). To secure it in production, I never give an MCP server a shared admin database key; I pass the logged-in user&#39;s OAuth token or scope so every query obeys row-level permissions. I mark destructive tools with confirmation gates so a human must approve writes, and I sanitise tool outputs to defend against indirect prompt injection.</p><p class="prep-label">✅ </p><ul><li data-read>Host (app) → Client (1:1 connector) → Server (Resources, Prompts, Tools)</li><li data-read>Per-user identity and least-privilege scopes, never a shared admin key</li><li data-read>Human-in-the-loop approval before destructive tool calls</li><li data-read>Sanitise untrusted tool outputs and log every call for audit</li></ul><p class="prep-check" data-read><strong>:</strong> Tests practical 2026 enterprise MCP architecture and security.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>MCP = one standard plug between AI apps and your tools and data.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/mcp.html" title="An open standard for connecting AI apps to tools and data, like a universal plug.">MCP</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="llm-agents.html">← AI agents: plan, act, observe, repeat</a>
-        <a href="embeddings.html">Embeddings and vector databases: searching by meaning →</a>
+        <a href="agent-workflows.html">← Reliable agent workflows: state graphs, memory, human-in-the-loop and recovery</a>
+        <a href="portfolio.html">Building a portfolio project that gets interviews →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-mcp">LLM / Agent Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-mcp">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=llm-mcp">AI Product Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-mcp">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llm-mcp">AI Forward Deployed Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=llm-mcp">Continue in the course</a>
       </section>
     </article>
   </main>

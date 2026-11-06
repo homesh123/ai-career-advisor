@@ -62,13 +62,38 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Research Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
         }
       ]
     },
@@ -184,19 +209,21 @@ print(you @ vikas)   # 9  → quite different</code></pre></div>
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. Similar hain / same direction mein hain</strong>: Bada positive dot product matlab vectors milti-julti direction mein point karte hain, yaani similar hain.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kitni linear algebra chahiye?</summary><p data-read>Zyaadatar engineering roles ke liye: vectors, dot products, matrix multiplication aur shapes. Research roles ko bahut zyaada chahiye.</p></details><details class="deep-faq"><summary data-read>NumPy ka kya role hai?</summary><p data-read>NumPy vectors aur matrices ko efficiently store karta hai aur unpe tez maths karta hai. Pandas aur zyaadatar ML libraries iske upar bani hain.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Embeddings kya hain, aur kis kaam aate hain?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Embedding numbers ki list hai jo text, image ya item ka matlab represent karti hai. Milte julte matlab wali cheezon ke vectors paas paas hote hain. To &quot;password reset kaise karun&quot; aur &quot;login bhool gaya&quot; paas aa jaate hain, chahe ek bhi shabd common na ho. Embeddings semantic search, RAG, recommendations, clustering aur duplicates dhoondhne mein use hoti hain. Inhe vector database mein rakhte hain jo cosine similarity se sabse paas ke vectors jaldi dhoondhta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Matlab pakadne wale numbers; milta julta matlab = paas ke vectors</li><li data-read>Uses: semantic search, RAG, recommendations, dedup</li><li data-read>Similarity cosine se; vector index mein store</li></ul><p class="prep-check" data-read><strong>:</strong> Har LLM role ka core building block.</p></div></details><details class="deep-faq"><summary data-read>NumPy vectorisation Python loops se itna tez kyun hai, aur broadcasting kya hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Python loop mein interpreter har element pe types check karta hai aur operations dispatch karta hai, jiska overhead bahut bada hota hai. NumPy array ek fixed type ke numbers ko lagataar memory block mein rakhta hai, isliye a * b ya X @ W jaise vectorised operations compiled C aur SIMD instructions mein poore array pe ek saath chalte hain, aksar 50 se 100 guna tez. Broadcasting NumPy ko bina data copy kiye alag shapes ke arrays pe hisaab karne deta hai size 1 wale dimensions ko faila ke, jaise 2D matrix (n, d) ki har row se 1D column mean (1, d) ghatana.</p><p class="prep-label">✅ </p><ul><li data-read>Lagataar typed memory + C/SIMD loops vs Python interpreter overhead</li><li data-read>Matrix multiplication (@), axis ke saath reductions, aur .shape check karna</li><li data-read>Broadcasting bina memory copy kiye size 1 wale dimensions ko failata hai</li><li data-read>Anjaane mein (n, 1) + (1, n) se (n, n) matrix banne se bacho</li></ul><p class="prep-check" data-read><strong>:</strong> NumPy aur PyTorch ke ML coding rounds ki buniyaad.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>AI mein sab kuch vectors ban jaata hai, aur similarity bas vector maths hai.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/cosine-similarity.html" title="Do vectors ki direction kitni milti hai uska naap, embeddings ka matlab compare karne mein use hota hai.">Cosine similarity</a></li><li><a class="chip" href="../../glossary/embedding.html" title="Numbers ki list jo text, images ya items ka matlab pakadti hai, taaki milte julte matlab paas paas hon.">Embedding</a></li><li><a class="chip" href="../../glossary/vector.html" title="Numbers ki ordered list; AI mein kisi bhi cheez (ghar, shabd, image) ko numbers ke roop mein dikhaane ka tarika.">Vector</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-trees.html">← Decision trees, random forests aur boosting</a>
+        <a href="sql-window-cte.html">← Advanced SQL: CTEs, subqueries aur window functions</a>
         <a href="math-gradients.html">Gradients aur gradient descent: models behtar kaise hote hain →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=math-vectors&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=math-vectors&amp;lang=hi">AI Research Engineer</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=ml-engineer&amp;lesson=math-vectors&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=math-vectors&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=math-vectors&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=math-vectors&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=math-vectors&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=math-vectors&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=math-vectors&amp;lang=hi">AI Research Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=math-vectors&amp;lang=hi">AI Forward Deployed Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=math-vectors&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

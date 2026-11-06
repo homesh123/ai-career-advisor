@@ -67,13 +67,33 @@
         },
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
         },
         {
           "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "LLM / Agent Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
         },
         {
           "@type": "Course",
@@ -195,17 +215,19 @@ print(total)              # 267</code></pre></div>
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>C. Dictionary</strong>: Dictionary key (roll number) ko seedha value (marks) se map karti hai, position mein dhoondhna nahi padta.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>List ya dictionary: kaise chunu?</summary><p data-read>Agar items position se access karte ho ya order mein chalte ho, to list. Agar naam ya ID se dhoondhte ho, to dictionary.</p></details><details class="deep-faq"><summary data-read>JSON kya hai aur iska kya rishta hai?</summary><p data-read>JSON woh text format hai jo APIs use karti hain. Yeh seedha Python dictionaries aur lists mein map hota hai: json.loads(text) se dicts aur lists milti hain, json.dumps(data) wapas text bana deta hai.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Python mein list, tuple, set aur dictionary mein kya fark hai? Kab kaunsa use karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>List ordered aur badalne layak collection hai; sequences ke liye jinme jodte ho, jaise process karne wali rows. Tuple ordered hai par badal nahi sakta; fixed records jaise coordinates ke liye, aur dictionary key ban sakta hai. Set unique items rakhta hai aur membership check bahut tez; duplicates hataane ya &quot;kya yeh ID dekhi hai?&quot; ke liye. Dictionary keys ko values se map karti hai, tez lookup ke saath; jaise user ID se user details. Set ya dict mein membership check average O(1) hai, list mein O(n).</p><p class="prep-label">✅ </p><ul><li data-read>List: ordered, mutable</li><li data-read>Tuple: ordered, immutable, hashable</li><li data-read>Set: unique, tez membership</li><li data-read>Dict: key se value, tez lookup; O(1) vs O(n) ka zikr</li></ul><p class="prep-check" data-read><strong>:</strong> Python pe pakad, aur kya aap performance ke baare mein sochte ho.</p></div></details><details class="deep-faq"><summary data-read>Python mein mutable aur immutable types mein, aur == aur is mein kya fark hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Int, float, str aur tuple jaise immutable types banne ke baad jagah pe nahi badle ja sakte; unhe badalne se naya object banta hai. List, dict aur set jaise mutable types jagah pe hi badle ja sakte hain. Isiliye def add(item, bucket=[]) jaise default function argument mein mutable list dena classic bug hai: har call mein wahi list share hoti hai, to main None use karke andar nayi list banata hoon. Comparison ke liye, == check karta hai ki do objects ki value barabar hai ya nahi, jabki is check karta hai ki woh memory mein bilkul wahi object hain ya nahi, jise main khaas taur pe is None ke liye use karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>Immutable (int, str, tuple) vs mutable (list, dict, set)</li><li data-read>Mutable default argument kabhi mat use karo; None use karo</li><li data-read>== values compare karta hai; is memory identity (is None ke liye)</li><li data-read>JSON ya env vars se strings padhte waqt type conversion ka dhyan rakho</li></ul><p class="prep-check" data-read><strong>:</strong> Dekhta hai ki aap woh Python galtiyaan jaante ho jo production bugs banati hain.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>List = items ki ordered line. Dictionary = naam (key) se dhoondho.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="py-logic.html">← Python logic: if/else, loops aur functions</a>
-        <a href="git-github.html">Git aur GitHub: apna kaam save aur share karna →</a>
+        <a href="py-files-errors.html">Files, JSON, APIs aur error handling →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=py-collections&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=py-collections&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=py-collections&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-collections&amp;lang=hi">AI Forward Deployed Engineer</a></p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=py-collections&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=py-collections&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=py-collections&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=py-collections&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=py-collections&amp;lang=hi">MLOps / AI Platform Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=py-collections&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=py-collections&amp;lang=hi">AI Research Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-collections&amp;lang=hi">AI Forward Deployed Engineer</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=py-collections&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

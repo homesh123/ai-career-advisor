@@ -62,8 +62,23 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "LLM / Agent Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -179,19 +194,21 @@ Step 5 → final answer with names, ratings, closing times ✅  (max_steps = 8)<
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>C. Guardrails like a max-steps limit and loop detection</strong>: Agents need explicit stopping rules. Don&#39;t rely on the model alone.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>What&#39;s the difference between an agent and a chatbot?</summary><p data-read>A chatbot mostly answers. An agent takes actions with tools over several steps to complete a task.</p></details><details class="deep-faq"><summary data-read>Do I need a framework like LangGraph?</summary><p data-read>Not to start. A simple loop in your own code teaches you the most. Frameworks help later with state, retries and multi step flows.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What is an AI agent? When would you not use one?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>An agent is an LLM in a loop: it gets a goal, decides on an action like calling a tool, sees the result, and decides the next step, until it&#39;s done. That&#39;s useful when the steps can&#39;t be known in advance, like researching across several systems. I wouldn&#39;t use an agent when the steps are fixed and known; a simple workflow with one or two LLM calls is cheaper, faster, easier to test and more reliable. Each extra agent step adds cost, latency and another chance to fail, so I start simple and add autonomy only where it clearly helps.</p><p class="prep-label">✅ </p><ul><li data-read>LLM plus tools in a plan, act, observe loop</li><li data-read>Good for open ended, multi step tasks</li><li data-read>Prefer fixed workflows when steps are known</li><li data-read>Costs: latency, money, reliability, harder testing</li></ul><p class="prep-check" data-read><strong>:</strong> Do you have engineering restraint, or just hype?</p></div></details><details class="deep-faq"><summary data-read>How do you test and evaluate an agent?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>At three levels. Unit level: test each tool and the parsing of tool calls with normal code tests. Step level: given a situation, does the agent choose the right tool with the right arguments? I build a dataset of these decisions and score them. End to end: run full tasks in a sandbox with fake or test systems and check the final state, for example &quot;was the right refund created, and nothing else?&quot;. I also track the number of steps, cost and time per task, and I test failure cases: tools returning errors, and prompts that try to make it misbehave.</p><p class="prep-label">✅ </p><ul><li data-read>Unit tests for tools</li><li data-read>Step level decision evals</li><li data-read>End to end tasks in a sandbox, checking final state</li><li data-read>Track steps, cost, latency; test errors and attacks</li></ul><p class="prep-check" data-read><strong>:</strong> Agent specific evaluation depth.</p></div></details><details class="deep-faq"><summary data-read>When building an agent, why use an explicit state graph (like LangGraph) over an open-ended ReAct loop?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>An open-ended ReAct loop lets the LLM freely decide every next step, which works for flexible exploration but often loops endlessly, forgets fields or skips safety steps in production. A state graph defines a typed state object, small deterministic or LLM nodes that update that state, and explicit conditional edges that control which transitions are even legal. It gives us persistent checkpoints so a long workflow can pause for a human approval click and resume hours later, hard step and token budgets to stop infinite loops, and clean per-node traces.</p><p class="prep-label">✅ </p><ul><li data-read>Typed shared state + small nodes + explicit conditional edges</li><li data-read>Prevents illegal transitions and infinite tool-calling loops</li><li data-read>Checkpointing enables pause/resume and human-in-the-loop approval gates</li><li data-read>Idempotency keys on side-effecting tools so retries never double-charge</li></ul><p class="prep-check" data-read><strong>:</strong> A signature 2026 agent engineering question: controlling autonomy in production.</p></div></details><details class="deep-faq"><summary data-read>Design an AI agent that handles customer support, including refunds.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify scope: which requests, which systems, refund limits, languages. Architecture: the agent gets tools like look up order, check refund policy, create refund and hand off to a human, each with validated parameters and least privilege. Policy is enforced in code, not only in the prompt: for example, refunds above ₹2,000 or outside policy always need human approval. Ground answers with RAG over help articles. Guardrails against prompt injection, and identity verification before any account action. Evaluate with recorded real conversations in a sandbox, measuring correct resolution, wrong actions, escalation rate and cost per conversation. Launch for one category first, with humans reviewing a sample.</p><p class="prep-label">✅ </p><ul><li data-read>Clarify scope and limits</li><li data-read>Tools with least privilege; policy enforced in code</li><li data-read>Human approval for risky actions; identity checks</li><li data-read>Sandbox evals; phased launch; metrics</li></ul><p class="prep-check" data-read><strong>:</strong> Agent design with safety; popular for FDE and agent roles.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Agent = LLM + tools + loop + memory + guardrails.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/agent.html" title="An LLM that works in a loop: plans a step, uses a tool, looks at the result, and decides the next step until the goal is done.">Agent</a></li><li><a class="chip" href="../glossary/guardrails.html" title="Rules and checks around an AI system that block unsafe, wrong or costly behaviour.">Guardrails</a></li><li><a class="chip" href="../glossary/tool-calling.html" title="Letting an LLM request actions or data from your code, like looking up an order or sending an email.">Tool calling</a></li><li><a class="chip" href="../glossary/workflow.html" title="A fixed sequence of steps where some steps call an LLM, as opposed to a free running agent.">Workflow</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="api-serving.html">← Serving a model as an API with FastAPI</a>
-        <a href="llm-mcp.html">MCP: a universal plug for AI tools →</a>
+        <a href="llm-tool-use.html">← Tool use (function calling): letting an LLM take actions</a>
+        <a href="agent-workflows.html">Reliable agent workflows: state graphs, memory, human-in-the-loop and recovery →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-agents">LLM / Agent Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-agents">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=llm-agents">AI Product Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-agents">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llm-agents">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=llm-agents">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=llm-agents">Continue in the course</a>
       </section>
     </article>
   </main>

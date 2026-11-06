@@ -1183,6 +1183,30 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/py-files-errors.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/py-files-errors.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/py-async-typing.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/py-async-typing.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/git-github.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1195,6 +1219,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/numpy-arrays.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/numpy-arrays.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/pandas.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1202,6 +1238,18 @@
   </url>
   <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/pandas.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/data-quality.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/data-quality.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1243,6 +1291,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/ab-testing.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ab-testing.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/sql-basics.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1262,6 +1322,42 @@
   </url>
   <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/sql-joins.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/sql-window-cte.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/sql-window-cte.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/math-vectors.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/math-vectors.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/math-gradients.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/math-gradients.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1315,6 +1411,66 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-features.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-features.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-trees.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-trees.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-unsupervised.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-unsupervised.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-training-vs-inference.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-training-vs-inference.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/mlops-monitoring.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/mlops-monitoring.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/llm-what.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1351,198 +1507,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/portfolio.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/portfolio.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/job-search.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/job-search.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-features.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-features.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-trees.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-trees.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/math-vectors.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/math-vectors.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/math-gradients.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/math-gradients.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-neural-networks.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-neural-networks.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-transformers.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-transformers.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-training-vs-inference.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-training-vs-inference.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/api-serving.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/api-serving.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/docker.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/docker.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/mlops-tracking.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/mlops-tracking.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/mlops-monitoring.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/mlops-monitoring.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/data-modeling.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/data-modeling.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/data-pipelines.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/data-pipelines.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/data-quality.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/data-quality.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/embeddings.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1567,13 +1531,13 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/streaming.html</loc>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/multimodal-ai.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/streaming.html</loc>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/multimodal-ai.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1615,109 +1579,13 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/llm-tool-use.html</loc>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/portfolio.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/llm-tool-use.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/gpu-serving.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/gpu-serving.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/kubernetes.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/kubernetes.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/llm-agents.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/llm-agents.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/llm-mcp.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/llm-mcp.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-fine-tuning.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-fine-tuning.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/research-papers.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/research-papers.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/security-compliance.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/security-compliance.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/problem-framing.html</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/problem-framing.html</loc>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/portfolio.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1735,6 +1603,162 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/job-search.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/job-search.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-neural-networks.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-neural-networks.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-pytorch-training.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-pytorch-training.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-transformers.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-transformers.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-fine-tuning.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-fine-tuning.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/dl-alignment-quant.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/dl-alignment-quant.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/research-papers.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/research-papers.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/feature-stores.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/feature-stores.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/api-serving.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/api-serving.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/docker.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/docker.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/kubernetes.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/kubernetes.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/gpu-serving.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/gpu-serving.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/streaming.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/streaming.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/build-vs-buy.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1742,6 +1766,78 @@
   </url>
   <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/build-vs-buy.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/mlops-tracking.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/mlops-tracking.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/ml-system-design.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ml-system-design.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/data-modeling.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/data-modeling.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/data-pipelines.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/data-pipelines.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/rag-advanced.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/rag-advanced.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/security-compliance.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/security-compliance.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1759,13 +1855,13 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/ab-testing.html</loc>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/problem-framing.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ab-testing.html</loc>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/problem-framing.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1778,6 +1874,66 @@
   </url>
   <url>
     <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/ai-prd.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/llm-tool-use.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/llm-tool-use.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/llm-agents.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/llm-agents.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/agent-workflows.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/agent-workflows.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/llm-mcp.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://homesh123.github.io/ai-career-advisor/learn/hi/llm-mcp.html</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

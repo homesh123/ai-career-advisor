@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLMOps: tracing, model routing, caching aur cost va latency ghataana: Hinglish mein aasaan explanation | AI Path Finder</title>
+  <meta name="description" content="Production mein user ka ek sawaal query rewriting, embedding search, reranking, do tool calls aur aakhri LLM answer chala sakta hai." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="LLMOps: tracing, model routing, caching aur cost va latency ghataana: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta property="og:description" content="Production mein user ka ek sawaal query rewriting, embedding search, reranking, do tool calls aur aakhri LLM answer chala sakta hai." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LLMOps: tracing, model routing, caching aur cost va latency ghataana: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta name="twitter:description" content="Production mein user ka ek sawaal query rewriting, embedding search, reranking, do tool calls aur aakhri LLM answer chala sakta hai." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/llmops-tracing.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html",
+      "name": "LLMOps: tracing, model routing, caching aur cost va latency ghataana",
+      "description": "Production mein user ka ek sawaal query rewriting, embedding search, reranking, do tool calls aur aakhri LLM answer chala sakta hai.",
+      "inLanguage": "hi-Latn",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Trace & spans",
+        "Prompt / prefix caching",
+        "Model routing / cascading"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "LLMOps: tracing, model routing, caching aur cost va latency ghataana",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llmops-tracing.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Provider ki prompt/prefix caching ka fayda uthaane ke liye aapke static system instructions aur examples prompt mein kahan hone chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bilkul shuru mein (ekdum same prefix), aur user ka badalta hissa aakhir mein. KV-cache reuse sirf pehle badalne wale token tak kaam karta hai, isliye static hissa hamesha sabse aage hona chahiye."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Prefix caching aur semantic caching mein kya fark hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prefix caching shared prompt ke aage ke hisse ka GPU KV-cache reuse karta hai aur naya jawaab banata hai. Semantic caching user ke sawaal ko embed karta hai aur agar bilkul waisa hi sawaal pehle aa chuka ho, to bina LLM call kiye save kiya hua jawaab de deta hai."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "LLM latency mein achanak 2× uchaal aaye to kaise debug karein?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Apne trace spans ka p95 time dekho: kya retrieval/reranking slow hua, kya prompt badalne se output tokens dugne ho gaye, ya provider ka TTFT gira hai?"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../#paths" data-nav="roles">AI roles</a>
+      <a href="../../learn.html" data-nav="learn">Learn</a>
+      <a href="../../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">AI Path Finder</a> › <a href="../../learn.html">Learn</a> › <span aria-current="page">LLMOps: tracing, model routing, caching aur cost va latency ghataana</span></nav>
+    <article lang="hi-Latn">
+      <header>
+        <p class="eyebrow">Lesson · Hinglish · ⏱ 8 min padhne mein</p>
+        <h1 data-read>📡 LLMOps: tracing, model routing, caching aur cost va latency ghataana</h1>
+        <p class="lang-switch"><a href="../llmops-tracing.html" hreflang="en" lang="en">English</a><span>Hinglish</span></p>
+        <div class="listen-bar" data-reader data-listen="Suno" data-pause="Roko" data-resume="Phir chalao" data-reading="Padh kar suna raha hai…" data-paused="Ruka hua" data-unsupported="Aapka browser padh kar nahi suna sakta">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Suno</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Band karo</button>
+      <label class="listen-rate"><span class="sr-only">Padhne ki speed</span><select data-tts="rate" aria-label="Padhne ki speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Asli zindagi ki misaal</h2><p>Hospital ke triage desk aur courier tracking number ke baare mein socho. Mamooli zukhaam wale har mareez ko bade neurosurgeon ki zaroorat nahi hoti: triage desk aasaan cases general doctor ko aur mushkil cases specialist ko bhejta hai. Yahi model routing hai. Aur jab parcel late ho, to tracking number dikhata hai ki woh kis hub pe kab ruka. Yahi LLM tracing hai.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 Aasaan shabdon mein</h2><p>Production mein user ka ek sawaal query rewriting, embedding search, reranking, do tool calls aur aakhri LLM answer chala sakta hai. Bina tracing (OpenTelemetry, Langfuse, Arize Phoenix) ke aap nahi bata sakte kaunsa step slow tha ya jawaab kahan galat hua. Trace har andar ke step (span) ka prompt version, input, output, tokens, kharch aur latency record karta hai. Latency aur kharch 50–80% ghataane ke liye: (1) tokens stream karo taaki Time to First Token (TTFT) 500 ms se kam rahe, (2) lambe system prompts ke liye prompt/prefix caching use karo, (3) baar-baar poochhe jaane wale sawaalon ke liye semantic caching lagao, aur (4) LLM gateway aur model routing use karo — aasaan classification/extraction chhote tez model ko bhejo aur frontier model sirf mushkil reasoning ke liye rakho.</p></section>
+      
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Har LLM call, retrieval query aur tool execution ko trace ID aur child spans ke saath log karo (prompt version, model, tokens, kharch aur latency samet).</li><li data-read>Time to First Token (TTFT) aur tokens-per-second ko kul latency se alag naapo, aur UI mein responses stream karo.</li><li data-read>Static instructions, tool definitions aur examples ko har prompt ke shuru mein rakho taaki prefix caching se input kharch aur TTFT 50–80% ghat jaaye.</li><li data-read>Providers ke aage ek LLM gateway lagao jo rate limits, retries, fallback models aur team cost budgets sambhale.</li><li data-read>Complexity ke hisaab se requests route karo: aasaan intents aur extraction chhote tez model se karwao, aur sirf mushkil sawaal frontier model ko bhejo.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Zaroori shabd</h2>
+        <dl class="terms"><div data-read><dt>Trace &amp; spans</dt><dd>Ek user request ka poora record (trace), jismein har LLM, retrieval aur tool step (span) ki latency aur tokens darj hote hain.</dd></div><div data-read><dt>Prompt / prefix caching</dt><dd>Shared static prefix (system prompt + examples) ka KV cache reuse karna taaki kharch aur TTFT dono ghatein.</dd></div><div data-read><dt>Model routing / cascading</dt><dd>Aasaan sawaal chhote saste model ko bhejna aur sirf mushkil sawaal bade frontier model ko dena.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 Example dekho</h2>
+        <div class="code-wrap"><span class="code-lang">text</span><pre><code>Trace tr_9821 (total: 640 ms, $0.0008):
+  ├─ Span 1: Semantic cache check          12 ms  (MISS)
+  ├─ Span 2: Router (small 8B model)       68 ms  → intent = &#39;order_status&#39; (simple)
+  ├─ Span 3: Tool get_order(#A123)         45 ms  → {status: &#39;Out for delivery&#39;}
+  └─ Span 4: Fast model response (prefix cached, TTFT 180 ms, 515 ms total)</code></pre></div>
+        <p class="small muted" data-read>Tracing har step ka waqt dikhata hai, aur routing + prefix caching TTFT aur kharch dono kam rakhte hain.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Aam galtiyaan jinse bachna hai</h2><ul class="deep-mistakes"><li data-read>System prompt ki pehli hi line mein badalta hua timestamp ya user ID daal dena, jisse har request pe prefix cache toot jaata hai!</li><li data-read>Bina tenant_id ya user permissions check kiye semantic cache lagana, jisse ek customer ka cached jawaab galti se doosre ko chala jaaye.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Jaldi se check karo</h2>
+        <p class="quiz-q" data-read data-read-prefix="Jaldi se check karo">Provider ki prompt/prefix caching ka fayda uthaane ke liye aapke static system instructions aur examples prompt mein kahan hone chahiye?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Har request pe randomly ghuma kar">Har request pe randomly ghuma kar</li><li data-read data-read-text="Option B: Bilkul shuru mein (ekdum same prefix), aur user ka badalta hissa aakhir mein">Bilkul shuru mein (ekdum same prefix), aur user ka badalta hissa aakhir mein</li><li data-read data-read-text="Option C: Bilkul aakhir mein, user ke badalte sawaal ke baad">Bilkul aakhir mein, user ke badalte sawaal ke baad</li></ol>
+        <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. Bilkul shuru mein (ekdum same prefix), aur user ka badalta hissa aakhir mein</strong>: KV-cache reuse sirf pehle badalne wale token tak kaam karta hai, isliye static hissa hamesha sabse aage hona chahiye.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Prefix caching aur semantic caching mein kya fark hai?</summary><p data-read>Prefix caching shared prompt ke aage ke hisse ka GPU KV-cache reuse karta hai aur naya jawaab banata hai. Semantic caching user ke sawaal ko embed karta hai aur agar bilkul waisa hi sawaal pehle aa chuka ho, to bina LLM call kiye save kiya hua jawaab de deta hai.</p></details><details class="deep-faq"><summary data-read>LLM latency mein achanak 2× uchaal aaye to kaise debug karein?</summary><p data-read>Apne trace spans ka p95 time dekho: kya retrieval/reranking slow hua, kya prompt badalne se output tokens dugne ho gaye, ya provider ka TTFT gira hai?</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Aapka LLM feature bahut slow aur mehenga hai. Kya karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Pehle naapta hoon tokens aur time kahan ja rahe hain: prompt size, output size, calls ki ginti. Phir main levers: response stream karo taaki user ko turant text dikhe; prompts aur retrieved context chhote karo; repeat sawaalon ke jawaab cache karo aur lambe fixed system prompts ke liye prompt caching; aasaan requests chhote, saste model pe aur sirf mushkil wali bade model pe bhejo; agent steps kam karo; aur background jobs batch karo. Har change ke baad evals dobara chalao, taaki quality na gire.</p><p class="prep-label">✅ </p><ul><li data-read>Pehle naapo: tokens, calls, har step ka time</li><li data-read>Feel hone wali speed ke liye streaming</li><li data-read>Chhota context, caching, routing se chhote models, kam steps</li><li data-read>Har change ke baad evals se quality check</li></ul><p class="prep-check" data-read><strong>:</strong> Cost aur latency ke trade offs 2026 ka bada topic hain.</p></div></details><details class="deep-faq"><summary data-read>LLM applications chalaana classic ML models se kaise alag hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Kai nayi cheezein sambhaalni padti hain. Prompts code hain, to unhe versioning, review aur testing chahiye. Har prompt ya model change pe evaluation suites chalni chahiye, kyunki ek accuracy number nahi hota. Cost per request aur per feature monitor karni padti hai, kyunki tokens ke saath badhti hai. Providers models update karte hain, to versions pin karta hoon aur upgrade se pehle evals dobara chalata hoon. Chain ya agent ke har step ki logging aur tracing debugging ke liye zaroori hai. Aur safety checks: prompt injection, logs mein personal data, aur content filters.</p><p class="prep-label">✅ </p><ul><li data-read>Prompt versioning aur testing</li><li data-read>Release gates ke roop mein eval suites</li><li data-read>Token cost monitoring</li><li data-read>Model version pinning, tracing, safety controls</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 mein interviews mein LLMOps badh raha hai.</p></div></details><details class="deep-faq"><summary data-read>LLM gateway mein distributed tracing, prompt caching, semantic caching aur model routing ek saath kaise kaam karte hain?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Har user request ko ek trace ID milti hai aur query rewriting, retrieval, reranking, LLM calls aur tool calls ke liye child spans, jo exact inputs, outputs, latency, token counts aur cost record karte hain. Gateway mein prompt/prefix caching static system instructions aur few-shot examples ka KV cache requests ke beech dobara use karta hai, jisse input token cost 50–90% ghat jaati hai. Semantic caching query ko embed karke milte-julte repeat FAQs ke liye jaancha hua cached jawaab deta hai (tenant aur permissions ke hisaab se alag). Aakhir mein model router 70–80% simple classification ya FAQ queries ko tez, saste chhote model pe bhejta hai aur sirf mushkil reasoning ko frontier model pe, aur provider 429 ya 503 de to automatic fallback karta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Trace + child spans har step pe latency, tokens, cost aur prompt version pakadte hain</li><li data-read>Prompt/prefix caching static system prompts aur examples ka KV cache dobara use karta hai</li><li data-read>Semantic caching repeat FAQs serve karta hai (tenant/permissions aur freshness se bandha)</li><li data-read>Model routing simple traffic chhote models pe bhejta hai + automatic provider fallbacks</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 ka core LLMOps aur AI Platform architecture sawaal.</p></div></details><details class="deep-faq"><summary data-read>1,000 requests per second pe LLM serve karne wala platform design karo.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Model size, prompt aur output length, aur latency targets clarify karo, khaaskar time to first token. Requests ek gateway se jaati hain jisme authentication, har customer ki rate limits aur routing ho. Uske peeche GPU servers ka pool jo vLLM jaisa inference engine continuous batching aur paged KV cache ke saath chalata hai, queue depth pe autoscale. Repeat prompts ke liye prefix aur response cache, aur simple requests chhote model pe. Har GPU ke tokens per second se capacity estimate karo, peak ke liye headroom rakho, aur zones mein faila do. Time to first token, tokens per second, queue time, errors aur per thousand tokens cost monitor karo, aur naye model versions canaries se rollout.</p><p class="prep-label">✅ </p><ul><li data-read>Sizes aur latency targets clarify</li><li data-read>Gateway: auth, rate limits, routing</li><li data-read>Batching wala inference engine, queue pe autoscaling</li><li data-read>Caching, model routing, capacity planning, monitoring, canaries</li></ul><p class="prep-check" data-read><strong>:</strong> LLM infrastructure system design.</p></div></details><details class="deep-faq"><summary data-read>Kal se aapke AI feature ka response time double ho gaya. Kaise investigate karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Check karo kya badla: deploys, prompt changes, model version change, ya provider ka status issue. Phir traces se dhoondho kaunsa step slow hua: retrieval, LLM call, tool call ya humara code. Agar LLM call hai, to dekho prompts ya outputs lambe hue ya nahi, jaise bada retrieved context ya aisa prompt change jo jawaab lambe karta hai, ya provider ki latency badhi. Agar humara hai, to database queries, cache hit rate aur traffic volume dekho. Wajah theek karo, zaroorat ho to rollback, aur har step pe latency alert jodo taaki agli baar jaldi pakde.</p><p class="prep-label">✅ </p><ul><li data-read>Kya badla? deploys, prompts, models, provider</li><li data-read>Har step ke traces se jagah dhoondho</li><li data-read>Token count badalna common wajah</li><li data-read>Theek ya rollback; har step pe alerts</li></ul><p class="prep-check" data-read><strong>:</strong> AI systems ki systematic debugging.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Har span trace karo, prefix caching ke liye static instructions aage rakho, aasaan kaam chhote models ko do, aur fallback zaroor rakho.</p></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="gpu-serving.html">← LLMs ko efficiently serve karna: GPUs, batching aur cost</a>
+        <a href="llm-tool-use.html">Tool use (function calling): LLM ko action lene dena →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Poora course, aapke roadmap ke hisaab se</h2>
+        <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=llmops-tracing&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=llmops-tracing&amp;lang=hi">MLOps / AI Platform Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=llmops-tracing&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=llmops-tracing&amp;lang=hi">AI Research Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llmops-tracing&amp;lang=hi">AI Forward Deployed Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=llmops-tracing&amp;lang=hi">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=llmops-tracing&amp;lang=hi">Course mein seekho</a>
+      </section>
+    </article>
+  </main>
+  <script src="../../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "hi"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../../for/software-testers-qa.html">QA / testers</a></li><li><a href="../../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../../guide/how-it-works.html">How the consultation works</a></li><li><a href="../../#app">Free AI career consultation</a></li><li><a href="../../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../../interview.html">Interview practice</a></li><li><a href="../../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../../resumes/">ATS resume samples</a></li><li><a href="../../glossary/">AI dictionary (A to Z)</a></li><li><a href="../../kids/">AI for kids (ages 5+)</a></li><li><a href="../../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

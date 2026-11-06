@@ -69,6 +69,21 @@
           "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -183,17 +198,19 @@ print(round(st.stdev(salaries), 1))  # 306.7 ← huge spread</code></pre></div>
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. Median</strong>: Kuch villas mean ko upar kheench dete hain. Median beech wale ghar pe hi rehta hai.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Variance aur standard deviation mein kya fark hai?</summary><p data-read>Standard deviation variance ka square root hai. Yeh data ki units (rupees, seconds) mein hota hai, isliye samajhna aasaan hai.</p></details><details class="deep-faq"><summary data-read>Tech teams p99 latency ki baat kyun karti hain?</summary><p data-read>Kyunki average un slow cases ko chhupa deta hai jo users ko mehsoos hote hain. p99 matlab 99% requests isse tez hain; sabse slow 1% aksar naraaz users ke liye sabse zaroori hote hain.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Asli example ke saath conditional probability aur Bayes&#39; rule samjhao. Base rate itna maayne kyun rakhta hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Conditional probability P(A | B) ka matlab hai A ki sambhavna jab B pehle hi ho chuka ho. Bayes&#39; rule condition ko palat deta hai: P(fraud | flagged) barabar P(flagged | fraud) guna P(fraud) bhaag P(flagged). Base rate P(fraud) bahut maayne rakhta hai. Maan lo 1,000 mein se sirf 1 transaction fraud hai, aur detector fraud aur normal dono pe 99% sahi hai. 1,000,000 mein se 100,000 transactions mein woh 100 asli fraud mein se ~99 pakadta hai, par 99,900 normal mein se 1% ko galat flag bhi karta hai—lagbhag 999 jhoothe alarms. To jab model kisi transaction ko flag kare, uske asli fraud hone ka chance sirf ~9% hota hai.</p><p class="prep-label">✅ </p><ul><li data-read>P(A | B) = B hone pe A ki probability; Bayes P(signal | event) ko P(event | signal) mein palatta hai</li><li data-read>Rare event example se dikhao ki base rate kam hone pe false positives kaise haavi hote hain</li><li data-read>Fraud, medical screening ya moderation mein precision vs recall se seedha jodo</li><li data-read>Normal distributions ke mukaable skewed/long-tailed distributions ka zikr karo</li></ul><p class="prep-check" data-read><strong>:</strong> Classic probability sawaal jo formula ratne walon ko rare events samajhne walon se alag karta hai.</p></div></details><details class="deep-faq"><summary data-read>Naya dataset mila. Use kaise explore karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Shape aur column types se shuru karta hoon, phir pehli kuch rows dekh ke samajhta hoon har column ka matlab kya hai. Phir har column ke missing values, duplicates, aur mean, median, minimum aur maximum jaise basic statistics, jo negative age jaisi namumkin values dikha dete hain. Histograms se distributions aur categories ki ginti plot karta hoon. Phir rishte dekhta hoon: har feature ka target se rishta, aur features ke beech correlations. Hairaan karne wali baatein aur data owner ke liye sawaal likh leta hoon, kyunki kai problems poochh ke hi samajh aati hain.</p><p class="prep-label">✅ </p><ul><li data-read>Shape, types, sample rows</li><li data-read>Missing values, duplicates, summary stats, outliers</li><li data-read>Distributions aur target se rishte</li><li data-read>Data owner ke liye sawaal note karo</li></ul><p class="prep-check" data-read><strong>:</strong> Practical data samajh; freshers se aksar yeh step by step poochha jaata hai.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Outliers hon to median use karo, aur spread bhi hamesha dekho.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="pandas.html">← Pandas: data ki tables ke saath kaam karna</a>
+        <a href="data-quality.html">← Data quality: kharab data jaldi pakadna</a>
         <a href="stats-probability.html">Probability aur distributions →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=stats-center-spread&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=stats-center-spread&amp;lang=hi">ML Engineer</a></p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=stats-center-spread&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=stats-center-spread&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=stats-center-spread&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=stats-center-spread&amp;lang=hi">AI Research Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=stats-center-spread&amp;lang=hi">AI Product Manager</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=stats-center-spread&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

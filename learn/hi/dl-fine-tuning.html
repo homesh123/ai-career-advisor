@@ -62,8 +62,38 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Research Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -178,19 +208,21 @@ model.print_trainable_parameters()
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>B. RAG: sawaal ke time documents retrieve karo</strong>: Fine-tuning style aur skills sikhaata hai. Naye, badalte facts ke liye RAG sasta hai aur up-to-date rehta hai.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Fine tuning kitne ki padti hai?</summary><p data-read>Chhote open model pe LoRA ke saath yeh ek GPU pe kuch ghanton mein ho sakti hai. Hosted fine tuning APIs training token ke hisaab se charge karti hain.</p></details><details class="deep-faq"><summary data-read>QLoRA kya hai?</summary><p data-read>4 bit precision mein stored base model pe LoRA, jo memory kam karta hai taaki bade models chhote GPUs pe fine tune ho sakein.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Prompting, RAG ya fine tuning kab use karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Main cost ke order mein jaata hoon. Pehle prompting: saaf instructions aur examples bahut problems hafton nahi, ghanton mein solve kar dete hain. Agar model ko aisi knowledge chahiye jo uske paas nahi, jaise humari policies ya naya data, to RAG, kyunki update karna aasaan hai aur citations milte hain. Fine tune tab karunga jab problem behaviour ki ho, knowledge ki nahi: bahut specific output style ya format, bahut bade volume pe ek narrow task jahan chhota fine tuned model sasta aur tez ho, ya domain ki bhasha jo model theek se nahi sambhaalta. Aksar best system RAG aur halka fine tuned model milakar banta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Pehle prompting: sabse tez aur sasta</li><li data-read>Knowledge ke liye RAG, khaaskar badalta ya private data</li><li data-read>Behaviour, format, scale pe cost ke liye fine tuning</li><li data-read>Inhe mila bhi sakte hain</li></ul><p class="prep-check" data-read><strong>:</strong> Cost aur fit ki samajh; PMs se bhi poochha jaata hai.</p></div></details><details class="deep-faq"><summary data-read>LoRA kya hai, aur popular kyun hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>LoRA, low rank adaptation, bade model ko fine tune karta hai original weights freeze karke aur kuch weight matrices ke liye ek chhota update seekh ke, jo do patli matrices A aur B ka product hai. Rank chhota hai, to shaayad 1% se bhi kam parameters train hote hain, jisse GPU memory aur storage kaafi kam lagti hai. Ek base model rakh ke alag tasks ke liye chhote LoRA adapters badal sakte ho. QLoRA aur aage jaata hai, base model ko 4 bit precision mein rakh ke, taaki ek GPU pe bade models fine tune ho sakein.</p><p class="prep-label">✅ </p><ul><li data-read>Base weights freeze; low rank update A·B seekho</li><li data-read>Kaafi kam trainable parameters aur memory</li><li data-read>Har task ke liye badalne layak adapters</li><li data-read>QLoRA: quantised base, aur bhi kam memory</li></ul><p class="prep-check" data-read><strong>:</strong> Practical fine tuning ki samajh.</p></div></details><details class="deep-faq"><summary data-read>LLM post-training ke liye SFT, RLHF (PPO) aur DPO ki tulna karo. KL penalty kyun zaroori hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Supervised Fine-Tuning (SFT) base model ko chune hue (prompt, response) demos ki nakal kara ke instructions maan&#39;na sikhata hai. RLHF insaani pasand ke jodon (chosen vs rejected) se aage jaata hai: yeh alag reward model train karta hai aur PPO reinforcement learning se reward badhata hai, saath mein KL-divergence penalty rakhta hai taaki model SFT reference se bahut door na bhatke aur bakwaas ya chaploosi se &#39;reward-hack&#39; na kare. Direct Preference Optimization (DPO) us reward + KL objective ko mathematically seedhe preference pairs pe simple binary cross-entropy loss mein badal deta hai, jisse alag reward model aur unstable PPO loop ki zaroorat nahi rehti. Math ya code jaise verify hone wale kaamon ke liye GRPO/RLVR unit-test rewards pe reasoning chains train karta hai.</p><p class="prep-label">✅ </p><ul><li data-read>SFT demos ki nakal karta hai; RLHF/DPO (prompt, chosen, rejected) pairs se align karte hain</li><li data-read>KL-divergence penalty model ko bhatakne aur reward-hacking se rokti hai</li><li data-read>DPO bina alag reward model ke cross-entropy se seedhe preferences optimise karta hai</li><li data-read>RLVR / GRPO reasoning models ke liye verifiable code ya math rewards use karta hai</li></ul><p class="prep-check" data-read><strong>:</strong> Research, ML aur Agent engineers ke liye 2026 ka core post-training aur alignment sawaal.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Cost ke order mein: prompting → RAG → fine-tuning.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/dpo.html" title="LLMs ko pasand aur na pasand jawaabon ke jodon pe fine tune karne ka tarika, RLHF se simple.">DPO</a></li><li><a class="chip" href="../../glossary/fine-tuning.html" title="Pretrained model ko apne examples pe aage train karke uska behaviour specialise karna.">Fine tuning</a></li><li><a class="chip" href="../../glossary/instruction-tuning.html" title="Base model ko instruction aur jawaab ke examples pe fine tune karna taaki woh requests madadgaar tarike se maane.">Instruction tuning</a></li><li><a class="chip" href="../../glossary/lora.html" title="Sasta fine tuning tarika jo poore model ke bajaye chhote add-on matrices train karta hai.">LoRA</a></li><li><a class="chip" href="../../glossary/quantisation.html" title="Model weights ko kam bits mein rakhna taaki model kam memory le aur tez chale.">Quantisation</a></li><li><a class="chip" href="../../glossary/rlhf.html" title="LLM ko aise jawaab pasand karna sikhaana jinhe log behtar rate karte hain.">RLHF</a></li><li><a class="chip" href="../../glossary/transfer-learning.html" title="Ek task pe trained model se shuru karke use doosre task ke liye adapt karna, taaki kaafi kam data chahiye.">Transfer learning</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="dl-transformers.html">← Transformers aur attention: LLMs kaise padhte hain</a>
-        <a href="research-papers.html">Research papers padhna aur reproduce karna →</a>
+        <a href="rag.html">← RAG: LLM ko aapke documents se jawaab dene dena</a>
+        <a href="dl-alignment-quant.html">Post-training: RLHF, DPO, quantisation aur reasoning models →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-research-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">AI Research Engineer</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=ai-research-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=dl-fine-tuning&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">AI Research Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">AI Forward Deployed Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=dl-fine-tuning&amp;lang=hi">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ml-engineer&amp;lesson=dl-fine-tuning&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

@@ -328,6 +328,96 @@ var LESSON_TOPICS = Object.assign(typeof LESSON_TOPICS !== "undefined" ? LESSON_
       why: ["Users trust what they can verify and control.", "Users us cheez pe bharosa karte hain jise woh verify aur control kar sakein."]
     },
     remember: ["Stream it, source it, let users edit it, and learn from feedback.", "Stream karo, source dikhao, edit karne do, aur feedback se seekho."]
+  },
+
+  "rag-advanced": {
+    icon: "🔎", mins: 8,
+    title: ["Production RAG: chunking, hybrid search, reranking and debugging", "Production RAG: chunking, hybrid search, reranking aur debugging"],
+    analogy: [
+      "Searching a medical textbook by 'meaning' alone is great when someone asks 'how to treat high fever', but terrible when a doctor searches an exact medicine code like 'PCM-650mg'. And if a table of dosages was sliced in half across two pages, neither half makes sense. Production RAG fixes both: it splits documents along real headings and tables (smart chunking), searches by both meaning and exact words (hybrid search), and uses a careful second reader (reranker) to pick the best 5 passages.",
+      "Medical kitab mein sirf 'matlab' se dhoondhna 'tez bukhaar ka ilaaj' jaise sawaal ke liye badhiya hai, par 'PCM-650mg' jaise exact medicine code ke liye bekaar. Aur agar dose ki table beech se do hisson mein kat gayi, to dono adhure hain. Production RAG dono theek karta hai: documents ko headings aur tables ke hisaab se todta hai (smart chunking), matlab aur exact shabd dono se dhoondhta hai (hybrid search), aur ek dhyaan se padhne wale second reader (reranker) se top 5 hisse chunta hai."
+    ],
+    explain: [
+      "Basic RAG demos break in production for three reasons: bad chunking, missed exact terms, and noisy top-k results. First, split by document sections, headings and tables (~300–600 tokens with 10–15% overlap) and attach metadata (title, section, date, permissions) to every chunk. Second, use hybrid search: combine dense vector search (for meaning) with BM25 keyword search (for IDs, product codes and names) using Reciprocal Rank Fusion. Third, fetch the top 30–50 chunks quickly, then pass them through a cross-encoder reranker to keep the best 5. Finally, measure retrieval (Recall@k, MRR) separately from generation (faithfulness, answer relevance) so you always know which half to fix.",
+      "Basic RAG demos production mein teen wajahon se toot-te hain: galat chunking, exact shabd chhootna, aur kachre se bhare top-k results. Pehla, documents ko sections, headings aur tables ke hisaab se todo (~300–600 tokens, 10–15% overlap) aur har chunk pe metadata (title, section, date, permissions) jodo. Doosra, hybrid search lagao: dense vector search (matlab ke liye) aur BM25 keyword search (IDs, codes aur naamo ke liye) ko Reciprocal Rank Fusion se milao. Teesra, jaldi se top 30–50 chunks nikalo, phir cross-encoder reranker se sabse acche 5 chuno. Aakhir mein, retrieval (Recall@k, MRR) ko generation (faithfulness, answer relevance) se alag naapo taaki hamesha pata rahe kaunsa hissa theek karna hai."
+    ],
+    terms: [
+      ["Hybrid search (BM25 + vectors)", "Combining keyword search (for exact terms and codes) with embedding search (for meaning).", "Keyword search (exact shabd aur codes ke liye) ko embedding search (matlab ke liye) ke saath milana."],
+      ["Cross-encoder reranker", "A second-stage model that reads the query and each candidate chunk together to score exact relevance.", "Doosre stage ka model jo sawaal aur candidate chunk ko ek saath padhkar exact relevance score karta hai."],
+      ["Recall@k vs Faithfulness", "Recall@k checks if the right chunk was retrieved in the top k; faithfulness checks if the LLM stuck to those chunks without making things up.", "Recall@k dekhta hai ki sahi chunk top k mein aaya ya nahi; faithfulness dekhta hai ki LLM ne bina man-ghadant baat jode unhi chunks se jawaab diya ya nahi."]
+    ],
+    example: {
+      lang: "text",
+      code: "Query: \"Refund rule for plan PRO-2026 after 14 days?\"\n  1. Metadata filter:  doc_type = 'policy' AND user_role IN allowed_roles\n  2. Hybrid retrieval: BM25 ('PRO-2026') + Vector ('refund after 14 days') → top 40 chunks\n  3. Reranker:         Cross-encoder scores (query, chunk) pairs → top 5 chunks\n  4. Generation:       LLM answers ONLY from top 5 chunks + cites [Policy §4.2]",
+      note: ["Filter permissions first, retrieve broadly with hybrid search, rerank tightly, then generate with citations.", "Pehle permissions filter karo, hybrid search se chauda nikalo, reranker se chhanto, phir citations ke saath jawaab banao."]
+    },
+    quiz: {
+      q: ["Your RAG bot fails whenever users ask about exact error codes like 'ERR_AUTH_409'. What is the highest-impact fix?", "Jab bhi users 'ERR_AUTH_409' jaise exact error codes poochte hain, aapka RAG bot fail ho jaata hai. Sabse asardaar ilaaj kya hai?"],
+      options: [["Increase LLM temperature to 1.0", "LLM ka temperature 1.0 kar do"], ["Add BM25 keyword search alongside vector search (hybrid search) plus a reranker", "Vector search ke saath BM25 keyword search (hybrid search) aur reranker jodo"], ["Delete all error codes from the docs", "Docs se saare error codes hata do"]],
+      answer: 1,
+      why: ["Dense embeddings compress meaning and often blur exact alphanumeric codes; BM25 matches exact tokens while vectors match meaning.", "Dense embeddings matlab compress karte hain aur exact codes bhula dete hain; BM25 exact tokens pakadta hai aur vectors matlab."]
+    },
+    remember: ["Chunk by structure, retrieve with BM25 + vectors, rerank top 50 → top 5, and measure retrieval vs generation separately.", "Structure se chunk karo, BM25 + vectors se dhoondho, top 50 → top 5 rerank karo, aur retrieval va generation alag naapo."]
+  },
+
+  "agent-workflows": {
+    icon: "🕸️", mins: 8,
+    title: ["Reliable agent workflows: state graphs, memory, human-in-the-loop and recovery", "Bharosemand agent workflows: state graphs, memory, human-in-the-loop aur recovery"],
+    analogy: [
+      "A junior intern given a vague instruction 'handle customer complaints' might panic, call the wrong department five times, or promise a ₹50,000 refund. A seasoned operations team uses a clear flowchart: read ticket → look up order → if refund < ₹500 auto-process, else pause for manager approval → send reply. State graphs give AI agents that same reliable flowchart, with checkpoints and human approval gates.",
+      "Agar kisi naye intern ko bas itna bol do ki 'customer complaints sambhal lo', to woh ghabra kar galat department ko paanch baar phone kar sakta hai ya ₹50,000 ka refund de sakta hai. Ek anubhavi team saaf flowchart pe chalti hai: ticket padho → order dekho → agar refund < ₹500 hai to auto-process, warna manager ki manzoori ke liye ruko → jawaab bhejo. State graphs AI agents ko wahi bharosemand flowchart, checkpoints aur human approval gates dete hain."
+    ],
+    explain: [
+      "Open-ended ReAct agent loops are flexible, but in production they can loop forever, forget state on crashes, or call tools with bad arguments. Production teams build explicit state graphs (such as LangGraph): nodes are steps (LLM calls, tool runs, validations) and edges decide where to go next. Keep state in a typed object saved to a database (checkpointing) so an agent can pause for human-in-the-loop approval before a risky action (like issuing a refund or sending an email) and resume hours later. Separate short-term working memory (current task state) from long-term memory (user preferences in a database), cap maximum steps, and validate every tool argument with a strict schema.",
+      "Khule ReAct agent loops lachile hote hain, par production mein woh infinite loop mein phans sakte hain, crash pe state bhool sakte hain, ya galat arguments ke saath tool call kar sakte hain. Production teams saaf state graphs (jaise LangGraph) banati hain: nodes steps hote hain (LLM call, tool run, validation) aur edges tay karte hain aage kahan jaana hai. State ko ek typed object mein database pe save rakho (checkpointing) taaki agent kisi risky kaam (jaise refund dena ya email bhejna) se pehle insaan ki manzoori (human-in-the-loop) ke liye ruk sake aur ghanton baad wahin se aage badhe. Short-term memory (abhi ka task) aur long-term memory (user preferences) alag rakho, max steps ki limit lagao, aur har tool argument ko schema se check karo."
+    ],
+    terms: [
+      ["State graph (LangGraph)", "An explicit graph of nodes and conditional edges that controls how an agent moves from step to step.", "Nodes aur conditional edges ka saaf graph jo control karta hai ki agent ek step se doosre step pe kaise jaaye."],
+      ["Checkpointing", "Saving the agent's state after every step so it can recover from crashes or pause for human approval.", "Har step ke baad agent ki state save karna taaki woh crash se ubhar sake ya insaan ki approval ke liye ruk sake."],
+      ["Router / orchestrator-worker", "A pattern where a small router sends each sub-task to a focused specialist workflow instead of one giant prompt.", "Aisa pattern jahan ek router har sub-task ko ek bade prompt ke bajaye chhote specialist workflow ke paas bhejta hai."]
+    ],
+    example: {
+      lang: "text",
+      code: "Support Agent State Graph (max_steps = 6):\n  [Classify] → [Fetch Order Tool] → [Draft Reply]\n                                         │\n                 ┌───────────────────────┴───────────────────────┐\n          refund <= ₹500                                  refund > ₹500\n                 ▼                                               ▼\n        [Execute Refund]                              [Pause: Human Approval]\n                 └───────────────────────┬───────────────────────┘\n                                         ▼\n                                   [Send Reply]",
+      note: ["Code controls the safety boundaries; the LLM handles classification, tool parameters and drafting.", "Code safety boundaries control karta hai; LLM classification, tool parameters aur drafting sambhalta hai."]
+    },
+    quiz: {
+      q: ["A business workflow always follows the same 4 steps in a fixed order, with one LLM call to extract fields and one to draft a summary. What should you build?", "Ek business workflow hamesha tay order mein wahi 4 steps leta hai, jismein ek LLM call fields nikalta hai aur doosra summary likhta hai. Aapko kya banana chahiye?"],
+      options: [["A fully autonomous multi-agent swarm that debates the task", "Ek poori tarah autonomous multi-agent swarm jo aapas mein behas kare"], ["A model trained from scratch", "Shuru se train kiya hua naya model"], ["A deterministic workflow / state graph that calls the LLM only at the two steps that need it", "Ek deterministic workflow / state graph jo sirf un do steps pe LLM call kare jahan uski zaroorat hai"]],
+      answer: 2,
+      why: ["Fixed workflows are faster, cheaper, predictable and much easier to debug than open-ended autonomous loops.", "Tay workflows khule autonomous loops ke mukaable tez, saste, predictable aur debug karne mein kahin aasaan hote hain."]
+    },
+    remember: ["Use deterministic workflows when steps are known, state graphs when branching is needed, and human approval before irreversible actions.", "Jab steps pata hon to deterministic workflow, branching chahiye to state graph, aur na palatne wale kaam se pehle human approval lagao."]
+  },
+
+  "multimodal-ai": {
+    icon: "🖼️", mins: 7,
+    title: ["Multimodal AI: images, messy PDFs, audio and structured extraction", "Multimodal AI: images, messy PDFs, audio aur structured extraction"],
+    analogy: [
+      "When a bank officer checks a loan application, they don't just read plain text: they look at a photographed PAN card, read a scanned salary slip table, and listen to the customer on a call. Multimodal AI gives software the same ability to read images, scanned PDFs and audio alongside text — and turn them into clean database rows.",
+      "Jab bank officer loan application check karta hai, to woh sirf plain text nahi padhta: woh PAN card ki photo dekhta hai, scan ki hui salary slip ki table padhta hai, aur call pe customer ki baat sunta hai. Multimodal AI software ko text ke saath images, scanned PDFs aur audio samajhne — aur unhe saaf database rows mein badalne — ki taakat deta hai."
+    ],
+    explain: [
+      "Real-world business data is trapped in scanned invoices, photos of receipts, charts inside PDFs, and customer voice calls. Modern vision-language models (VLMs) split an image into patches, turn them into visual tokens, and process them in the same context window as text. For messy PDFs with tables, stamps or handwriting, passing page images (or using a layout-aware parser that preserves tables as Markdown) beats naive plain-text OCR. Pair a vision call with a strict JSON schema (Pydantic) and confidence checks to extract fields like invoice_number, line_items and total_amount. For voice assistants, either chain streaming Speech-to-Text (STT) → LLM → Text-to-Speech (TTS) or use a native speech-to-speech model for sub-second latency.",
+      "Asli duniya ka business data scanned invoices, raseed ki photos, PDFs ke andar bane charts aur customer voice calls mein phansa hota hai. Modern vision-language models (VLMs) image ko chhote patches mein baant-kar visual tokens banate hain aur text ke saath ek hi context window mein padhte hain. Tables, mohar ya handwriting wale messy PDFs ke liye page ki image bhejna (ya layout-aware parser se tables ko Markdown mein rakhna) saade OCR se kahin behtar kaam karta hai. Vision call ke saath strict JSON schema (Pydantic) aur validation checks lagakar invoice_number, line_items aur total_amount jaise fields nikalo. Voice assistants ke liye streaming Speech-to-Text (STT) → LLM → Text-to-Speech (TTS) jodo ya kam latency ke liye native speech model use karo."
+    ],
+    terms: [
+      ["Vision-Language Model (VLM)", "A model that takes both images and text as input tokens and reasons across them together.", "Aisa model jo images aur text dono ko input tokens ki tarah leta hai aur ek saath samajhta hai."],
+      ["Layout-aware parsing", "Extracting text, headings, tables and figures from PDFs while keeping their structure intact.", "PDFs se text, headings, tables aur figures ko unka structure bigaade bina nikalna."],
+      ["STT → LLM → TTS pipeline", "The classic voice AI stack: stream speech to text, stream LLM tokens, and synthesise speech chunk by chunk.", "Voice AI ka classic stack: awaaz ko text mein stream karo, LLM tokens stream karo, aur tukdon mein awaaz banao."]
+    ],
+    example: {
+      lang: "python",
+      code: "# Extract structured invoice data from a page image + validate totals\ninvoice = call_vlm_structured(image_bytes, schema=InvoiceSchema)\n\ncalc_total = sum(item.qty * item.unit_price for item in invoice.items) + invoice.tax\nif abs(calc_total - invoice.total_amount) > 1.0:\n    flag_for_human_review(invoice, reason=\"Line items do not add up to total\")",
+      note: ["Use the VLM to read the messy document, then use deterministic code to verify the maths.", "Messy document padhne ke liye VLM use karo, phir hisaab check karne ke liye deterministic code lagao."]
+    },
+    quiz: {
+      q: ["You are extracting invoice totals from 10,000 scanned PDFs. After the vision LLM returns structured JSON, what is the smartest validation check?", "Aap 10,000 scanned PDFs se invoice totals nikal rahe ho. Vision LLM se structured JSON milne ke baad sabse samajhdaar check kya hai?"],
+      options: [["Check in Python that sum(line_items) + tax == total_amount and route mismatches to human review", "Python mein check karo ki sum(line_items) + tax == total_amount barabar hai, aur farq aane par human review mein bhejo"], ["Trust the LLM 100% because it saw the image", "LLM pe 100% bharosa karo kyunki usne image dekhi hai"], ["Ask the same LLM if it feels confident", "Usi LLM se poocho ki kya use khud pe bharosa hai"]],
+      answer: 0,
+      why: ["Combining probabilistic extraction (VLM) with deterministic business rules (math & format checks) catches almost every extraction error automatically.", "Probabilistic extraction (VLM) ke saath deterministic business rules (maths aur format checks) jodne se lagbhag har galti apne aap pakad mein aa jaati hai."]
+    },
+    remember: ["Preserve layout and tables on PDFs, enforce a JSON schema on extraction, and verify numbers with deterministic code.", "PDFs mein layout aur tables bachao, extraction pe JSON schema lagao, aur numbers ko deterministic code se verify karo."]
   }
 });
 

@@ -62,13 +62,38 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Research Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
         }
       ]
     },
@@ -184,19 +209,21 @@ print(you @ vikas)   # 9  → quite different</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. Similar / pointing the same way</strong>: A large positive dot product means the vectors point in a similar direction, i.e. they&#39;re similar.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How much linear algebra do I need?</summary><p data-read>For most engineering roles: vectors, dot products, matrix multiplication and shapes. Research roles need much more.</p></details><details class="deep-faq"><summary data-read>What is NumPy&#39;s role?</summary><p data-read>NumPy stores vectors and matrices efficiently and does fast maths on them. Pandas and most ML libraries are built on top of it.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What are embeddings, and what are they used for?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>An embedding is a list of numbers that represents the meaning of a piece of text, an image or an item. Things with similar meaning get vectors that are close together. So &quot;how do I reset my password&quot; and &quot;forgot login&quot; end up near each other even though they share no words. We use embeddings for semantic search, RAG, recommendations, clustering and finding duplicates. They&#39;re stored in a vector database, which can quickly find the nearest vectors using cosine similarity.</p><p class="prep-label">✅ </p><ul><li data-read>Numbers that capture meaning; similar meaning = close vectors</li><li data-read>Uses: semantic search, RAG, recommendations, dedup</li><li data-read>Similarity measured with cosine; stored in a vector index</li></ul><p class="prep-check" data-read><strong>:</strong> Core building block for any LLM role.</p></div></details><details class="deep-faq"><summary data-read>Why is NumPy vectorisation so much faster than Python loops, and what is broadcasting?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>In a Python loop, the interpreter checks types and dispatches operations element by element, which has huge overhead. A NumPy array stores numbers of one fixed type in a contiguous block of memory, so vectorised operations like a * b or X @ W run in compiled C and SIMD instructions across the whole array at once, often 50 to 100 times faster. Broadcasting lets NumPy do arithmetic on arrays of different shapes without copying data by stretching dimensions of size 1, such as subtracting a 1D column mean (1, d) from every row of a 2D matrix (n, d).</p><p class="prep-label">✅ </p><ul><li data-read>Contiguous typed memory + C/SIMD loops vs Python interpreter overhead</li><li data-read>Matrix multiplication (@), reductions with axis, and checking .shape</li><li data-read>Broadcasting stretches dimensions of size 1 without copying memory</li><li data-read>Watch out for unintentional (n, 1) + (1, n) creating an (n, n) matrix</li></ul><p class="prep-check" data-read><strong>:</strong> Foundation for ML coding rounds in NumPy and PyTorch.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Everything in AI becomes vectors, and similarity is just vector maths.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/cosine-similarity.html" title="A measure of how similar two vectors point, used to compare the meaning of embeddings.">Cosine similarity</a></li><li><a class="chip" href="../glossary/embedding.html" title="A list of numbers that captures the meaning of text, images or items, so similar meanings are close together.">Embedding</a></li><li><a class="chip" href="../glossary/vector.html" title="An ordered list of numbers; in AI, a way to represent anything (a house, a word, an image) as numbers.">Vector</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-trees.html">← Decision trees, random forests and boosting</a>
+        <a href="sql-window-cte.html">← Advanced SQL: CTEs, subqueries and window functions</a>
         <a href="math-gradients.html">Gradients and gradient descent: how models improve →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ml-engineer&amp;lesson=math-vectors">ML Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=math-vectors">AI Research Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=math-vectors">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=math-vectors">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=math-vectors">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=math-vectors">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=math-vectors">AI Product Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=math-vectors">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=math-vectors">AI Research Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=math-vectors">AI Forward Deployed Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=math-vectors">Continue in the course</a>
       </section>
     </article>
   </main>

@@ -4,84 +4,84 @@
 const LEARN_TRACKS = {
   "ai-fresher": [
     [0, ["what-is-ai"]],
-    [1, ["py-basics", "py-logic", "py-collections"]],
-    [2, ["git-github", "pandas"]],
-    [3, ["stats-center-spread", "stats-probability", "stats-correlation"]],
-    [4, ["sql-basics", "sql-joins"]],
-    [5, ["ml-how-machines-learn", "ml-regression-classification", "ml-train-test", "ml-metrics"]],
-    [6, ["llm-what", "llm-prompting", "llm-api"]],
+    [1, ["py-basics", "py-logic", "py-collections", "py-files-errors", "py-async-typing"]],
+    [2, ["git-github", "numpy-arrays", "pandas", "data-quality"]],
+    [3, ["stats-center-spread", "stats-probability", "stats-correlation", "ab-testing"]],
+    [4, ["sql-basics", "sql-joins", "sql-window-cte"]],
+    [5, ["math-vectors", "math-gradients", "ml-how-machines-learn", "ml-regression-classification", "ml-train-test", "ml-metrics", "ml-features", "ml-trees", "ml-unsupervised", "ml-training-vs-inference", "mlops-monitoring"]],
+    [6, ["llm-what", "llm-prompting", "llm-api", "embeddings", "rag", "multimodal-ai", "llm-evals", "llm-safety", "ai-ux"]],
     [7, ["portfolio"]],
-    [8, ["job-search"]]
+    [8, ["stakeholder-communication", "job-search"]]
   ],
   "ml-engineer": [
     [0, ["what-is-ai"]],
-    [1, ["pandas", "stats-center-spread", "stats-probability", "stats-correlation"]],
-    [2, ["ml-how-machines-learn", "ml-regression-classification", "ml-train-test", "ml-metrics", "ml-features", "ml-trees"]],
-    [3, ["math-vectors", "math-gradients", "dl-neural-networks", "dl-transformers"]],
-    [4, ["ml-training-vs-inference", "api-serving", "docker"]],
-    [5, ["mlops-tracking", "mlops-monitoring"]],
+    [1, ["py-collections", "py-files-errors", "git-github", "numpy-arrays", "pandas", "sql-basics", "sql-joins", "sql-window-cte", "stats-center-spread", "stats-probability", "stats-correlation", "ab-testing"]],
+    [2, ["ml-how-machines-learn", "ml-regression-classification", "ml-train-test", "ml-metrics", "ml-features", "ml-trees", "ml-unsupervised", "data-quality"]],
+    [3, ["math-vectors", "math-gradients", "dl-neural-networks", "dl-pytorch-training", "dl-transformers", "llm-what", "llm-prompting", "embeddings", "rag", "dl-fine-tuning", "dl-alignment-quant", "llm-evals", "llm-safety", "research-papers"]],
+    [4, ["ml-training-vs-inference", "feature-stores", "api-serving", "docker", "kubernetes", "gpu-serving", "streaming", "build-vs-buy"]],
+    [5, ["mlops-tracking", "mlops-monitoring", "ml-system-design"]],
     [6, ["portfolio"]],
-    [7, ["job-search"]]
+    [7, ["stakeholder-communication", "job-search"]]
   ],
   "data-engineer-ai": [
     [0, ["what-is-ai"]],
-    [1, ["sql-basics", "sql-joins", "data-modeling"]],
-    [2, ["pandas", "data-pipelines"]],
-    [3, ["ml-how-machines-learn", "ml-features", "data-quality"]],
-    [4, ["embeddings", "rag"]],
+    [1, ["sql-basics", "sql-joins", "sql-window-cte", "data-modeling", "stats-center-spread", "stats-probability", "stats-correlation", "ab-testing"]],
+    [2, ["py-logic", "py-collections", "py-files-errors", "git-github", "numpy-arrays", "pandas", "data-pipelines", "docker"]],
+    [3, ["ml-how-machines-learn", "ml-regression-classification", "ml-train-test", "ml-metrics", "ml-features", "ml-trees", "ml-unsupervised", "data-quality", "ml-training-vs-inference", "feature-stores", "mlops-monitoring", "ml-system-design"]],
+    [4, ["math-vectors", "llm-what", "llm-api", "embeddings", "rag", "rag-advanced", "dl-fine-tuning", "build-vs-buy", "llm-evals", "llm-safety", "security-compliance"]],
     [5, ["streaming", "portfolio"]],
-    [6, ["job-search"]]
+    [6, ["stakeholder-communication", "job-search"]]
   ],
   "ai-product-engineer": [
     [0, ["what-is-ai"]],
-    [1, ["llm-what", "llm-prompting", "llm-api"]],
-    [2, ["py-basics", "py-logic", "py-collections", "api-serving"]],
-    [3, ["embeddings", "rag"]],
-    [4, ["llm-evals", "llm-safety", "ai-ux"]],
-    [5, ["llm-tool-use", "portfolio"]],
-    [6, ["job-search"]]
+    [1, ["llm-what", "llm-prompting", "llm-api", "multimodal-ai", "no-code-prototyping", "build-vs-buy"]],
+    [2, ["py-basics", "py-logic", "py-collections", "py-files-errors", "py-async-typing", "git-github", "api-serving", "docker", "kubernetes"]],
+    [3, ["math-vectors", "embeddings", "rag", "rag-advanced", "dl-fine-tuning"]],
+    [4, ["ml-train-test", "llm-evals", "llm-safety", "security-compliance", "ai-ux", "ab-testing", "problem-framing", "ai-prd", "ml-training-vs-inference", "mlops-tracking", "mlops-monitoring", "gpu-serving", "llmops-tracing"]],
+    [5, ["llm-tool-use", "llm-agents", "agent-workflows", "llm-mcp", "portfolio"]],
+    [6, ["stakeholder-communication", "job-search"]]
   ],
   "mlops-engineer": [
     [0, ["what-is-ai"]],
-    [1, ["ml-how-machines-learn", "ml-train-test", "ml-training-vs-inference"]],
-    [2, ["py-basics", "py-logic"]],
-    [3, ["api-serving", "docker", "gpu-serving"]],
-    [4, ["kubernetes"]],
-    [5, ["mlops-tracking", "mlops-monitoring"]],
-    [6, ["portfolio", "job-search"]]
+    [1, ["ml-how-machines-learn", "ml-train-test", "ml-metrics", "ml-features", "ml-training-vs-inference", "feature-stores", "data-quality", "math-gradients", "dl-neural-networks", "dl-pytorch-training", "dl-transformers", "dl-alignment-quant"]],
+    [2, ["py-basics", "py-logic", "py-collections", "py-files-errors", "py-async-typing", "git-github"]],
+    [3, ["llm-what", "llm-api", "api-serving", "docker", "gpu-serving", "build-vs-buy"]],
+    [4, ["kubernetes", "streaming"]],
+    [5, ["mlops-tracking", "mlops-monitoring", "llmops-tracing", "llm-evals", "llm-safety", "security-compliance", "ab-testing", "ml-system-design"]],
+    [6, ["portfolio", "stakeholder-communication", "job-search"]]
   ],
   "llm-agent-engineer": [
     [0, ["what-is-ai"]],
-    [1, ["llm-what", "llm-prompting", "llm-api", "llm-tool-use"]],
-    [2, ["py-basics", "py-logic", "py-collections", "api-serving"]],
-    [3, ["llm-agents", "llm-mcp"]],
-    [4, ["embeddings", "rag", "portfolio"]],
-    [5, ["llm-evals", "llm-safety"]],
-    [6, ["job-search"]]
+    [1, ["llm-what", "llm-prompting", "llm-api", "llm-tool-use", "multimodal-ai", "build-vs-buy"]],
+    [2, ["py-basics", "py-logic", "py-collections", "py-files-errors", "py-async-typing", "git-github", "api-serving", "data-pipelines"]],
+    [3, ["llm-agents", "agent-workflows", "llm-mcp"]],
+    [4, ["math-vectors", "dl-transformers", "embeddings", "rag", "rag-advanced", "dl-fine-tuning", "dl-alignment-quant", "ai-ux", "problem-framing", "portfolio"]],
+    [5, ["ml-train-test", "llm-evals", "llm-safety", "security-compliance", "mlops-monitoring", "gpu-serving", "llmops-tracing"]],
+    [6, ["stakeholder-communication", "job-search"]]
   ],
   "ai-research-engineer": [
     [0, ["what-is-ai"]],
-    [1, ["math-vectors", "math-gradients", "stats-probability"]],
-    [2, ["ml-train-test", "ml-metrics", "dl-neural-networks", "dl-transformers"]],
-    [3, ["dl-fine-tuning"]],
+    [1, ["py-collections", "py-files-errors", "git-github", "numpy-arrays", "pandas", "math-vectors", "math-gradients", "stats-center-spread", "stats-probability", "stats-correlation", "ab-testing"]],
+    [2, ["ml-how-machines-learn", "ml-regression-classification", "ml-train-test", "ml-metrics", "ml-features", "ml-unsupervised", "dl-neural-networks", "dl-pytorch-training", "dl-transformers", "ml-system-design"]],
+    [3, ["dl-fine-tuning", "dl-alignment-quant", "gpu-serving", "llmops-tracing", "kubernetes", "mlops-tracking", "mlops-monitoring", "llm-evals", "llm-safety"]],
     [4, ["research-papers", "portfolio"]],
-    [5, ["job-search"]]
+    [5, ["stakeholder-communication", "job-search"]]
   ],
   "ai-forward-deployed-engineer": [
     [0, ["what-is-ai"]],
-    [1, ["llm-what", "llm-prompting", "llm-api", "embeddings", "rag", "llm-tool-use"]],
-    [2, ["py-basics", "py-logic", "py-collections", "api-serving"]],
-    [3, ["security-compliance", "llm-safety"]],
-    [4, ["problem-framing", "stakeholder-communication"]],
-    [5, ["llm-evals", "portfolio"]],
+    [1, ["llm-what", "llm-prompting", "llm-api", "math-vectors", "embeddings", "rag", "rag-advanced", "dl-fine-tuning", "llm-tool-use", "llm-agents", "agent-workflows", "llm-mcp", "multimodal-ai"]],
+    [2, ["py-basics", "py-logic", "py-collections", "py-files-errors", "py-async-typing", "git-github", "api-serving", "gpu-serving", "llmops-tracing"]],
+    [3, ["security-compliance", "llm-safety", "build-vs-buy"]],
+    [4, ["problem-framing", "no-code-prototyping", "ai-prd", "ai-ux", "stakeholder-communication"]],
+    [5, ["ml-how-machines-learn", "ml-train-test", "ml-metrics", "llm-evals", "portfolio"]],
     [6, ["job-search"]]
   ],
   "ai-product-manager": [
     [0, ["what-is-ai"]],
-    [1, ["llm-what", "ml-how-machines-learn", "build-vs-buy"]],
-    [2, ["llm-prompting", "no-code-prototyping"]],
-    [3, ["sql-basics", "ml-metrics", "ab-testing"]],
-    [4, ["problem-framing", "ai-prd", "llm-evals", "llm-safety"]],
+    [1, ["ml-how-machines-learn", "ml-regression-classification", "llm-what", "llm-api", "embeddings", "rag", "dl-fine-tuning", "llm-agents", "multimodal-ai", "build-vs-buy"]],
+    [2, ["llm-prompting", "no-code-prototyping", "py-async-typing", "ai-ux"]],
+    [3, ["sql-basics", "sql-joins", "sql-window-cte", "data-modeling", "stats-center-spread", "stats-probability", "stats-correlation", "ml-train-test", "ml-metrics", "ab-testing"]],
+    [4, ["problem-framing", "ai-prd", "llm-evals", "llm-safety", "security-compliance", "gpu-serving", "llmops-tracing"]],
     [5, ["portfolio"]],
     [6, ["stakeholder-communication", "job-search"]]
   ]
@@ -189,7 +189,9 @@ const LEARN_I18N = {
     markPrepared: "I can answer this ✓", unmarkPrepared: "Mark as not ready", expandAll: "Open all answers", collapseAll: "Close all", onlyLeft: "Only show questions I haven't prepared", sayAloud: "Tip: answer out loud before you open it. Saying it is the real practice.",
     resumeBuilder: "Resume builder", resumeBuilderBlurb: "Upload your resume or start from the sample, add this role's skills, pick a template and download PDF or Word.",
     extraLesson: "Extra lesson (from another course)", backTo: "Back", scoredPractice: "Scored interview practice", allDoneTitle: "You've covered everything for this role",
-    allDoneText: "Lessons, practice tasks, interview prep, scored practice and your resume. Keep revising the questions you marked as not ready, and apply with confidence."
+    allDoneText: "Lessons, practice tasks, interview prep, scored practice and your resume. Keep revising the questions you marked as not ready, and apply with confidence.",
+    askedInInterviews: "Asked in interviews on this topic",
+    askedInInterviewsSub: "Try answering out loud first, then open the model answer."
   },
   hi: {
     langName: "Hinglish",
@@ -291,7 +293,9 @@ const LEARN_I18N = {
     markPrepared: "Yeh mujhe aata hai ✓", unmarkPrepared: "Abhi taiyaar nahi", expandAll: "Saare jawaab kholo", collapseAll: "Sab band karo", onlyLeft: "Sirf woh sawaal dikhao jo abhi taiyaar nahi", sayAloud: "Tip: kholne se pehle bolkar jawaab do. Bolna hi asli practice hai.",
     resumeBuilder: "Resume banao", resumeBuilderBlurb: "Apna resume upload karo ya sample se shuru karo, is role ke skills add karo, template chuno aur PDF ya Word download karo.",
     extraLesson: "Extra lesson (doosre course se)", backTo: "Peeche", scoredPractice: "Interview practice (score ke saath)", allDoneTitle: "Is role ke liye aapne sab cover kar liya",
-    allDoneText: "Lessons, practice tasks, interview prep, scored practice aur aapka resume. Jo sawaal abhi taiyaar nahi, unhe revise karte raho, aur confidence se apply karo."
+    allDoneText: "Lessons, practice tasks, interview prep, scored practice aur aapka resume. Jo sawaal abhi taiyaar nahi, unhe revise karte raho, aur confidence se apply karo.",
+    askedInInterviews: "Is topic pe interviews mein poochhe jaane wale sawaal",
+    askedInInterviewsSub: "Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo."
   }
 };
 

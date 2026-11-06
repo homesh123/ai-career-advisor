@@ -62,8 +62,23 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
         },
         {
           "@type": "Course",
@@ -181,19 +196,21 @@ Inference (24×7):    UPI payment → API loads v12 → P(fraud)=0.03 → approv
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. Batch inference</strong>: Yeh prediction (inference) hai jo schedule pe bahut saare items pe hota hai, yaani batch.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kya zyaada mehenga hai, training ya inference?</summary><p data-read>Zyaadatar companies ke liye inference, kyunki yeh har user ke liye lagaataar chalta hai. LLMs mein jab tak apna model train na karo, inference ka bill hi main hota hai.</p></details><details class="deep-faq"><summary data-read>Kya model use hote hue seekhta rehta hai?</summary><p data-read>Aam taur pe nahi. Retrain karne tak woh fixed rehta hai. Online learning hoti hai par kam aur zyaada risky.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Model train ho gaya. Ise production mein kaise le jaoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Pehle model ko uske preprocessing ke saath ek pipeline ke roop mein, version number ke saath model registry mein save karo. Phir use API mein wrap karo, jaise FastAPI, input validation ke saath. Docker image mein pack karo aur load balancer ke peeche deploy karo, Kubernetes ya managed service pe. Poore rollout se pehle shadow mode ya chhote traffic pe canary chalao. Phir latency, errors, input drift aur business metric monitor karo, aur pichhle version pe aasaani se rollback ka raasta rakho.</p><p class="prep-label">✅ </p><ul><li data-read>Model aur preprocessing saath, versioned</li><li data-read>Validation wali API; containerise karo</li><li data-read>Dheere rollout: shadow ya canary</li><li data-read>Monitoring aur rollback</li></ul><p class="prep-check" data-read><strong>:</strong> Kya aap notebook se aage sochte ho?</p></div></details><details class="deep-faq"><summary data-read>Training serving skew kya hai, aur ise kaise rokte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Jab production mein model ko jo data milta hai woh training wale data se alag tarah se banta hai, aur model chupke se kharab perform karta hai. Jaise training mein &quot;average spend&quot; SQL mein 30 din pe nikala, par live service Python mein 7 din pe nikaal rahi hai. Bachaav: training aur serving dono ke liye ek shared feature pipeline ya feature store, prediction ke time features log karke training data se compare karna, aur aise tests jo same input dono raaston se chalaayein.</p><p class="prep-label">✅ </p><ul><li data-read>Definition aur concrete example</li><li data-read>Wajah: features ke do alag code paths</li><li data-read>Fix: shared pipeline ya feature store, logging, comparison tests</li></ul><p class="prep-check" data-read><strong>:</strong> Production ML ki maturity.</p></div></details><details class="deep-faq"><summary data-read>Feature store kaise kaam karta hai, aur point-in-time (ASOF) join kya hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Feature store ek feature ko ek baar define karta hai aur use do storage layers mein rakhta hai: bade historical training sets ke liye offline store (Parquet/Delta/warehouse), aur live inference ke waqt kuch milliseconds mein lookup ke liye online key-value store (jaise Redis ya DynamoDB). Historical training data banate waqt user_id pe sadharan join bhavishya leak kar deta hai kyunki woh chhe mahine pehle hue event ke liye aaj ki feature values kheench laata hai. Point-in-time ya ASOF join timestamp T wale har historical label ko T pe ya usse pehle record hui sabse nayi feature value se milata hai, jisse zero time-travel leakage ki guarantee milti hai.</p><p class="prep-label">✅ </p><ul><li data-read>Ek feature definition → offline store (training batches) + online KV store (low-latency serving)</li><li data-read>SQL aur Python paths ke beech training–serving skew khatam karta hai</li><li data-read>Point-in-time (ASOF) join T wale har label ko &lt;= T ke features se milata hai</li><li data-read>Labeling ke liye: weak/LLM pre-labels ko human verification aur inter-annotator agreement se jodo</li></ul><p class="prep-check" data-read><strong>:</strong> AI Data Engineers, ML Engineers aur MLOps Engineers ke liye high-signal sawaal.</p></div></details><details class="deep-faq"><summary data-read>Machine learning project mein shuru se aakhir tak kaunse steps follow karte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Ek, jinhe zaroorat hai unke saath problem aur success metric samjho. Do, data ikattha karo aur explore karo: size, missing values, distributions aur saaf galtiyaan. Teen, data saaf karo aur features banao. Chaar, training, validation aur test sets mein baanto. Paanch, simple baseline train karo, phir behtar models, validation data pe compare karte hue. Chhe, final model ko test set pe ek baar evaluate karo aur uski galtiyaan dekho. Saat, deploy karo, jaise API ya Streamlit app. Aath, monitor karo aur data badle to retrain karo.</p><p class="prep-label">✅ </p><ul><li data-read>Pehle problem aur metric</li><li data-read>Data exploration aur cleaning</li><li data-read>Baseline, phir validation pe sudhaar</li><li data-read>Test ek baar, deploy, monitor</li></ul><p class="prep-check" data-read><strong>:</strong> Kya aap poora life cycle dekhte ho, sirf model.fit() nahi?</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Training model banata hai. Inference use serve karta hai: fast, sasta aur reliable.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/batch-inference.html" title="Ek ek request ke bajaye schedule pe bahut saare records pe ek saath model chalana.">Batch inference</a></li><li><a class="chip" href="../../glossary/deployment.html" title="Model ko asli use ke liye available karna, aam taur pe API ya scheduled job ke roop mein.">Deployment</a></li><li><a class="chip" href="../../glossary/feature-store.html" title="Shared system jo training aur live predictions dono ke liye taiyaar features rakhta hai.">Feature store</a></li><li><a class="chip" href="../../glossary/inference.html" title="Trained model se naye data pe predictions karna.">Inference</a></li><li><a class="chip" href="../../glossary/training.html" title="Woh process jisme model data se apne parameters seekhta hai.">Training</a></li><li><a class="chip" href="../../glossary/training-serving-skew.html" title="Jab training aur production mein features alag tarah se bante hain, aur model chupke se kharab hota hai.">Training serving skew</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="dl-transformers.html">← Transformers aur attention: LLMs kaise padhte hain</a>
-        <a href="api-serving.html">Model ko FastAPI se API ke roop mein serve karna →</a>
+        <a href="ml-unsupervised.html">← Unsupervised learning: clustering, PCA aur anomaly detection</a>
+        <a href="mlops-monitoring.html">Models ki monitoring: drift aur chupke se hone wale failures →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=ml-training-vs-inference&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=ml-training-vs-inference&amp;lang=hi">MLOps / AI Platform Engineer</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=ml-engineer&amp;lesson=ml-training-vs-inference&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=ml-training-vs-inference&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=ml-training-vs-inference&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=ml-training-vs-inference&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=ml-training-vs-inference&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=ml-training-vs-inference&amp;lang=hi">MLOps / AI Platform Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=ml-training-vs-inference&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

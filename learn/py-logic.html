@@ -67,6 +67,11 @@
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
         },
@@ -202,6 +207,8 @@ for o in orders:
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>C. A function inside a loop</strong>: Write the rule once as a function, then loop over the orders and call it for each one.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>When should I use for vs while?</summary><p data-read>Use for when you know what to go through (a list, a range). Use while when you repeat until a condition changes and don&#39;t know how many times.</p></details><details class="deep-faq"><summary data-read>How big should a function be?</summary><p data-read>Small enough to describe in one sentence. If you need &#39;and&#39; twice to describe it, split it into two functions.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What is a generator in Python, and why is it useful for large files?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>A generator produces values one at a time, only when asked, using yield, instead of building the whole list in memory. If I need to process a 20 GB log file, reading it into a list would crash the machine. With a generator, I read and process one line at a time, so memory stays small. Generators are also great for streaming LLM responses and for pipelines where each step pulls from the previous one.</p><p class="prep-label">✅ </p><ul><li data-read>Lazy: yields one item at a time</li><li data-read>Constant memory for huge data</li><li data-read>Examples: reading big files, streaming, batching</li></ul><p class="prep-check" data-read><strong>:</strong> Whether you can write code that works at real data sizes.</p></div></details><details class="deep-faq"><summary data-read>How do you safely read files, call an external API and handle rate limits or network errors in Python?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>For files, I always use a with open(..., encoding=&#39;utf-8&#39;) block so the file closes automatically even if an exception happens, and I stream large datasets with JSON Lines (.jsonl) one line at a time. For API calls, I always pass an explicit timeout so a hung server never freezes my worker, check the HTTP status code, and catch specific exceptions like TimeoutError or HTTPError rather than a bare except. When an LLM API returns 429 (rate limit) or 503, I retry a few times with exponential backoff and random jitter so all workers don&#39;t retry at the exact same second.</p><p class="prep-label">✅ </p><ul><li data-read>Use with context managers for files and .jsonl for large data</li><li data-read>Always set an explicit timeout on HTTP / LLM API calls</li><li data-read>Catch specific exceptions, never bare except</li><li data-read>Retry 429 / 5xx errors with exponential backoff and jitter</li></ul><p class="prep-check" data-read><strong>:</strong> Every AI engineer calls APIs and reads files daily; interviewers look for production habits.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>if = decide, loop = repeat, function = reuse.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
@@ -212,7 +219,7 @@ for o in orders:
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=py-logic">AI Foundations Path</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=py-logic">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=py-logic">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=py-logic">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-logic">AI Forward Deployed Engineer</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=py-logic">AI Foundations Path</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=py-logic">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=py-logic">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=py-logic">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=py-logic">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-logic">AI Forward Deployed Engineer</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=py-logic">Continue in the course</a>
       </section>
     </article>

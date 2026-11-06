@@ -87,3 +87,25 @@ test("read aloud: every static lesson page has the Listen bar and readable secti
     }
   }
 });
+
+test("every role track covers all lessons tested in its interview prep, practice quiz, and tasks", () => {
+  const { INTERVIEW_PREP } = require("../content/interview-prep.js");
+  const { INTERVIEW } = require("../content/interview.js");
+  const { ROLE_TASKS } = require("../content/tasks.js");
+  for (const [roleId, steps] of Object.entries(LEARN_TRACKS)) {
+    const taught = new Set(steps.flatMap(([, ids]) => ids));
+    INTERVIEW_PREP.forRole(roleId).forEach(q => {
+      q.topics.forEach(t => assert.ok(taught.has(t), `${roleId} interview prep ${q.id} tests ${t} which is not in LEARN_TRACKS[${roleId}]`));
+    });
+    INTERVIEW.questions.filter(q => q.roles.includes(roleId)).forEach(q => {
+      q.topics.forEach(t => assert.ok(taught.has(t), `${roleId} interview quiz ${q.id} tests ${t} which is not in LEARN_TRACKS[${roleId}]`));
+    });
+    (ROLE_TASKS[roleId] || []).forEach(task => {
+      task.topics.forEach(t => assert.ok(taught.has(t), `${roleId} task ${task.id} requires ${t} which is not in LEARN_TRACKS[${roleId}]`));
+    });
+  }
+  for (const id of Object.keys(LESSON_TOPICS)) {
+    if (id === "what-is-ai") continue;
+    assert.ok(INTERVIEW_PREP.questions.some(q => q.topics.includes(id)), `lesson ${id} should be linked to at least one INTERVIEW_PREP question`);
+  }
+});

@@ -67,6 +67,11 @@
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
         },
@@ -202,6 +207,8 @@ for o in orders:
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>C. Loop ke andar function</strong>: Rule ko ek baar function mein likho, phir orders pe loop chala kar har ek ke liye call karo.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>for aur while mein kab kaunsa?</summary><p data-read>for tab jab pata ho kis cheez pe chalna hai (list, range). while tab jab condition badalne tak repeat karna ho aur pata na ho kitni baar.</p></details><details class="deep-faq"><summary data-read>Function kitna bada hona chahiye?</summary><p data-read>Itna chhota ki ek sentence mein samjha sako. Agar describe karne mein do baar &#39;aur&#39; lagana pade, to do functions mein tod do.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Python mein generator kya hai, aur badi files ke liye kyun useful hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Generator values ek ek karke, jab maangi jaayein tab deta hai, yield se, poori list memory mein banaane ke bajaye. Agar 20 GB ki log file process karni hai, to use list mein padhne se machine crash ho jaayegi. Generator se ek line padho aur process karo, to memory chhoti rehti hai. Generators LLM responses stream karne aur pipelines ke liye bhi badhiya hain jahan har step pichhle se data kheenchta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Lazy: ek baar mein ek item yield karta hai</li><li data-read>Bade data ke liye constant memory</li><li data-read>Examples: badi files padhna, streaming, batching</li></ul><p class="prep-check" data-read><strong>:</strong> Kya aap asli data size pe chalne wala code likh sakte ho.</p></div></details><details class="deep-faq"><summary data-read>Python mein files safely kaise padhte ho, external API kaise call karte ho, aur rate limits ya network errors kaise sambhaalte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Files ke liye main hamesha with open(..., encoding=&#39;utf-8&#39;) block use karta hoon taaki exception aane pe bhi file apne aap band ho, aur bade datasets ko JSON Lines (.jsonl) se ek baar mein ek line stream karta hoon. API calls ke liye main hamesha explicit timeout deta hoon taaki atka hua server mere worker ko freeze na kare, HTTP status code check karta hoon, aur khaali except ke bajaye TimeoutError ya HTTPError jaise specific exceptions pakadta hoon. Jab LLM API 429 (rate limit) ya 503 de, to main exponential backoff aur random jitter ke saath kuch baar retry karta hoon taaki saare workers ek hi second pe retry na maarein.</p><p class="prep-label">✅ </p><ul><li data-read>Files ke liye with context manager aur bade data ke liye .jsonl use karo</li><li data-read>HTTP / LLM API calls pe hamesha explicit timeout lagao</li><li data-read>Khaali except nahi, specific exceptions pakdo</li><li data-read>429 / 5xx errors ko exponential backoff aur jitter ke saath retry karo</li></ul><p class="prep-check" data-read><strong>:</strong> Har AI engineer roz APIs call karta hai aur files padhta hai; interviewers production aadatein dekhte hain.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>if = decide karo, loop = repeat karo, function = reuse karo.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
@@ -212,7 +219,7 @@ for o in orders:
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=py-logic&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=py-logic&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=py-logic&amp;lang=hi">MLOps / AI Platform Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=py-logic&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-logic&amp;lang=hi">AI Forward Deployed Engineer</a></p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=py-logic&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=py-logic&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-engineer&amp;lesson=py-logic&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=mlops-engineer&amp;lesson=py-logic&amp;lang=hi">MLOps / AI Platform Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=py-logic&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-logic&amp;lang=hi">AI Forward Deployed Engineer</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=py-logic&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

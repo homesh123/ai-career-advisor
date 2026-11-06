@@ -62,6 +62,11 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Research Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
         }
@@ -177,19 +182,21 @@ Share:            repo + README: &#39;their result vs mine, and why&#39;</code><
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. The abstract, figures and conclusion</strong>: A quick first pass tells you whether the paper is worth a deep read.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Where do I find good papers?</summary><p data-read>arXiv for preprints, conference proceedings (NeurIPS, ICML, ACL), and curated lists or newsletters that summarise important work.</p></details><details class="deep-faq"><summary data-read>The maths is too hard. What do I do?</summary><p data-read>Skip it on the first pass, understand the idea from figures and code, then return to the equations one at a time with a notebook.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How do you reproduce a paper, and what do you do when your results don&#39;t match?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I read the paper for its core claim and the exact setup: data, preprocessing, model size, hyperparameters and evaluation. If code exists, I run it first to get a reference. Then I implement step by step, testing each part on tiny data, and match the simplest experiment before the full one. If results don&#39;t match, I check the usual suspects: evaluation differences, data preprocessing, random seeds and variance across runs, learning rate schedule, and details hidden in the appendix. I log every experiment, and if a gap remains, I write it up honestly; that&#39;s useful research too.</p><p class="prep-label">✅ </p><ul><li data-read>Identify the claim and exact setup</li><li data-read>Start from tiny, verifiable steps</li><li data-read>Debug the usual suspects; run several seeds</li><li data-read>Track experiments and report gaps honestly</li></ul><p class="prep-check" data-read><strong>:</strong> Research discipline and honesty.</p></div></details><details class="deep-faq"><summary data-read>What is an ablation study and why does it matter?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>An ablation study removes or changes one part of a system at a time to see how much each part contributes. If my new model has three changes and improves accuracy by 4 points, ablations tell me whether all three matter or one change does all the work. It matters because it turns &quot;it works&quot; into &quot;we know why it works&quot;, prevents unnecessary complexity, and is expected in any credible paper. Good ablations change one thing at a time and use several random seeds, so differences aren&#39;t just noise.</p><p class="prep-label">✅ </p><ul><li data-read>Remove one component at a time</li><li data-read>Attribute gains to specific changes</li><li data-read>One change at a time, multiple seeds</li></ul><p class="prep-check" data-read><strong>:</strong> Experimental design thinking.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Skim first, then go deep, then reproduce. Reproduction is proof.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/ablation-study.html" title="Removing one part of a system at a time to see how much each part really helps.">Ablation study</a></li><li><a class="chip" href="../glossary/benchmark.html" title="A standard test set used to compare models fairly.">Benchmark</a></li><li><a class="chip" href="../glossary/scaling-laws.html" title="Patterns showing model quality improves predictably as you increase model size, data and compute.">Scaling laws</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="dl-fine-tuning.html">← Fine-tuning and LoRA: specialising a model</a>
-        <a href="portfolio.html">Building a portfolio project that gets interviews →</a>
+        <a href="llm-safety.html">← AI safety in products: hallucinations, prompt injection and guardrails</a>
+        <a href="ml-training-vs-inference.html">Training vs inference: how ML runs in production →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-research-engineer&amp;lesson=research-papers">AI Research Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ai-research-engineer&amp;lesson=research-papers">Continue in the course</a>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=research-papers">ML Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=research-papers">AI Research Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=research-papers">Continue in the course</a>
       </section>
     </article>
   </main>

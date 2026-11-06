@@ -67,6 +67,11 @@
         },
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
         },
@@ -190,17 +195,19 @@ LIMIT 5;</code></pre></div>
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. WHERE amount &gt; 500</strong>: WHERE condition se rows filter karta hai. ORDER BY sirf sort karta hai.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kaunsa SQL seekhun: MySQL, PostgreSQL, SQL Server?</summary><p data-read>Basics sab mein lagbhag same hain. PostgreSQL accha default hai; baad mein aasaani se switch kar sakte ho.</p></details><details class="deep-faq"><summary data-read>AI roles ko SQL kyun chahiye?</summary><p data-read>Zyaadatar company data databases aur warehouses mein hota hai. Training data, evaluation data aur metrics aksar SQL query se shuru hote hain.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Window functions kya hain? ROW_NUMBER, RANK aur DENSE_RANK samjhao.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Window functions related rows pe calculation karte hain bina unhe GROUP BY ki tarah ek row mein samete. Jaise running total ya har employee ki apne department mein salary rank, OVER (PARTITION BY department ORDER BY salary DESC) se. Ties pe: ROW_NUMBER ties mein bhi 1, 2, 3 jaise unique numbers deta hai, isliye deterministic banane ke liye tie breaker column jodo. RANK ties ko same number deta hai aur phir skip karta hai, jaise 1, 1, 3. DENSE_RANK same number deta hai bina gap, jaise 1, 1, 2. LAG aur LEAD se row ko pichhli ya agli row se compare karte ho.</p><p class="prep-label">✅ </p><ul><li data-read>Rows ki window pe calculation, har row bani rehti hai</li><li data-read>PARTITION BY groups banata hai, ORDER BY order tay karta hai</li><li data-read>Ties pe ROW_NUMBER vs RANK vs DENSE_RANK</li><li data-read>Uses: har group mein top N, running totals, badlaav ke liye LAG aur LEAD</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 mein zyaadatar data SQL rounds ka core window functions hain.</p></div></details><details class="deep-faq"><summary data-read>Har category mein revenue ke hisaab se top 3 products nikaalne wali query likho.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Main har category ke andar products ko rank karke filter karunga. Pehle subquery ya CTE mein har product ka revenue nikaalo aur DENSE_RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rnk jodo. Phir WHERE rnk &lt;= 3 wali rows lo. Bolkar batao ties kaise sambhaal rahe ho: DENSE_RANK tied products rakhta hai, to 3 se zyaada rows aa sakti hain; exactly 3 chahiye to product ID jaise tie breaker ke saath ROW_NUMBER use karo.</p><p class="prep-label">✅ </p><ul><li data-read>Har product ka revenue nikaalne ke liye CTE</li><li data-read>Category ke hisaab se partition kiya window rank</li><li data-read>Outer query mein rank ≤ 3 filter (window function seedhe WHERE mein filter nahi hota)</li><li data-read>Ties kaise sambhaale batao</li></ul><p class="prep-check" data-read><strong>:</strong> Classic SQL task. Tie handling samjhaana maturity dikhata hai.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>SELECT kya → FROM kahan se → WHERE kaunsi rows → GROUP BY → ORDER BY.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="stats-correlation.html">← Correlation vs causation, aur sampling bias</a>
+        <a href="ab-testing.html">← AI features ke liye metrics aur A/B testing</a>
         <a href="sql-joins.html">SQL JOINs: tables ko jodna →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=sql-basics&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=sql-basics&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=sql-basics&amp;lang=hi">AI Product Manager</a></p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=sql-basics&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=sql-basics&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=sql-basics&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=sql-basics&amp;lang=hi">AI Product Manager</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=sql-basics&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

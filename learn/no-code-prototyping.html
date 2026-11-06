@@ -62,6 +62,16 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Manager course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
@@ -179,18 +189,20 @@ Week 1: 200 emails, 84% classified right, payroll drafts need work → clear spe
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. To quickly test whether the idea is useful, with real users and data</strong>: Prototypes reduce risk by learning fast and cheaply before big investment.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Which tools can non coders use?</summary><p data-read>Workflow tools with AI steps (like Zapier or n8n), spreadsheet AI functions, and AI app builders. Pick one your company allows.</p></details><details class="deep-faq"><summary data-read>How long should a prototype take?</summary><p data-read>Days, not months. If it takes longer, the scope is too big; cut it to the single most important task.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How do you validate a new AI product idea in 48 hours before asking engineers to build it?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Before writing a full PRD or booking sprint capacity, I collect 30 to 50 real, messy user inputs (such as support tickets or documents) and test the task directly in a model playground or a quick Streamlit / low-code workflow. I score those 30 outputs by hand against a simple rubric to see if current models can actually solve the problem, what context they are missing, and what the token cost per task looks like. Then I put that working prototype in front of five real users to watch whether they trust and use the output. Only if both model quality and user workflow hold up do we invest in production engineering.</p><p class="prep-label">✅ </p><ul><li data-read>Test on 30–50 real, messy inputs in a playground or low-code prototype first</li><li data-read>Score outputs by hand to verify feasibility and discover failure modes</li><li data-read>Watch 5 real users interact with the prototype before committing engineering sprints</li><li data-read>Turn those 30–50 examples into the first golden evaluation set in the AI PRD</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 AI PMs and FDEs are expected to prototype and build eval sets hands-on.</p></div></details><details class="deep-faq"><summary data-read>How do you evaluate unit economics and UX trade-offs when launching a multimodal (vision or voice) AI feature?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>High-resolution images, multi-page PDFs and live audio consume far more tokens and bandwidth than plain text, and a single user retry or multi-step loop can multiply cost 3× to 5×. I calculate cost per successfully completed task—not just cost per API call—and compare it against the user&#39;s willingness to pay or the operational cost saved. To keep margins healthy, I resize images before sending, route simple extractions to a small vision model, cache repeated documents, and design the UI with instant visual/audio feedback and a clear human fallback when confidence is low.</p><p class="prep-label">✅ </p><ul><li data-read>Measure cost per completed task (including retries), not just cost per API call</li><li data-read>High-res images and live voice have much higher token/compute cost than text</li><li data-read>Use image resizing, model routing and caching to protect gross margin</li><li data-read>Design UX for latency (streaming/barge-in) and verification on extracted fields</li></ul><p class="prep-check" data-read><strong>:</strong> Tests AI unit economics and multimodal product judgement.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Prototype in days, test with real users, then write the spec.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="llm-prompting.html">← Prompting: giving clear instructions to an LLM</a>
-        <a href="sql-basics.html">SQL basics: asking a database questions →</a>
+        <a href="multimodal-ai.html">← Multimodal AI: images, messy PDFs, audio and structured extraction</a>
+        <a href="build-vs-buy.html">AI literacy for decisions: build vs buy, cost and limits →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-product-manager&amp;lesson=no-code-prototyping">AI Product Manager</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ai-product-manager&amp;lesson=no-code-prototyping">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=no-code-prototyping">AI Product Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=no-code-prototyping">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=no-code-prototyping">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=no-code-prototyping">Continue in the course</a>
       </section>
     </article>
   </main>

@@ -298,6 +298,66 @@ var LESSON_TOPICS = Object.assign(typeof LESSON_TOPICS !== "undefined" ? LESSON_
       why: ["Permission-aware retrieval ensures each user only sees content they're allowed to.", "Permission-aware retrieval yeh pakka karta hai ki har user sirf wahi content dekhe jiski use permission hai."]
     },
     remember: ["Enforce access, mask PII, log everything, and involve security early.", "Access enforce karo, PII mask karo, sab log karo, aur security team ko jaldi shaamil karo."]
+  },
+
+  "feature-stores": {
+    icon: "🏪", mins: 7,
+    title: ["Feature stores and data labeling: offline vs online data and avoiding skew", "Feature stores aur data labeling: offline vs online data aur skew se bachaav"],
+    analogy: [
+      "Suppose a student practises for a maths exam using a calculator where 'log' means base 10, but in the exam hall the calculator's 'log' button means natural log (base e). Even a well-prepared student will get every answer wrong! That's training-serving skew: when a feature like 'user_7d_spend' is calculated one way in SQL during training and a slightly different way in production code. A feature store defines the recipe once and serves both.",
+      "Maano ek student ne maths exam ki taiyaari aise calculator se ki jahan 'log' ka matlab base 10 tha, par exam hall ke calculator mein 'log' ka matlab base e nikla. Kitni bhi acchi taiyaari ho, har jawaab galat aayega! Yahi training-serving skew hai: jab 'user_7d_spend' jaisa feature training ke waqt SQL mein ek tarah nikala jaaye aur live production code mein thoda alag tarah. Feature store recipe ek baar tay karta hai aur dono jagah wahi deta hai."
+    ],
+    explain: [
+      "Production ML models need two kinds of access to the exact same features. Training needs millions of historical rows with 'point-in-time' accuracy (what did we know about this user at the exact minute of the transaction, with zero future leakage?). Live inference needs the latest feature values for one user in under 10 milliseconds. A feature store (like Feast or Tecton) solves both: it writes features from one shared definition to an offline store (warehouse/Parquet for training) and an online store (Redis/DynamoDB for low-latency serving). Alongside features, high-quality labels come from clear labeling guidelines, measuring inter-annotator agreement, and active learning (sending the model's most uncertain cases to human reviewers).",
+      "Production ML models ko ek hi features do alag tareekon se chahiye hote hain. Training ko laakhon purani rows 'point-in-time' sachai ke saath chahiye (transaction ke exact minute pe humein user ke baare mein kya pata tha, bina future leakage ke?). Live inference ko ek user ke ताज़ा features 10 milliseconds ke andar chahiye. Feature store (jaise Feast ya Tecton) dono hal karta hai: ek hi shared definition se features ko offline store (training ke liye warehouse/Parquet) aur online store (tez serving ke liye Redis/DynamoDB) dono mein rakhta hai. Features ke saath acche labels saaf labeling guidelines, annotators ki sehmati aur active learning (model ke sabse mushkil cases insaanon ko dikhana) se aate hain."
+    ],
+    terms: [
+      ["Offline vs online store", "Offline store holds historical tables for training; online store (e.g. Redis) serves the latest row per entity in milliseconds.", "Offline store training ke liye purana data rakhta hai; online store (jaise Redis) milliseconds mein har user ki latest values deta hai."],
+      ["Point-in-time join (ASOF join)", "Joining each training label with feature values as they existed at that exact timestamp, preventing future data leakage.", "Har training label ko usi waqt ki feature values se jodna, taaki bhavishya ka data leak na ho."],
+      ["Active learning", "Picking the unlabelled examples where the model is most uncertain (or disagrees) for humans to label first.", "Jahan model sabse zyaada unsure ho, pehle unhi examples ko insaanon se label karwana."]
+    ],
+    example: {
+      lang: "text",
+      code: "Shared Feature Definition: user_30d_txn_count\n            │\n  ┌─────────┴─────────┐\n  ▼                   ▼\nOffline Store       Online Store\n(Snowflake/Parquet) (Redis, < 5 ms)\n  │                   │\nPoint-in-time join  Live fraud API\nfor XGBoost train   fetches by user_id",
+      note: ["One feature definition feeds both historical training and millisecond live inference.", "Ek hi feature definition historical training aur millisecond live inference dono ko data deti hai."]
+    },
+    quiz: {
+      q: ["When building a training dataset for fraud detection, why must you use a point-in-time join instead of joining on today's latest user table?", "Fraud detection ka training dataset banate waqt aaj ki latest user table join karne ke bajaye point-in-time join kyun zaroori hai?"],
+      options: [["Point-in-time joins use fewer columns", "Point-in-time joins kam columns use karte hain"], ["Joining today's table leaks future information (like account blocks that happened after the fraud) into past training rows", "Aaj ki table join karne se bhavishya ki jaankari (jaise fraud ke baad block hua account) purani training rows mein leak ho jaati hai"], ["SQL does not support timestamps", "SQL timestamps support nahi karta"]],
+      answer: 1,
+      why: ["Using feature values from after the event timestamp is time-travel data leakage: offline AUC looks 0.99, then production fails.", "Event ke baad ki feature values use karna time-travel leakage hai: offline AUC 0.99 dikhta hai aur production mein model fail ho jaata hai."]
+    },
+    remember: ["Define features once, join training data point-in-time, serve live features from an online store, and focus labeling on hard cases.", "Features ek baar define karo, training data point-in-time jodo, live features online store se do, aur mushkil cases pe labeling focus karo."]
+  },
+
+  "llmops-tracing": {
+    icon: "📡", mins: 8,
+    title: ["LLMOps: tracing, model routing, caching and cutting cost & latency", "LLMOps: tracing, model routing, caching aur cost va latency ghataana"],
+    analogy: [
+      "Think of a hospital triage desk and a courier tracking number. Not every patient with a mild cold needs a top neurosurgeon: the triage nurse routes simple cases to a general doctor and complex ones to a specialist. That's model routing. And when a parcel is delayed, the tracking number shows every hub it passed through and where it got stuck. That's LLM tracing.",
+      "Hospital ke triage desk aur courier tracking number ke baare mein socho. Mamooli zukhaam wale har mareez ko bade neurosurgeon ki zaroorat nahi hoti: triage desk aasaan cases general doctor ko aur mushkil cases specialist ko bhejta hai. Yahi model routing hai. Aur jab parcel late ho, to tracking number dikhata hai ki woh kis hub pe kab ruka. Yahi LLM tracing hai."
+    ],
+    explain: [
+      "In production, a single user question might trigger query rewriting, embedding search, reranking, two tool calls, and a final LLM answer. Without tracing (OpenTelemetry, Langfuse, Arize Phoenix), you cannot tell which step was slow or why an answer went wrong. A trace records every nested span with its prompt version, inputs, outputs, token count, cost and latency. To cut latency and cost by 50–80%: (1) stream tokens so Time to First Token (TTFT) is under 500 ms, (2) use prompt/prefix caching for long system prompts and few-shot examples, (3) add semantic caching for repeated common questions, and (4) use an LLM gateway with model routing — sending simple classification/extraction to a fast, cheap small model and reserving frontier models for hard reasoning.",
+      "Production mein user ka ek sawaal query rewriting, embedding search, reranking, do tool calls aur aakhri LLM answer chala sakta hai. Bina tracing (OpenTelemetry, Langfuse, Arize Phoenix) ke aap nahi bata sakte kaunsa step slow tha ya jawaab kahan galat hua. Trace har andar ke step (span) ka prompt version, input, output, tokens, kharch aur latency record karta hai. Latency aur kharch 50–80% ghataane ke liye: (1) tokens stream karo taaki Time to First Token (TTFT) 500 ms se kam rahe, (2) lambe system prompts ke liye prompt/prefix caching use karo, (3) baar-baar poochhe jaane wale sawaalon ke liye semantic caching lagao, aur (4) LLM gateway aur model routing use karo — aasaan classification/extraction chhote tez model ko bhejo aur frontier model sirf mushkil reasoning ke liye rakho."
+    ],
+    terms: [
+      ["Trace & spans", "A full record of one user request (the trace) broken into each LLM, retrieval and tool step (spans) with latency and tokens.", "Ek user request ka poora record (trace), jismein har LLM, retrieval aur tool step (span) ki latency aur tokens darj hote hain."],
+      ["Prompt / prefix caching", "Reusing the precomputed KV cache of a shared static prefix (system prompt + examples) across requests to cut cost and TTFT.", "Shared static prefix (system prompt + examples) ka KV cache reuse karna taaki kharch aur TTFT dono ghatein."],
+      ["Model routing / cascading", "Sending simple queries to a small cheap model and escalating only hard queries to a large frontier model.", "Aasaan sawaal chhote saste model ko bhejna aur sirf mushkil sawaal bade frontier model ko dena."]
+    ],
+    example: {
+      lang: "text",
+      code: "Trace tr_9821 (total: 640 ms, $0.0008):\n  ├─ Span 1: Semantic cache check          12 ms  (MISS)\n  ├─ Span 2: Router (small 8B model)       68 ms  → intent = 'order_status' (simple)\n  ├─ Span 3: Tool get_order(#A123)         45 ms  → {status: 'Out for delivery'}\n  └─ Span 4: Fast model response (prefix cached, TTFT 180 ms, 515 ms total)",
+      note: ["Tracing pinpoints latency per step, and routing + prefix caching keep both TTFT and cost tiny.", "Tracing har step ka waqt dikhata hai, aur routing + prefix caching TTFT aur kharch dono kam rakhte hain."]
+    },
+    quiz: {
+      q: ["To benefit from provider prompt/prefix caching, where should your static system instructions and few-shot examples be placed in the prompt?", "Provider ki prompt/prefix caching ka fayda uthaane ke liye aapke static system instructions aur examples prompt mein kahan hone chahiye?"],
+      options: [["At the very end, after the user's dynamic question", "Bilkul aakhir mein, user ke badalte sawaal ke baad"], ["At the very beginning (a byte-identical prefix), with dynamic user content placed at the end", "Bilkul shuru mein (ekdum same prefix), aur user ka badalta hissa aakhir mein"], ["Shuffled randomly on every request", "Har request pe randomly ghuma kar"]],
+      answer: 1,
+      why: ["KV-cache reuse only works up to the first token that changes, so static instructions must form the leading prefix.", "KV-cache reuse sirf pehle badalne wale token tak kaam karta hai, isliye static hissa hamesha sabse aage hona chahiye."]
+    },
+    remember: ["Trace every span, put static instructions first for prefix caching, route easy tasks to small models, and always configure a fallback.", "Har span trace karo, prefix caching ke liye static instructions aage rakho, aasaan kaam chhote models ko do, aur fallback zaroor rakho."]
   }
 });
 

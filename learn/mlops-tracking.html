@@ -67,8 +67,18 @@
         },
         {
           "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "MLOps / AI Platform Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
         }
       ]
     },
@@ -184,18 +194,20 @@ with mlflow.start_run(run_name=&quot;xgb-depth4&quot;):
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>C. Rolling back to the previous version in the model registry</strong>: The registry keeps tested versions, so rollback is a one-step change.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Is MLflow the only option?</summary><p data-read>No. Weights &amp; Biases, cloud tools (SageMaker, Vertex AI) and others do similar things. The habit matters more than the tool.</p></details><details class="deep-faq"><summary data-read>How do I version data?</summary><p data-read>Use dated snapshots, table versions in your warehouse or lakehouse, or tools like DVC, and record the version with each run.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>You&#39;ve trained a model. How do you get it into production?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First, save the model together with its preprocessing, as one pipeline, with a version number in a model registry. Then wrap it in an API, for example with FastAPI, with input validation. Package it in a Docker image and deploy it behind a load balancer, on Kubernetes or a managed service. Before full rollout, test it in shadow mode or as a canary on a small share of traffic. Then monitor latency, errors, input drift and the business metric, with an easy way to roll back to the previous version.</p><p class="prep-label">✅ </p><ul><li data-read>Package model and preprocessing together, versioned</li><li data-read>API with validation; containerise</li><li data-read>Gradual rollout: shadow or canary</li><li data-read>Monitoring and rollback</li></ul><p class="prep-check" data-read><strong>:</strong> Do you think beyond the notebook?</p></div></details><details class="deep-faq"><summary data-read>What does CI/CD look like for machine learning?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Like normal CI/CD, plus data and models. CI: on every code change, run unit tests, data validation tests and a quick training run on a sample to catch errors. Training pipelines run on a schedule or when new data arrives, log parameters and metrics to an experiment tracker, and register the model in a registry. CD: a new model is promoted only if it beats the current one on a fixed evaluation set and passes checks like bias and latency, then it&#39;s rolled out gradually with canary or shadow deployment, with automatic rollback if metrics drop.</p><p class="prep-label">✅ </p><ul><li data-read>Tests for code and data; small training smoke test</li><li data-read>Tracked, reproducible training and a model registry</li><li data-read>Promotion gates on fixed evals</li><li data-read>Gradual rollout with rollback</li></ul><p class="prep-check" data-read><strong>:</strong> Process maturity.</p></div></details><details class="deep-faq"><summary data-read>How do you make model training reproducible?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Version everything that affects the result: the code with git, the data with a snapshot or tool like DVC, the environment with a Docker image and pinned packages, and the configuration and hyperparameters in a tracked config file. Set random seeds. Log every run, with its code commit, data version, parameters, metrics and the resulting model, in an experiment tracker like MLflow. Then anyone can rerun or explain a model months later, which also matters for audits.</p><p class="prep-label">✅ </p><ul><li data-read>Version code, data, environment and config</li><li data-read>Seeds</li><li data-read>Experiment tracking linking all of it to the model</li></ul><p class="prep-check" data-read><strong>:</strong> Engineering discipline.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Log every run, register every shipped model, and always be able to roll back.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/ci-cd.html" title="Automatically testing and releasing code (and models) every time something changes.">CI/CD</a></li><li><a class="chip" href="../glossary/mlops.html" title="The practices and tools for putting ML models into production and keeping them healthy.">MLOps</a></li><li><a class="chip" href="../glossary/model-registry.html" title="A catalogue of trained model versions with their metrics and stage (testing, production).">Model registry</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="docker.html">← Docker: packaging your app so it runs anywhere</a>
+        <a href="build-vs-buy.html">← AI literacy for decisions: build vs buy, cost and limits</a>
         <a href="mlops-monitoring.html">Monitoring models: drift and silent failures →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ml-engineer&amp;lesson=mlops-tracking">ML Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=mlops-tracking">MLOps / AI Platform Engineer</a></p>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=mlops-tracking">ML Engineer</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=mlops-tracking">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=mlops-tracking">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=mlops-tracking">AI Research Engineer</a></p>
         <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=mlops-tracking">Continue in the course</a>
       </section>
     </article>

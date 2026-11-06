@@ -62,6 +62,41 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Forward Deployed Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
         },
@@ -183,18 +218,20 @@
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>C. The business outcome and the decision you need</strong>: Leaders decide on outcomes and risks. Give them that first, and details on request.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How do I explain accuracy to a business leader?</summary><p data-read>In counts and consequences: &quot;Out of 100 invoices, it reads 95 correctly; the other 5 are flagged for a person to check.&quot;</p></details><details class="deep-faq"><summary data-read>What if a stakeholder is afraid AI will replace their team?</summary><p data-read>Acknowledge it, show how the tool removes boring work, involve the team in testing, and share how roles will change.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>A customer says, &quot;We want to use AI.&quot; What do you do in the first meeting?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I don&#39;t start with AI; I start with their problem. I ask: what is the most painful or expensive process right now? Who does it, how often, and how is success measured? What data and systems are involved? Then I&#39;d pick one or two use cases that are high value, have data available and are low risk if the AI is imperfect, and agree on a success metric, like &quot;reduce invoice processing time by 50%&quot;. I end the meeting with a clear next step: a small proof of concept with real data, within a few weeks.</p><p class="prep-label">✅ </p><ul><li data-read>Problem first: pain, frequency, owner, current metric</li><li data-read>Data and systems available</li><li data-read>Choose use cases by value, feasibility and risk</li><li data-read>Agree a measurable goal and a small next step</li></ul><p class="prep-check" data-read><strong>:</strong> Customer discovery. They watch whether you ask before you solve.</p></div></details><details class="deep-faq"><summary data-read>A customer insists on a feature you believe won&#39;t work. How do you handle it?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First, understand why they want it; often the request hides a real need that can be met another way. Then I share my concern with evidence, not opinion: for example, &quot;in our test on 100 of your documents, fully automatic approval was wrong 12% of the time&quot;. I offer an alternative that meets the underlying goal, like automatic drafts with one click approval. If they still want to try, I propose a small, time boxed pilot with agreed success criteria, so the data decides. I keep it respectful and focused on their outcome.</p><p class="prep-label">✅ </p><ul><li data-read>Find the underlying need</li><li data-read>Use data, ideally their data</li><li data-read>Offer an alternative that meets the goal</li><li data-read>Time boxed experiment with agreed criteria</li></ul><p class="prep-check" data-read><strong>:</strong> Influence without authority; customer maturity.</p></div></details><details class="deep-faq"><summary data-read>Your AI demo fails in front of the customer. What do you do?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Stay calm and be honest: &quot;That&#39;s a wrong answer, so let me show you why it happened.&quot; Then use it: open the trace, show which document was retrieved and where it went wrong, and explain how we&#39;d catch this with our evaluation set and fix it. Customers trust people who understand their system&#39;s failures more than people who pretend there are none. Afterwards, I&#39;d add the case to the eval set, fix it, and follow up with the result. And next time, I&#39;d rehearse with their real data and have a recorded backup.</p><p class="prep-label">✅ </p><ul><li data-read>Stay calm, acknowledge it</li><li data-read>Turn it into a demonstration of control: trace, explain, fix plan</li><li data-read>Follow up with the fix</li><li data-read>Prevention: rehearse with real data, backup recording</li></ul><p class="prep-check" data-read><strong>:</strong> Composure and honesty under pressure.</p></div></details><details class="deep-faq"><summary data-read>A logistics company wants to reduce missed deliveries. How would you approach it?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify before solving: how is a missed delivery defined, how many happen, what do they cost, and what data exists, like GPS, delivery attempts, addresses and customer contacts? Break the problem into causes: bad addresses, customer not home, routing and time windows, and capacity. For each, size the impact using their data, then propose the quickest win. For example, an LLM plus geocoding to clean and verify addresses at order time, and a model predicting no shows to trigger a confirmation message the day before. Define a metric, run a pilot in one city with a control group, then scale. Throughout, I&#39;d check what operations staff would actually use.</p><p class="prep-label">✅ </p><ul><li data-read>Clarify definitions, scale, cost and data</li><li data-read>Decompose into root causes; size each with data</li><li data-read>Pick quick, high impact interventions (AI and non AI)</li><li data-read>Pilot with a control group; a metric; scale up</li></ul><p class="prep-check" data-read><strong>:</strong> The decomposition case is the key filter round for FDE roles.</p></div></details><details class="deep-faq"><summary data-read>Tell me about a disagreement with a teammate or stakeholder.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Show you disagree with data and respect. &quot;A product manager wanted to launch our AI reply feature to all customers. I was worried because our tests showed it sometimes made up refund policies. Instead of just saying no, I showed five real examples and the error rate from our eval set, and proposed launching to 10% of tickets with agent approval first. We agreed on criteria to expand. Two weeks later the error rate was below our threshold and we expanded. We kept a good relationship because we focused on the shared goal.&quot;</p><p class="prep-label">✅ </p><ul><li data-read>Situation and both perspectives fairly</li><li data-read>You used evidence, not authority</li><li data-read>A compromise or experiment</li><li data-read>Outcome and the relationship afterwards</li></ul><p class="prep-check" data-read><strong>:</strong> Collaboration and influence.</p></div></details><details class="deep-faq"><summary data-read>Explain a technical concept to me as if I&#39;m not technical.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Pick something from your work and use an everyday analogy. For example, explaining RAG: &quot;Imagine a very smart new employee who has read a lot but knows nothing about our company. If you ask them a policy question, they might confidently guess. RAG is like giving them the right pages of our policy manual before they answer, and asking them to point to the page. So answers are based on our actual documents, and you can check them.&quot; Then check understanding: &quot;Does that make sense?&quot;</p><p class="prep-label">✅ </p><ul><li data-read>Everyday analogy</li><li data-read>No jargon, or jargon explained</li><li data-read>Why it matters to the listener</li><li data-read>Check understanding</li></ul><p class="prep-check" data-read><strong>:</strong> Communication, essential for FDE, PM and senior roles.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Outcome → evidence → risk → ask. Analogies over jargon. Demos over slides.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="problem-framing.html">← Problem framing: should AI solve this, and how?</a>
-        <a href="llm-evals.html">Evaluating AI: how to know it actually works →</a>
+        <a href="portfolio.html">← Building a portfolio project that gets interviews</a>
+        <a href="job-search.html">Landing the AI role: resume, applications and interviews →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=stakeholder-communication">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=stakeholder-communication">AI Product Manager</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=stakeholder-communication">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=stakeholder-communication">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=stakeholder-communication">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=stakeholder-communication">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=stakeholder-communication">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=stakeholder-communication">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=stakeholder-communication">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=stakeholder-communication">AI Research Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=stakeholder-communication">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=stakeholder-communication">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=stakeholder-communication">Continue in the course</a>
       </section>
     </article>
   </main>

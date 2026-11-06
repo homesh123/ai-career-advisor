@@ -62,8 +62,23 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
         },
         {
           "@type": "Course",
@@ -181,19 +196,21 @@ Inference (24×7):    UPI payment → API loads v12 → P(fraud)=0.03 → approv
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. Batch inference</strong>: It&#39;s prediction (inference) done on a schedule over many items, which is batch.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Which costs more, training or inference?</summary><p data-read>For most companies, inference, because it runs constantly for every user. For LLMs, inference cost is the main bill unless you train your own models.</p></details><details class="deep-faq"><summary data-read>Does a model keep learning while in use?</summary><p data-read>Usually no. It&#39;s fixed until you retrain it. Online learning exists but is rarer and riskier.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>You&#39;ve trained a model. How do you get it into production?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First, save the model together with its preprocessing, as one pipeline, with a version number in a model registry. Then wrap it in an API, for example with FastAPI, with input validation. Package it in a Docker image and deploy it behind a load balancer, on Kubernetes or a managed service. Before full rollout, test it in shadow mode or as a canary on a small share of traffic. Then monitor latency, errors, input drift and the business metric, with an easy way to roll back to the previous version.</p><p class="prep-label">✅ </p><ul><li data-read>Package model and preprocessing together, versioned</li><li data-read>API with validation; containerise</li><li data-read>Gradual rollout: shadow or canary</li><li data-read>Monitoring and rollback</li></ul><p class="prep-check" data-read><strong>:</strong> Do you think beyond the notebook?</p></div></details><details class="deep-faq"><summary data-read>What is training serving skew, and how do you prevent it?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>It&#39;s when the data the model sees in production is computed differently from the data it was trained on, so the model quietly performs worse. For example, in training &quot;average spend&quot; was computed over 30 days in SQL, but the live service computes it over 7 days in Python. Prevention: use one shared feature pipeline or a feature store for both training and serving, log the features used at prediction time and compare them with training data, and add tests that run the same input through both paths.</p><p class="prep-label">✅ </p><ul><li data-read>Definition and a concrete example</li><li data-read>Cause: two different code paths for features</li><li data-read>Fix: shared pipeline or feature store, logging, comparison tests</li></ul><p class="prep-check" data-read><strong>:</strong> Production ML maturity.</p></div></details><details class="deep-faq"><summary data-read>How does a feature store work, and what is a point-in-time (ASOF) join?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>A feature store defines a feature once and materialises it to two storage layers: an offline store (Parquet/Delta/warehouse) for large historical training sets, and an online key-value store (like Redis or DynamoDB) for single-digit-millisecond lookups during live inference. When building historical training data, a regular join on user_id leaks the future because it pulls today&#39;s feature values for an event that happened six months ago. A point-in-time or ASOF join matches each historical label at timestamp T with the latest feature value recorded at or before T, guaranteeing zero time-travel leakage.</p><p class="prep-label">✅ </p><ul><li data-read>One feature definition → offline store (training batches) + online KV store (low-latency serving)</li><li data-read>Eliminates training–serving skew across SQL and Python paths</li><li data-read>Point-in-time (ASOF) join matches each label at T with features from &lt;= T</li><li data-read>For labeling: combine weak/LLM pre-labels with human verification and inter-annotator agreement</li></ul><p class="prep-check" data-read><strong>:</strong> High-signal question for AI Data Engineers, ML Engineers and MLOps Engineers.</p></div></details><details class="deep-faq"><summary data-read>What steps do you follow in a machine learning project, from start to finish?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>One, understand the problem and the success metric with the people who need it. Two, collect the data and explore it: size, missing values, distributions and obvious errors. Three, clean the data and create features. Four, split into training, validation and test sets. Five, train a simple baseline, then better models, comparing them on validation data. Six, evaluate the final model once on the test set and check its mistakes. Seven, deploy it, for example as an API or a Streamlit app. Eight, monitor it and retrain when data changes.</p><p class="prep-label">✅ </p><ul><li data-read>Problem and metric first</li><li data-read>Data exploration and cleaning</li><li data-read>Baseline, then improvement on validation</li><li data-read>Test once, deploy, monitor</li></ul><p class="prep-check" data-read><strong>:</strong> Do you see the whole life cycle, not just model.fit()?</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Training creates the model. Inference serves it, fast, cheaply and reliably.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/batch-inference.html" title="Running a model on many records at once on a schedule, instead of one request at a time.">Batch inference</a></li><li><a class="chip" href="../glossary/deployment.html" title="Making a model available for real use, usually as an API or a scheduled job.">Deployment</a></li><li><a class="chip" href="../glossary/feature-store.html" title="A shared system that stores ready-made features for both training and live predictions.">Feature store</a></li><li><a class="chip" href="../glossary/inference.html" title="Using a trained model to make predictions on new data.">Inference</a></li><li><a class="chip" href="../glossary/training.html" title="The process where a model learns its parameters from data.">Training</a></li><li><a class="chip" href="../glossary/training-serving-skew.html" title="When features are computed differently in training and in production, quietly hurting the model.">Training serving skew</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="dl-transformers.html">← Transformers and attention: how LLMs read</a>
-        <a href="api-serving.html">Serving a model as an API with FastAPI →</a>
+        <a href="ml-unsupervised.html">← Unsupervised learning: clustering, PCA and anomaly detection</a>
+        <a href="mlops-monitoring.html">Monitoring models: drift and silent failures →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ml-engineer&amp;lesson=ml-training-vs-inference">ML Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=ml-training-vs-inference">MLOps / AI Platform Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=ml-training-vs-inference">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=ml-training-vs-inference">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=ml-training-vs-inference">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=ml-training-vs-inference">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=ml-training-vs-inference">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=ml-training-vs-inference">MLOps / AI Platform Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=ml-training-vs-inference">Continue in the course</a>
       </section>
     </article>
   </main>

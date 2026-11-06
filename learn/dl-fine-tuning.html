@@ -62,8 +62,38 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Research Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -178,19 +208,21 @@ model.print_trainable_parameters()
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. RAG: retrieve the documents at question time</strong>: Fine-tuning teaches style and skills. For fresh, changing facts, RAG is cheaper and stays up to date.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How much does fine tuning cost?</summary><p data-read>With LoRA on a small open model, it can run on a single GPU for a few hours. Hosted fine tuning APIs charge per training token.</p></details><details class="deep-faq"><summary data-read>What is QLoRA?</summary><p data-read>LoRA on a base model stored in 4 bit precision, which cuts memory so large models can be fine tuned on modest GPUs.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>When would you use prompting, RAG or fine tuning?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I go in order of cost. First, prompting: clear instructions and examples solve many problems and take hours, not weeks. If the model needs knowledge it doesn&#39;t have, like our policies or recent data, I use RAG, because it&#39;s easy to update and gives citations. I&#39;d fine tune when the problem is behaviour, not knowledge: a very specific output style or format, a narrow task done at huge volume where a small fine tuned model is cheaper and faster, or domain language the model handles poorly. Often the best system combines RAG with a lightly fine tuned model.</p><p class="prep-label">✅ </p><ul><li data-read>Prompting first: fastest and cheapest</li><li data-read>RAG for knowledge, especially changing or private data</li><li data-read>Fine tuning for behaviour, format, cost at scale</li><li data-read>They can be combined</li></ul><p class="prep-check" data-read><strong>:</strong> Judgement about cost and fit; asked for PMs too.</p></div></details><details class="deep-faq"><summary data-read>What is LoRA, and why is it popular?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>LoRA, low rank adaptation, fine tunes a big model by freezing the original weights and learning a small update for some weight matrices, written as the product of two thin matrices, A and B. Because the rank is small, you train maybe less than 1% of the parameters, which needs far less GPU memory and storage. You can keep one base model and swap small LoRA adapters for different tasks. QLoRA goes further by keeping the base model in 4 bit precision, so you can fine tune large models on a single GPU.</p><p class="prep-label">✅ </p><ul><li data-read>Freeze base weights; learn low rank update A·B</li><li data-read>Far fewer trainable parameters and memory</li><li data-read>Swappable adapters per task</li><li data-read>QLoRA: quantised base for even less memory</li></ul><p class="prep-check" data-read><strong>:</strong> Practical fine tuning knowledge.</p></div></details><details class="deep-faq"><summary data-read>Compare SFT, RLHF (PPO) and DPO for post-training an LLM. Why is the KL penalty needed?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Supervised Fine-Tuning (SFT) teaches the base model to follow instructions by imitating curated (prompt, response) demos. RLHF goes further using human preference pairs (chosen vs rejected): it trains a separate reward model and uses PPO reinforcement learning to maximise reward while keeping a KL-divergence penalty so the policy doesn&#39;t drift too far from the SFT reference and &#39;reward-hack&#39; with gibberish or sycophancy. Direct Preference Optimization (DPO) mathematically rewrites that reward + KL objective into a simple binary cross-entropy loss directly on the preference pairs, eliminating the separate reward model and unstable PPO loop. For verifiable tasks like math or code, GRPO/RLVR trains reasoning chains against unit-test rewards.</p><p class="prep-label">✅ </p><ul><li data-read>SFT imitates demos; RLHF/DPO align using (prompt, chosen, rejected) preference pairs</li><li data-read>KL-divergence penalty stops the model from drifting and reward-hacking</li><li data-read>DPO optimises preferences directly with cross-entropy without a separate reward model</li><li data-read>RLVR / GRPO uses verifiable code or math rewards for reasoning models</li></ul><p class="prep-check" data-read><strong>:</strong> Core 2026 post-training and alignment question for Research, ML and Agent engineers.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Prompting → RAG → fine-tuning, in that order of cost.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/dpo.html" title="A way to fine tune LLMs on pairs of preferred and rejected answers, simpler than RLHF.">DPO</a></li><li><a class="chip" href="../glossary/fine-tuning.html" title="Further training a pretrained model on your own examples to specialise its behaviour.">Fine tuning</a></li><li><a class="chip" href="../glossary/instruction-tuning.html" title="Fine tuning a base model on instruction and answer examples so it follows requests helpfully.">Instruction tuning</a></li><li><a class="chip" href="../glossary/lora.html" title="A cheap fine tuning method that trains small add-on matrices instead of the whole model.">LoRA</a></li><li><a class="chip" href="../glossary/quantisation.html" title="Storing model weights with fewer bits so models use less memory and run faster.">Quantisation</a></li><li><a class="chip" href="../glossary/rlhf.html" title="Training an LLM to prefer answers that people rate as better.">RLHF</a></li><li><a class="chip" href="../glossary/transfer-learning.html" title="Starting from a model trained on one task and adapting it to another, so you need far less data.">Transfer learning</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="dl-transformers.html">← Transformers and attention: how LLMs read</a>
-        <a href="research-papers.html">Reading and reproducing research papers →</a>
+        <a href="rag.html">← RAG: letting an LLM answer from your documents</a>
+        <a href="dl-alignment-quant.html">Post-training: RLHF, DPO, quantisation and reasoning models →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-research-engineer&amp;lesson=dl-fine-tuning">AI Research Engineer</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ai-research-engineer&amp;lesson=dl-fine-tuning">Continue in the course</a>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=dl-fine-tuning">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=dl-fine-tuning">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=dl-fine-tuning">AI Product Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=dl-fine-tuning">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=dl-fine-tuning">AI Research Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=dl-fine-tuning">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=dl-fine-tuning">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=dl-fine-tuning">Continue in the course</a>
       </section>
     </article>
   </main>

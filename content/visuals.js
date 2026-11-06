@@ -281,6 +281,57 @@ var LESSON_VISUALS = (function () {
     ].join(""), "Line chart of average transaction amount, flat for weeks and then rising past an alert threshold")
   };
 
+  V["rag-advanced"] = {
+    caption: ["Hybrid search combines exact keyword matches (BM25) with meaning matches (vectors), then a reranker scores the top candidates to hand only the best 5 chunks to the LLM.", "Hybrid search exact shabd matches (BM25) aur matlab matches (vectors) ko milata hai, phir reranker top candidates ko score karke sirf sabse acche 5 chunks LLM ko deta hai."],
+    svg: svg("ra", 226, [
+      box(16, 78, 108, 52, "❓ Query", "b", "s1", "code + meaning"),
+      `<g class="s2">${A("ra", "M128 92 L182 54", "fl")}${A("ra", "M128 116 L182 154", "fl")}</g>`,
+      box(188, 28, 132, 48, "🔤 BM25", "b", "s2", "exact keywords"),
+      box(188, 132, 132, 48, "🧭 Vector", "b", "s2", "semantic meaning"),
+      `<g class="s3">${A("ra", "M324 52 L368 92", "fl")}${A("ra", "M324 156 L368 116", "fl")}</g>`,
+      box(374, 74, 128, 60, "⚖️ Reranker", "ba", "s4", "top 40 → top 5"),
+      `<g class="s5">${A("ra", "M506 104 H536", "fl")}${box(542, 74, 86, 60, "🤖 LLM", "bo", "", "cited ✓")}</g>`,
+      T(320, 208, "permission filter first · Recall@k (retrieval) + Faithfulness (answer)", "tm ts")
+    ].join(""), "A query splits into BM25 keyword search and vector semantic search, merges into a reranker that narrows top 40 to top 5, and feeds the LLM")
+  };
+
+  V["agent-workflows"] = {
+    caption: ["A state graph keeps the agent on safe rails: small tasks run automatically, while high-risk actions pause at a checkpoint until a human approves.", "State graph agent ko safe patari pe rakhta hai: chhote kaam apne aap chalte hain, jabki risky actions checkpoint pe ruk kar insaan ki approval ka wait karte hain."],
+    svg: svg("aw", 226, [
+      box(16, 78, 110, 52, "1. Classify", "b", "s1", "state saved"),
+      `<g class="s2">${A("aw", "M130 104 H168", "fl")}${box(174, 78, 118, 52, "2. Order Tool", "ba", "", "Pydantic ✓")}</g>`,
+      `<g class="s3">${A("aw", "M296 92 L346 52", "fl")}${A("aw", "M296 116 L346 154", "fl")}</g>`,
+      box(352, 26, 138, 48, "≤ ₹500: Auto", "bo", "s4", "instant refund"),
+      box(352, 134, 138, 48, "> ₹500: Pause", "bw", "s4", "human approval"),
+      `<g class="s5">${A("aw", "M494 50 L534 92", "ln")}${A("aw", "M494 158 L534 116", "ln")}${box(540, 78, 88, 52, "Send ✓", "bo")}</g>`,
+      T(320, 210, "checkpointed state · max_steps = 6 · human-in-the-loop gate", "tm ts")
+    ].join(""), "State graph flowing from Classify to Order Tool, branching into auto-process for small refunds or a human approval pause for large refunds, then sending")
+  };
+
+  V["ml-system-design"] = {
+    caption: ["Two-stage funnel: fast candidate retrieval narrows 10 million items to 300 in milliseconds, so the heavy ranking model can score those 300 within the 100 ms budget.", "Two-stage funnel: tez candidate retrieval milliseconds mein 1 crore items ko 300 pe le aata hai, taaki bhaari ranking model 100 ms budget ke andar un 300 ko score kar sake."],
+    svg: svg("sd", 226, [
+      box(16, 62, 132, 84, "10M items", "b", "s1", "full catalogue"),
+      `<g class="s2">${A("sd", "M152 104 H192", "fl")}${box(198, 68, 136, 72, "1. Retrieve", "ba", "", "ANN · 300 items · 25ms")}</g>`,
+      `<g class="s3">${A("sd", "M338 104 H378", "fl")}${box(384, 74, 128, 60, "2. Rank", "ba", "", "GBDT · 30 items · 45ms")}</g>`,
+      `<g class="s4">${A("sd", "M516 104 H544", "fl")}${box(550, 78, 78, 52, "Top 10", "bo", "", "diverse ✓")}</g>`,
+      T(320, 198, "Total latency ~80 ms (< 100 ms SLA) · online feature store + fallback", "tm ts")
+    ].join(""), "Funnel narrowing 10 million items to 300 in candidate retrieval, then 30 in ranking, and finally the top 10 shown to the user")
+  };
+
+  V["feature-stores"] = {
+    caption: ["One feature definition writes historical values to the offline warehouse for point-in-time training and the latest values to the online store for millisecond live inference.", "Ek hi feature definition purani values ko point-in-time training ke liye offline warehouse mein aur latest values ko millisecond live inference ke liye online store mein likhti hai."],
+    svg: svg("fs", 226, [
+      box(18, 76, 150, 56, "Feature Recipe", "ba", "s1", "defined once"),
+      `<g class="s2">${A("fs", "M172 92 L232 52", "fl")}${A("fs", "M172 116 L232 156", "fl")}</g>`,
+      box(238, 24, 166, 54, "🏬 Offline Store", "b", "s3", "point-in-time history"),
+      box(238, 130, 166, 54, "⚡ Online Store", "bo", "s3", "Redis · < 5 ms"),
+      `<g class="s4">${A("fs", "M408 51 H458", "fl")}${box(464, 26, 160, 50, "🏋️ Model Training", "b", "", "zero leakage")}</g>`,
+      `<g class="s5">${A("fs", "M408 157 H458", "fl")}${box(464, 132, 160, 50, "🚀 Live Serving", "bo", "", "zero skew ✓")}</g>`,
+      T(320, 210, "same formula in training and production → no training-serving skew", "tm ts")
+    ].join(""), "A shared feature recipe feeds both an offline store for model training and a low-latency online store for live serving")
+  };
+
   return V;
 })();
 

@@ -226,6 +226,78 @@ var LESSON_DEEP = Object.assign(typeof LESSON_DEEP !== "undefined" ? LESSON_DEEP
       [["Normalised tables or a star schema?", "Normalised tables ya star schema?"], ["Apps use normalised tables to avoid duplicate data while writing. Analytics uses star schemas because they make reading and reporting simple and fast.", "Apps likhte waqt duplicate data se bachne ke liye normalised tables use karti hain. Analytics star schema use karta hai kyunki padhna aur reporting aasaan aur tez hoti hai."]],
       [["Why does data modelling matter for AI?", "AI ke liye data modelling kyun zaroori hai?"], ["Clean, well defined tables make features and training data trustworthy. Many 'model problems' are really data definition problems.", "Saaf, achhi tarah defined tables features aur training data ko bharosemand banati hain. Kai 'model problems' asal mein data definition problems hote hain."]]
     ]
+  },
+
+  "py-files-errors": {
+    steps: [
+      ["Open files safely with 'with open(\"data.json\", \"r\", encoding=\"utf-8\") as f:' so Python closes the file automatically.", "Files ko 'with open(\"data.json\", \"r\", encoding=\"utf-8\") as f:' se kholo taaki Python file apne aap band kar de."],
+      ["Parse and write JSON with json.load(f), json.loads(text) and json.dumps(data, indent=2).", "json.load(f), json.loads(text) aur json.dumps(data, indent=2) se JSON padho aur likho."],
+      ["Read API keys from environment variables (os.environ[\"API_KEY\"]) loaded from a .env file, never hard-coded.", "API keys ko .env file se environment variables (os.environ[\"API_KEY\"]) mein padho, code mein kabhi mat likho."],
+      ["Wrap external I/O (file reads, HTTP calls, JSON parsing) in try / except for specific errors like json.JSONDecodeError or httpx.TimeoutException.", "External I/O (file padhna, HTTP calls, JSON parsing) ko json.JSONDecodeError ya httpx.TimeoutException jaise specific errors ke liye try / except mein rakho."],
+      ["Retry transient failures (HTTP 429 rate limit or 503 overload) with exponential backoff (1s, 2s, 4s + random jitter) and a max retry cap.", "Temporary failures (HTTP 429 rate limit ya 503 overload) ko exponential backoff (1s, 2s, 4s + thoda random jitter) aur max retry limit ke saath retry karo."]
+    ],
+    mistakes: [
+      ["Writing a bare 'except:' that swallows every error silently, including typos in variable names. Always catch specific exceptions and log them.", "Khaali 'except:' likhna jo har error chupke se daba de, variable naam ki galti bhi. Hamesha specific exceptions pakdo aur log karo."],
+      ["Retrying permanent errors like HTTP 400 (bad request) or 401 (wrong API key). Only retry temporary errors like 429, 502, 503 or timeouts.", "HTTP 400 (galat request) ya 401 (galat API key) jaise permanent errors ko retry karna. Sirf 429, 502, 503 ya timeouts jaise temporary errors retry karo."]
+    ],
+    faq: [
+      [["Why add random jitter to exponential backoff?", "Exponential backoff mein random jitter kyun jodte hain?"], ["If 100 workers hit a rate limit at the same second and all wait exactly 2 seconds, they will all slam the server together again. Adding a small random delay spreads the retries out.", "Agar 100 workers ek hi second pe rate limit hit karein aur sab theek 2 second rukein, to sab phir ek saath server se takrayenge. Chhota random delay retries ko phaila deta hai."]],
+      [["What is JSON Lines (.jsonl) and why is it used in AI?", "JSON Lines (.jsonl) kya hai aur AI mein kyun use hota hai?"], ["A file where each line is one valid JSON object. You can stream it line by line without loading a huge 10 GB file into memory at once, making it ideal for training and eval datasets.", "Aisi file jismein har line ek valid JSON object hoti hai. Aap 10 GB ki badi file ek saath memory mein laaye bina line-by-line padh sakte ho, jo training aur eval datasets ke liye best hai."]]
+    ]
+  },
+
+  "py-async-typing": {
+    steps: [
+      ["Create an isolated environment for every project: 'python -m venv .venv' and activate it before installing packages.", "Har project ke liye alag environment banao: 'python -m venv .venv' aur packages install karne se pehle use activate karo."],
+      ["Define a Pydantic BaseModel for request inputs and LLM structured outputs so wrong types or missing fields fail immediately.", "Request inputs aur LLM ke structured outputs ke liye Pydantic BaseModel banao taaki galat types ya missing fields turant pakde jaayein."],
+      ["Use 'async def' and 'await' with an async client (AsyncOpenAI, AsyncAnthropic, httpx.AsyncClient) for network calls.", "Network calls ke liye async client (AsyncOpenAI, AsyncAnthropic, httpx.AsyncClient) ke saath 'async def' aur 'await' use karo."],
+      ["Bound concurrency with 'asyncio.Semaphore(10)' inside 'asyncio.gather' so you run 10 requests at a time without hitting rate limits.", "'asyncio.gather' ke andar 'asyncio.Semaphore(10)' se concurrency limit karo taaki rate limit hit kiye bina ek saath 10 requests chalein."],
+      ["Write unit tests in 'tests/test_app.py' using pytest and run 'pytest' before every commit.", "'tests/test_app.py' mein pytest se unit tests likho aur har commit se pehle 'pytest' chalao."]
+    ],
+    mistakes: [
+      ["Calling blocking code like 'time.sleep()' or 'requests.get()' inside an 'async def' function, which freezes the whole event loop. Use 'await asyncio.sleep()' and 'httpx.AsyncClient'.", "'async def' function ke andar 'time.sleep()' ya 'requests.get()' jaisa blocking code chalana, jo poore event loop ko rok deta hai. 'await asyncio.sleep()' aur 'httpx.AsyncClient' use karo."],
+      ["Trusting raw dictionaries from 'json.loads()' on LLM output without validating field types and ranges with Pydantic.", "LLM output pe 'json.loads()' se mile raw dictionaries pe bina Pydantic validation ke bharosa kar lena."]
+    ],
+    faq: [
+      [["When does async/await help, and when does it not?", "async/await kab madad karta hai aur kab nahi?"], ["It helps for I/O-bound work: waiting on APIs, databases or files. For heavy CPU or matrix maths, use NumPy/PyTorch or multiprocessing instead.", "Yeh I/O-bound kaam mein madad karta hai: APIs, databases ya files ka wait. Bhaari CPU ya matrix maths ke liye NumPy/PyTorch ya multiprocessing use karo."]],
+      [["What's the difference between Python type hints and Pydantic?", "Python type hints aur Pydantic mein kya fark hai?"], ["Standard type hints (x: int) are only checked by editors before running. Pydantic actually validates and converts real data at runtime when your app is running.", "Normal type hints (x: int) sirf code chalne se pehle editor check karta hai. Pydantic app chalte waqt runtime pe asli data ko check aur convert karta hai."]]
+    ]
+  },
+
+  "numpy-arrays": {
+    steps: [
+      ["Create arrays from lists or helpers: np.array([1, 2, 3]), np.zeros((100, 10)), np.arange(0, 10, 2).", "Lists ya helpers se arrays banao: np.array([1, 2, 3]), np.zeros((100, 10)), np.arange(0, 10, 2)."],
+      ["Inspect shape and data type first: arr.shape (rows, columns) and arr.dtype (float32, int64).", "Pehle shape aur data type dekho: arr.shape (rows, columns) aur arr.dtype (float32, int64)."],
+      ["Slice and filter without loops: X[:, 0] (first column), X[X > 0] (boolean mask for positive values).", "Bina loop ke slice aur filter karo: X[:, 0] (pehla column), X[X > 0] (positive values ke liye boolean mask)."],
+      ["Use axis wisely in aggregations: X.mean(axis=0) averages down each column; X.mean(axis=1) averages across each row.", "Aggregations mein axis dhyaan se lagao: X.mean(axis=0) har column ka average nikalta hai; X.mean(axis=1) har row ka."],
+      ["Use dot products and matrix multiplication (X @ w or np.dot) for linear models and cosine similarity.", "Linear models aur cosine similarity ke liye dot products aur matrix multiplication (X @ w ya np.dot) use karo."]
+    ],
+    mistakes: [
+      ["Confusing shape (N,) (a 1D vector) with (N, 1) (a 2D column) when broadcasting, causing an unexpected (N, N) matrix! Check .shape after operations.", "Broadcasting ke waqt shape (N,) (1D vector) aur (N, 1) (2D column) mein confuse hona, jisse galti se (N, N) matrix ban jaata hai! Operations ke baad .shape zaroor dekho."],
+      ["Modifying a slice without realising it's a view of the original array. Use .copy() when you want an independent copy.", "Slice badalna bina yeh jaane ki woh original array ka hi view hai. Alag copy chahiye to .copy() use karo."]
+    ],
+    faq: [
+      [["How are NumPy arrays and PyTorch tensors related?", "NumPy arrays aur PyTorch tensors ka kya rishta hai?"], ["They have almost the same API (.shape, slicing, broadcasting, @). PyTorch tensors add two things: they can run on GPUs and track gradients for deep learning.", "Dono ka API lagbhag ek jaisa hai (.shape, slicing, broadcasting, @). PyTorch tensors do cheezein jodte hain: woh GPUs pe chal sakte hain aur deep learning ke liye gradients track karte hain."]],
+      [["Why does float32 matter more than float64 in AI?", "AI mein float64 se zyaada float32 (ya float16) kyun kaam aata hai?"], ["float32 uses half the memory of float64 and runs much faster on GPUs, while keeping more than enough precision for machine learning.", "float32 float64 se aadhi memory leta hai aur GPUs pe kaafi tez chalta hai, jabki ML ke liye precision kaafi se zyaada rehti hai."]]
+    ]
+  },
+
+  "sql-window-cte": {
+    steps: [
+      ["Break complex logic into named steps with 'WITH step1 AS (...), step2 AS (...) SELECT ...' instead of deeply nested subqueries.", "Gehre nested subqueries ke bajaye 'WITH step1 AS (...), step2 AS (...) SELECT ...' se mushkil logic ko naam wale steps mein todo."],
+      ["Add a window with 'OVER (PARTITION BY group_col ORDER BY sort_col)' to compute per-group metrics while keeping every row.", "Har row rakhte hue group metrics nikalne ke liye 'OVER (PARTITION BY group_col ORDER BY sort_col)' lagao."],
+      ["Rank rows within each group: ROW_NUMBER() gives 1,2,3 (no ties); RANK() gives 1,1,3; DENSE_RANK() gives 1,1,2.", "Har group ke andar rows rank karo: ROW_NUMBER() 1,2,3 deta hai (bina tie); RANK() 1,1,3 deta hai; DENSE_RANK() 1,1,2 deta hai."],
+      ["Compare across time with LAG(amount, 1) OVER (PARTITION BY store_id ORDER BY date) for day-over-day change, and SUM(amount) OVER (...) for running totals.", "Day-over-day badlaav ke liye LAG(amount, 1) OVER (PARTITION BY store_id ORDER BY date) aur running totals ke liye SUM(amount) OVER (...) use karo."],
+      ["Filter on a window result by wrapping the query in a CTE first, then writing 'WHERE rnk <= 3' in the outer SELECT.", "Window result pe filter lagane ke liye pehle query ko CTE mein rakho, phir baahar wale SELECT mein 'WHERE rnk <= 3' likho."]
+    ],
+    mistakes: [
+      ["Using 'WHERE id NOT IN (SELECT ...)' when the subquery can contain NULL: if even one NULL is present, NOT IN returns zero rows! Use 'NOT EXISTS' or 'LEFT JOIN ... WHERE ... IS NULL'.", "Jab subquery mein NULL ho sakta ho tab 'WHERE id NOT IN (SELECT ...)' likhna: ek bhi NULL hua to NOT IN zero rows deta hai! 'NOT EXISTS' ya 'LEFT JOIN ... WHERE ... IS NULL' use karo."],
+      ["Trying to filter a window function directly in WHERE ('WHERE ROW_NUMBER() OVER (...) <= 3'). SQL runs WHERE before window functions; wrap it in a CTE first.", "Window function ko seedha WHERE mein filter karna ('WHERE ROW_NUMBER() OVER (...) <= 3'). SQL window functions se pehle WHERE chalata hai; pehle CTE mein rakho."]
+    ],
+    faq: [
+      [["When should I use ROW_NUMBER vs DENSE_RANK in interviews?", "Interviews mein ROW_NUMBER aur DENSE_RANK mein kab kaunsa use karun?"], ["Ask the interviewer how ties should be handled! If they want exactly 3 rows even on ties, use ROW_NUMBER. If tied products should both appear in the top 3 without skipping rank 2, use DENSE_RANK.", "Interviewer se poocho ki ties kaise handle karne hain! Agar tie hone par bhi theek 3 rows chahiye to ROW_NUMBER. Agar barabar wale dono products bina rank skip kiye top 3 mein chahiye to DENSE_RANK."]],
+      [["Are CTEs slower than subqueries?", "Kya CTEs subqueries se slow hote hain?"], ["In modern databases and warehouses (PostgreSQL, BigQuery, Snowflake), the query planner optimises CTEs just like subqueries, and CTEs are much easier to read and debug.", "Modern databases aur warehouses (PostgreSQL, BigQuery, Snowflake) mein query planner CTEs ko subqueries ki tarah hi optimise karta hai, aur CTEs padhne aur debug karne mein kahin aasaan hote hain."]]
+    ]
   }
 });
 

@@ -62,8 +62,23 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
         }
       ]
     },
@@ -185,19 +200,21 @@ models:
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. Early in the pipeline, with automated checks</strong>: The earlier you catch it, the fewer systems it pollutes.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Which tools help?</summary><p data-read>dbt tests, Great Expectations, Soda and built in warehouse constraints. Start simple with a few SQL checks.</p></details><details class="deep-faq"><summary data-read>What is a data contract?</summary><p data-read>An agreement between the team producing data and the teams using it about schema, meaning and quality, so changes don&#39;t break things silently.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How do you deal with missing values?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First I ask why they&#39;re missing, because that changes the fix. If income is missing because people didn&#39;t want to share it, the fact that it&#39;s missing may itself be a signal. Options: drop rows if very few are missing; fill with the median or most common value; fill using a model or a group average; or add a &quot;was missing&quot; flag column alongside the filled value. Tree models like XGBoost can handle missing values natively. Whatever I do, I fit the filling logic on the training data only.</p><p class="prep-label">✅ </p><ul><li data-read>Understand why it&#39;s missing first</li><li data-read>Drop, impute (median, mode, model), or add a missing flag</li><li data-read>Fit imputation on train only to avoid leakage</li></ul><p class="prep-check" data-read><strong>:</strong> Data cleaning judgement, not just a pandas command.</p></div></details><details class="deep-faq"><summary data-read>Click through rate dropped 20% overnight, but input distributions look normal. Model drift or a bug?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>A sudden overnight drop smells like a bug or a change, not slow drift. I&#39;d check, in order: did anything deploy, like a new model, feature pipeline or front end change? Is logging or the metric itself broken, for example clicks not being recorded? Are features arriving late or as defaults, which might not show in aggregate distributions? Is it all users or one platform, region or app version? I&#39;d compare with a holdout or previous model if available. Only if everything checks out would I consider concept drift, like a holiday or competitor event, and retrain.</p><p class="prep-label">✅ </p><ul><li data-read>Sudden = suspect change or bug first</li><li data-read>Check deploys, logging, delayed or default features</li><li data-read>Segment by platform, region, version</li><li data-read>Then consider real drift</li></ul><p class="prep-check" data-read><strong>:</strong> Calm, systematic incident debugging.</p></div></details><details class="deep-faq"><summary data-read>How do you design a pipeline so reruns and backfills don&#39;t double count data?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Make every step idempotent: running it twice gives the same result as running it once. Practically, I process data by partition, like one date at a time, and write with overwrite of that partition or a MERGE on a unique key, never a blind append. I use the event date from the data, not the processing time, to decide the partition. Then a backfill of last month is just rerunning those dates. I add checks that row counts and totals match the source after the run.</p><p class="prep-label">✅ </p><ul><li data-read>Idempotency definition</li><li data-read>Partition by date; overwrite partition or MERGE/upsert on keys</li><li data-read>Event time vs processing time</li><li data-read>Reconciliation checks</li></ul><p class="prep-check" data-read><strong>:</strong> Reliability thinking; a top 2026 data engineering topic.</p></div></details><details class="deep-faq"><summary data-read>What data quality checks would you put in a pipeline?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Checks at the boundaries: when data arrives and before it&#39;s published. Schema: expected columns and types. Completeness: row counts within an expected range compared with past days, and required fields not null. Validity: values in allowed ranges or lists, like age between 0 and 120. Uniqueness: primary keys are unique. Freshness: the latest data is recent enough. Consistency: totals reconcile with the source. Tools like dbt tests or Great Expectations make this easy. Critical failures stop the pipeline; minor ones send an alert.</p><p class="prep-label">✅ </p><ul><li data-read>Schema, volume, nulls, ranges, uniqueness, freshness, reconciliation</li><li data-read>At ingestion and before publishing</li><li data-read>Block on critical, alert on minor</li><li data-read>Tools: dbt tests, Great Expectations</li></ul><p class="prep-check" data-read><strong>:</strong> Bad data silently breaks AI models; they want to see prevention.</p></div></details><details class="deep-faq"><summary data-read>Design the data pipeline that feeds daily sales analytics and an ML demand forecast.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Sources: order database via change data capture, product catalogue, and store data. Land raw data in a lake or warehouse partitioned by date. Transform with dbt into clean staging tables, then a star schema with an orders fact table and product, store and date dimensions. The ML team reads a feature table built from the same models, so analytics and ML agree. Orchestrate with Airflow, each task idempotent by date, with data quality tests between layers, and alerts if data is late or wrong. Backfills are reruns of date partitions. Document lineage and owners, so people know where numbers come from.</p><p class="prep-label">✅ </p><ul><li data-read>Sources and ingestion (CDC)</li><li data-read>Raw → staging → modelled layers (star schema)</li><li data-read>Shared feature tables for ML</li><li data-read>Orchestration, idempotency, quality tests, backfills, lineage</li></ul><p class="prep-check" data-read><strong>:</strong> End to end data architecture.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Check completeness, validity, uniqueness, consistency and freshness, automatically.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/data-drift.html" title="When the data a live model receives starts to look different from its training data.">Data drift</a></li><li><a class="chip" href="../glossary/data-pipeline.html" title="Automated steps that move data from sources, clean and transform it, and deliver it for reports or models.">Data pipeline</a></li><li><a class="chip" href="../glossary/dataset.html" title="A collection of examples used to train, validate or test a model.">Dataset</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-features.html">← Feature engineering: turning raw data into useful inputs</a>
-        <a href="embeddings.html">Embeddings and vector databases: searching by meaning →</a>
+        <a href="pandas.html">← Pandas: working with tables of data</a>
+        <a href="stats-center-spread.html">Averages and spread: mean, median, variance →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=data-engineer-ai&amp;lesson=data-quality">Data Engineer (AI focus)</a></p>
-        <a class="button btn-primary" href="../learn.html?course=data-engineer-ai&amp;lesson=data-quality">Continue in the course</a>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=data-quality">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=data-quality">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=data-quality">Data Engineer (AI focus)</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=data-quality">MLOps / AI Platform Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=data-quality">Continue in the course</a>
       </section>
     </article>
   </main>

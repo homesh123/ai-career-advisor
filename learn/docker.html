@@ -67,6 +67,16 @@
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "MLOps / AI Platform Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
         }
@@ -186,18 +196,20 @@ CMD [&quot;uvicorn&quot;, &quot;app:app&quot;, &quot;--host&quot;, &quot;0.0.0.0
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. &#39;It works on my machine but not on the server&#39;</strong>: Containers package the exact environment, so the app behaves the same everywhere.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Is Docker the same as a virtual machine?</summary><p data-read>No. Containers share the host&#39;s operating system kernel, so they&#39;re much lighter and start in seconds.</p></details><details class="deep-faq"><summary data-read>Can containers use GPUs?</summary><p data-read>Yes, with the NVIDIA container toolkit and CUDA base images.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>You&#39;ve trained a model. How do you get it into production?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First, save the model together with its preprocessing, as one pipeline, with a version number in a model registry. Then wrap it in an API, for example with FastAPI, with input validation. Package it in a Docker image and deploy it behind a load balancer, on Kubernetes or a managed service. Before full rollout, test it in shadow mode or as a canary on a small share of traffic. Then monitor latency, errors, input drift and the business metric, with an easy way to roll back to the previous version.</p><p class="prep-label">✅ </p><ul><li data-read>Package model and preprocessing together, versioned</li><li data-read>API with validation; containerise</li><li data-read>Gradual rollout: shadow or canary</li><li data-read>Monitoring and rollback</li></ul><p class="prep-check" data-read><strong>:</strong> Do you think beyond the notebook?</p></div></details><details class="deep-faq"><summary data-read>How would you containerise a model and serve it on Kubernetes?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Write a small API, for example FastAPI, that loads the model once at startup and exposes a predict endpoint and a health check. Write a Dockerfile with a slim base image, pinned dependencies and the model either baked in or downloaded from a registry at start. On Kubernetes, create a Deployment with several replicas and resource requests and limits, readiness and liveness probes on the health endpoint, a Service in front, and a Horizontal Pod Autoscaler based on CPU or request rate. For GPUs, request nvidia.com/gpu resources and use GPU node pools.</p><p class="prep-label">✅ </p><ul><li data-read>API with model loaded once; health endpoint</li><li data-read>Dockerfile: slim image, pinned versions</li><li data-read>Deployment, Service, probes, resource limits</li><li data-read>Autoscaling; GPU requests if needed</li></ul><p class="prep-check" data-read><strong>:</strong> Hands on deployment skills.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Dockerfile (recipe) → image (package) → container (running app).</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/deployment.html" title="Making a model available for real use, usually as an API or a scheduled job.">Deployment</a></li><li><a class="chip" href="../glossary/docker.html" title="A tool that packages an app with everything it needs so it runs the same everywhere.">Docker</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="api-serving.html">← Serving a model as an API with FastAPI</a>
-        <a href="mlops-tracking.html">MLOps: experiment tracking and model registries →</a>
+        <a href="kubernetes.html">Kubernetes: running containers at scale →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ml-engineer&amp;lesson=docker">ML Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=docker">MLOps / AI Platform Engineer</a></p>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=docker">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=docker">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=docker">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=docker">MLOps / AI Platform Engineer</a></p>
         <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=docker">Continue in the course</a>
       </section>
     </article>

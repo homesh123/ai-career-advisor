@@ -201,6 +201,60 @@ var LESSON_DEEP = Object.assign(typeof LESSON_DEEP !== "undefined" ? LESSON_DEEP
       [["Chat interface or buttons?", "Chat interface ya buttons?"], ["For repeated, well defined tasks, a button (\"Summarise\", \"Draft reply\") is faster. Chat suits open ended exploration.", "Baar baar ke, saaf defined tasks ke liye button (\"Summarise\", \"Draft reply\") tez hai. Open ended exploration ke liye chat theek hai."]],
       [["How do I show uncertainty?", "Uncertainty kaise dikhayein?"], ["Highlight parts that need checking, show sources, or say \"I'm not sure\" and offer options, rather than showing raw confidence numbers.", "Jo hisse check karne hain unhe highlight karo, sources dikhao, ya \"I'm not sure\" kaho aur options do, raw confidence numbers dikhaane ke bajaye."]]
     ]
+  },
+
+  "rag-advanced": {
+    steps: [
+      ["Parse documents with structure intact: keep section headings with their paragraphs, and keep tables together as Markdown or HTML rather than slicing mid-row.", "Documents ko structure ke saath parse karo: headings ko unke paragraphs ke saath rakho, aur tables ko beech se kaatne ke bajaye Markdown ya HTML mein poora rakho."],
+      ["Attach rich metadata to every chunk: document_id, title, section_path, updated_at, and allowed_roles for permission filtering.", "Har chunk ke saath zaroori metadata jodo: document_id, title, section_path, updated_at, aur permission filter ke liye allowed_roles."],
+      ["Run hybrid retrieval: combine BM25 lexical search (exact keywords, SKUs, names) and vector search (semantic meaning) using Reciprocal Rank Fusion (RRF).", "Hybrid retrieval chalao: BM25 keyword search (exact shabd, SKUs, naam) aur vector search (matlab) ko Reciprocal Rank Fusion (RRF) se milao."],
+      ["Pass the top 30–50 retrieved chunks to a cross-encoder reranker (e.g. BGE-Reranker or Cohere Rerank) and send only the top 5–8 to the LLM.", "Top 30–50 chunks ko cross-encoder reranker (jaise BGE-Reranker ya Cohere Rerank) se score karo aur sirf top 5–8 LLM ko bhejo."],
+      ["Evaluate retrieval and generation separately on a 50-question golden set: track Recall@5 and MRR for retrieval, and faithfulness/groundedness for the answer.", "50 sawaalon ke golden set pe retrieval aur generation alag naapo: retrieval ke liye Recall@5 aur MRR, aur jawaab ke liye faithfulness/groundedness."]
+    ],
+    mistakes: [
+      ["Debugging a wrong RAG answer by tweaking the system prompt before checking whether the right document chunk was even retrieved!", "Galat RAG jawaab aane par yeh dekhe bina ki sahi chunk retrieve bhi hua tha ya nahi, seedha system prompt badalne lagna!"],
+      ["Dumping 30 chunks into the LLM prompt ('lost in the middle'): latency and cost jump while answer accuracy drops compared with 5 reranked chunks.", "LLM prompt mein 30 chunks bhar dena ('lost in the middle'): 5 reranked chunks ke mukaable kharch aur time badh jaata hai aur accuracy gir jaati hai."]
+    ],
+    faq: [
+      [["Why not just put every document into a 1-million-token context window instead of RAG?", "RAG ke bajaye 10-lakh token wale context window mein saare documents kyun na daal dein?"], ["Passing 500,000 tokens on every user query costs dollars per question and takes 15–30 seconds to first token. RAG retrieves the relevant 2,000 tokens in 50 ms at 1/200th the cost.", "Har sawaal pe 5 lakh tokens bhejne mein har baar bhaari kharch aur 15–30 second lagte hain. RAG 50 ms mein aur 200 guna kam kharch mein zaroori 2,000 tokens nikal laata hai."]],
+      [["What is query rewriting or HyDE in RAG?", "RAG mein query rewriting ya HyDE kya hota hai?"], ["Users type short or messy follow-up questions ('what about for contractors?'). A fast LLM step rewrites the follow-up into a standalone search query using chat history before searching the index.", "Users chhote ya adhure follow-up sawaal likhte hain ('aur contractors ke liye?'). Index mein dhoondhne se pehle ek chhota LLM step chat history dekhkar use poora search query bana deta hai."]]
+    ]
+  },
+
+  "agent-workflows": {
+    steps: [
+      ["Start with the simplest pattern that works: a single LLM call or a fixed 3-step pipeline beats an autonomous agent whenever the steps are predictable.", "Sabse simple pattern se shuru karo: jab steps pehle se pata hon, tab ek LLM call ya tay 3-step pipeline autonomous agent se behtar hota hai."],
+      ["Model multi-step workflows as an explicit state graph: define a typed State object and small node functions that read and update state.", "Multi-step workflows ko saaf state graph ki tarah banao: ek typed State object aur chhote node functions jo state padhein aur update karein."],
+      ["Enforce hard safety guards in code: max_steps (e.g. 8), per-run token/cost ceiling, tool timeouts, and cycle detection if the agent repeats the same tool call.", "Code mein pakke safety guards lagao: max_steps (jaise 8), token/cost limit, tool timeouts, aur ek hi tool call repeat hone par cycle detection."],
+      ["Persist state checkpoints to Postgres/Redis after each node so the workflow can pause at a human-in-the-loop approval gate before write/delete actions.", "Har node ke baad Postgres/Redis mein state checkpoint save karo taaki write/delete action se pehle workflow insaan ki approval ke liye ruk sake."],
+      ["Log full execution traces (every prompt, tool input/output, latency and token count) and test the agent on 30+ realistic end-to-end scenarios.", "Poore execution traces (har prompt, tool input/output, latency aur tokens) log karo aur 30+ asli scenarios pe agent ko test karo."]
+    ],
+    mistakes: [
+      ["Building a 5-agent 'autonomous crew' where agents chat back and forth with no step cap, burning 50,000 tokens on a task a 3-node workflow solves in 2 seconds.", "Bina step limit ke 5 agents ka 'autonomous crew' banana jo aapas mein baat karke 50,000 tokens jala dein, jabki 3-node workflow wahi kaam 2 second mein kar de."],
+      ["Letting an agent pass raw, unvalidated strings into a SQL query or shell command instead of strict Pydantic tool schemas and parameterised queries.", "Strict Pydantic tool schemas aur parameterised queries ke bajaye agent ko seedha SQL ya shell command mein unvalidated text bhejne dena."]
+    ],
+    faq: [
+      [["How should an agent handle short-term vs long-term memory?", "Agent mein short-term aur long-term memory kaise sambhalni chahiye?"], ["Keep short-term memory (current task messages and tool results) in the graph state, trimming old raw tool outputs once summarised. Store long-term facts (user profile, past resolutions) in a database or vector store and retrieve only what's relevant.", "Short-term memory (abhi ke messages aur tool results) graph state mein rakho aur summarise hone ke baad purane bhaari tool outputs chhota kar do. Long-term facts database mein rakho aur zaroorat pe hi nikalo."]],
+      [["What do you do when a tool fails mid-workflow?", "Workflow ke beech mein koi tool fail ho jaaye to kya karein?"], ["Retry transient errors (429/503) in the tool wrapper; for validation or business errors, return a clear structured error message to the state graph so it can either self-correct once or hand off cleanly to a human.", "Temporary errors (429/503) ko tool wrapper mein retry karo; business errors pe saaf message state graph ko do taaki woh ek baar sudhaar kare ya insaan ko saunp de."]]
+    ]
+  },
+
+  "multimodal-ai": {
+    steps: [
+      ["Inspect your input documents first: are they digital PDFs with selectable text, or scanned images, photos, complex multi-column tables and handwriting?", "Pehle apne input documents dekho: kya woh selectable text wale digital PDFs hain, ya scanned images, photos, tables aur handwriting?"],
+      ["For layout-heavy or scanned pages, render pages at readable resolution (~150–200 DPI) or use a layout-aware parser that extracts tables as structured Markdown.", "Tables ya scan wale pages ko ~150–200 DPI image mein render karo ya layout-aware parser se tables ko Markdown mein nikalo."],
+      ["Call a Vision-Language Model with structured output (Pydantic schema) and ask it to return both the extracted fields and the page/bounding-box citation.", "Structured output (Pydantic schema) ke saath Vision-Language Model call karo aur extracted fields ke saath page citation bhi maango."],
+      ["Run deterministic validation rules in Python (dates parse cleanly, line items sum to total, IDs match regex); auto-approve clean docs and queue flagged ones for human review.", "Python mein deterministic validation rules chalao (dates sahi hon, line items ka jod total se mile, IDs regex match karein); saaf docs auto-approve karo aur baaki human review mein bhejo."],
+      ["For voice AI, stream audio in chunks: use Voice Activity Detection (VAD) + streaming STT → concise LLM response streamed sentence by sentence → streaming TTS.", "Voice AI ke liye audio chunks mein stream karo: VAD + streaming STT → chhote sentences mein LLM stream → streaming TTS."]
+    ],
+    mistakes: [
+      ["Sending 4000×3000 raw camera photos for every page of a 50-page PDF, blowing up vision token costs and latency. Resize to the minimum resolution where text is crisp.", "50-page PDF ke har page ke liye 4000×3000 ki bhaari photo bhejna, jisse vision tokens ka kharch aur latency bahut badh jaati hai. Utna hi resize karo jismein text saaf dikhe."],
+      ["Using plain text extraction on multi-column financial tables, which scrambles numbers across rows and causes the LLM to hallucinate figures.", "Multi-column financial tables pe plain text extraction lagana, jisse alag rows ke numbers aapas mein mil jaate hain aur LLM galat figures de deta hai."]
+    ],
+    faq: [
+      [["When should I use traditional OCR vs a Vision LLM?", "Traditional OCR aur Vision LLM mein kab kaunsa use karun?"], ["For millions of uniform, clean pages where speed and cost are paramount, specialised OCR + layout models are very cheap. For diverse layouts, messy receipts, charts or zero-shot extraction into JSON, a Vision LLM (or OCR + small LLM cascade) is far more accurate.", "Laakhon ek jaise saaf pages ke liye specialised OCR bahut sasta padta hai. Alag-alag layouts, tedhi raseedon, charts ya seedha JSON nikalne ke liye Vision LLM (ya OCR + chhota LLM) kahin zyaada sahi kaam karta hai."]],
+      [["How do you get voice assistant latency under 800 ms?", "Voice assistant ki latency 800 ms se neeche kaise laayein?"], ["Stream every stage: detect end-of-speech with fast VAD, stream transcripts, prompt the LLM to begin with a short first clause, and start TTS audio as soon as the first clause arrives — or use a native speech-to-speech model.", "Har stage stream karo: fast VAD se baat rukna pakdo, transcript stream karo, LLM se pehla chhota jumla turant lo, aur pehla jumla aate hi TTS audio shuru kar do — ya native speech-to-speech model lagao."]]
+    ]
   }
 });
 

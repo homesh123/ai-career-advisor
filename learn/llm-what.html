@@ -67,8 +67,23 @@
         },
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
         },
         {
           "@type": "Course",
@@ -198,18 +213,20 @@ Tokens: &quot;Suggest a name for my chai startup&quot; ≈ 8 tokens</code></pre>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. It generates likely-sounding text and doesn&#39;t check facts by itself</strong>: LLMs predict plausible text. Without retrieval or tools they have no fact-checking step.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How many tokens is a page of text?</summary><p data-read>Roughly 500 to 700 tokens for a page of English. Hindi and other scripts often use more tokens for the same meaning.</p></details><details class="deep-faq"><summary data-read>Why does the same prompt give different answers?</summary><p data-read>Because a token is sampled from probabilities. Lower the temperature (towards 0) for more consistent output.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How does an LLM generate text?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>An LLM is a neural network, a transformer, trained on huge amounts of text to predict the next token, which is a word or piece of a word. When you send a prompt, it&#39;s split into tokens, the model calculates probabilities for every possible next token, picks one, adds it to the text, and repeats until it&#39;s done. Settings like temperature control how random that choice is. Because it predicts plausible text rather than looking up facts, it can confidently produce wrong answers, which we call hallucinations.</p><p class="prep-label">✅ </p><ul><li data-read>Trained to predict the next token</li><li data-read>Generates one token at a time in a loop</li><li data-read>Temperature controls randomness</li><li data-read>Explains why hallucinations happen</li></ul><p class="prep-check" data-read><strong>:</strong> Basic GenAI literacy, asked for nearly every role now.</p></div></details><details class="deep-faq"><summary data-read>What are tokens and the context window, and why do they matter in a product?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Tokens are the chunks of text a model reads and writes; in English, one token is roughly three quarters of a word. The context window is the maximum number of tokens the model can handle at once, including the prompt, any documents, the chat history and the answer. They matter for three reasons: cost, because APIs charge per token; latency, because more tokens take longer; and quality, because if your documents don&#39;t fit, you have to choose what to include, which is why we use retrieval.</p><p class="prep-label">✅ </p><ul><li data-read>Token ≈ part of a word; pricing and limits are in tokens</li><li data-read>Context window includes input and output</li><li data-read>Impacts cost, speed and what information the model can see</li></ul><p class="prep-check" data-read><strong>:</strong> Can you reason about cost and limits, not just call an API?</p></div></details><details class="deep-faq"><summary data-read>What do temperature and top p control? What would you use for a data extraction task?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Both control randomness when choosing the next token. Temperature reshapes the probabilities: low temperature makes the model pick the most likely tokens, so it&#39;s more consistent; high temperature makes it more creative and varied. Top p limits choices to the smallest set of tokens whose probabilities add up to p. For extraction or classification I&#39;d use temperature 0 or close to it, plus a fixed output format, because I want the same input to give the same, correct output. For brainstorming I&#39;d raise it.</p><p class="prep-label">✅ </p><ul><li data-read>Both control randomness of token choice</li><li data-read>Low = consistent, high = creative</li><li data-read>Extraction: temperature near 0 and structured output</li></ul><p class="prep-check" data-read><strong>:</strong> Practical prompting judgement.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>LLM = super-powered next-word predictor. Mind tokens, context and temperature.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/chatbot.html" title="A program you talk with in natural language; modern chatbots are usually powered by LLMs.">Chatbot</a></li><li><a class="chip" href="../glossary/context-window.html" title="The maximum amount of text (in tokens) an LLM can consider at once, including its answer.">Context window</a></li><li><a class="chip" href="../glossary/foundation-model.html" title="A large model trained on broad data that can be adapted to many tasks.">Foundation model</a></li><li><a class="chip" href="../glossary/genai.html" title="AI that creates new content: text, images, audio, video or code.">GenAI</a></li><li><a class="chip" href="../glossary/hallucination.html" title="When an AI confidently states something false or made up.">Hallucination</a></li><li><a class="chip" href="../glossary/llm.html" title="A very large neural network trained on huge amounts of text to predict the next word, which lets it write, answer and reason.">LLM</a></li><li><a class="chip" href="../glossary/multimodal.html" title="Models that understand or generate more than one type of data: text, images, audio, video.">Multimodal</a></li><li><a class="chip" href="../glossary/nlp.html" title="The field of AI that works with human language: understanding, translating, summarising and generating text.">NLP</a></li><li><a class="chip" href="../glossary/temperature.html" title="A setting that controls how random or creative an LLM&#39;s word choices are.">Temperature</a></li><li><a class="chip" href="../glossary/token.html" title="A chunk of text, often part of a word, that LLMs read and write; pricing and limits are counted in tokens.">Token</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-metrics.html">← Measuring models: accuracy, precision and recall</a>
+        <a href="mlops-monitoring.html">← Monitoring models: drift and silent failures</a>
         <a href="llm-prompting.html">Prompting: giving clear instructions to an LLM →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=llm-what">AI Foundations Path</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=llm-what">AI Product Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-what">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llm-what">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=llm-what">AI Product Manager</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=llm-what">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=llm-what">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=llm-what">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=llm-what">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=llm-what">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=llm-what">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llm-what">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=llm-what">AI Product Manager</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=llm-what">Continue in the course</a>
       </section>
     </article>

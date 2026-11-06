@@ -62,6 +62,36 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Manager course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
@@ -177,19 +207,21 @@ Decision: buy now, revisit build if volume ×5 or custom insights are needed</co
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>C. A model API with RAG over the policy documents</strong>: API + RAG is cheap, fast and keeps answers current. Training from scratch is overkill.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How do I estimate LLM cost per month?</summary><p data-read>Requests per month × (input tokens × input price + output tokens × output price). Add a margin for retries and growth.</p></details><details class="deep-faq"><summary data-read>Are open source models good enough?</summary><p data-read>For many tasks, yes, especially after fine tuning. Test them on your eval set against an API model before deciding.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>When would you use prompting, RAG or fine tuning?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I go in order of cost. First, prompting: clear instructions and examples solve many problems and take hours, not weeks. If the model needs knowledge it doesn&#39;t have, like our policies or recent data, I use RAG, because it&#39;s easy to update and gives citations. I&#39;d fine tune when the problem is behaviour, not knowledge: a very specific output style or format, a narrow task done at huge volume where a small fine tuned model is cheaper and faster, or domain language the model handles poorly. Often the best system combines RAG with a lightly fine tuned model.</p><p class="prep-label">✅ </p><ul><li data-read>Prompting first: fastest and cheapest</li><li data-read>RAG for knowledge, especially changing or private data</li><li data-read>Fine tuning for behaviour, format, cost at scale</li><li data-read>They can be combined</li></ul><p class="prep-check" data-read><strong>:</strong> Judgement about cost and fit; asked for PMs too.</p></div></details><details class="deep-faq"><summary data-read>How do distributed tracing, prompt caching, semantic caching and model routing work together in an LLM gateway?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Every user request gets a trace ID and child spans for query rewriting, retrieval, reranking, LLM calls and tool calls, recording exact inputs, outputs, latency, token counts and cost. In the gateway, prompt/prefix caching reuses the KV cache of static system instructions and few-shot examples across requests, cutting input token cost by 50–90%. Semantic caching embeds the query and returns a vetted cached response for high-similarity repeat FAQs (scoped by tenant and permissions). Finally, a model router sends 70–80% of simple classification or FAQ queries to a fast, cheap small model and only escalates complex reasoning to a frontier model, with automatic fallback if a provider returns 429 or 503.</p><p class="prep-label">✅ </p><ul><li data-read>Trace + child spans capture latency, tokens, cost and prompt version at every step</li><li data-read>Prompt/prefix caching reuses KV cache for static system prompts and examples</li><li data-read>Semantic caching serves repeat FAQs (strictly scoped by tenant/permissions and freshness)</li><li data-read>Model routing sends simple traffic to small models + automatic provider fallbacks</li></ul><p class="prep-check" data-read><strong>:</strong> Core 2026 LLMOps and AI Platform architecture question.</p></div></details><details class="deep-faq"><summary data-read>When should you NOT use AI to solve a problem?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>When a simple rule or normal software solves it reliably, like validating a PIN code format. When mistakes are very costly and can&#39;t be caught, unless a human reviews every output. When there&#39;s no data, or the data is poor. When users need exact, explainable decisions, for example some regulated decisions. And when the cost per use is higher than the value. I&#39;d always ask: what&#39;s the simplest solution that works, and does AI&#39;s flexibility justify its error rate and cost?</p><p class="prep-label">✅ </p><ul><li data-read>Rules work fine</li><li data-read>Unacceptable or uncatchable errors</li><li data-read>No or poor data</li><li data-read>Explainability or regulation needs</li><li data-read>Cost higher than value</li></ul><p class="prep-check" data-read><strong>:</strong> Judgement. Saying &quot;don&#39;t use AI&quot; in the right case is a strong signal.</p></div></details><details class="deep-faq"><summary data-read>How do you decide between building your own model, fine tuning, or using an API like GPT or Claude?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Start with an API from a strong provider, because it&#39;s the fastest way to learn whether the feature has value. Consider building or fine tuning when there&#39;s a clear reason: costs at our volume are too high and a smaller tuned model could match quality; data can&#39;t leave our environment; latency needs are strict; or the task is very specialised and we have good data. I&#39;d compare total cost, including the engineers to maintain it, quality on our own eval set, privacy, and vendor lock in, and design the system so the model can be swapped.</p><p class="prep-label">✅ </p><ul><li data-read>API first to validate value</li><li data-read>Reasons to build: cost at scale, privacy, latency, specialisation</li><li data-read>Compare total cost and quality on your evals</li><li data-read>Keep the model swappable</li></ul><p class="prep-check" data-read><strong>:</strong> Business and technical trade off thinking.</p></div></details><details class="deep-faq"><summary data-read>How do you evaluate unit economics and UX trade-offs when launching a multimodal (vision or voice) AI feature?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>High-resolution images, multi-page PDFs and live audio consume far more tokens and bandwidth than plain text, and a single user retry or multi-step loop can multiply cost 3× to 5×. I calculate cost per successfully completed task—not just cost per API call—and compare it against the user&#39;s willingness to pay or the operational cost saved. To keep margins healthy, I resize images before sending, route simple extractions to a small vision model, cache repeated documents, and design the UI with instant visual/audio feedback and a clear human fallback when confidence is low.</p><p class="prep-label">✅ </p><ul><li data-read>Measure cost per completed task (including retries), not just cost per API call</li><li data-read>High-res images and live voice have much higher token/compute cost than text</li><li data-read>Use image resizing, model routing and caching to protect gross margin</li><li data-read>Design UX for latency (streaming/barge-in) and verification on extracted fields</li></ul><p class="prep-check" data-read><strong>:</strong> Tests AI unit economics and multimodal product judgement.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Buy → API → RAG → fine-tune → build. Climb only when needed.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/fine-tuning.html" title="Further training a pretrained model on your own examples to specialise its behaviour.">Fine tuning</a></li><li><a class="chip" href="../glossary/foundation-model.html" title="A large model trained on broad data that can be adapted to many tasks.">Foundation model</a></li><li><a class="chip" href="../glossary/open-weights-model.html" title="A model whose trained weights are published so anyone can download, run and fine tune it.">Open weights model</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="ml-how-machines-learn.html">← How machines learn: features, labels and training</a>
-        <a href="llm-prompting.html">Prompting: giving clear instructions to an LLM →</a>
+        <a href="streaming.html">← Streaming data: Kafka and real-time pipelines</a>
+        <a href="mlops-tracking.html">MLOps: experiment tracking and model registries →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-product-manager&amp;lesson=build-vs-buy">AI Product Manager</a></p>
-        <a class="button btn-primary" href="../learn.html?course=ai-product-manager&amp;lesson=build-vs-buy">Continue in the course</a>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=build-vs-buy">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=build-vs-buy">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=build-vs-buy">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=build-vs-buy">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=build-vs-buy">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=build-vs-buy">AI Forward Deployed Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=build-vs-buy">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=build-vs-buy">Continue in the course</a>
       </section>
     </article>
   </main>

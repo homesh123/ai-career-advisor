@@ -359,6 +359,126 @@ var LESSON_TOPICS = Object.assign(typeof LESSON_TOPICS !== "undefined" ? LESSON_
       why: ["Category describes the product, so it lives in the product dimension, which the fact table links to.", "Category product ko describe karti hai, isliye woh product dimension mein rehti hai, jisse fact table judti hai."]
     },
     remember: ["Facts = what happened (numbers). Dimensions = descriptions.", "Facts = kya hua (numbers). Dimensions = descriptions."]
+  },
+
+  "py-files-errors": {
+    icon: "📂", mins: 7,
+    title: ["Files, JSON, APIs and error handling", "Files, JSON, APIs aur error handling"],
+    analogy: [
+      "When you order food on Swiggy, sometimes the restaurant is busy or your internet drops for a second. The app doesn't crash with a blank screen: it catches the problem, waits a moment and retries, or shows a polite message. In Python, try/except and retries do the same job when reading files or calling APIs.",
+      "Jab aap Swiggy pe khana order karte ho, kabhi restaurant busy hota hai ya ek second ke liye internet chala jaata hai. App blank screen dekar crash nahi hota: woh problem pakadta hai, thoda ruk kar retry karta hai, ya saaf message dikhata hai. Python mein files padhte ya APIs call karte waqt try/except aur retries yahi kaam karte hain."
+    ],
+    explain: [
+      "Real AI programs read data from files and talk to web APIs. Use 'with open(...) as f:' so files close automatically even if something goes wrong. APIs and config files usually speak JSON, which Python's json module turns into dictionaries and lists. Because files can be missing, JSON can be malformed and APIs can hit rate limits (HTTP 429), wrap risky calls in 'try / except' to handle expected errors gracefully, log what failed, and retry temporary network failures with exponential backoff.",
+      "Asli AI programs files se data padhte hain aur web APIs se baat karte hain. 'with open(...) as f:' use karo taaki kuch gadbad hone par bhi file apne aap close ho jaaye. APIs aur config files aksar JSON use karti hain, jise Python ka json module dictionaries aur lists mein badal deta hai. Kyunki file gayab ho sakti hai, JSON toot sakta hai aur APIs pe rate limit (HTTP 429) lag sakti hai, isliye risky calls ko 'try / except' mein rakho taaki expected errors sambhal sakein, failure log ho, aur temporary network errors pe exponential backoff ke saath retry ho."
+    ],
+    terms: [
+      ["Context manager (with)", "Opens a file or connection and closes it automatically when the block ends.", "File ya connection kholta hai aur block khatam hote hi apne aap band kar deta hai."],
+      ["try / except", "Runs code that might fail and catches specific errors instead of crashing.", "Aisa code chalata hai jo fail ho sakta hai aur crash hone ke bajaye specific errors pakadta hai."],
+      ["Exponential backoff", "Waiting 1s, then 2s, then 4s between retries when an API is overloaded.", "Jab API overloaded ho to retries ke beech 1s, phir 2s, phir 4s rukna."]
+    ],
+    example: {
+      lang: "python",
+      code: "import json, time\n\nwith open(\"orders.json\") as f:\n    orders = json.load(f)\n\ndef call_with_retry(fn, retries=3):\n    for attempt in range(retries):\n        try:\n            return fn()\n        except TimeoutError:\n            if attempt == retries - 1:\n                raise\n            time.sleep(2 ** attempt)   # 1s, 2s, 4s",
+      note: ["Read JSON safely with 'with', and retry temporary timeouts with exponential backoff.", "'with' se JSON safely padho, aur temporary timeouts ko exponential backoff ke saath retry karo."]
+    },
+    quiz: {
+      q: ["Why should you open files using 'with open(...) as f:' instead of just 'f = open(...)'?", "Sirf 'f = open(...)' ke bajaye 'with open(...) as f:' se file kyun kholni chahiye?"],
+      options: [["It makes the file smaller", "Isse file chhoti ho jaati hai"], ["Python closes the file automatically, even if an error happens inside the block", "Block ke andar error aane par bhi Python file apne aap band kar deta hai"], ["It only works for JSON files", "Yeh sirf JSON files ke liye kaam karta hai"]],
+      answer: 1,
+      why: ["The 'with' block guarantees the file is closed cleanly as soon as the block finishes or raises an error.", "'with' block yeh pakka karta hai ki block khatam hote hi ya error aate hi file saaf tareeke se close ho jaaye."]
+    },
+    remember: ["Use 'with' for files, json for API data, and specific try/except with backoff for network calls.", "Files ke liye 'with', API data ke liye json, aur network calls ke liye specific try/except aur backoff use karo."]
+  },
+
+  "py-async-typing": {
+    icon: "⚡", mins: 8,
+    title: ["Production Python: async/await, Pydantic and testing", "Production Python: async/await, Pydantic aur testing"],
+    analogy: [
+      "At a busy darshini cafe, the cashier doesn't stand idle in front of the dosa tawa for three minutes before taking the next order. While five dosas cook in parallel, they take more orders. That's async/await. And before the kitchen starts cooking, the token slip checks that the item name and quantity are valid. That's Pydantic.",
+      "Ek busy darshini cafe mein cashier agla order lene se pehle teen minute tawa ke saamne khaali khada nahi rehta. Jab paanch dose ek saath pak rahe hote hain, woh aur orders le leta hai. Yahi async/await hai. Aur kitchen mein kaam shuru hone se pehle token slip check karti hai ki item ka naam aur quantity sahi hai. Yahi Pydantic hai."
+    ],
+    explain: [
+      "AI services spend most of their time waiting on network calls to LLM APIs and databases. With 'async def' and 'await', Python can run dozens of API requests concurrently instead of waiting for each one in a slow queue. When data arrives from users or an LLM, Pydantic models validate field names and types immediately so bad data fails fast with a clear message. Pair this with a virtual environment (venv) to isolate package versions and pytest to test your logic automatically.",
+      "AI services apna zyaadatar waqt LLM APIs aur databases ke network calls ka wait karne mein lagati hain. 'async def' aur 'await' ke saath Python har call ka line mein wait karne ke bajaye darjanon API requests ek saath chala sakta hai. Jab user ya LLM se data aata hai, to Pydantic models turant field ke naam aur types check karte hain taaki galat data saaf message ke saath wahin ruk jaaye. Iske saath package versions alag rakhne ke liye virtual environment (venv) aur logic test karne ke liye pytest use karo."
+    ],
+    terms: [
+      ["async / await", "Lets Python handle other tasks while waiting for slow network or disk calls.", "Slow network ya disk calls ka wait karte waqt Python ko doosre kaam karne deta hai."],
+      ["Pydantic BaseModel", "A class that checks and converts input data against declared types.", "Ek class jo input data ko declared types ke hisaab se check aur convert karti hai."],
+      ["pytest", "Python's standard testing tool: write small functions with 'assert' to verify behaviour.", "Python ka standard testing tool: behaviour verify karne ke liye 'assert' wale chhote functions likho."]
+    ],
+    example: {
+      lang: "python",
+      code: "import asyncio\nfrom pydantic import BaseModel, Field\n\nclass Ticket(BaseModel):\n    order_id: int\n    urgency: str = Field(pattern=\"^(low|medium|high)$\")\n\nasync def classify_all(items, call_llm):\n    raw = await asyncio.gather(*(call_llm(x) for x in items))\n    return [Ticket.model_validate(r) for r in raw]",
+      note: ["Call the LLM for many items in parallel, then validate every response with Pydantic.", "Bahut saare items ke liye LLM ko parallel mein call karo, phir har response ko Pydantic se validate karo."]
+    },
+    quiz: {
+      q: ["You need to call an LLM API for 20 independent documents. What makes it finish ~10× faster?", "Aapko 20 alag documents ke liye LLM API call karni hai. Kis cheez se yeh kaam ~10× tez poora hoga?"],
+      options: [["Running async calls concurrently with asyncio.gather (within rate limits)", "Rate limits ke andar asyncio.gather se async calls ek saath chalana"], ["A normal for loop with time.sleep()", "time.sleep() ke saath normal for loop"], ["Renaming variables to single letters", "Variables ke naam ek akshar ke rakhna"]],
+      answer: 0,
+      why: ["LLM calls are network-bound: running them concurrently overlaps the waiting time instead of adding it up.", "LLM calls network pe wait karti hain: unhe ek saath chalane se waiting time judne ke bajaye overlap ho jaata hai."]
+    },
+    remember: ["async overlaps waiting, Pydantic validates inputs and LLM outputs, and pytest keeps changes safe.", "async waiting time bachata hai, Pydantic inputs aur LLM outputs validate karta hai, aur pytest changes ko safe rakhta hai."]
+  },
+
+  "numpy-arrays": {
+    icon: "🔢", mins: 7,
+    title: ["NumPy and vectorisation: fast maths on arrays", "NumPy aur vectorisation: arrays pe tez maths"],
+    analogy: [
+      "Imagine stamping the date on 1,000 envelopes one by one by hand, versus pressing a single printing plate that stamps a whole sheet at once. A Python 'for' loop works one item at a time; NumPy vectorisation operates on the whole array at once in fast C code.",
+      "Socho 1,000 lifaafon pe haath se ek-ek karke taareekh ki mohar lagana, banisbat ek printing plate ke jo poori sheet pe ek saath mohar laga de. Python ka 'for' loop ek baar mein ek item pe kaam karta hai; NumPy vectorisation poore array pe ek saath fast C code mein kaam karta hai."
+    ],
+    explain: [
+      "Every machine learning library (Pandas, scikit-learn, PyTorch) is built on multi-dimensional arrays of numbers. A 1D NumPy array is a vector (like a single column of prices), and a 2D array is a matrix (rows of customers × columns of features). Every array has a .shape, such as (1000, 5). With vectorisation and broadcasting, you write 'prices * 1.18' with no loops, and NumPy applies it to a million numbers in milliseconds.",
+      "Har machine learning library (Pandas, scikit-learn, PyTorch) numbers ke multi-dimensional arrays pe bani hai. 1D NumPy array ek vector hai (jaise prices ka ek column), aur 2D array ek matrix (customers ki rows × features ke columns). Har array ka ek .shape hota hai, jaise (1000, 5). Vectorisation aur broadcasting ke saath aap bina loop ke 'prices * 1.18' likhte ho, aur NumPy ise milliseconds mein dus lakh numbers pe laga deta hai."
+    ],
+    terms: [
+      ["ndarray", "A fast, fixed-type grid of numbers in NumPy (1D vector, 2D matrix, or higher).", "NumPy mein numbers ka fast, ek hi type wala grid (1D vector, 2D matrix, ya usse upar)."],
+      ["Vectorisation", "Doing maths on whole arrays at once instead of looping in Python.", "Python mein loop chalane ke bajaye poore array pe ek saath maths karna."],
+      ["Broadcasting", "NumPy's rule for combining arrays of compatible shapes, like adding one row to every row of a matrix.", "Compatible shapes wale arrays ko jodne ka NumPy rule, jaise ek matrix ki har row mein ek row jodna."]
+    ],
+    example: {
+      lang: "python",
+      code: "import numpy as np\n\nprices = np.array([100.0, 250.0, 400.0])     # shape (3,)\nwith_gst = prices * 1.18                      # vectorised: [118., 295., 472.]\n\n# Standardise each column of a (1000, 4) feature matrix X\nX_norm = (X - X.mean(axis=0)) / X.std(axis=0)",
+      note: ["No loops needed: broadcasting subtracts each column's mean from all 1,000 rows.", "Koi loop nahi chahiye: broadcasting har column ka mean saari 1,000 rows se ghata deta hai."]
+    },
+    quiz: {
+      q: ["Why do ML engineers prefer 'np.dot(w, x)' or 'X * 2' over a Python 'for' loop?", "ML engineers Python ke 'for' loop ke bajaye 'np.dot(w, x)' ya 'X * 2' kyun pasand karte hain?"],
+      options: [["Python loops cannot do multiplication", "Python loops guna nahi kar sakte"], ["Vectorised NumPy operations run in compiled C/SIMD code and are 50–100× faster", "Vectorised NumPy operations compiled C/SIMD code mein chalte hain aur 50–100× tez hote hain"], ["It uses more memory on purpose", "Yeh jaan-boojhkar zyaada memory use karta hai"]],
+      answer: 1,
+      why: ["Python loops check types on every single element; NumPy processes contiguous memory blocks in C at hardware speed.", "Python loops har element pe type check karte hain; NumPy contiguous memory blocks ko C mein hardware speed pe process karta hai."]
+    },
+    remember: ["Check .shape first, and replace Python loops over numbers with vectorised array operations.", "Sabse pehle .shape check karo, aur numbers pe Python loops ki jagah vectorised array operations lagao."]
+  },
+
+  "sql-window-cte": {
+    icon: "🪟", mins: 8,
+    title: ["Advanced SQL: CTEs, subqueries and window functions", "Advanced SQL: CTEs, subqueries aur window functions"],
+    analogy: [
+      "When a teacher writes each student's class rank on their report card, no student is removed from the register: everyone keeps their own row, with an extra column showing where they stand in their section. A SQL window function does exactly that: it calculates ranks, running totals or previous values across a group without collapsing the rows.",
+      "Jab teacher har student ke report card pe uski class rank likhte hain, to register se kisi student ki row hatayi nahi jaati: sabki apni row rehti hai, bas ek extra column jud jaata hai ki apne section mein unka sthaan kya hai. SQL window function bilkul yahi karta hai: bina rows ko sikoote group ke upar rank, running total ya pichhli value nikalta hai."
+    ],
+    explain: [
+      "Real interview and warehouse queries rarely fit in one flat SELECT. A CTE ('WITH step_name AS (...)') lets you break a complex question into named, readable steps. A window function ('OVER (PARTITION BY ... ORDER BY ...)') computes values across related rows while keeping every row intact: use ROW_NUMBER() or DENSE_RANK() for 'top 3 per category', LAG() to compare today with yesterday, and SUM(...) OVER for running totals. Combine a CTE with a window function to solve the classic top-N-per-group interview question cleanly.",
+      "Asli interview aur warehouse queries shayad hi ek simple SELECT mein aati hain. CTE ('WITH step_name AS (...)') ek mushkil sawaal ko naam wale, saaf steps mein todne deta hai. Window function ('OVER (PARTITION BY ... ORDER BY ...)') har row ko barkaraar rakhte hue related rows pe calculation karta hai: 'har category ke top 3' ke liye ROW_NUMBER() ya DENSE_RANK() use karo, aaj ko kal se compare karne ke liye LAG(), aur running totals ke liye SUM(...) OVER. Classic top-N-per-group interview sawaal ko saaf tareeke se hal karne ke liye CTE aur window function ko saath lagao."
+    ],
+    terms: [
+      ["CTE (WITH clause)", "A named temporary result at the top of a query that keeps complex SQL readable.", "Query ke upar ek naam wala temporary result jo mushkil SQL ko padhne mein aasaan rakhta hai."],
+      ["PARTITION BY", "Splits the window into groups (e.g. per category or per customer) without collapsing rows.", "Bina rows ghataaye window ko groups mein baant-ta hai (jaise har category ya har customer)."],
+      ["ROW_NUMBER / DENSE_RANK / LAG", "Numbers rows 1,2,3…, ranks ties without gaps, or looks at the previous row's value.", "Rows ko 1,2,3… number deta hai, ties ko bina gap ke rank karta hai, ya pichhli row ki value dekhta hai."]
+    ],
+    example: {
+      lang: "sql",
+      code: "-- Top 3 products by revenue in each category\nWITH ranked AS (\n  SELECT category, product_id, revenue,\n         DENSE_RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rnk\n  FROM product_sales\n)\nSELECT category, product_id, revenue\nFROM ranked\nWHERE rnk <= 3;",
+      note: ["Compute the rank inside a CTE, then filter with WHERE rnk <= 3 in the outer query.", "CTE ke andar rank nikalo, phir baahar wali query mein WHERE rnk <= 3 se filter karo."]
+    },
+    quiz: {
+      q: ["How does a window function (OVER (PARTITION BY ...)) differ from GROUP BY?", "Window function (OVER (PARTITION BY ...)) GROUP BY se kaise alag hai?"],
+      options: [["GROUP BY keeps every row; a window function deletes rows", "GROUP BY har row rakhta hai; window function rows mita deta hai"], ["GROUP BY collapses each group into one row; a window function keeps every row and adds a calculated column", "GROUP BY har group ko ek row mein samet deta hai; window function har row rakhta hai aur calculated column jodta hai"], ["They are identical", "Dono bilkul ek jaise hain"]],
+      answer: 1,
+      why: ["GROUP BY reduces N rows in a group to 1 summary row; OVER (...) keeps all N rows and computes across the window.", "GROUP BY group ki N rows ko 1 summary row bana deta hai; OVER (...) saari N rows rakhta hai aur window ke upar hisaab lagata hai."]
+    },
+    remember: ["Use WITH (CTEs) to write step by step, and OVER (PARTITION BY ... ORDER BY ...) to rank or compare rows without losing detail.", "Step by step likhne ke liye WITH (CTEs) use karo, aur bina detail khoye rows rank ya compare karne ke liye OVER (PARTITION BY ... ORDER BY ...)."]
   }
 });
 

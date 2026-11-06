@@ -64,6 +64,41 @@
           "@type": "Course",
           "name": "AI Foundations Path course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "LLM / Agent Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
         }
       ]
     },
@@ -177,18 +212,20 @@ git push origin main             # upload to GitHub</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. git commit</strong>: commit saves a snapshot locally. push then uploads your commits to GitHub.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>What&#39;s the difference between Git and GitHub?</summary><p data-read>Git is the tool on your computer that tracks versions. GitHub is a website that hosts Git repositories so you can share and collaborate.</p></details><details class="deep-faq"><summary data-read>Do recruiters really look at GitHub?</summary><p data-read>For AI roles, often yes, especially for career switchers. Two or three clean projects with good READMEs prove skills better than certificates.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How do you use Git and pull requests in an AI project, and what should never be committed?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I keep main deployable and do all work on short lived feature branches. Each commit is a small, logical change with a clear message explaining why. Before opening a pull request, I run tests and linters locally, and in the PR description I include what changed, how I tested it, and for AI changes the before and after evaluation scores. I never commit API keys, .env files, customer data, large datasets or model weights to Git; those go into .gitignore, secrets live in environment variables or a secret manager, and large artifacts go to object storage or a model registry.</p><p class="prep-label">✅ </p><ul><li data-read>Feature branches, small commits, clear PR descriptions with eval results</li><li data-read>Never commit .env secrets, raw customer data, or huge model files</li><li data-read>Use .gitignore, secret managers and artifact storage</li><li data-read>Review code and prompt changes with the same discipline</li></ul><p class="prep-check" data-read><strong>:</strong> Checks basic software engineering hygiene before letting you near a production repo.</p></div></details><details class="deep-faq"><summary data-read>How do you make model training reproducible?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Version everything that affects the result: the code with git, the data with a snapshot or tool like DVC, the environment with a Docker image and pinned packages, and the configuration and hyperparameters in a tracked config file. Set random seeds. Log every run, with its code commit, data version, parameters, metrics and the resulting model, in an experiment tracker like MLflow. Then anyone can rerun or explain a model months later, which also matters for audits.</p><p class="prep-label">✅ </p><ul><li data-read>Version code, data, environment and config</li><li data-read>Seeds</li><li data-read>Experiment tracking linking all of it to the model</li></ul><p class="prep-check" data-read><strong>:</strong> Engineering discipline.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>add → commit → push. Commit small and often, with clear messages.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/ci-cd.html" title="Automatically testing and releasing code (and models) every time something changes.">CI/CD</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="py-collections.html">← Lists and dictionaries: storing many values</a>
-        <a href="pandas.html">Pandas: working with tables of data →</a>
+        <a href="py-async-typing.html">← Production Python: async/await, Pydantic and testing</a>
+        <a href="numpy-arrays.html">NumPy and vectorisation: fast maths on arrays →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=git-github">AI Foundations Path</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=git-github">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=git-github">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=git-github">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=git-github">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=git-github">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=git-github">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=git-github">AI Research Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=git-github">AI Forward Deployed Engineer</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=git-github">Continue in the course</a>
       </section>
     </article>

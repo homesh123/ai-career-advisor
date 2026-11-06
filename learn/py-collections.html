@@ -67,13 +67,33 @@
         },
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
           "name": "AI Product Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
         },
         {
           "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "LLM / Agent Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
         },
         {
           "@type": "Course",
@@ -195,17 +215,19 @@ print(total)              # 267</code></pre></div>
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>C. A dictionary</strong>: A dictionary maps a key (roll number) straight to a value (marks), with no searching through positions.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>List or dictionary: how do I choose?</summary><p data-read>If you access items by position or just go through them in order, use a list. If you look items up by a name or ID, use a dictionary.</p></details><details class="deep-faq"><summary data-read>What is JSON and how does it relate?</summary><p data-read>JSON is the text format APIs use. It maps directly to Python dictionaries and lists: json.loads(text) gives you dicts and lists, json.dumps(data) turns them back into text.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>What&#39;s the difference between a list, tuple, set and dictionary in Python? When would you use each?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>A list is an ordered, changeable collection; good for sequences you add to, like rows to process. A tuple is ordered but can&#39;t be changed; good for fixed records like coordinates, and it can be a dictionary key. A set holds unique items with very fast membership checks; good for removing duplicates or checking &quot;have I seen this ID?&quot;. A dictionary maps keys to values with fast lookup; good for things like user ID to user details. Checking membership in a set or dict is O(1) on average, but O(n) in a list.</p><p class="prep-label">✅ </p><ul><li data-read>List: ordered, mutable</li><li data-read>Tuple: ordered, immutable, hashable</li><li data-read>Set: unique, fast membership</li><li data-read>Dict: key to value, fast lookup; mention O(1) vs O(n)</li></ul><p class="prep-check" data-read><strong>:</strong> Python fluency, plus whether you think about performance.</p></div></details><details class="deep-faq"><summary data-read>In Python, what&#39;s the difference between mutable and immutable types, and between == and is?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Immutable types like int, float, str and tuple cannot be changed in place once created; changing them creates a new object. Mutable types like list, dict and set can be modified in place. That&#39;s why using a mutable list as a default function argument like def add(item, bucket=[]) is a classic bug: the same list is shared across every call, so I use None and create a new list inside. For comparisons, == checks whether two objects have the same value, whereas is checks whether they are the exact same object in memory, which I mainly use for is None.</p><p class="prep-label">✅ </p><ul><li data-read>Immutable (int, str, tuple) vs mutable (list, dict, set)</li><li data-read>Never use a mutable default argument; use None instead</li><li data-read>== compares values; is compares memory identity (use for is None)</li><li data-read>Watch type conversion when reading strings from JSON or env vars</li></ul><p class="prep-check" data-read><strong>:</strong> Checks whether you know the Python pitfalls that cause production bugs.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>List = ordered line of items. Dictionary = look up by name (key).</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="py-logic.html">← Python logic: if/else, loops and functions</a>
-        <a href="git-github.html">Git and GitHub: saving and sharing your work →</a>
+        <a href="py-files-errors.html">Files, JSON, APIs and error handling →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=py-collections">AI Foundations Path</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=py-collections">AI Product Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=py-collections">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-collections">AI Forward Deployed Engineer</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=py-collections">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=py-collections">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=py-collections">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-product-engineer&amp;lesson=py-collections">AI Product Engineer</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=py-collections">MLOps / AI Platform Engineer</a> · <a href="../learn.html?course=llm-agent-engineer&amp;lesson=py-collections">LLM / Agent Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=py-collections">AI Research Engineer</a> · <a href="../learn.html?course=ai-forward-deployed-engineer&amp;lesson=py-collections">AI Forward Deployed Engineer</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=py-collections">Continue in the course</a>
       </section>
     </article>

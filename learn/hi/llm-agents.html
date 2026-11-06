@@ -62,8 +62,23 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "LLM / Agent Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=llm-agent-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Forward Deployed Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-forward-deployed-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -179,19 +194,21 @@ Step 5 → final answer with names, ratings, closing times ✅  (max_steps = 8)<
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>C. Max-steps limit aur loop detection jaise guardrails</strong>: Agents ko saaf rukne ke rules chahiye. Sirf model ke bharose mat raho.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Agent aur chatbot mein kya fark hai?</summary><p data-read>Chatbot zyaadatar jawaab deta hai. Agent kai steps mein tools se actions leta hai taaki kaam poora ho.</p></details><details class="deep-faq"><summary data-read>Kya LangGraph jaisa framework chahiye?</summary><p data-read>Shuru mein nahi. Apne code mein simple loop sabse zyaada sikhata hai. Frameworks baad mein state, retries aur multi step flows mein madad karte hain.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>AI agent kya hai? Kab agent use nahi karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Agent ek loop mein LLM hai: use goal milta hai, woh action tay karta hai jaise tool call, result dekhta hai, aur agla step tay karta hai, kaam poora hone tak. Yeh tab useful hai jab steps pehle se pata na hon, jaise kai systems mein research. Jab steps fixed aur pata hon, tab agent nahi; ek do LLM calls wala simple workflow sasta, tez, test karne mein aasaan aur zyaada reliable hai. Har extra agent step cost, latency aur fail hone ka ek aur mauka jodta hai, isliye main simple se shuru karta hoon aur autonomy wahin jodta hoon jahan saaf faayda ho.</p><p class="prep-label">✅ </p><ul><li data-read>Plan, act, observe loop mein LLM plus tools</li><li data-read>Open ended, multi step kaam ke liye accha</li><li data-read>Steps pata hon to fixed workflow</li><li data-read>Kharch: latency, paisa, reliability, mushkil testing</li></ul><p class="prep-check" data-read><strong>:</strong> Kya aapme engineering sanyam hai, ya sirf hype?</p></div></details><details class="deep-faq"><summary data-read>Agent ko test aur evaluate kaise karte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Teen levels pe. Unit level: har tool aur tool calls ki parsing normal code tests se. Step level: ek situation mein kya agent sahi tool sahi arguments ke saath chunta hai? Inke decisions ka dataset bana ke score karta hoon. End to end: sandbox mein fake ya test systems ke saath poore tasks chalao aur final state check karo, jaise &quot;sahi refund bana, aur kuch nahi?&quot;. Har task ke steps, cost aur time bhi track karta hoon, aur failure cases test karta hoon: tools ke errors, aur aise prompts jo use galat kaam karwaane ki koshish karein.</p><p class="prep-label">✅ </p><ul><li data-read>Tools ke unit tests</li><li data-read>Step level decision evals</li><li data-read>Sandbox mein end to end tasks, final state check</li><li data-read>Steps, cost, latency track; errors aur attacks test</li></ul><p class="prep-check" data-read><strong>:</strong> Agent specific evaluation ki gehraai.</p></div></details><details class="deep-faq"><summary data-read>Agent banate waqt open-ended ReAct loop ke bajaye explicit state graph (jaise LangGraph) kyun use karte hain?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Open-ended ReAct loop LLM ko har agla step khul ke tay karne deta hai, jo flexible exploration ke liye theek hai par production mein aksar gol-gol ghoomta rehta hai, fields bhool jaata hai ya safety steps chhod deta hai. State graph ek typed state object, chhote deterministic ya LLM nodes jo us state ko update karein, aur explicit conditional edges define karta hai jo tay karte hain kaunsa transition allowed hai. Isse persistent checkpoints milte hain taaki lamba workflow human approval click ke liye ruk sake aur ghanton baad wahin se shuru ho, infinite loops rokne ke liye hard step aur token budgets, aur saaf per-node traces.</p><p class="prep-label">✅ </p><ul><li data-read>Typed shared state + chhote nodes + explicit conditional edges</li><li data-read>Gair-kanooni transitions aur infinite tool-calling loops rokta hai</li><li data-read>Checkpointing se pause/resume aur human-in-the-loop approval gates milte hain</li><li data-read>Side-effect wale tools pe idempotency keys taaki retries double charge na karein</li></ul><p class="prep-check" data-read><strong>:</strong> 2026 ka signature agent engineering sawaal: production mein autonomy ko control karna.</p></div></details><details class="deep-faq"><summary data-read>Ek AI agent design karo jo customer support sambhaale, refunds samet.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Scope clarify karo: kaunsi requests, kaunse systems, refund limits, bhashaayein. Architecture: agent ko order dhoondhna, refund policy check karna, refund banana aur insaan ko handoff jaise tools milte hain, har ek validated parameters aur least privilege ke saath. Policy code mein enforce hoti hai, sirf prompt mein nahi: jaise ₹2,000 se upar ya policy se bahar refunds hamesha human approval maangte hain. Help articles pe RAG se jawaab ground karo. Prompt injection ke khilaaf guardrails, aur account ke kisi action se pehle identity verification. Sandbox mein asli recorded conversations se evaluate karo: sahi resolution, galat actions, escalation rate aur per conversation cost. Pehle ek category ke liye launch, insaan sample review karein.</p><p class="prep-label">✅ </p><ul><li data-read>Scope aur limits clarify</li><li data-read>Least privilege tools; policy code mein</li><li data-read>Risky actions ke liye human approval; identity checks</li><li data-read>Sandbox evals; phased launch; metrics</li></ul><p class="prep-check" data-read><strong>:</strong> Safety ke saath agent design; FDE aur agent roles mein popular.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Agent ka formula: LLM + tools + loop + memory + guardrails. Inmein se ek bhi kam, to agent bharosemand nahi.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/agent.html" title="Ek LLM jo loop mein kaam karta hai: step plan karta hai, tool use karta hai, result dekhta hai, aur goal poora hone tak agla step tay karta hai.">Agent</a></li><li><a class="chip" href="../../glossary/guardrails.html" title="AI system ke around rules aur checks jo unsafe, galat ya mehenge behaviour ko rokte hain.">Guardrails</a></li><li><a class="chip" href="../../glossary/tool-calling.html" title="LLM ko aapke code se actions ya data maangne dena, jaise order dhoondhna ya email bhejna.">Tool calling</a></li><li><a class="chip" href="../../glossary/workflow.html" title="Steps ka tay kiya sequence jisme kuch steps LLM call karte hain, khule chalne wale agent ke ulat.">Workflow</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="api-serving.html">← Model ko FastAPI se API ke roop mein serve karna</a>
-        <a href="llm-mcp.html">MCP: AI tools ke liye universal plug →</a>
+        <a href="llm-tool-use.html">← Tool use (function calling): LLM ko action lene dena</a>
+        <a href="agent-workflows.html">Bharosemand agent workflows: state graphs, memory, human-in-the-loop aur recovery →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=llm-agent-engineer&amp;lesson=llm-agents&amp;lang=hi">LLM / Agent Engineer</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=llm-agent-engineer&amp;lesson=llm-agents&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-agents&amp;lang=hi">AI Product Engineer</a> · <a href="../../learn.html?course=llm-agent-engineer&amp;lesson=llm-agents&amp;lang=hi">LLM / Agent Engineer</a> · <a href="../../learn.html?course=ai-forward-deployed-engineer&amp;lesson=llm-agents&amp;lang=hi">AI Forward Deployed Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=llm-agents&amp;lang=hi">AI Product Manager</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-agents&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

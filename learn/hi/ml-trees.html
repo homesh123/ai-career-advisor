@@ -62,8 +62,18 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "AI Foundations Path course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-fresher"
+        },
+        {
+          "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
         }
       ]
     },
@@ -178,19 +188,21 @@ print(model.score(X_test, y_test))
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>C. Gradient-boosted trees</strong>: Tabular data pe boosted trees fast, accurate aur explainable hain. Deep learning se pehle inhe try karo.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kya trees ko scaled features chahiye?</summary><p data-read>Nahi. Trees thresholds pe split karte hain, isliye scaling se farak nahi padta. Isiliye yeh use karne mein aasaan hain.</p></details><details class="deep-faq"><summary data-read>Tables ke liye deep learning kyun nahi?</summary><p data-read>Aam business tables pe gradient boosting aksar utna hi ya zyaada accha, train karne mein tez aur samjhaane mein aasaan hota hai.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Random forest aur gradient boosting mein kya fark hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Dono bahut saare decision trees jodte hain. Random forest bahut saare gehre trees alag alag, rows aur features ke random samples pe train karta hai, phir unke votes ka average leta hai. Isse variance kam hota hai aur yeh mushkil se tootta hai. Gradient boosting chhote trees ek ke baad ek train karta hai, har naya tree pichhlon ki galtiyaan theek karta hai. Boosting, jaise XGBoost ya LightGBM, aam taur pe tabular data pe sabse acchi accuracy deta hai par dhyaan se tuning chahiye, aur zyaada trees se overfit ho sakta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Forest = parallel trees, average, variance kam</li><li data-read>Boosting = ek ke baad ek trees jo galtiyaan sudhaarte hain, bias kam</li><li data-read>Tables ke liye boosting aksar sabse mazboot; forest robust default</li></ul><p class="prep-check" data-read><strong>:</strong> Tabular data ka practical knowledge, jo aaj bhi zyaadatar industry ML hai.</p></div></details><details class="deep-faq"><summary data-read>Kaunsa model use karna hai, kaise chunte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Main ek simple baseline se shuru karta hoon, jaise logistic regression ya ek rule, taaki pata ho &quot;accha&quot; ka matlab kya hai. Tabular data ke liye phir gradient boosting try karta hoon kyunki aksar woh sabse mazboot hota hai. Images, text ya audio ke liye pretrained deep learning models ya LLM. Phir constraints dekhta hoon: latency, cost, kitna data hai, aur kya result explainable hona chahiye, jaise lending mein. Validation data pe target poora karne wala sabse simple model chunta hoon, kyunki use maintain karna aasaan hai.</p><p class="prep-label">✅ </p><ul><li data-read>Baseline se shuru karo</li><li data-read>Data type family tay karta hai (tables → boosting; text/images → pretrained deep models)</li><li data-read>Constraints: latency, explainability, data size, cost</li><li data-read>Goal poora karne wala sabse simple model</li></ul><p class="prep-check" data-read><strong>:</strong> Sabse fancy model ke peeche bhaagne se zyaada engineering samajh.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Tables ho to pehle boosted trees try karo.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/decision-tree.html" title="Model jo input ke baare mein haan ya nahi sawaalon ki ek series poochh kar predict karta hai.">Decision tree</a></li><li><a class="chip" href="../../glossary/early-stopping.html" title="Validation score sudharna band ho to training rok dena, overfitting se bachne ke liye.">Early stopping</a></li><li><a class="chip" href="../../glossary/gradient-boosting.html" title="Kai chhote decision trees ek ke baad ek banana, har ek pichhlon ki galtiyaan sudhaarta hai.">Gradient boosting</a></li><li><a class="chip" href="../../glossary/random-forest.html" title="Random samples pe train hue kai decision trees jinke votes ka average liya jaata hai.">Random forest</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="ml-features.html">← Feature engineering: raw data ko kaam ke inputs mein badalna</a>
-        <a href="math-vectors.html">Vectors aur matrices: AI ki bhasha →</a>
+        <a href="ml-unsupervised.html">Unsupervised learning: clustering, PCA aur anomaly detection →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ml-engineer&amp;lesson=ml-trees&amp;lang=hi">ML Engineer</a></p>
-        <a class="button btn-primary" href="../../learn.html?course=ml-engineer&amp;lesson=ml-trees&amp;lang=hi">Course mein seekho</a>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=ml-trees&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=ml-trees&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=ml-trees&amp;lang=hi">Data Engineer (AI focus)</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=ml-trees&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>
   </main>

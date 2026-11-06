@@ -296,6 +296,11 @@ function lessonView(list, fast) {
     return doneSteps.includes(step);
   })();
   const isLast = idx === list.length - 1;
+  const topicPrepQs = typeof INTERVIEW_PREP !== "undefined"
+    ? INTERVIEW_PREP.questions
+        .filter(q => q.topics && q.topics.includes(lessonId))
+        .sort((a, b) => (b.roles.includes(course) ? 1 : 0) - (a.roles.includes(course) ? 1 : 0))
+    : [];
   return `
     <p class="lesson-meta">${extra ? `📎 ${esc(t("extraLesson"))}` : `${esc(stepTitle(course, step))} · ${esc(t("lessonOf", { i: idx + 1, n: list.length }))}`} · ⏱ ${x.mins} ${esc(t("readTime"))}${fast.has(step) ? ` <span class="badge-fast">${esc(t("youMayKnow"))}</span>` : ""}</p>
     <h2 class="lesson-title" data-read><span class="lesson-icon" aria-hidden="true">${x.icon}</span>${esc(L(x.title))}</h2>
@@ -326,6 +331,26 @@ function lessonView(list, fast) {
         ${right ? "" : `<button type="button" class="link-btn small" data-act="retry">${esc(t("tryAgain"))}</button>`}</div>` : ""}
     </section>
     ${deep && deep.faq ? `<section class="ls ls-faq"><h3>🙋 ${esc(t("peopleAsk"))}</h3>${deep.faq.map(([q, ans]) => `<details class="deep-faq"><summary data-read>${esc(L(q))}</summary><p data-read>${esc(L(ans))}</p></details>`).join("")}</section>` : ""}
+    ${topicPrepQs.length ? `<section class="ls ls-interview-qs"><h3>🎯 ${esc(t("askedInInterviews"))}</h3>
+      <p class="small muted">${esc(t("askedInInterviewsSub"))}</p>
+      <ol class="prep-list">${topicPrepQs.map((q, qi) => {
+        const ok = learn.prep.includes(q.id);
+        const h = prepHi(q);
+        const xq = h || q;
+        const ln = h ? "hi-Latn" : "en";
+        return `<li class="prep-q${ok ? " prepared" : ""}" id="pq-${q.id}">
+          <details><summary><span class="prep-n">${qi + 1}</span><span lang="${ln}">${esc(xq.q)}</span>${ok ? `<span class="badge-fast">✓</span>` : ""}</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 ${esc(t("easyAnswer"))}</p>
+              <p lang="${ln}">${esc(xq.answer)}</p>
+              ${h ? `<details class="prep-en"><summary>🗣️ ${esc(t("sayInEnglish"))}</summary><p class="small muted" lang="en"><strong>${esc(q.q)}</strong></p><p lang="en">${esc(q.answer)}</p></details>` : ""}
+              <p class="prep-label">✅ ${esc(t("strongCovers"))}</p>
+              <ul lang="${ln}">${xq.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+              <p class="prep-check"><strong>${esc(t("theyCheck"))}:</strong> <span lang="${ln}">${esc(xq.check)}</span></p>
+              <button type="button" class="button ${ok ? "btn-secondary" : "btn-primary"} btn-small" data-prep="${q.id}">${esc(ok ? t("unmarkPrepared") : t("markPrepared"))}</button>
+            </div>
+          </details></li>`;
+      }).join("")}</ol></section>` : ""}
     <section class="ls ls-remember" data-read><h3>📌 ${esc(t("remember"))}</h3><p>${esc(L(x.remember))}</p></section>
 
     ${stepDone && me ? `<div class="callout callout-ok step-callout"><strong>${esc(t("stepComplete", { n: step }))}</strong>

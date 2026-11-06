@@ -62,8 +62,18 @@
       "isPartOf": [
         {
           "@type": "Course",
+          "name": "ML Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
           "name": "Data Engineer (AI focus) course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "MLOps / AI Platform Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=mlops-engineer"
         }
       ]
     },
@@ -178,19 +188,21 @@
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. Blocking a fraudulent payment as it happens</strong>: Fraud must be stopped in seconds. A report tomorrow is too late.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Is Kafka a database?</summary><p data-read>Not really. It&#39;s a durable event log for moving data between systems. You still store results in databases.</p></details><details class="deep-faq"><summary data-read>Where does streaming help AI?</summary><p data-read>Real time features for fraud and recommendations, and keeping search or vector indexes up to date within seconds.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>When would you choose streaming over batch processing?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Batch processes data in chunks on a schedule, like every hour or night; it&#39;s simpler, cheaper and easier to fix. Streaming processes events continuously within seconds, using tools like Kafka and Flink or Spark Streaming. I&#39;d choose streaming only when the business needs fast reactions: fraud detection while a payment is happening, live recommendations, or real time alerts. For daily reports or model training, batch is better. Many systems use both: streaming for real time features, batch for corrections and history.</p><p class="prep-label">✅ </p><ul><li data-read>Batch: scheduled, simpler, cheaper</li><li data-read>Streaming: continuous, low latency, more complex</li><li data-read>Choose by business latency need, with examples</li><li data-read>Hybrid is common</li></ul><p class="prep-check" data-read><strong>:</strong> Architecture judgement.</p></div></details><details class="deep-faq"><summary data-read>Design a real time fraud detection system with a 150 ms latency budget.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify the cost of missed fraud versus false declines, and the review team&#39;s capacity. Features: real time features like the number of transactions from this card in the last 10 minutes, computed from a stream, plus historical features from a feature store; accept that some features are slightly stale to meet latency. Model: gradient boosting, fast and strong on tabular data, with a threshold chosen for the business trade off, and a middle band sent to manual review. Serving: a low latency service with features cached in memory or Redis, and a fallback rule if the model is slow. Labels arrive late through chargebacks, so monitor drift and retrain regularly, and keep rules for brand new fraud patterns.</p><p class="prep-label">✅ </p><ul><li data-read>Clarify costs of each error type</li><li data-read>Streaming plus stored features; staleness trade off</li><li data-read>Fast model, threshold with review band</li><li data-read>Low latency serving with fallback; delayed labels, drift, retraining</li></ul><p class="prep-check" data-read><strong>:</strong> Latency, features and business trade offs together.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Batch = periodic, simpler. Streaming = real-time, more complex. Use it when seconds matter.</p></section>
       <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/feature-store.html" title="A shared system that stores ready-made features for both training and live predictions.">Feature store</a></li><li><a class="chip" href="../glossary/streaming.html" title="Showing an LLM&#39;s answer word by word as it&#39;s generated, instead of waiting for all of it.">Streaming</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
-        <a href="rag.html">← RAG: letting an LLM answer from your documents</a>
-        <a href="portfolio.html">Building a portfolio project that gets interviews →</a>
+        <a href="gpu-serving.html">← Serving LLMs efficiently: GPUs, batching and cost</a>
+        <a href="build-vs-buy.html">AI literacy for decisions: build vs buy, cost and limits →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=data-engineer-ai&amp;lesson=streaming">Data Engineer (AI focus)</a></p>
-        <a class="button btn-primary" href="../learn.html?course=data-engineer-ai&amp;lesson=streaming">Continue in the course</a>
+        <p><a href="../learn.html?course=ml-engineer&amp;lesson=streaming">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=streaming">Data Engineer (AI focus)</a> · <a href="../learn.html?course=mlops-engineer&amp;lesson=streaming">MLOps / AI Platform Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ml-engineer&amp;lesson=streaming">Continue in the course</a>
       </section>
     </article>
   </main>

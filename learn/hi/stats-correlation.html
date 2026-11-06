@@ -69,6 +69,21 @@
           "@type": "Course",
           "name": "ML Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ml-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Research Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -182,18 +197,20 @@
         <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>C. Sampling bias: doosri cities ke logon ko galat score de sakta hai</strong>: Training data un sab logon ko represent nahi karta jinhe model judge karega.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kya ML models causes dhoondh sakte hain?</summary><p data-read>Normal ML prediction ke liye useful correlations dhoondhta hai, causes nahi. Causal sawaalon ke liye experiments ya special causal inference methods chahiye.</p></details><details class="deep-faq"><summary data-read>Kya 0.3 ka correlation weak hai?</summary><p data-read>Yeh thoda hai, par business mein phir bhi matter kar sakta hai. Aur correlation sirf seedhi line wale rishte naapta hai; hamesha data plot karo.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Correlation aur causation mein kya fark hai? Causation kaise prove karoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Correlation matlab do cheezein saath badhti ghatti hain; causation matlab ek doosre ko cause karti hai. Ice cream ki bikri aur doobne ke cases saath badhte hain kyunki dono garmi mein badhte hain, ice cream doobne ki wajah nahi. Products mein, naya feature use karne wale users zyaada tik sakte hain sirf isliye kyunki woh pehle se zyaada engaged the. Causation dikhane ka best tool randomised A/B test hai: feature randomly aadhe users ko do, taaki systematic fark sirf feature ka ho, phir results compare karo.</p><p class="prep-label">✅ </p><ul><li data-read>Correlation ≠ causation; chhupe teesre factors (confounders)</li><li data-read>Selection bias: opt in karne wale alag hote hain</li><li data-read>Randomised experiment sabse pakka tarika</li></ul><p class="prep-check" data-read><strong>:</strong> Decisions ke liye statistical soch; PMs aur analysts ke liye zaroori.</p></div></details><details class="deep-faq"><summary data-read>K-means clustering, PCA aur anomaly detection kaise kaam karte hain, aur pehle features scale karna kyun zaroori hai?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>K-means bina label wali rows ko K clusters mein baantta hai: baar-baar har point ko sabse kareebi cluster centre deta hai aur phir har centre ko uske points ke average pe le jaata hai. PCA sabse zyaada variance wali dishaayein dhoondhta hai aur high-dimensional features ko kuch orthogonal components pe project karta hai. Isolation Forest features ko randomly kaat ke anomalies pakadta hai—outliers akele hote hain aur bahut kam splits mein alag ho jaate hain. Kyunki k-means aur PCA Euclidean distance aur variance pe chalte hain, bina scale kiya feature jaise rupayon mein salary (0 se 2,000,000) age (18 se 70) ko poori tarah daba dega, isliye main pehle features ko zero mean aur unit variance pe standardise karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>K-means: kareebi centroid do, centroids update karo; K elbow/silhouette + domain samajh se chuno</li><li data-read>PCA: correlated columns ko max variance ki dishaon mein compress karo</li><li data-read>Isolation Forest: anomalies kam random splits mein alag ho jaati hain</li><li data-read>Pehle features standardise karo taaki bade unit wale columns distances pe haavi na hon</li></ul><p class="prep-check" data-read><strong>:</strong> Dekhta hai ki aap fit() call karne se aage distance-based unsupervised learning samajhte ho ya nahi.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Correlation causation nahi hai, aur biased data se biased AI banta hai.</p></section>
       <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/a-b-test.html" title="Do versions ko randomly alag users ko dikhana, yeh dekhne ke liye ki kaunsa sach mein behtar hai.">A/B test</a></li><li><a class="chip" href="../../glossary/bias.html" title="Jab model ke results lagaataar ek taraf jhuke ya anyaayi hon, aksar jhuke hue training data ki wajah se.">Bias</a></li><li><a class="chip" href="../../glossary/sampling-bias.html" title="Jab ikattha kiya data un logon ya situations ko represent nahi karta jinka model ko saamna karna hai.">Sampling bias</a></li></ul></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
         <a href="stats-probability.html">← Probability aur distributions</a>
-        <a href="sql-basics.html">SQL basics: database se sawaal poochna →</a>
+        <a href="ab-testing.html">AI features ke liye metrics aur A/B testing →</a>
       </nav>
 
       <section class="cta-box">
         <h2>Poora course, aapke roadmap ke hisaab se</h2>
         <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
-        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=stats-correlation&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=stats-correlation&amp;lang=hi">ML Engineer</a></p>
+        <p><a href="../../learn.html?course=ai-fresher&amp;lesson=stats-correlation&amp;lang=hi">AI Foundations Path</a> · <a href="../../learn.html?course=ml-engineer&amp;lesson=stats-correlation&amp;lang=hi">ML Engineer</a> · <a href="../../learn.html?course=data-engineer-ai&amp;lesson=stats-correlation&amp;lang=hi">Data Engineer (AI focus)</a> · <a href="../../learn.html?course=ai-research-engineer&amp;lesson=stats-correlation&amp;lang=hi">AI Research Engineer</a> · <a href="../../learn.html?course=ai-product-manager&amp;lesson=stats-correlation&amp;lang=hi">AI Product Manager</a></p>
         <a class="button btn-primary" href="../../learn.html?course=ai-fresher&amp;lesson=stats-correlation&amp;lang=hi">Course mein seekho</a>
       </section>
     </article>

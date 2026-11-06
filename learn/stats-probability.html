@@ -72,8 +72,18 @@
         },
         {
           "@type": "Course",
+          "name": "Data Engineer (AI focus) course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=data-engineer-ai"
+        },
+        {
+          "@type": "Course",
           "name": "AI Research Engineer course",
           "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-research-engineer"
+        },
+        {
+          "@type": "Course",
+          "name": "AI Product Manager course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-manager"
         }
       ]
     },
@@ -188,6 +198,8 @@ Lower threshold = catch more fraud, but annoy more honest customers.</code></pre
         <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. It&#39;s more likely spam than not, but not certain</strong>: 0.6 means that out of many similar emails, about 6 in 10 would be spam. It&#39;s likely, not certain.</p></details>
       </section>
       <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How much probability do I need for AI jobs?</summary><p data-read>For most engineering roles: basic probability, conditional probability and the idea of distributions. Research roles need much more.</p></details><details class="deep-faq"><summary data-read>Is a model&#39;s 0.9 score really a 90% chance?</summary><p data-read>Only if the model is calibrated. Many models are over-confident; you can check calibration by comparing predicted scores with how often things actually happened.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>Explain conditional probability and Bayes&#39; rule with a real example. Why does the base rate matter so much?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Conditional probability P(A | B) is the probability of A given that B has already happened. Bayes&#39; rule flips the condition: P(fraud | flagged) equals P(flagged | fraud) times P(fraud) divided by P(flagged). The base rate P(fraud) matters hugely. Suppose only 1 in 1,000 transactions is fraud, and a detector is 99% accurate on both fraud and normal transactions. Out of 100,000 transactions, it catches ~99 of the 100 real frauds, but it also falsely flags 1% of the 99,900 normal ones—about 999 false alarms. So when the model flags a transaction, there&#39;s only about a 9% chance it&#39;s actually fraud.</p><p class="prep-label">✅ </p><ul><li data-read>P(A | B) = probability of A given B; Bayes flips P(signal | event) to P(event | signal)</li><li data-read>Walk through a rare event example showing how false positives dominate when base rate is low</li><li data-read>Connect directly to precision vs recall in fraud, medical screening or content moderation</li><li data-read>Mention skewed/long tailed distributions vs normal distributions</li></ul><p class="prep-check" data-read><strong>:</strong> A classic probability question that separates people who memorise formulas from people who understand rare events.</p></div></details></section>
+
       <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Model outputs are usually probabilities, and you pick the threshold.</p></section>
 
       <nav class="lesson-pager" aria-label="Lessons">
@@ -198,7 +210,7 @@ Lower threshold = catch more fraud, but annoy more honest customers.</code></pre
       <section class="cta-box">
         <h2>Learn this as part of a full course</h2>
         <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
-        <p><a href="../learn.html?course=ai-fresher&amp;lesson=stats-probability">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=stats-probability">ML Engineer</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=stats-probability">AI Research Engineer</a></p>
+        <p><a href="../learn.html?course=ai-fresher&amp;lesson=stats-probability">AI Foundations Path</a> · <a href="../learn.html?course=ml-engineer&amp;lesson=stats-probability">ML Engineer</a> · <a href="../learn.html?course=data-engineer-ai&amp;lesson=stats-probability">Data Engineer (AI focus)</a> · <a href="../learn.html?course=ai-research-engineer&amp;lesson=stats-probability">AI Research Engineer</a> · <a href="../learn.html?course=ai-product-manager&amp;lesson=stats-probability">AI Product Manager</a></p>
         <a class="button btn-primary" href="../learn.html?course=ai-fresher&amp;lesson=stats-probability">Continue in the course</a>
       </section>
     </article>
