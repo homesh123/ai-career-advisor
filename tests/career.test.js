@@ -19,7 +19,9 @@ test("every role has starter, core and portfolio tasks, complete in both languag
   assert.deepEqual(Object.keys(ROLE_TASKS).sort(), roleIds.slice().sort());
   const seen = new Set();
   for (const [roleId, tasks] of Object.entries(ROLE_TASKS)) {
-    assert.deepEqual(tasks.map(t => t.level), ["Starter", "Core", "Portfolio"], roleId);
+    // Starter, Core and Portfolio first; a role may add Capstone projects after them.
+    assert.deepEqual(tasks.slice(0, 3).map(t => t.level), ["Starter", "Core", "Portfolio"], roleId);
+    tasks.slice(3).forEach(t => assert.equal(t.level, "Capstone", `${roleId}: extra tasks are Capstone`));
     tasks.forEach(t => {
       assert.ok(!seen.has(t.id), `duplicate task id ${t.id}`);
       seen.add(t.id);

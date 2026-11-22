@@ -34,12 +34,12 @@ const LEARN_TRACKS = {
   ],
   "ai-product-engineer": [
     [0, ["what-is-ai"]],
-    [1, ["llm-what", "llm-prompting", "llm-api", "multimodal-ai", "no-code-prototyping", "build-vs-buy"]],
-    [2, ["py-basics", "py-logic", "py-collections", "py-files-errors", "py-async-typing", "git-github", "api-serving", "docker", "kubernetes"]],
-    [3, ["math-vectors", "embeddings", "rag", "rag-advanced", "dl-fine-tuning"]],
-    [4, ["ml-train-test", "llm-evals", "llm-safety", "security-compliance", "ai-ux", "ab-testing", "problem-framing", "ai-prd", "ml-training-vs-inference", "mlops-tracking", "mlops-monitoring", "gpu-serving", "llmops-tracing"]],
+    [1, ["llm-what", "llm-prompting", "llm-api", "ai-chat-ui", "structured-output", "multimodal-ai", "no-code-prototyping", "build-vs-buy"]],
+    [2, ["py-basics", "py-logic", "py-collections", "py-files-errors", "py-async-typing", "git-github", "ai-coding-tools", "api-serving", "ts-ai-stack", "docker", "kubernetes"]],
+    [3, ["math-vectors", "embeddings", "rag", "rag-advanced", "context-memory", "dl-fine-tuning"]],
+    [4, ["ml-train-test", "llm-testing", "llm-evals", "prompt-release", "llm-safety", "security-compliance", "ai-ux", "llm-cost-latency", "llm-reliability", "ab-testing", "ai-feature-metrics", "problem-framing", "ai-prd", "ml-training-vs-inference", "mlops-tracking", "mlops-monitoring", "gpu-serving", "llmops-tracing"]],
     [5, ["llm-tool-use", "llm-agents", "agent-workflows", "llm-mcp", "portfolio"]],
-    [6, ["stakeholder-communication", "job-search"]]
+    [6, ["ai-product-design-interview", "stakeholder-communication", "job-search"]]
   ],
   "mlops-engineer": [
     [0, ["what-is-ai"]],
@@ -157,6 +157,7 @@ const LEARN_I18N = {
     levelStarter: "Starter",
     levelCore: "Core",
     levelPortfolio: "Portfolio",
+    levelCapstone: "Capstone",
     hours: "hours",
     taskDone: "Done",
     showSteps: "Show steps",
@@ -261,6 +262,7 @@ const LEARN_I18N = {
     levelStarter: "Starter",
     levelCore: "Core",
     levelPortfolio: "Portfolio",
+    levelCapstone: "Capstone (bada project)",
     hours: "ghante",
     taskDone: "Ho gaya",
     showSteps: "Steps dekho",

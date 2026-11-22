@@ -93,7 +93,14 @@ and who it suits, then start.
 `learn.html` has a free course for each of the 9 roles. Each course follows that role's
 roadmap step by step, starting with a "Start here" lesson.
 
-- **54 lessons**, each with:
+The **AI Product Engineer** course (52 lessons) covers everything employers list for the role in
+2026: LLM APIs, streaming chat UIs, structured outputs, TypeScript and Python stacks, building with
+AI coding assistants, RAG and context engineering, testing LLM code, evals and safe prompt releases,
+cost, latency and caching, reliability and fallbacks, production metrics, agents and MCP, and the
+AI product system design interview. It includes animated diagrams, interview prep questions,
+scored practice and a Capstone project on making an AI feature production ready.
+
+- **78 lessons**, each with:
   - a real-life analogy (chai stall, Swiggy, cricket, kirana store…);
   - a plain-language explanation;
   - key terms;

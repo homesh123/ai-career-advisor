@@ -255,6 +255,228 @@ var LESSON_DEEP = Object.assign(typeof LESSON_DEEP !== "undefined" ? LESSON_DEEP
       [["When should I use traditional OCR vs a Vision LLM?", "Traditional OCR aur Vision LLM mein kab kaunsa use karun?"], ["For millions of uniform, clean pages where speed and cost are paramount, specialised OCR + layout models are very cheap. For diverse layouts, messy receipts, charts or zero-shot extraction into JSON, a Vision LLM (or OCR + small LLM cascade) is far more accurate.", "Laakhon ek jaise saaf pages ke liye specialised OCR bahut sasta padta hai. Alag-alag layouts, tedhi raseedon, charts ya seedha JSON nikalne ke liye Vision LLM (ya OCR + chhota LLM) kahin zyaada sahi kaam karta hai."]],
       [["How do you get voice assistant latency under 800 ms?", "Voice assistant ki latency 800 ms se neeche kaise laayein?"], ["Stream every stage: detect end-of-speech with fast VAD, stream transcripts, prompt the LLM to begin with a short first clause, and start TTS audio as soon as the first clause arrives — or use a native speech-to-speech model.", "Har stage stream karo: fast VAD se baat rukna pakdo, transcript stream karo, LLM se pehla chhota jumla turant lo, aur pehla jumla aate hi TTS audio shuru kar do — ya native speech-to-speech model lagao."]]
     ]
+  },
+
+  "ai-chat-ui": {
+    steps: [
+      ["Model each message as { id, role, parts, status } where status is pending, streaming, done, stopped or failed, so the UI always knows what to show.", "Har message ko { id, role, parts, status } ki tarah rakho jahan status pending, streaming, done, stopped ya failed ho, taaki UI ko hamesha pata ho kya dikhana hai."],
+      ["On send, add the user message and an empty assistant message at once (optimistic UI), disable send, and show a typing indicator until the first token.", "Send karte hi user message aur ek khaali assistant message turant jodo (optimistic UI), send band karo, aur pehle token tak typing indicator dikhao."],
+      ["Stream from a server route with SSE or a streamed response, append chunks to the assistant message, and throttle re-renders (for example every 50 ms) so long answers don't lag.", "Server route se SSE ya streamed response ke zariye stream karo, chunks assistant message mein jodo, aur re-renders ko throttle karo (jaise har 50 ms) taaki lambe jawaab atkein nahi."],
+      ["Wire Stop to an AbortController that cancels the fetch and the model call; keep the partial text and mark it stopped. Add Regenerate and Edit question.", "Stop ko AbortController se jodo jo fetch aur model call dono cancel kare; adhoora text rakho aur stopped mark karo. Regenerate aur Edit question jodo."],
+      ["Render Markdown with a sanitiser, highlight code with a copy button, and auto scroll only if the user is already at the bottom.", "Markdown sanitiser ke saath dikhao, code ko copy button ke saath highlight karo, aur auto scroll sirf tab karo jab user pehle se neeche ho."],
+      ["Show tool steps as status lines (\"Looking up order A12345…\") and render tool results as components such as an order card, not raw JSON.", "Tool steps ko status lines ki tarah dikhao (\"Order A12345 dekh raha hoon…\") aur tool results ko components ki tarah dikhao jaise order card, raw JSON nahi."],
+      ["Handle errors per message with a Retry button, save the conversation so a refresh doesn't lose it, and test on a slow 3G connection and a phone.", "Har message pe Retry button ke saath errors sambhalo, conversation save karo taaki refresh pe kho na jaaye, aur slow 3G aur phone pe test karo."]
+    ],
+    mistakes: [
+      ["Rendering model output as raw HTML. A crafted answer or document can inject a script; always sanitise.", "Model output ko raw HTML ki tarah dikhana. Banaaya hua jawaab ya document script ghusa sakta hai; hamesha sanitise karo."],
+      ["Stop only hides the text while the server keeps generating, so you still pay for tokens nobody reads.", "Stop sirf text chhupata hai jabki server likhta rehta hai, to aap un tokens ka bhi paisa dete ho jinhe koi nahi padhta."],
+      ["Forcing the scroll to the bottom while the user is trying to read an earlier part of the answer.", "User jab jawaab ka pehle wala hissa padh raha ho tab bhi scroll ko zabardasti neeche le jaana."]
+    ],
+    faq: [
+      [["SSE or WebSockets for streaming?", "Streaming ke liye SSE ya WebSockets?"], ["SSE (or a streamed HTTP response) is enough for model answers because data flows one way and it works through most proxies. Use WebSockets when the browser must also stream to the server, such as live voice.", "Model ke jawaabon ke liye SSE (ya streamed HTTP response) kaafi hai kyunki data ek taraf jaata hai aur zyaadatar proxies se chal jaata hai. WebSockets tab use karo jab browser ko bhi server ko stream karna ho, jaise live voice."]],
+      [["Do I need the Vercel AI SDK?", "Kya Vercel AI SDK zaroori hai?"], ["No, but it saves time: it handles streaming formats, message state, tool calls and many providers. Learn how streaming works underneath once, then use whatever your team uses.", "Nahi, par time bachaata hai: streaming formats, message state, tool calls aur kai providers sambhaal leta hai. Ek baar samjho neeche streaming kaise kaam karti hai, phir jo team use karti hai woh use karo."]],
+      [["Should AI features always be a chat?", "Kya AI features hamesha chat hone chahiye?"], ["No. Many of the best AI features are a button inside an existing screen (\"Summarise\", \"Draft reply\") that streams into a panel. Use chat for open ended questions.", "Nahi. Bahut se behtareen AI features maujooda screen ke andar ek button hote hain (\"Summarise\", \"Draft reply\") jo ek panel mein stream karta hai. Chat khule sawaalon ke liye use karo."]]
+    ]
+  },
+
+  "structured-output": {
+    steps: [
+      ["Write the schema first (Zod or Pydantic) with a description on every field, enums for categories and nullable fields for values that may be missing.", "Pehle schema likho (Zod ya Pydantic), har field pe description, categories ke liye enums aur jo values na ho sakein unke liye nullable fields."],
+      ["Use the provider's structured output or tool calling mode and pass the schema, instead of asking for JSON in plain words.", "Saade shabdon mein JSON maangne ki jagah provider ka structured output ya tool calling mode use karo aur schema do."],
+      ["Validate every response against the same schema; on failure, retry once with the validation error in the prompt.", "Har response ko usi schema se validate karo; fail ho to validation error prompt mein daalkar ek baar retry karo."],
+      ["Check business rules in plain code: totals add up, IDs exist, dates make sense. Route anything that fails to human review.", "Business rules plain code mein check karo: totals milte hain, IDs hain, dates sahi hain. Jo fail ho use human review mein bhejo."],
+      ["Build an eval set of 50 or more real inputs with expected fields and measure accuracy per field, not just \"valid JSON\".", "50 ya zyaada asli inputs ka eval set banao jismein expected fields hon aur har field ki accuracy naapo, sirf \"valid JSON\" nahi."]
+    ],
+    mistakes: [
+      ["Parsing JSON out of a free text answer with a regex. It breaks on the first unusual reply; use schema mode and validation.", "Free text jawaab se regex se JSON nikaalna. Pehle hi ajeeb reply pe toot jaata hai; schema mode aur validation use karo."],
+      ["Making every field required, which pushes the model to invent order numbers, dates and amounts.", "Har field required rakhna, jisse model order numbers, dates aur amounts banaane pe majboor hota hai."],
+      ["Huge nested schemas with 60 fields in one call. Split into steps or smaller schemas for better accuracy.", "Ek call mein 60 fields wale bade nested schemas. Behtar accuracy ke liye steps ya chhote schemas mein baanto."]
+    ],
+    faq: [
+      [["Structured output or tool calling?", "Structured output ya tool calling?"], ["Use structured output when you always want one object back. Use tool calling when the model should decide which action to take, each with its own schema.", "Jab hamesha ek hi object wapas chahiye to structured output use karo. Jab model ko tay karna ho kaunsa action lena hai, har ek apne schema ke saath, tab tool calling."]],
+      [["Can the model still return wrong values in valid JSON?", "Kya valid JSON mein bhi model galat values de sakta hai?"], ["Yes. Valid shape doesn't mean correct content. That's why you add range checks, business rules and a field level eval set.", "Haan. Sahi shape ka matlab sahi content nahi. Isiliye range checks, business rules aur field level eval set jodte ho."]]
+    ]
+  },
+
+  "ts-ai-stack": {
+    steps: [
+      ["Create a Next.js app, add the AI SDK and a provider package, and put the API key in a server environment variable (never one prefixed for the browser, such as NEXT_PUBLIC_).", "Next.js app banao, AI SDK aur provider package jodo, aur API key server environment variable mein rakho (browser wale prefix jaise NEXT_PUBLIC_ wala kabhi nahi)."],
+      ["Write one route handler per AI feature that authenticates the user, rate limits, validates the body with Zod and calls the model.", "Har AI feature ke liye ek route handler likho jo user authenticate kare, rate limit lagaye, body ko Zod se validate kare aur model call kare."],
+      ["Put every model call behind one wrapper module that logs task, user, tokens, cost, latency and the prompt version.", "Har model call ko ek wrapper module ke peeche rakho jo task, user, tokens, cost, latency aur prompt version log kare."],
+      ["Store chats, documents and embeddings in Postgres (pgvector) with user and tenant IDs on every row.", "Chats, documents aur embeddings Postgres (pgvector) mein rakho, har row pe user aur tenant IDs ke saath."],
+      ["Move slow work such as indexing uploads or nightly summaries to a queue and worker; show progress in the UI.", "Uploads index karna ya raat ki summaries jaisa slow kaam queue aur worker pe bhejo; UI mein progress dikhao."],
+      ["Deploy with preview environments so every pull request gets a live link to test the AI feature and run evals.", "Preview environments ke saath deploy karo taaki har pull request ko AI feature test karne aur evals chalane ka live link mile."]
+    ],
+    mistakes: [
+      ["Exposing the API key through a NEXT_PUBLIC_ variable or a client component. Anyone can copy it and run up your bill.", "API key ko NEXT_PUBLIC_ variable ya client component se expose karna. Koi bhi copy karke aapka bill badha sakta hai."],
+      ["No auth or rate limit on AI routes, so bots and loops call the model thousands of times.", "AI routes pe na auth na rate limit, to bots aur loops model ko hazaaron baar call karte hain."],
+      ["Doing a 40 second indexing job inside the request, which times out on serverless platforms.", "40 second ka indexing job request ke andar karna, jo serverless platforms pe time out ho jaata hai."]
+    ],
+    faq: [
+      [["TypeScript or Python for AI product work?", "AI product kaam ke liye TypeScript ya Python?"], ["Use the language of your product for the app and API; TypeScript is common for web products. Learn enough Python for notebooks, data checks and eval scripts, where Python has the most tools.", "App aur API ke liye apne product ki bhasha use karo; web products ke liye TypeScript aam hai. Notebooks, data checks aur eval scripts ke liye kaafi Python seekho, jahan Python ke sabse zyaada tools hain."]],
+      [["Do I need a framework like LangChain?", "Kya LangChain jaisa framework zaroori hai?"], ["Not to start. Provider SDKs plus a small wrapper cover most product features. Add a framework when it clearly saves work, such as complex agents or many retrievers.", "Shuru mein nahi. Provider SDKs aur ek chhota wrapper zyaadatar product features sambhaal lete hain. Framework tab jodo jab woh saaf kaam bachaaye, jaise complex agents ya kai retrievers."]]
+    ]
+  },
+
+  "context-memory": {
+    steps: [
+      ["List every context source for your feature: rules, user facts, memories, documents, tool results, recent turns, and the question.", "Apne feature ke saare context sources likho: rules, user ki baatein, memories, documents, tool results, haal ke turns, aur sawaal."],
+      ["Set a token budget per source (for example rules 800, documents 3,000, history 1,500) and trim the lowest value parts first.", "Har source ka token budget rakho (jaise rules 800, documents 3,000, history 1,500) aur sabse kam kaam ke hisse pehle kaato."],
+      ["Order it: stable instructions first, then facts and documents, then recent turns, with the question last.", "Order: pakke instructions pehle, phir facts aur documents, phir haal ke turns, aur sawaal aakhir mein."],
+      ["Summarise older turns when the chat passes a limit and keep the summary updated as the chat grows.", "Chat limit paar kare to purane turns summarise karo aur chat badhne ke saath summary update rakho."],
+      ["Save long term memories only with consent, show users what is remembered, and let them edit or delete it.", "Long term memories sirf permission se save karo, users ko dikhao kya yaad rakha hai, aur unhe edit ya delete karne do."],
+      ["Enforce user and tenant filters in every database and vector query, and test that user A can never see user B's data.", "Har database aur vector query mein user aur tenant filters lagao, aur test karo ki user A kabhi user B ka data na dekh sake."]
+    ],
+    mistakes: [
+      ["Sending the full chat history forever. Cost and latency grow with every message and quality drops.", "Poori chat history hamesha bhejte rehna. Har message ke saath kharch aur latency badhti hai aur quality girti hai."],
+      ["Asking the model to \"only use this user's documents\" instead of filtering in code. A prompt is not an access control.", "Code mein filter karne ki jagah model se kehna \"sirf is user ke documents use karo\". Prompt access control nahi hai."],
+      ["Remembering sensitive details (health, money, passwords) without asking, or without a way to delete them.", "Bina poochhe sensitive baatein (health, paisa, passwords) yaad rakhna, ya unhe delete karne ka tareeka na dena."]
+    ],
+    faq: [
+      [["Isn't a 1 million token context window enough to skip all this?", "Kya 10 lakh token ka context window yeh sab chhodne ke liye kaafi nahi?"], ["It fits more, but every token still costs money and time, and models use long context less reliably. Choosing the right context is still cheaper and more accurate.", "Zyaada fit hota hai, par har token ka paisa aur time phir bhi lagta hai, aur models lamba context kam bharose se use karte hain. Sahi context chunna ab bhi sasta aur zyaada sahi hai."]],
+      [["How is memory different from RAG?", "Memory RAG se kaise alag hai?"], ["RAG retrieves shared knowledge such as help articles. Memory stores facts about one user. Both are added to the prompt, but memory needs consent, editing and strict per-user isolation.", "RAG shared knowledge laata hai jaise help articles. Memory ek user ke baare mein baatein rakhti hai. Dono prompt mein judte hain, par memory ko permission, editing aur sakht per-user isolation chahiye."]]
+    ]
+  },
+
+  "llm-cost-latency": {
+    steps: [
+      ["Log tokens, cost and latency (time to first token and total) for every call, tagged by feature, model and prompt version.", "Har call ke tokens, cost aur latency (pehle token tak aur total) log karo, feature, model aur prompt version ke tag ke saath."],
+      ["Build a dashboard of cost per request, cost per active user and p50/p95 latency per feature, with a monthly budget alert.", "Har feature ka cost per request, cost per active user aur p50/p95 latency ka dashboard banao, monthly budget alert ke saath."],
+      ["Find the biggest spender and try a smaller model for it; keep the switch only if your evals stay within the agreed limit.", "Sabse zyaada kharch wala hissa dhoondho aur uske liye chhota model try karo; switch tabhi rakho jab evals tay limit ke andar rahein."],
+      ["Make the long prompt prefix identical across calls and enable prompt caching; measure the cache hit rate.", "Lamba prompt prefix har call mein same rakho aur prompt caching on karo; cache hit rate naapo."],
+      ["Add a response cache for repeated questions with identity in the key and a sensible expiry.", "Repeat sawaalon ke liye response cache lagao, key mein identity aur sahi expiry ke saath."],
+      ["Cut tokens: shorter instructions, fewer reranked chunks, max output tokens; then stream and parallelise the remaining steps.", "Tokens kam karo: chhote instructions, kam reranked chunks, max output tokens; phir baaki steps stream aur parallel karo."]
+    ],
+    mistakes: [
+      ["Using the biggest model for every step, including simple classification, \"just to be safe\".", "Har step ke liye sabse bada model use karna, simple classification ke liye bhi, \"safe rehne ke liye\"."],
+      ["A cache key without user or tenant identity, which can leak one customer's answer to another.", "Bina user ya tenant identity ki cache key, jo ek customer ka jawaab doosre ko leak kar sakti hai."],
+      ["Optimising average latency while p95 users wait 12 seconds. Users remember the slow cases.", "Average latency sudhaarna jabki p95 users 12 second intezaar karte hain. Users slow cases yaad rakhte hain."]
+    ],
+    faq: [
+      [["How do I estimate cost before building?", "Banaane se pehle cost kaise andaaza lagaayein?"], ["Multiply expected requests per day by average input and output tokens and the model prices, then add 30% for retries and growth. Compare it with the value per task.", "Roz ki expected requests ko average input aur output tokens aur model prices se guna karo, phir retries aur growth ke liye 30% jodo. Har kaam ki value se compare karo."]],
+      [["Does streaming reduce cost?", "Kya streaming se cost kam hoti hai?"], ["No, it reduces perceived latency: users see words sooner, but the same tokens are generated. It does let users stop early, which can save some tokens.", "Nahi, yeh mehsoos hone wali latency kam karti hai: users ko shabd jaldi dikhte hain, par tokens utne hi bante hain. Haan, users jaldi rok sakte hain, jisse kuch tokens bachte hain."]]
+    ]
+  },
+
+  "llm-reliability": {
+    steps: [
+      ["Set a timeout on every model and tool call, shorter for interactive screens than for background jobs.", "Har model aur tool call pe timeout lagao, interactive screens ke liye background jobs se chhota."],
+      ["Retry only temporary errors (429, 5xx, timeouts) with exponential backoff, jitter and a cap of two or three tries; honour Retry-After.", "Sirf temporary errors (429, 5xx, timeouts) retry karo, exponential backoff, jitter aur do teen tries ki limit ke saath; Retry-After maano."],
+      ["Give every action that changes something (email, refund, ticket) an idempotency key so retries can't repeat it.", "Kuch badalne wale har action (email, refund, ticket) ko idempotency key do taaki retries use dohra na sakein."],
+      ["Define the fallback chain per feature: backup model, cached or simpler answer, then a non-AI path with a clear message.", "Har feature ki fallback chain tay karo: backup model, cached ya simple jawaab, phir saaf message ke saath non-AI raasta."],
+      ["Add per-user rate limits and daily budgets in front of the model, plus a circuit breaker per provider.", "Model ke aage per-user rate limits aur daily budgets lagao, aur har provider ke liye circuit breaker."],
+      ["Alert on error rate, fallback rate and budget, and test failures on purpose (block the provider in staging and watch what users see).", "Error rate, fallback rate aur budget pe alert lagao, aur failures jaan boojh kar test karo (staging mein provider block karke dekho users ko kya dikhta hai)."]
+    ],
+    mistakes: [
+      ["Retrying immediately in a tight loop during a rate limit, which makes the overload worse and gets you blocked longer.", "Rate limit ke dauraan turant tight loop mein retry karna, jisse overload aur badhta hai aur aap zyaada der block hote ho."],
+      ["Retrying an agent step that already sent an email, so the customer gets it twice.", "Aise agent step ko retry karna jo email bhej chuka tha, to customer ko do baar milti hai."],
+      ["A blank screen or raw stack trace when the model is down, instead of a useful fallback.", "Model down hone pe khaali screen ya raw stack trace, kaam ke fallback ki jagah."]
+    ],
+    faq: [
+      [["Should I use two model providers?", "Kya do model providers use karne chahiye?"], ["For important features, yes: keep a tested backup model and run your evals on it too, because prompts don't always transfer perfectly between models.", "Zaroori features ke liye haan: ek tested backup model rakho aur uspe bhi evals chalao, kyunki prompts models ke beech hamesha perfectly kaam nahi karte."]],
+      [["What is a good timeout for an AI feature?", "AI feature ke liye accha timeout kitna hai?"], ["Base it on the user's patience and your p99: often 10 to 20 seconds for a streaming answer (with first token expected within 2 to 3 seconds) and longer for background jobs.", "User ke sabr aur apne p99 ke hisaab se: streaming jawaab ke liye aksar 10 se 20 second (pehla token 2 se 3 second mein) aur background jobs ke liye zyaada."]]
+    ]
+  },
+
+  "prompt-release": {
+    steps: [
+      ["Move prompts out of scattered strings into versioned files or a prompt registry, each with an ID like support@v14.", "Prompts ko bikhri strings se nikaal kar versioned files ya prompt registry mein rakho, har ek ki ID jaise support@v14."],
+      ["Log the prompt version and model with every request so any answer can be traced back.", "Har request ke saath prompt version aur model log karo taaki har jawaab ka pata lagaaya ja sake."],
+      ["Add an eval job to CI that compares the candidate with the current version and fails the pull request on agreed regressions.", "CI mein eval job jodo jo candidate ko current version se compare kare aur tay regressions pe pull request fail kare."],
+      ["Review a sample of changed answers side by side, not only the scores.", "Sirf scores nahi, badle hue jawaabon ka sample saath saath dekho."],
+      ["Release behind a feature flag to 5% of traffic, watch online signals for a day or two, then increase in steps.", "Feature flag ke peeche 5% traffic ko release karo, ek do din online signals dekho, phir steps mein badhao."],
+      ["Keep rollback to one switch, and write a changelog entry for each version.", "Rollback ek switch pe rakho, aur har version ki changelog entry likho."]
+    ],
+    mistakes: [
+      ["Editing the prompt directly in production on a Friday evening because \"it's only text\".", "Shukravaar shaam production mein seedha prompt edit karna kyunki \"sirf text hai\"."],
+      ["Upgrading to a newer model without running evals, assuming newer always means better for your task.", "Bina evals chalaaye naye model pe upgrade karna, yeh maan kar ki naya hamesha aapke kaam ke liye behtar hai."],
+      ["An eval set that never grows, so new failure types from production keep slipping through.", "Aisa eval set jo kabhi nahi badhta, to production ke naye failure types nikalte rehte hain."]
+    ],
+    faq: [
+      [["How big should the CI eval set be?", "CI eval set kitna bada hona chahiye?"], ["Start with 50 to 200 cases covering common, hard and risky inputs, and add every real failure you fix. Keep it fast enough to run on every pull request.", "Aam, mushkil aur risky inputs wale 50 se 200 cases se shuru karo, aur har asli failure jo theek karo use jodo. Itna tez rakho ki har pull request pe chal sake."]],
+      [["Can LLM-as-judge scores be trusted in CI?", "Kya CI mein LLM-as-judge scores pe bharosa kar sakte hain?"], ["Partly. Check the judge against human labels first, use clear rubrics, and combine it with exact checks (format, required facts) that don't need a judge.", "Kuch had tak. Pehle judge ko human labels se check karo, saaf rubrics use karo, aur exact checks (format, zaroori facts) ke saath milao jinhe judge ki zaroorat nahi."]]
+    ]
+  },
+
+  "ai-feature-metrics": {
+    steps: [
+      ["Write down the one outcome the feature should move and how you'll measure it, before launch.", "Launch se pehle likho ki feature kaunsa ek outcome badlega aur use kaise naapoge."],
+      ["Instrument events: feature shown, used, accepted, edited (how much), regenerated, abandoned, escalated, feedback with reason.", "Events track karo: feature dikha, use hua, accept hua, edit hua (kitna), regenerate hua, chhoda gaya, escalate hua, wajah ke saath feedback."],
+      ["Add guardrail metrics (complaints, safety flags, latency, cost) with alert thresholds.", "Guardrail metrics (shikaayatein, safety flags, latency, cost) alert thresholds ke saath jodo."],
+      ["Each week, sample real interactions, label failures by type and count them.", "Har hafte asli interactions ka sample lo, failures ko type ke hisaab se label karo aur gino."],
+      ["Turn the top failure types into eval cases and fixes, and track the counts falling over time.", "Sabse bade failure types ko eval cases aur fixes mein badlo, aur dekho ki counts samay ke saath girein."],
+      ["Run an A/B test or keep a holdout group to measure real impact on the outcome.", "Outcome pe asli asar naapne ke liye A/B test chalao ya holdout group rakho."]
+    ],
+    mistakes: [
+      ["Reporting only thumbs up rate. Few people click it and those who do aren't typical users.", "Sirf thumbs up rate report karna. Kam log dabate hain aur jo dabate hain woh aam users nahi hote."],
+      ["Counting usage as success. People can use a feature a lot and still not save any time.", "Usage ko success ginna. Log feature bahut use karke bhi koi time nahi bacha sakte."],
+      ["Reading real user conversations without privacy rules, consent or redaction of personal data.", "Bina privacy rules, permission ya personal data redact kiye asli user conversations padhna."]
+    ],
+    faq: [
+      [["What if I can't run an A/B test?", "Agar A/B test na chala sakein to?"], ["Use a staged rollout by team or region and compare against groups that don't have it yet, and be honest about other changes happening at the same time.", "Team ya region ke hisaab se staged rollout karo aur un groups se compare karo jinke paas abhi nahi hai, aur usi time ho rahe doosre badlaavon ke baare mein imaandaar raho."]],
+      [["Which single quality metric is best for drafts?", "Drafts ke liye sabse accha ek quality metric kaunsa hai?"], ["Edit rate (how much users change a draft before sending) is usually the most honest, because it measures what users actually did, not what they said.", "Edit rate (users bhejne se pehle draft kitna badalte hain) aam taur pe sabse imaandaar hai, kyunki yeh naapta hai ki users ne asal mein kya kiya, kya kaha nahi."]]
+    ]
+  },
+
+  "ai-product-design-interview": {
+    steps: [
+      ["Spend the first 5 minutes on clarifying questions: users, job to be done, scale, languages, constraints and success metric.", "Pehle 5 minute clarifying questions pe lagao: users, karne wala kaam, scale, bhashaayein, constraints aur success metric."],
+      ["Describe the user flow: entry point, what streams, how users verify and correct, and the failure path.", "User flow batao: entry point, kya stream hota hai, users kaise verify aur sudhaarte hain, aur failure ka raasta."],
+      ["Draw the architecture: client, API, model wrapper, retrieval pipeline, tools, storage, queue; walk one request through it.", "Architecture banao: client, API, model wrapper, retrieval pipeline, tools, storage, queue; ek request ko usmein se guzaar ke dikhao."],
+      ["Choose models per step with reasons, and say where you use structured output and where you stream.", "Har step ke liye model wajah ke saath chuno, aur batao kahan structured output aur kahan streaming use karoge."],
+      ["Explain quality: eval set, launch criteria, online signals, feedback loop.", "Quality samjhao: eval set, launch criteria, online signals, feedback loop."],
+      ["Cover production: latency budget, cost per request, caching, limits, fallbacks, privacy, permissions and prompt injection.", "Production cover karo: latency budget, cost per request, caching, limits, fallbacks, privacy, permissions aur prompt injection."],
+      ["Finish with rollout and a version two plan, and summarise your key trade-offs in one minute.", "Rollout aur version do ke plan ke saath khatam karo, aur apne main trade-offs ek minute mein summarise karo."]
+    ],
+    mistakes: [
+      ["Jumping straight to a model name and a vector database before understanding the user and goal.", "User aur goal samjhe bina seedha model ka naam aur vector database pe kood jaana."],
+      ["No word on evaluation. \"How will you know it works?\" is the question interviewers care about most.", "Evaluation pe ek shabd nahi. \"Aapko kaise pata chalega ki kaam karta hai?\" interviewers ke liye sabse zaroori sawaal hai."],
+      ["Ignoring cost and latency, or giving no numbers at all.", "Cost aur latency ko nazarandaaz karna, ya koi numbers hi na dena."]
+    ],
+    faq: [
+      [["How deep should I go on model internals?", "Model ke andar ki baaton mein kitna gehra jaana chahiye?"], ["For product roles, only as far as it affects decisions: context limits, latency, cost, reliability of formats. Spend the time on UX, quality and trade-offs.", "Product roles ke liye utna hi jitna decisions pe asar daale: context limits, latency, cost, formats ki reliability. Time UX, quality aur trade-offs pe lagao."]],
+      [["How do I practise this round?", "Is round ki practice kaise karein?"], ["Pick 10 everyday AI features (email reply drafts, meeting notes, search, a shopping assistant), set a 45 minute timer, talk through the 7 parts out loud and draw the diagram. Review against this lesson.", "10 rozmarra ke AI features chuno (email reply drafts, meeting notes, search, shopping assistant), 45 minute ka timer lagao, 7 hisse bol kar samjhao aur diagram banao. Is lesson se milaan karo."]]
+    ]
+  },
+
+  "ai-coding-tools": {
+    steps: [
+      ["Pick the tool your team uses (Claude Code, Cursor, Copilot or similar) and learn its three modes: completion, editor chat and agent.", "Jo tool aapki team use karti hai (Claude Code, Cursor, Copilot ya waisa) chuno aur uske teen modes seekho: completion, editor chat aur agent."],
+      ["Write a project context file with the stack, commands, folder layout and rules, and keep it short and current.", "Stack, commands, folder layout aur rules ke saath project context file likho, aur use chhota aur up to date rakho."],
+      ["Before each task, write a 5 line spec: goal, files involved, constraints, tests, and what done looks like.", "Har task se pehle 5 line ka spec likho: goal, judi files, constraints, tests, aur done ka matlab."],
+      ["Ask for a plan first, then implement in small steps, running tests after each step.", "Pehle plan maango, phir chhote steps mein implement karo, har step ke baad tests chalao."],
+      ["Review every diff: does it match the spec and conventions, handle errors, avoid new dependencies you didn't want, and keep secrets out?", "Har diff review karo: kya spec aur conventions se match karta hai, errors sambhaalta hai, bina chaahi nayi dependencies nahi jodta, aur secrets bahar rakhta hai?"],
+      ["Commit in small pieces with clear messages so you can roll back a bad step.", "Chhote tukdon mein saaf messages ke saath commit karo taaki kharab step rollback ho sake."]
+    ],
+    mistakes: [
+      ["Accepting a huge change you don't understand because the demo works.", "Bahut bada change accept karna jo samajh nahi aata, sirf isliye ki demo chal raha hai."],
+      ["Pasting API keys, customer data or private code into a tool your company hasn't approved.", "Company ne jo tool approve nahi kiya usmein API keys, customer data ya private code paste karna."],
+      ["Vague prompts like \"make it better\", which produce random changes across many files.", "\"Isse behtar banao\" jaise vague prompts, jo kai files mein random changes karte hain."]
+    ],
+    faq: [
+      [["Will AI coding tools replace AI product engineers?", "Kya AI coding tools AI product engineers ki jagah le lenge?"], ["They change the job more than remove it: less typing, more specifying, reviewing, testing and product judgement. Engineers who direct these tools well ship much faster.", "Yeh kaam ko hataate kam, badalte zyaada hain: kam typing, zyaada spec likhna, review, testing aur product samajh. Jo engineers in tools ko achhe se direct karte hain woh bahut tez ship karte hain."]],
+      [["Can I use AI tools in interviews?", "Kya interviews mein AI tools use kar sakte hain?"], ["Only if the company says so; many now allow them in some rounds. Ask at the start, and if allowed, explain your plan, check the output aloud and fix issues yourself.", "Sirf tab jab company kahe; kai ab kuch rounds mein allow karti hain. Shuru mein poocho, aur allow ho to apna plan samjhao, output bol kar check karo aur problems khud theek karo."]]
+    ]
+  },
+
+  "llm-testing": {
+    steps: [
+      ["Wrap every model call in one function so tests can replace it with a fake.", "Har model call ko ek function mein wrap karo taaki tests uski jagah nakli rakh sakein."],
+      ["Write unit tests with a fake model for the happy path and for bad cases: invalid JSON, empty text, a timeout, a 429.", "Nakli model ke saath unit tests likho, sahi raaste ke liye aur kharab cases ke liye: galat JSON, khaali text, timeout, 429."],
+      ["Record a few real responses as fixtures and replay them in end to end tests; re-record when the prompt or model changes.", "Kuch asli responses fixtures ki tarah record karo aur end to end tests mein replay karo; prompt ya model badle to dobara record karo."],
+      ["Add contract tests: outputs match the schema, prompts include only the current user's data, tools get validated arguments.", "Contract tests jodo: outputs schema se match karein, prompts mein sirf current user ka data ho, tools ko validated arguments milein."],
+      ["Run a small live smoke test on a schedule, separate from pull requests, and alert if it fails.", "Pull requests se alag, schedule pe chhota live smoke test chalao, aur fail ho to alert karo."],
+      ["Keep evals as a separate job that judges quality, and link both in your CI checklist.", "Evals ko quality parakhne wala alag job rakho, aur dono ko CI checklist mein jodo."]
+    ],
+    mistakes: [
+      ["Calling the real model in every unit test, making CI slow, costly and randomly red.", "Har unit test mein asli model call karna, jisse CI slow, mehnga aur bina wajah red hota hai."],
+      ["Only testing the happy path, so the first malformed response crashes production.", "Sirf sahi raasta test karna, to pehla bigda response production crash kar deta hai."],
+      ["Treating evals and tests as the same thing; you need both.", "Evals aur tests ko ek hi cheez samajhna; dono chahiye."]
+    ],
+    faq: [
+      [["How do I test something whose output changes every time?", "Jiska output har baar badalta hai use kaise test karein?"], ["Test the parts that shouldn't change: your code's logic with fake responses, the shape of outputs with schemas, and required facts with simple checks. Judge the wording with evals.", "Un hisson ko test karo jo nahi badalne chahiye: fake responses ke saath code ka logic, schemas se outputs ki shape, aur simple checks se zaroori facts. Wording ko evals se parkho."]],
+      [["Should temperature be 0 in tests?", "Kya tests mein temperature 0 hona chahiye?"], ["For live smoke tests, a low temperature reduces variation but doesn't remove it completely. That's why the main test suite uses fakes and fixtures instead.", "Live smoke tests ke liye kam temperature variation kam karta hai par poora khatam nahi karta. Isiliye main test suite fakes aur fixtures use karta hai."]]
+    ]
   }
 });
 
