@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reliability: timeouts, retries, fallbacks aur rate limits: Hinglish mein aasaan explanation | AI Path Finder</title>
+  <meta name="description" content="Model APIs normal tareekon se fail hoti hain: rate limits (HTTP 429), overloaded servers (5xx), slow responses aur kabhi kabhi outages." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Reliability: timeouts, retries, fallbacks aur rate limits: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta property="og:description" content="Model APIs normal tareekon se fail hoti hain: rate limits (HTTP 429), overloaded servers (5xx), slow responses aur kabhi kabhi outages." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Reliability: timeouts, retries, fallbacks aur rate limits: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta name="twitter:description" content="Model APIs normal tareekon se fail hoti hain: rate limits (HTTP 429), overloaded servers (5xx), slow responses aur kabhi kabhi outages." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/llm-reliability.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/llm-reliability.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html",
+      "name": "Reliability: timeouts, retries, fallbacks aur rate limits",
+      "description": "Model APIs normal tareekon se fail hoti hain: rate limits (HTTP 429), overloaded servers (5xx), slow responses aur kabhi kabhi outages.",
+      "inLanguage": "hi-Latn",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Exponential backoff",
+        "Fallback chain",
+        "Circuit breaker",
+        "Idempotency key"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Reliability: timeouts, retries, fallbacks aur rate limits",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-reliability.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Aapka model call HTTP 400 (bad request) se fail hota hai. Code ko kya karna chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Retry mat karo; log karo, request theek ya validate karo, aur fallback dikhao. 400 ka matlab request hi galat hai, isliye dohraane se har baar fail hogi aur paisa barbaad hoga. Retries 429, 5xx aur timeouts jaise temporary errors ke liye hain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kya do model providers use karne chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Zaroori features ke liye haan: ek tested backup model rakho aur uspe bhi evals chalao, kyunki prompts models ke beech hamesha perfectly kaam nahi karte."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI feature ke liye accha timeout kitna hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "User ke sabr aur apne p99 ke hisaab se: streaming jawaab ke liye aksar 10 se 20 second (pehla token 2 se 3 second mein) aur background jobs ke liye zyaada."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../#paths" data-nav="roles">AI roles</a>
+      <a href="../../learn.html" data-nav="learn">Learn</a>
+      <a href="../../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">AI Path Finder</a> › <a href="../../learn.html">Learn</a> › <span aria-current="page">Reliability: timeouts, retries, fallbacks aur rate limits</span></nav>
+    <article lang="hi-Latn">
+      <header>
+        <p class="eyebrow">Lesson · Hinglish · ⏱ 8 min padhne mein</p>
+        <h1 data-read>🛟 Reliability: timeouts, retries, fallbacks aur rate limits</h1>
+        <p class="lang-switch"><a href="../llm-reliability.html" hreflang="en" lang="en">English</a><span>Hinglish</span></p>
+        <div class="listen-bar" data-reader data-listen="Suno" data-pause="Roko" data-resume="Phir chalao" data-reading="Padh kar suna raha hai…" data-paused="Ruka hua" data-unsupported="Aapka browser padh kar nahi suna sakta">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Suno</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Band karo</button>
+      <label class="listen-rate"><span class="sr-only">Padhne ki speed</span><select data-tts="rate" aria-label="Padhne ki speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Asli zindagi ki misaal</h2><p>Jab aapka roz ka auto wala phone nahi uthata, aap gate pe ek ghanta intezaar nahi karte. Thoda rukte ho, ek baar aur call karte ho, phir cab book karte ho, aur kuch na chale to bus le lete ho. Reliable AI feature ka bhi yahi plan hota hai: time limit, samajhdaar retry, backup model aur kuch na chale to bhi kaam ki screen.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 Aasaan shabdon mein</h2><p>Model APIs normal tareekon se fail hoti hain: rate limits (HTTP 429), overloaded servers (5xx), slow responses aur kabhi kabhi outages. Har ek ke liye plan rakho. Har call pe timeout lagao, interactive features ke liye chhota. Sirf woh errors retry karo jo theek ho sakte hain (429, 5xx, timeouts), exponential backoff aur jitter ke saath, zyaada se zyaada do teen baar, aur Retry-After header maano; 400 bad request ko bina badle kabhi retry mat karo. Actions idempotent banao taaki retry se do emails ya do refunds na chale jaayein: idempotency key use karo. Fallback chain rakho: usi kaam ke liye doosra model ya provider, phir cached ya simple jawaab, phir saaf message ke saath non-AI raasta (template, search box, &quot;insaan se baat karo&quot;). Model ke aage apni rate limits aur per-user budgets lagao taaki ek user ya ek bug aapka quota khatam na kar de. Circuit breaker use karo: agar provider baar baar fail ho, ek minute ke liye use call karna band karo aur fallback chalao. Error rate, retries aur fallback rate dashboard pe alerts ke saath track karo, aur failure ke raaste jaan boojh kar test karo.</p></section>
+      <section class="ls ls-visual"><h2>🎬 Dekho kaise kaam karta hai</h2><div class="viz"><svg viewBox="0 0 640 250" role="img" aria-label="A request to the primary model fails with 503, is retried with backoff, a circuit breaker opens and a backup model answers; if everything fails users get a template and a human option, and actions carry idempotency keys" focusable="false"><defs><marker id="ah-rl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><g class="s1"><rect x="16" y="26" width="110" height="56" rx="10" class="b"/><text x="71" y="52" text-anchor="middle" class="">📨 Request</text><text x="71" y="69" text-anchor="middle" class="tm ts">timeout 10 s</text></g><g class="s2"><rect x="160" y="26" width="130" height="56" rx="10" class="bw"/><text x="225" y="52" text-anchor="middle" class="">🧠 Primary</text><text x="225" y="69" text-anchor="middle" class="tm ts">503 ✗</text></g><path d="M128 54 H154" class="ln " marker-end="url(#ah-rl)"/><g class="s3"><text x="225" y="108" text-anchor="middle" class="ts warn">retry 1 s → 2 s → 4 s</text><text x="225" y="126" text-anchor="middle" class="tm ts">(only 429 · 5xx · timeout)</text></g><g class="s4"><rect x="320" y="30" width="118" height="48" rx="24" class="bw"/><text x="379" y="59" text-anchor="middle" class="ts">⚡ breaker open</text></g><path d="M292 54 H314" class="ln " marker-end="url(#ah-rl)"/><g class="s5"><path d="M440 54 H468" class="ln la " marker-end="url(#ah-rl)"/><g class=""><rect x="474" y="26" width="150" height="56" rx="10" class="bo"/><text x="549" y="52" text-anchor="middle" class="">🧠 Backup model</text><text x="549" y="69" text-anchor="middle" class="tm ts">same evals ✓</text></g></g><g class="s6"><path d="M549 84 V150" class="fl " marker-end="url(#ah-rl)"/><rect x="330" y="154" width="294" height="58" rx="12" class="bm"/><text x="477" y="178" text-anchor="middle" class="ts">still down → template + "talk to a human"</text><text x="477" y="198" text-anchor="middle" class="tm ts">never a blank screen</text></g><g class="s7"><rect x="16" y="154" width="280" height="58" rx="12" class="b"/><text x="156" y="178" text-anchor="middle" class="ts">🔑 idempotency key on actions</text><text x="156" y="198" text-anchor="middle" class="tm ts">a retry never sends two refunds</text></g><text x="320" y="238" text-anchor="middle" class="tm ts">alerts on error rate and fallback rate · test the outage path in staging</text></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">Call time out hota hai ya 503 milta hai. App badhte intezaar ke saath retry karta hai, phir circuit breaker backup model pe switch karta hai, aur woh bhi fail ho to users ko kaam ka non-AI raasta milta hai.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Har model aur tool call pe timeout lagao, interactive screens ke liye background jobs se chhota.</li><li data-read>Sirf temporary errors (429, 5xx, timeouts) retry karo, exponential backoff, jitter aur do teen tries ki limit ke saath; Retry-After maano.</li><li data-read>Kuch badalne wale har action (email, refund, ticket) ko idempotency key do taaki retries use dohra na sakein.</li><li data-read>Har feature ki fallback chain tay karo: backup model, cached ya simple jawaab, phir saaf message ke saath non-AI raasta.</li><li data-read>Model ke aage per-user rate limits aur daily budgets lagao, aur har provider ke liye circuit breaker.</li><li data-read>Error rate, fallback rate aur budget pe alert lagao, aur failures jaan boojh kar test karo (staging mein provider block karke dekho users ko kya dikhta hai).</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Zaroori shabd</h2>
+        <dl class="terms"><div data-read><dt>Exponential backoff</dt><dd>Har fail try ke baad zyaada rukna (1 s, 2 s, 4 s), thodi randomness (jitter) ke saath.</dd></div><div data-read><dt>Fallback chain</dt><dd>Backup ka order: doosra model, cached ya simple jawaab, phir non-AI raasta.</dd></div><div data-read><dt>Circuit breaker</dt><dd>Fail hoti service ko thodi der call karna band karta hai taaki app tez rahe aur sambhal jaaye.</dd></div><div data-read><dt>Idempotency key</dt><dd>Har action ki unique ID taaki retry hui request do baar na chale.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 Example dekho</h2>
+        <div class="code-wrap"><span class="code-lang">python</span><pre><code>RETRYABLE = {429, 500, 502, 503, 504}
+
+def generate_with_fallback(prompt):
+    for provider in [primary, backup]:                 # fallback chain
+        if breaker.is_open(provider):
+            continue                                   # skip a provider that keeps failing
+        for attempt in range(3):
+            try:
+                return provider.generate(prompt, timeout=8)
+            except ApiError as e:
+                if e.status not in RETRYABLE:
+                    raise                              # a 400 won&#39;t fix itself
+                time.sleep(e.retry_after or (2 ** attempt + random.random()))
+            except Timeout:
+                pass
+        breaker.record_failure(provider)
+    return SAFE_FALLBACK_MESSAGE                       # template + &quot;talk to a human&quot;</code></pre></div>
+        <p class="small muted" data-read>Har call pe timeout, sirf theek ho sakne wale errors backoff ke saath retry, toote providers chhodo, aur hamesha kaam ke fallback pe khatam karo.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Aam galtiyaan jinse bachna hai</h2><ul class="deep-mistakes"><li data-read>Rate limit ke dauraan turant tight loop mein retry karna, jisse overload aur badhta hai aur aap zyaada der block hote ho.</li><li data-read>Aise agent step ko retry karna jo email bhej chuka tha, to customer ko do baar milti hai.</li><li data-read>Model down hone pe khaali screen ya raw stack trace, kaam ke fallback ki jagah.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Jaldi se check karo</h2>
+        <p class="quiz-q" data-read data-read-prefix="Jaldi se check karo">Aapka model call HTTP 400 (bad request) se fail hota hai. Code ko kya karna chahiye?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Retry mat karo; log karo, request theek ya validate karo, aur fallback dikhao">Retry mat karo; log karo, request theek ya validate karo, aur fallback dikhao</li><li data-read data-read-text="Option B: Backup provider pe wahi request bhej do">Backup provider pe wahi request bhej do</li><li data-read data-read-text="Option C: Backoff ke saath paanch baar retry karo">Backoff ke saath paanch baar retry karo</li></ol>
+        <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. Retry mat karo; log karo, request theek ya validate karo, aur fallback dikhao</strong>: 400 ka matlab request hi galat hai, isliye dohraane se har baar fail hogi aur paisa barbaad hoga. Retries 429, 5xx aur timeouts jaise temporary errors ke liye hain.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Kya do model providers use karne chahiye?</summary><p data-read>Zaroori features ke liye haan: ek tested backup model rakho aur uspe bhi evals chalao, kyunki prompts models ke beech hamesha perfectly kaam nahi karte.</p></details><details class="deep-faq"><summary data-read>AI feature ke liye accha timeout kitna hai?</summary><p data-read>User ke sabr aur apne p99 ke hisaab se: streaming jawaab ke liye aksar 10 se 20 second (pehla token 2 se 3 second mein) aur background jobs ke liye zyaada.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Peak hour mein model provider ka outage ho jaata hai. Aapka AI feature kaise behave kare, aur aap ise kaise banaoge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Users ko phir bhi kuch kaam ka milna chahiye aur kuch bhi tootna ya dohraana nahi chahiye. Har call pe timeout hota hai. Main sirf temporary errors retry karta hoon, 429, 5xx aur timeouts, exponential backoff, jitter aur chhoti limit ke saath, aur Retry-After maanta hoon. Circuit breaker baar baar fail hote provider ko call karna rok deta hai, aur fallback chain sambhaalti hai: tested backup model, phir cached ya simple jawaab, phir saaf message ke saath non-AI raasta jaise template ya insaan se baat. Kuch badalne wale actions idempotency key ke saath chalte hain taaki retries do refunds na bhej dein. Per-user rate limits, error aur fallback rates pe alerts bhi hain, aur main staging mein outage ka raasta jaan boojh kar test karta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>Har call pe timeout</li><li data-read>Sirf temporary errors backoff aur limit ke saath retry</li><li data-read>Circuit breaker aur non-AI raaste pe khatam hoti fallback chain</li><li data-read>Actions ke liye idempotency keys</li><li data-read>Alerts aur jaan boojh kar failure testing</li></ul><p class="prep-check" data-read><strong>:</strong> Production ki maturity: sirf happy path nahi, failure ke liye design.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Timeouts, sirf temporary errors pe retries, idempotent actions, fallback chain aur apni rate limits.</p></section>
+      <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/idempotency.html" title="Job idempotent hai agar use do baar chalaane pe wahi result mile jo ek baar chalaane pe.">Idempotency</a></li></ul></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="llm-cost-latency.html">← Cost aur latency: caching, model routing aur token budgets</a>
+        <a href="ab-testing.html">AI features ke liye metrics aur A/B testing →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Poora course, aapke roadmap ke hisaab se</h2>
+        <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-reliability&amp;lang=hi">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-reliability&amp;lang=hi">Course mein seekho</a>
+      </section>
+    </article>
+  </main>
+  <script src="../../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "hi"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../../for/software-testers-qa.html">QA / testers</a></li><li><a href="../../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../../guide/how-it-works.html">How the consultation works</a></li><li><a href="../../#app">Free AI career consultation</a></li><li><a href="../../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../../interview.html">Interview practice</a></li><li><a href="../../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../../resumes/">ATS resume samples</a></li><li><a href="../../glossary/">AI dictionary (A to Z)</a></li><li><a href="../../kids/">AI for kids (ages 5+)</a></li><li><a href="../../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Product Engineer Interview Questions and Answers (2026): 84 Questions With Easy Answers | AI Path Finder</title>
-  <meta name="description" content="84 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <title>AI Product Engineer Interview Questions and Answers (2026): 101 Questions With Easy Answers | AI Path Finder</title>
+  <meta name="description" content="101 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
   <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/interview/ai-product-engineer.html" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -16,16 +16,16 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AI Path Finder" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="AI Product Engineer Interview Questions and Answers (2026): 84 Questions With Easy Answers | AI Path Finder" />
-  <meta property="og:description" content="84 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta property="og:title" content="AI Product Engineer Interview Questions and Answers (2026): 101 Questions With Easy Answers | AI Path Finder" />
+  <meta property="og:description" content="101 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/interview/ai-product-engineer.html" />
   <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:modified_time" content="2026-10-28" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Product Engineer Interview Questions and Answers (2026): 84 Questions With Easy Answers | AI Path Finder" />
-  <meta name="twitter:description" content="84 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
+  <meta name="twitter:title" content="AI Product Engineer Interview Questions and Answers (2026): 101 Questions With Easy Answers | AI Path Finder" />
+  <meta name="twitter:description" content="101 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice." />
   <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
   <link rel="stylesheet" href="../styles.css" />
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
       "@type": "WebPage",
       "@id": "https://homesh123.github.io/ai-career-advisor/interview/ai-product-engineer.html",
       "url": "https://homesh123.github.io/ai-career-advisor/interview/ai-product-engineer.html",
-      "name": "AI Product Engineer Interview Questions and Answers (2026): 84 Questions With Easy Answers",
-      "description": "84 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
+      "name": "AI Product Engineer Interview Questions and Answers (2026): 101 Questions With Easy Answers",
+      "description": "101 AI Product Engineer interview questions with easy model answers, in the order interviews usually go: introduction, fundamentals, role skills, design, behaviour and salary. Based on 2026 interview reports. Free, with scored practice.",
       "inLanguage": "en",
       "datePublished": "2026-10-27",
       "dateModified": "2026-10-28",
@@ -410,6 +410,46 @@
         },
         {
           "@type": "Question",
+          "name": "How do you get reliable JSON out of an LLM for a feature that fills a form or a database?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I define one schema in code, with Zod or Pydantic, and use it three ways: I pass it to the model through the provider's structured output or tool calling mode, I validate every response against it, and I use it as the type in my code. I keep fields small and described, use enums for categories, and make fields nullable when the value may be missing so the model doesn't invent it. If validation fails I retry once with the error message, then fall back to human review. After that I still check business rules in plain code, like totals adding up and IDs existing, and I measure accuracy per field on a set of real examples."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "You're adding an AI feature to a Next.js app. How do you structure it so it's secure and fast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The browser never talks to the model. The API key lives in a server environment variable and the model is called from a route handler or server action. Each AI route authenticates the user, applies a rate limit and a per-user budget, and validates the input with Zod. All model calls go through one wrapper that logs tokens, cost, latency and the prompt version, which also makes it easy to switch models. Long answers stream to the client. Slow work, like indexing uploaded documents, goes to a background queue with progress shown in the UI, so requests don't time out. Data such as chats and embeddings sits in Postgres with user and tenant IDs on every row."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you handle conversation history and memory in a chat product?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The model remembers nothing between calls, so I rebuild the context on every request within a token budget. Stable instructions go first, then user facts, relevant long term memories and retrieved documents, then the recent conversation, and the new question last. I keep the last few turns word for word and replace older ones with a running summary, so cost and latency don't keep growing. Long term memory stores stable facts the user shares, only with consent, and users can see and delete them. Every memory and document query is filtered by user and tenant in code, never by asking the model, and I test that one user can never see another's data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you ship a change to a prompt, or upgrade the model, without breaking things for users?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I treat prompts and model settings as code. They live in version control or a prompt registry with a version ID, and every request logs which version answered. A pull request that changes a prompt runs our eval set in CI against the current version: golden questions, format checks and safety tests, with a rule like no metric may drop more than two points. I also read a sample of answers that changed. After merge, the new version goes behind a feature flag to about 5% of traffic while we watch thumbs down, edits, escalations, latency and cost, then we increase in steps. Rollback is one switch. A model upgrade goes through exactly the same process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you write automated tests for code that calls an LLM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I separate code correctness from answer quality. All model calls go through one function, so in unit tests I replace it with a fake that returns fixed responses, including bad ones such as invalid JSON, an empty answer, a timeout or a 429, and check my parsing, retries and fallbacks. For end to end flows I replay recorded real responses as fixtures, and re-record them when the prompt or model changes. Contract tests check that outputs match the schema and that prompts only contain the current user's data. A small live smoke test runs on a schedule to catch provider changes. Answer quality is judged separately by the eval suite. The pull request suite stays fast, free and deterministic."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Design a chatbot that answers employee questions from 50,000 internal documents.",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -426,6 +466,30 @@
         },
         {
           "@type": "Question",
+          "name": "Your AI feature costs too much per user. Walk me through how you would reduce cost without hurting quality.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "First I measure: cost per request and per active user by feature, model and prompt version, so I know where the money goes. Then I work through the levers in order of risk. I route simple steps, like classification or query rewriting, to a smaller model and keep the switch only if my evals stay within an agreed limit. I make the long system prompt prefix identical across calls and turn on prompt caching. I add a response cache for repeated questions, with the user or tenant in the cache key so nobody sees someone else's answer. I cut tokens with shorter instructions, fewer chunks after reranking and a max output length. Anything not needed right away moves to batch processing. I report the before and after cost together with the quality scores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "The model provider has an outage during your peak hour. How should your AI feature behave, and how do you build that?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Users should still get something useful and nothing should break or repeat. Every call has a timeout. I retry only temporary errors, 429s, 5xx and timeouts, with exponential backoff, jitter and a small cap, and I respect Retry-After. A circuit breaker stops calling a provider that keeps failing, and a fallback chain takes over: a tested backup model, then a cached or simpler answer, then a clear message with a non-AI path like a template or talking to a human. Actions that change things carry an idempotency key so retries can't send two refunds. I also have per-user rate limits, alerts on error and fallback rates, and I test the outage path in staging on purpose."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Your AI feature has launched. How do you know if it's actually working, and how do you improve it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I measure in layers. The outcome the feature exists for, for example handle time or tickets resolved without escalation, proven with an A/B test or a holdout group. Usage: adoption, retention and frequency. Behaviour based quality: accept rate, how much users edit drafts, regenerate rate, abandonment and escalation, plus thumbs feedback with a reason, which on its own is a weak signal. Guardrails: complaints, safety flags, latency and cost must not get worse. Every week we sample real interactions under our privacy rules, label failures by type, and turn the top types into new eval cases and fixes. That loop keeps the feature improving after launch."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Design an AI \"summarise this thread\" feature for a team chat app.",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -438,6 +502,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Check what changed: deploys, prompt changes, a model version change, or a provider status issue. Then look at traces to find which step got slower: retrieval, the LLM call, a tool call or our own code. If it's the LLM call, see whether prompts or outputs got longer, for example a bigger retrieved context or a prompt change that makes answers longer, or whether the provider's latency rose. If it's ours, check database queries, cache hit rate and traffic volume. Fix the cause, roll back if needed, and add a latency alert per step so we catch it sooner next time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you use AI coding assistants in your day to day work, and how do you make sure the code is good?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I use them every day, mostly an agent in the terminal and completion in the editor. I keep a short project context file with our stack, commands and rules, and before each task I write a small spec: the goal, the files, constraints and what done looks like. I ask for a plan first, then work in small steps and have it write or update tests and run them. I read every diff as if a colleague wrote it, checking it follows our conventions, handles errors and doesn't add dependencies or expose secrets, and I commit in small pieces. For example, I used this to add streaming summaries to our ticket page in two days, with tests, instead of a week."
           }
         },
         {
@@ -722,6 +794,70 @@
         },
         {
           "@type": "Question",
+          "name": "A user presses Stop while an answer is streaming. Which implementation is correct?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Abort the request with an AbortController so the server cancels the model call, keep the partial text and mark it stopped. Aborting the request also stops the model call, so you stop paying for tokens nobody reads, and the user keeps what they already read."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Your extraction schema marks invoiceNumber as required, and the model sometimes returns numbers that don't exist in the document. What's the best fix?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Make the field nullable with a description like \"null if not in the document\", then validate the result in code. A required field pressures the model to fill it. Nullable fields give it an honest \"not found\", and validation catches anything else."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "You add a response cache to a multi-tenant AI assistant. What must the cache key contain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tenant or user identity (and permissions) plus the normalised question. Without identity in the key, an answer built from one customer's private data could be served to another customer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which model API errors should your code retry with backoff?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only 429 rate limits, 5xx server errors and timeouts. Temporary errors can succeed on a later try. A 400 or 401 means the request or key is wrong and will fail every time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the safest way to release a rewritten system prompt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run the eval set against the current version in CI, then release to a small share of traffic behind a feature flag with a quick rollback. Evals catch regressions before release; a canary behind a flag limits the damage of anything the evals miss, and rollback is one switch."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which signal best shows whether AI reply drafts actually help support agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "How much agents edit drafts before sending, together with handle time in an A/B test. Thumbs up is rare and biased. Edit rate shows what agents really did, and the A/B outcome shows if time was saved."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "In a Next.js AI app, where does the model API key belong?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In a server-only environment variable, used inside a route handler or server action. Anything shipped to the browser can be read. Keys stay on the server, which also enforces auth and rate limits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Your chat assistant gets slower and more expensive as conversations get longer. What should you do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Keep recent turns and replace older turns with a running summary within a token budget. A running summary keeps what matters while the prompt stays small, so cost and latency stop growing with every message."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Tell me about yourself and why you're moving into this AI role.",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -780,14 +916,14 @@
       <header>
         <p class="eyebrow">Interview preparation · Updated <time datetime="2026-10-28">28 October 2026</time></p>
         <h1>AI Product Engineer interview questions and answers</h1>
-        <p class="lead">54 questions AI Product Engineer candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 30 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=ai-product-engineer">interview practice</a>.</p>
+        <p class="lead">63 questions AI Product Engineer candidates are asked in 2026, in the order a real interview usually goes, each with an easy answer you can study and say out loud. Then 38 quick quiz questions to test yourself. For a scored session with your gaps explained, use <a href="../interview.html?role=ai-product-engineer">interview practice</a>.</p>
       </header>
       <section class="rounds-box">
         <h2>How an AI Product Engineer interview usually goes</h2>
         <ol><li>Recruiter screen</li><li>Coding round: practical full stack or API task, often with an LLM call</li><li>AI feature design: from user need to prompt, retrieval, evals and UX</li><li>System design: latency, cost, streaming, caching, reliability</li><li>Craft deep dive on an AI feature you built, plus behavioural</li></ol>
         <p class="small muted">Based on 2026 candidate reports. Companies vary, so use this as a map.</p>
       </section>
-      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (10)</li><li><a href="#stage-core">🛠️ Role skills</a> (27)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (4)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (7)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (30)</li></ol></nav>
+      <nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#stage-start">👋 Opening: about you</a> (4)</li><li><a href="#stage-basics">🧱 Fundamentals</a> (10)</li><li><a href="#stage-core">🛠️ Role skills</a> (32)</li><li><a href="#stage-design">🏗️ Design and case questions</a> (7)</li><li><a href="#stage-behaviour">🤝 Projects and behaviour</a> (8)</li><li><a href="#stage-ask">❓ Closing: your questions and salary</a> (2)</li><li><a href="#quiz">🧪 Quick quiz: test yourself</a> (38)</li></ol></nav>
       <section id="stage-start">
         <h2>👋 Opening: about you</h2>
         <p class="muted">Almost every interview starts here. These answers set the tone, so prepare them word for word and practise them out loud.</p>
@@ -1172,7 +1308,7 @@
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Time to first token vs total time</li><li>Server reads chunks, forwards via SSE or WebSocket</li><li>UI appends text; supports cancel</li><li>Validation and logging after completion</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Hands on product engineering.</p>
-              <p class="small">📖 Learn it: <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/ai-ux.html">UX for AI features: designing for uncertainty</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a> · <a href="../learn/ai-ux.html">UX for AI features: designing for uncertainty</a> · <a href="../learn/ai-chat-ui.html">Building AI chat UIs: streaming, stop, retry and generative UI</a></p>
             </div>
           </details>
         </li>
@@ -1296,6 +1432,66 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-pe-structured">
+          <details><summary><span class="prep-n">42</span>How do you get reliable JSON out of an LLM for a feature that fills a form or a database?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I define one schema in code, with Zod or Pydantic, and use it three ways: I pass it to the model through the provider&#39;s structured output or tool calling mode, I validate every response against it, and I use it as the type in my code. I keep fields small and described, use enums for categories, and make fields nullable when the value may be missing so the model doesn&#39;t invent it. If validation fails I retry once with the error message, then fall back to human review. After that I still check business rules in plain code, like totals adding up and IDs existing, and I measure accuracy per field on a set of real examples.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>One schema for the model, validation and types</li><li>Structured output or tool calling mode, not &quot;please reply in JSON&quot;</li><li>Nullable fields and enums to stop invented values</li><li>Validate, retry once with the error, then fall back</li><li>Business rules in code and a field level eval set</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Whether you can build AI features other code can depend on.</p>
+              <p class="small">📖 Learn it: <a href="../learn/structured-output.html">Structured outputs: JSON schemas, validation and retries</a> · <a href="../learn/llm-api.html">Calling an LLM API: keys, requests and costs</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pe-ts-keys">
+          <details><summary><span class="prep-n">43</span>You&#39;re adding an AI feature to a Next.js app. How do you structure it so it&#39;s secure and fast?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>The browser never talks to the model. The API key lives in a server environment variable and the model is called from a route handler or server action. Each AI route authenticates the user, applies a rate limit and a per-user budget, and validates the input with Zod. All model calls go through one wrapper that logs tokens, cost, latency and the prompt version, which also makes it easy to switch models. Long answers stream to the client. Slow work, like indexing uploaded documents, goes to a background queue with progress shown in the UI, so requests don&#39;t time out. Data such as chats and embeddings sits in Postgres with user and tenant IDs on every row.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Key and model calls on the server only</li><li>Auth, rate limit and input validation on every AI route</li><li>One wrapper for logging, cost and model swaps</li><li>Stream long answers; queue slow jobs</li><li>User and tenant IDs on all stored data</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Practical full stack judgement with AI APIs.</p>
+              <p class="small">📖 Learn it: <a href="../learn/ts-ai-stack.html">TypeScript for AI products: Next.js routes, the AI SDK and keys on the server</a> · <a href="../learn/api-serving.html">Serving a model as an API with FastAPI</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pe-context-memory">
+          <details><summary><span class="prep-n">44</span>How do you handle conversation history and memory in a chat product?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>The model remembers nothing between calls, so I rebuild the context on every request within a token budget. Stable instructions go first, then user facts, relevant long term memories and retrieved documents, then the recent conversation, and the new question last. I keep the last few turns word for word and replace older ones with a running summary, so cost and latency don&#39;t keep growing. Long term memory stores stable facts the user shares, only with consent, and users can see and delete them. Every memory and document query is filtered by user and tenant in code, never by asking the model, and I test that one user can never see another&#39;s data.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Context rebuilt each call within a budget</li><li>Order: rules, facts, memories, documents, recent turns, question</li><li>Running summary for older turns</li><li>Consent, visibility and deletion for memory</li><li>User and tenant isolation enforced in code</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Understanding of how chat products really work under the hood.</p>
+              <p class="small">📖 Learn it: <a href="../learn/context-memory.html">Context engineering and memory: what goes into the prompt, and what to remember</a> · <a href="../learn/rag.html">RAG: letting an LLM answer from your documents</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pe-prompt-release">
+          <details><summary><span class="prep-n">45</span>How do you ship a change to a prompt, or upgrade the model, without breaking things for users?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I treat prompts and model settings as code. They live in version control or a prompt registry with a version ID, and every request logs which version answered. A pull request that changes a prompt runs our eval set in CI against the current version: golden questions, format checks and safety tests, with a rule like no metric may drop more than two points. I also read a sample of answers that changed. After merge, the new version goes behind a feature flag to about 5% of traffic while we watch thumbs down, edits, escalations, latency and cost, then we increase in steps. Rollback is one switch. A model upgrade goes through exactly the same process.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Prompts versioned and logged per request</li><li>Eval gate in CI against the current version</li><li>Read changed answers, not only scores</li><li>Canary behind a feature flag, watch online signals</li><li>One switch rollback; model upgrades follow the same path</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Whether you can iterate fast without regressions.</p>
+              <p class="small">📖 Learn it: <a href="../learn/prompt-release.html">Shipping prompt changes safely: versioning, evals in CI and gradual rollout</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pe-testing">
+          <details><summary><span class="prep-n">46</span>How do you write automated tests for code that calls an LLM?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I separate code correctness from answer quality. All model calls go through one function, so in unit tests I replace it with a fake that returns fixed responses, including bad ones such as invalid JSON, an empty answer, a timeout or a 429, and check my parsing, retries and fallbacks. For end to end flows I replay recorded real responses as fixtures, and re-record them when the prompt or model changes. Contract tests check that outputs match the schema and that prompts only contain the current user&#39;s data. A small live smoke test runs on a schedule to catch provider changes. Answer quality is judged separately by the eval suite. The pull request suite stays fast, free and deterministic.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Fake model for unit tests, including failure cases</li><li>Recorded responses for end to end flows</li><li>Contract tests for schemas and data isolation</li><li>Scheduled live smoke tests</li><li>Evals for quality, kept separate from tests</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Engineering discipline around non-deterministic systems.</p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-testing.html">Testing AI features in code: mocks, recorded responses and contract tests</a> · <a href="../learn/structured-output.html">Structured outputs: JSON schemas, validation and retries</a></p>
+            </div>
+          </details>
+        </li>
         </ol>
       </section>
       <section id="stage-design">
@@ -1303,7 +1499,7 @@
         <p class="muted">Open questions with no single right answer. Clarify first, then structure your answer, then talk about trade offs, measurement and failure cases.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-design-rag">
-          <details><summary><span class="prep-n">42</span>Design a chatbot that answers employee questions from 50,000 internal documents.</summary>
+          <details><summary><span class="prep-n">47</span>Design a chatbot that answers employee questions from 50,000 internal documents.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Clarify first: who are the users, which document types, how often they change, required latency, and who can see what. Ingestion: connectors to each source, text extraction, structure aware chunking, embeddings, and a vector store with metadata and permissions. Query: rewrite the question if it&#39;s part of a conversation, hybrid search filtered by the user&#39;s permissions, rerank, and send the top chunks to the LLM with instructions to cite and say when it doesn&#39;t know. Quality: an eval set of real employee questions, measuring retrieval recall and answer faithfulness. Operations: logging, feedback buttons, cost and latency monitoring, and incremental re indexing when documents change.</p>
@@ -1315,7 +1511,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-design-support-agent">
-          <details><summary><span class="prep-n">43</span>Design an AI agent that handles customer support, including refunds.</summary>
+          <details><summary><span class="prep-n">48</span>Design an AI agent that handles customer support, including refunds.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Clarify scope: which requests, which systems, refund limits, languages. Architecture: the agent gets tools like look up order, check refund policy, create refund and hand off to a human, each with validated parameters and least privilege. Policy is enforced in code, not only in the prompt: for example, refunds above ₹2,000 or outside policy always need human approval. Ground answers with RAG over help articles. Guardrails against prompt injection, and identity verification before any account action. Evaluate with recorded real conversations in a sandbox, measuring correct resolution, wrong actions, escalation rate and cost per conversation. Launch for one category first, with humans reviewing a sample.</p>
@@ -1326,20 +1522,56 @@
             </div>
           </details>
         </li>
+        <li class="prep-q" id="q-pe-cost-cut">
+          <details><summary><span class="prep-n">49</span>Your AI feature costs too much per user. Walk me through how you would reduce cost without hurting quality.</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>First I measure: cost per request and per active user by feature, model and prompt version, so I know where the money goes. Then I work through the levers in order of risk. I route simple steps, like classification or query rewriting, to a smaller model and keep the switch only if my evals stay within an agreed limit. I make the long system prompt prefix identical across calls and turn on prompt caching. I add a response cache for repeated questions, with the user or tenant in the cache key so nobody sees someone else&#39;s answer. I cut tokens with shorter instructions, fewer chunks after reranking and a max output length. Anything not needed right away moves to batch processing. I report the before and after cost together with the quality scores.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Measure cost by feature, model and version first</li><li>Route easy steps to small models, checked by evals</li><li>Prompt caching with a stable prefix</li><li>Response cache with identity in the key</li><li>Fewer tokens and batch where possible; show before and after with quality</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Cost awareness, one of the most common production questions in 2026.</p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-cost-latency.html">Cost and latency: caching, model routing and token budgets</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pe-reliability">
+          <details><summary><span class="prep-n">50</span>The model provider has an outage during your peak hour. How should your AI feature behave, and how do you build that?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>Users should still get something useful and nothing should break or repeat. Every call has a timeout. I retry only temporary errors, 429s, 5xx and timeouts, with exponential backoff, jitter and a small cap, and I respect Retry-After. A circuit breaker stops calling a provider that keeps failing, and a fallback chain takes over: a tested backup model, then a cached or simpler answer, then a clear message with a non-AI path like a template or talking to a human. Actions that change things carry an idempotency key so retries can&#39;t send two refunds. I also have per-user rate limits, alerts on error and fallback rates, and I test the outage path in staging on purpose.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Timeouts on every call</li><li>Retry only temporary errors with backoff and a cap</li><li>Circuit breaker plus a fallback chain ending in a non-AI path</li><li>Idempotency keys for actions</li><li>Alerts and deliberate failure testing</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Production maturity: designing for failure, not just the happy path.</p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-reliability.html">Reliability: timeouts, retries, fallbacks and rate limits</a> · <a href="../learn/ai-ux.html">UX for AI features: designing for uncertainty</a></p>
+            </div>
+          </details>
+        </li>
+        <li class="prep-q" id="q-pe-online-metrics">
+          <details><summary><span class="prep-n">51</span>Your AI feature has launched. How do you know if it&#39;s actually working, and how do you improve it?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I measure in layers. The outcome the feature exists for, for example handle time or tickets resolved without escalation, proven with an A/B test or a holdout group. Usage: adoption, retention and frequency. Behaviour based quality: accept rate, how much users edit drafts, regenerate rate, abandonment and escalation, plus thumbs feedback with a reason, which on its own is a weak signal. Guardrails: complaints, safety flags, latency and cost must not get worse. Every week we sample real interactions under our privacy rules, label failures by type, and turn the top types into new eval cases and fixes. That loop keeps the feature improving after launch.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Outcome metric proven with A/B or holdout</li><li>Usage: adoption, retention, frequency</li><li>Behaviour signals like edit and accept rate beat thumbs alone</li><li>Guardrails: complaints, safety, latency, cost</li><li>Weekly failure review feeding the eval set</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Product sense and ownership after launch.</p>
+              <p class="small">📖 Learn it: <a href="../learn/ai-feature-metrics.html">Measuring AI features in production: online evals, feedback and the data flywheel</a> · <a href="../learn/ab-testing.html">Metrics and A/B testing for AI features</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-pe-feature-design">
-          <details><summary><span class="prep-n">44</span>Design an AI &quot;summarise this thread&quot; feature for a team chat app.</summary>
+          <details><summary><span class="prep-n">52</span>Design an AI &quot;summarise this thread&quot; feature for a team chat app.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Clarify: thread length, languages, latency target and privacy rules. Flow: when the user clicks summarise, the backend fetches the messages they can see, trims or chunks very long threads, and calls the LLM with a prompt asking for decisions, open questions and action items with owners, in a structured format. Stream the result into the UI with a &quot;draft&quot; label and links to the source messages. Cache summaries and update them incrementally when new messages arrive. Evaluate with a set of real threads, scored for missed decisions and invented facts. Track usage, thumbs down and cost per summary.</p>
               <p class="prep-label">✅ A strong answer covers</p>
               <ul><li>Clarify constraints</li><li>Permission aware fetching, chunking long threads</li><li>Structured prompt; streaming UI with source links</li><li>Caching, evals, metrics</li></ul>
               <p class="prep-check"><strong>What they're really checking:</strong> Full stack AI feature design.</p>
-              <p class="small">📖 Learn it: <a href="../learn/llm-prompting.html">Prompting: giving clear instructions to an LLM</a> · <a href="../learn/ai-ux.html">UX for AI features: designing for uncertainty</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p>
+              <p class="small">📖 Learn it: <a href="../learn/llm-prompting.html">Prompting: giving clear instructions to an LLM</a> · <a href="../learn/ai-ux.html">UX for AI features: designing for uncertainty</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a> · <a href="../learn/ai-product-design-interview.html">AI product system design: designing an AI feature end to end</a></p>
             </div>
           </details>
         </li>
         <li class="prep-q" id="q-pe-latency-debug">
-          <details><summary><span class="prep-n">45</span>Your AI feature&#39;s response time doubled since yesterday. How do you investigate?</summary>
+          <details><summary><span class="prep-n">53</span>Your AI feature&#39;s response time doubled since yesterday. How do you investigate?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Check what changed: deploys, prompt changes, a model version change, or a provider status issue. Then look at traces to find which step got slower: retrieval, the LLM call, a tool call or our own code. If it&#39;s the LLM call, see whether prompts or outputs got longer, for example a bigger retrieved context or a prompt change that makes answers longer, or whether the provider&#39;s latency rose. If it&#39;s ours, check database queries, cache hit rate and traffic volume. Fix the cause, roll back if needed, and add a latency alert per step so we catch it sooner next time.</p>
@@ -1356,8 +1588,20 @@
         <h2>🤝 Projects and behaviour</h2>
         <p class="muted">Use the STAR method: Situation, Task, Action, Result. Include a number in the result whenever you can.</p>
         <ol class="prep-list">
+        <li class="prep-q" id="q-pe-ai-tools">
+          <details><summary><span class="prep-n">54</span>How do you use AI coding assistants in your day to day work, and how do you make sure the code is good?</summary>
+            <div class="prep-body">
+              <p class="prep-label">💬 Easy answer</p>
+              <p>I use them every day, mostly an agent in the terminal and completion in the editor. I keep a short project context file with our stack, commands and rules, and before each task I write a small spec: the goal, the files, constraints and what done looks like. I ask for a plan first, then work in small steps and have it write or update tests and run them. I read every diff as if a colleague wrote it, checking it follows our conventions, handles errors and doesn&#39;t add dependencies or expose secrets, and I commit in small pieces. For example, I used this to add streaming summaries to our ticket page in two days, with tests, instead of a week.</p>
+              <p class="prep-label">✅ A strong answer covers</p>
+              <ul><li>Context file and a short spec per task</li><li>Plan first, then small steps</li><li>Tests written and run every time</li><li>Every diff reviewed; no secrets or unapproved data</li><li>A concrete example with a result</li></ul>
+              <p class="prep-check"><strong>What they're really checking:</strong> Whether you can move fast with AI tools without lowering quality.</p>
+              <p class="small">📖 Learn it: <a href="../learn/ai-coding-tools.html">Building with AI coding assistants: spec, review, test</a></p>
+            </div>
+          </details>
+        </li>
         <li class="prep-q" id="q-b-project">
-          <details><summary><span class="prep-n">46</span>Walk me through a project you&#39;re proud of.</summary>
+          <details><summary><span class="prep-n">55</span>Walk me through a project you&#39;re proud of.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Use STAR and go deep on your own decisions. &quot;Situation: our support team was overwhelmed with repeated questions. Task: I wanted to build an assistant that answers from our help docs. Action: I built a RAG pipeline, but the first version answered only 60% of test questions correctly. I created an evaluation set of 80 real questions, found that most failures came from chunks splitting tables, switched to structure aware chunking and added reranking. Result: correct answers rose to 86%, and in a pilot it resolved about a quarter of tickets without an agent.&quot; Be ready for &quot;why did you choose that?&quot; at every step.</p>
@@ -1369,7 +1613,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-failure">
-          <details><summary><span class="prep-n">47</span>Tell me about a time something you built failed.</summary>
+          <details><summary><span class="prep-n">56</span>Tell me about a time something you built failed.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick a real failure with a lesson, not a fake one. &quot;I shipped a classification model that looked great offline, with 92% accuracy, but within two weeks users complained. I had split data randomly, and the same customers appeared in both training and test, so the score was too optimistic. I owned it with my manager, re split by customer, got a realistic 81%, and improved features to reach 86%. Since then, I always ask how the data is grouped before splitting, and I add a review of the evaluation setup to my checklist.&quot;</p>
@@ -1381,7 +1625,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-conflict">
-          <details><summary><span class="prep-n">48</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
+          <details><summary><span class="prep-n">57</span>Tell me about a disagreement with a teammate or stakeholder.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Show you disagree with data and respect. &quot;A product manager wanted to launch our AI reply feature to all customers. I was worried because our tests showed it sometimes made up refund policies. Instead of just saying no, I showed five real examples and the error rate from our eval set, and proposed launching to 10% of tickets with agent approval first. We agreed on criteria to expand. Two weeks later the error rate was below our threshold and we expanded. We kept a good relationship because we focused on the shared goal.&quot;</p>
@@ -1393,7 +1637,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-explain">
-          <details><summary><span class="prep-n">49</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
+          <details><summary><span class="prep-n">58</span>Explain a technical concept to me as if I&#39;m not technical.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Pick something from your work and use an everyday analogy. For example, explaining RAG: &quot;Imagine a very smart new employee who has read a lot but knows nothing about our company. If you ask them a policy question, they might confidently guess. RAG is like giving them the right pages of our policy manual before they answer, and asking them to point to the page. So answers are based on our actual documents, and you can check them.&quot; Then check understanding: &quot;Does that make sense?&quot;</p>
@@ -1405,7 +1649,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-ambiguity">
-          <details><summary><span class="prep-n">50</span>Tell me about a time you worked with an unclear problem.</summary>
+          <details><summary><span class="prep-n">59</span>Tell me about a time you worked with an unclear problem.</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>&quot;My manager asked me to &#39;use AI to improve onboarding&#39;. That&#39;s vague, so I first interviewed five new joiners and two HR staff and found the biggest pain: new joiners asked the same 40 questions over Slack in their first month. I wrote a one page proposal with a single goal, cutting those questions by half, and built a simple FAQ assistant in two weeks. After a month, repeated questions fell by about 45%. I learned to turn vague requests into one measurable problem before building anything.&quot;</p>
@@ -1417,7 +1661,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-keep-up">
-          <details><summary><span class="prep-n">51</span>How do you keep up with the fast changes in AI?</summary>
+          <details><summary><span class="prep-n">60</span>How do you keep up with the fast changes in AI?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be specific and show you filter noise. &quot;I follow a few high quality sources instead of everything: release notes from the main model providers, a couple of newsletters, and papers when something important comes up. But mostly I learn by building: when something new appears, like a new tool calling feature, I try it on a small project within a week and write a short note about what worked. I also review what changed in our own evals when we upgrade models, which teaches me more than reading headlines.&quot;</p>
@@ -1429,7 +1673,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-b-ai-tools">
-          <details><summary><span class="prep-n">52</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
+          <details><summary><span class="prep-n">61</span>How do you use AI coding assistants in your work, and how do you make sure the code is right?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Be honest and responsible. &quot;I use AI assistants daily for boilerplate, tests, unfamiliar libraries and explaining code. But I treat the output like code from a new colleague: I read every line before accepting it, I make sure there are tests, I check security sensitive parts like authentication and SQL myself, and I never paste secrets or confidential data into tools that aren&#39;t approved. It makes me faster, but I&#39;m still responsible for what I ship.&quot;</p>
@@ -1447,7 +1691,7 @@
         <p class="muted">The last five minutes matter. Good questions show you&#39;re serious; a calm salary answer protects your offer.</p>
         <ol class="prep-list">
         <li class="prep-q" id="q-ask-them">
-          <details><summary><span class="prep-n">53</span>Do you have any questions for us?</summary>
+          <details><summary><span class="prep-n">62</span>Do you have any questions for us?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Always say yes and ask two or three real questions. Good ones: &quot;What would success look like for this role in the first 6 months?&quot;, &quot;What&#39;s the biggest challenge the team is facing with AI right now?&quot;, &quot;How do you evaluate model or feature quality before shipping?&quot;, &quot;How is the team split between building new features and maintaining existing ones?&quot;, and &quot;What do people who do well here have in common?&quot;. Avoid asking about leave or salary in a technical round, and don&#39;t ask things that are on their website.</p>
@@ -1459,7 +1703,7 @@
           </details>
         </li>
         <li class="prep-q" id="q-salary">
-          <details><summary><span class="prep-n">54</span>What are your salary expectations?</summary>
+          <details><summary><span class="prep-n">63</span>What are your salary expectations?</summary>
             <div class="prep-body">
               <p class="prep-label">💬 Easy answer</p>
               <p>Research first, using sites like Glassdoor, AmbitionBox, levels.fyi and people in similar roles, then give a range based on the role, not on your current pay. &quot;Based on my research for this role and level in Bangalore, and my experience, I&#39;m looking at a range of ₹22 to ₹28 lakh fixed. I&#39;m flexible depending on the overall package, and I&#39;m most interested in the role itself.&quot; If they insist on your current salary, you can share it, but steer back to the market range for the new role. Never accept or reject on the spot; ask for the offer in writing.</p>
@@ -1529,6 +1773,21 @@
           <p class="quiz-q">After extracting structured invoice fields from a scanned PDF using a Vision-Language Model, how do you catch extraction mistakes reliably?</p>
           <ol type="A"><li>Raise the temperature to 1.2</li><li>Convert the PDF to audio</li><li>Ask the model if it is sure</li><li>Validate against a Pydantic schema and check deterministic rules like `sum(line_items) + tax == total_amount`, routing mismatches to review</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>Validate against a Pydantic schema and check deterministic rules like `sum(line_items) + tax == total_amount`, routing mismatches to review</strong>. Pairing VLM extraction with deterministic code and math checks catches subtle OCR/vision errors before they hit the database.</p><p class="small">Learn: <a href="../learn/multimodal-ai.html">Multimodal AI: images, messy PDFs, audio and structured extraction</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">A user presses Stop while an answer is streaming. Which implementation is correct?</p>
+          <ol type="A"><li>Abort the request with an AbortController so the server cancels the model call, keep the partial text and mark it stopped</li><li>Hide the text but let the model finish in the background</li><li>Wait for the answer to finish, then delete it</li><li>Reload the page</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Abort the request with an AbortController so the server cancels the model call, keep the partial text and mark it stopped</strong>. Aborting the request also stops the model call, so you stop paying for tokens nobody reads, and the user keeps what they already read.</p><p class="small">Learn: <a href="../learn/ai-chat-ui.html">Building AI chat UIs: streaming, stop, retry and generative UI</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Your extraction schema marks invoiceNumber as required, and the model sometimes returns numbers that don&#39;t exist in the document. What&#39;s the best fix?</p>
+          <ol type="A"><li>Make the field nullable with a description like &quot;null if not in the document&quot;, then validate the result in code</li><li>Ask for the answer in Markdown</li><li>Raise the temperature</li><li>Remove the schema</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Make the field nullable with a description like &quot;null if not in the document&quot;, then validate the result in code</strong>. A required field pressures the model to fill it. Nullable fields give it an honest &quot;not found&quot;, and validation catches anything else.</p><p class="small">Learn: <a href="../learn/structured-output.html">Structured outputs: JSON schemas, validation and retries</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Your chat assistant gets slower and more expensive as conversations get longer. What should you do?</p>
+          <ol type="A"><li>Raise max output tokens</li><li>Delete all history after every message</li><li>Send the full history forever</li><li>Keep recent turns and replace older turns with a running summary within a token budget</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Keep recent turns and replace older turns with a running summary within a token budget</strong>. A running summary keeps what matters while the prompt stays small, so cost and latency stop growing with every message.</p><p class="small">Learn: <a href="../learn/context-memory.html">Context engineering and memory: what goes into the prompt, and what to remember</a></p></details>
         </li>
         </ol>
         <h3 id="area-3">RAG &amp; retrieval</h3>
@@ -1612,6 +1871,11 @@
           <ol type="A"><li>When it uses a clear rubric and its grades are checked against human labels</li><li>Never</li><li>When the judge is the same model and prompt that produced the answer</li><li>When it&#39;s asked &#39;is this good?&#39; with no criteria</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>When it uses a clear rubric and its grades are checked against human labels</strong>. Clear criteria and calibration against human judgement make automated grading reliable enough to track changes.</p><p class="small">Learn: <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p></details>
         </li>
+        <li class="iv-static">
+          <p class="quiz-q">What&#39;s the safest way to release a rewritten system prompt?</p>
+          <ol type="A"><li>Edit it in production and watch for complaints</li><li>Run the eval set against the current version in CI, then release to a small share of traffic behind a feature flag with a quick rollback</li><li>Ask the model if the new prompt is better</li><li>Release it to all users on a Friday evening</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Run the eval set against the current version in CI, then release to a small share of traffic behind a feature flag with a quick rollback</strong>. Evals catch regressions before release; a canary behind a flag limits the damage of anything the evals miss, and rollback is one switch.</p><p class="small">Learn: <a href="../learn/prompt-release.html">Shipping prompt changes safely: versioning, evals in CI and gradual rollout</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p></details>
+        </li>
         </ol>
         <h3 id="area-7">Product &amp; business</h3>
         <ol class="iv-list">
@@ -1625,8 +1889,37 @@
           <ol type="A"><li>Showing sources and letting users edit before acting</li><li>Hiding that AI was used</li><li>Longer answers</li><li>Removing feedback buttons</li></ol>
           <details class="answer-reveal"><summary>Show answer</summary><p><strong>Showing sources and letting users edit before acting</strong>. People trust what they can verify and control.</p><p class="small">Learn: <a href="../learn/ai-ux.html">UX for AI features: designing for uncertainty</a></p></details>
         </li>
+        <li class="iv-static">
+          <p class="quiz-q">Which signal best shows whether AI reply drafts actually help support agents?</p>
+          <ol type="A"><li>How long the drafts are</li><li>How many tokens the model uses</li><li>How much agents edit drafts before sending, together with handle time in an A/B test</li><li>How many thumbs up the drafts get</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>How much agents edit drafts before sending, together with handle time in an A/B test</strong>. Thumbs up is rare and biased. Edit rate shows what agents really did, and the A/B outcome shows if time was saved.</p><p class="small">Learn: <a href="../learn/ai-feature-metrics.html">Measuring AI features in production: online evals, feedback and the data flywheel</a></p></details>
+        </li>
         </ol>
-        <h3 id="area-8">Communication</h3>
+        <h3 id="area-8">AI system design</h3>
+        <ol class="iv-list">
+        <li class="iv-static">
+          <p class="quiz-q">You add a response cache to a multi-tenant AI assistant. What must the cache key contain?</p>
+          <ol type="A"><li>The tenant or user identity (and permissions) plus the normalised question</li><li>The model temperature</li><li>A random number so every key is unique</li><li>Only the question text</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>The tenant or user identity (and permissions) plus the normalised question</strong>. Without identity in the key, an answer built from one customer&#39;s private data could be served to another customer.</p><p class="small">Learn: <a href="../learn/llm-cost-latency.html">Cost and latency: caching, model routing and token budgets</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Which model API errors should your code retry with backoff?</p>
+          <ol type="A"><li>Only 429 rate limits, 5xx server errors and timeouts</li><li>Only 400 bad requests</li><li>None, retries are never safe</li><li>All errors, including 400 and 401</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>Only 429 rate limits, 5xx server errors and timeouts</strong>. Temporary errors can succeed on a later try. A 400 or 401 means the request or key is wrong and will fail every time.</p><p class="small">Learn: <a href="../learn/llm-reliability.html">Reliability: timeouts, retries, fallbacks and rate limits</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">In a Next.js AI app, where does the model API key belong?</p>
+          <ol type="A"><li>In a NEXT_PUBLIC_ environment variable</li><li>Hard coded in a React component</li><li>In localStorage after login</li><li>In a server-only environment variable, used inside a route handler or server action</li></ol>
+          <details class="answer-reveal"><summary>Show answer</summary><p><strong>In a server-only environment variable, used inside a route handler or server action</strong>. Anything shipped to the browser can be read. Keys stay on the server, which also enforces auth and rate limits.</p><p class="small">Learn: <a href="../learn/ts-ai-stack.html">TypeScript for AI products: Next.js routes, the AI SDK and keys on the server</a></p></details>
+        </li>
+        <li class="iv-static">
+          <p class="quiz-q">Design a &#39;chat with company documents&#39; assistant for 10,000 employees. <span class="badge-time">open question</span></p>
+          <p class="small"><strong>A strong answer covers:</strong></p>
+          <ul class="small"><li>Ingestion: parsing, chunking with metadata, and keeping the index fresh</li><li>Permission-aware retrieval (access filters applied before the LLM)</li><li>Hybrid search plus re-ranking</li><li>A prompt that requires citations and says &#39;not found&#39; when unsure</li><li>Evals and a user feedback loop</li><li>Security: PII handling, audit logs, data residency</li><li>Latency and cost controls (caching, model choice)</li></ul>
+          <details class="answer-reveal"><summary>Show model answer</summary><p>Documents flow from SharePoint and Confluence through a parser into chunks carrying metadata: source, section, updated date and access groups. A change-detection job re-indexes only what changed. At query time I&#39;d authenticate via SSO, filter the search by the user&#39;s groups, run hybrid keyword-plus-vector search and re-rank the top results. The prompt asks the model to answer only from the provided sources, cite them, and say when it doesn&#39;t know. I&#39;d mask PII and log every question, retrieved documents and answer for audit. Quality comes from a 100-question eval set built with real users, plus thumbs-up/down feedback. Cost and latency are managed with response caching and a smaller model for simple questions.</p><p class="small">Learn: <a href="../learn/rag.html">RAG: letting an LLM answer from your documents</a> · <a href="../learn/security-compliance.html">Enterprise AI: integration, security and compliance</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p></details>
+        </li>
+        </ol>
+        <h3 id="area-9">Communication</h3>
         <ol class="iv-list">
         <li class="iv-static">
           <p class="quiz-q">Tell me about yourself and why you&#39;re moving into this AI role. <span class="badge-time">open question</span></p>
@@ -1645,15 +1938,6 @@
           <p class="small"><strong>A strong answer covers:</strong></p>
           <ul class="small"><li>The situation, briefly (STAR format)</li><li>Your own responsibility, without blaming others</li><li>How you diagnosed it, step by step</li><li>The outcome, with numbers if possible</li><li>What you changed so it doesn&#39;t happen again</li></ul>
           <details class="answer-reveal"><summary>Show model answer</summary><p>Our nightly data pipeline silently loaded duplicate orders for three days, inflating revenue on a dashboard by 12%. I owned that pipeline. I traced it to a retry that re-appended a partial load, so the job wasn&#39;t idempotent. I fixed the data, switched the load to overwrite-by-partition, and added a uniqueness check that fails the run. Since then we&#39;ve had no duplicate incidents, and I now design every pipeline to be safely re-runnable.</p><p class="small">Learn: <a href="../learn/job-search.html">Landing the AI role: resume, applications and interviews</a></p></details>
-        </li>
-        </ol>
-        <h3 id="area-9">AI system design</h3>
-        <ol class="iv-list">
-        <li class="iv-static">
-          <p class="quiz-q">Design a &#39;chat with company documents&#39; assistant for 10,000 employees. <span class="badge-time">open question</span></p>
-          <p class="small"><strong>A strong answer covers:</strong></p>
-          <ul class="small"><li>Ingestion: parsing, chunking with metadata, and keeping the index fresh</li><li>Permission-aware retrieval (access filters applied before the LLM)</li><li>Hybrid search plus re-ranking</li><li>A prompt that requires citations and says &#39;not found&#39; when unsure</li><li>Evals and a user feedback loop</li><li>Security: PII handling, audit logs, data residency</li><li>Latency and cost controls (caching, model choice)</li></ul>
-          <details class="answer-reveal"><summary>Show model answer</summary><p>Documents flow from SharePoint and Confluence through a parser into chunks carrying metadata: source, section, updated date and access groups. A change-detection job re-indexes only what changed. At query time I&#39;d authenticate via SSO, filter the search by the user&#39;s groups, run hybrid keyword-plus-vector search and re-rank the top results. The prompt asks the model to answer only from the provided sources, cite them, and say when it doesn&#39;t know. I&#39;d mask PII and log every question, retrieved documents and answer for audit. Quality comes from a 100-question eval set built with real users, plus thumbs-up/down feedback. Cost and latency are managed with response caching and a smaller model for simple questions.</p><p class="small">Learn: <a href="../learn/rag.html">RAG: letting an LLM answer from your documents</a> · <a href="../learn/security-compliance.html">Enterprise AI: integration, security and compliance</a> · <a href="../learn/llm-evals.html">Evaluating AI: how to know it actually works</a></p></details>
         </li>
         </ol>
       </section>

@@ -139,7 +139,7 @@ var ROLE_TASKS = {
       ],
       deliverable: ["A deployed demo plus a repo with a README.", "Deployed demo plus README ke saath repo."],
       doneWhen: [["Replies stream token by token.", "Replies token by token stream hote hain."], ["Invalid JSON never crashes the UI.", "Galat JSON se UI kabhi crash nahi hota."], ["Cost per request is visible.", "Har request ki cost dikhti hai."]],
-      topics: ["llm-api", "llm-prompting", "ai-ux"] },
+      topics: ["llm-api", "llm-prompting", "ai-ux", "ai-chat-ui", "structured-output"] },
     { id: "pe-rag", level: "Core", hours: "6–8",
       title: ["Chat with your docs, with citations", "Citations ke saath apne docs se chat karo"],
       goal: ["Ship the most requested AI feature in companies: grounded Q&A over documents.", "Companies ka sabse zyaada maanga jaane wala AI feature ship karo: documents pe grounded Q&A."],
@@ -164,7 +164,20 @@ var ROLE_TASKS = {
       ],
       deliverable: ["An eval report (v1 vs v2 scores) in the README.", "README mein eval report (v1 vs v2 scores)."],
       doneWhen: [["The eval runs with one command.", "Eval ek command se chalta hai."], ["The README shows a before/after score table.", "README mein before/after score table hai."], ["Feedback is stored for future evals.", "Aage ke evals ke liye feedback store hota hai."]],
-      topics: ["llm-evals", "ai-ux", "portfolio"] }
+      topics: ["llm-evals", "ai-ux", "portfolio"] },
+    { id: "pe-production", level: "Capstone", hours: "8–12",
+      title: ["Make an AI feature production ready: cost, reliability and safe releases", "AI feature ko production ready banao: cost, reliability aur safe releases"],
+      goal: ["Prove the skills that separate a demo from a product: you can run it cheaply, keep it up, and change it safely.", "Woh skills saabit karo jo demo ko product se alag karti hain: aap ise sasta chala sakte ho, chalu rakh sakte ho, aur safely badal sakte ho."],
+      steps: [
+        ["Take your chat or RAG project and route every model call through one wrapper that logs tokens, cost, latency and prompt version.", "Apna chat ya RAG project lo aur har model call ko ek wrapper se guzaaro jo tokens, cost, latency aur prompt version log kare."],
+        ["Add a response cache with the user in the key and send one easy step (such as query rewriting) to a smaller model; compare cost and eval scores before and after.", "User ko key mein rakhkar response cache lagao aur ek aasaan step (jaise query rewriting) chhote model ko bhejo; pehle aur baad ki cost aur eval scores compare karo."],
+        ["Add timeouts, retries with backoff for temporary errors only, a backup model and a friendly non-AI fallback; test it by blocking the main provider.", "Timeouts, sirf temporary errors pe backoff ke saath retries, backup model aur friendly non-AI fallback jodo; main provider block karke test karo."],
+        ["Write unit tests with a fake model for bad JSON, timeouts and 429s, and a GitHub Actions job that runs your eval set on every pull request.", "Galat JSON, timeouts aur 429 ke liye nakli model ke saath unit tests likho, aur GitHub Actions job jo har pull request pe aapka eval set chalaaye."],
+        ["Put the prompt behind a simple feature flag and log thumbs, edits and regenerations to a small dashboard.", "Prompt ko simple feature flag ke peeche rakho aur thumbs, edits aur regenerations ko chhote dashboard pe log karo."]
+      ],
+      deliverable: ["A README section \"Running it in production\" with a cost table, the fallback chain, the CI eval gate and a screenshot of the dashboard.", "README mein \"Running it in production\" section, cost table, fallback chain, CI eval gate aur dashboard ke screenshot ke saath."],
+      doneWhen: [["Cost per request dropped and eval scores stayed within 2 points.", "Cost per request giri aur eval scores 2 points ke andar rahe."], ["With the main provider blocked, users still get a useful answer or message.", "Main provider block hone pe bhi users ko kaam ka jawaab ya message milta hai."], ["A pull request that breaks the eval set fails CI.", "Eval set todne wala pull request CI mein fail hota hai."]],
+      topics: ["llm-cost-latency", "llm-reliability", "llm-testing", "prompt-release", "ai-feature-metrics"] }
   ],
 
   "mlops-engineer": [

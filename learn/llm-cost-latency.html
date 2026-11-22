@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cost and latency: caching, model routing and token budgets: Explained Simply With Real-Life Examples | AI Path Finder</title>
+  <meta name="description" content="Every AI feature has a cost per request (input tokens plus output tokens times the model&#39;s price) and a latency (time to first token, then total time)." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Cost and latency: caching, model routing and token budgets: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta property="og:description" content="Every AI feature has a cost per request (input tokens plus output tokens times the model&#39;s price) and a latency (time to first token, then total time)." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cost and latency: caching, model routing and token budgets: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta name="twitter:description" content="Every AI feature has a cost per request (input tokens plus output tokens times the model&#39;s price) and a latency (time to first token, then total time)." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llm-cost-latency.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html",
+      "name": "Cost and latency: caching, model routing and token budgets",
+      "description": "Every AI feature has a cost per request (input tokens plus output tokens times the model's price) and a latency (time to first token, then total time).",
+      "inLanguage": "en",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT9M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Model routing",
+        "Prompt caching",
+        "Semantic cache",
+        "p95 latency"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cost and latency: caching, model routing and token budgets",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/llm-cost-latency.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "You add a response cache to an internal HR assistant. What must the cache key include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The user's or tenant's identity and permissions, plus the normalised question. Without identity in the key, an answer built from one person's private data can be served to someone else. That's a data leak, not a speed win."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I estimate cost before building?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply expected requests per day by average input and output tokens and the model prices, then add 30% for retries and growth. Compare it with the value per task."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does streaming reduce cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, it reduces perceived latency: users see words sooner, but the same tokens are generated. It does let users stop early, which can save some tokens."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#paths" data-nav="roles">AI roles</a>
+      <a href="../learn.html" data-nav="learn">Learn</a>
+      <a href="../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">AI Path Finder</a> › <a href="../learn.html">Learn</a> › <span aria-current="page">Cost and latency: caching, model routing and token budgets</span></nav>
+    <article lang="en">
+      <header>
+        <p class="eyebrow">Lesson · ⏱ 9 min read</p>
+        <h1 data-read>⚡ Cost and latency: caching, model routing and token budgets</h1>
+        <p class="lang-switch"><span>English</span><a href="hi/llm-cost-latency.html" hreflang="hi" lang="hi-Latn">Hinglish</a></p>
+        <div class="listen-bar" data-reader data-listen="Listen" data-pause="Pause" data-resume="Resume" data-reading="Reading aloud…" data-paused="Paused" data-unsupported="Your browser can't read aloud">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Listen</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Stop</button>
+      <label class="listen-rate"><span class="sr-only">Reading speed</span><select data-tts="rate" aria-label="Reading speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Real-life example</h2><p>A busy dabbawala doesn&#39;t send a senior manager to deliver every lunch box, and doesn&#39;t cook a fresh meal when the same order was just made. Simple deliveries go to the quickest person, repeated orders are served from what&#39;s ready, and only special requests get extra effort. Good AI products do the same with models: small fast model for easy tasks, cached answers for repeats, the big model only when needed.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 In simple words</h2><p>Every AI feature has a cost per request (input tokens plus output tokens times the model&#39;s price) and a latency (time to first token, then total time). Measure both per feature from day one: p50 and p95 latency, cost per request and cost per active user. Main levers: (1) Model routing: send simple tasks such as classification or short rewrites to a small, cheap model and only hard tasks to the large one; check quality with your evals before switching. (2) Prompt caching: providers can cache a long, unchanging prefix (system prompt, tool definitions, a big document) so repeat calls are cheaper and faster; keep that prefix identical and first. (3) Response or semantic caching: return a saved answer when the same, or a very similar, question was answered recently, but include the user or tenant in the cache key so one person never sees another&#39;s answer, and expire entries when data changes. (4) Fewer tokens: shorter prompts, fewer retrieved chunks after reranking, and limits on output length. (5) Perceived speed: stream, run retrieval and other calls in parallel, and show progress. (6) Batch or background work for anything not needed right now, often at a lower price.</p></section>
+      <section class="ls ls-visual"><h2>🎬 See how it works</h2><div class="viz"><svg viewBox="0 0 640 262" role="img" aria-label="A request checks a cache keyed by tenant and question; a hit returns instantly, a miss goes to a router that picks a small model for easy tasks or a large model for hard ones, with cost and latency logged" focusable="false"><defs><marker id="ah-cl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><g class="s1"><rect x="16" y="100" width="104" height="56" rx="10" class="b"/><text x="68" y="133" text-anchor="middle" class="">❓ Request</text></g><g class="s2"><rect x="150" y="96" width="120" height="64" rx="10" class="ba"/><text x="210" y="126" text-anchor="middle" class="">🗃️ Cache</text><text x="210" y="143" text-anchor="middle" class="tm ts">tenant:question</text></g><path d="M122 128 H144" class="ln " marker-end="url(#ah-cl)"/><g class="s3"><path d="M210 94 V52 H300" class="mk-ok " marker-end="url(#ah-cl)"/><rect x="306" y="26" width="160" height="50" rx="10" class="bo"/><text x="386" y="48" text-anchor="middle" class="ts ok">hit → ~5 ms, ₹0</text><text x="386" y="66" text-anchor="middle" class="tm ts">return saved answer</text></g><g class="s4"><path d="M272 128 H322" class="ln la " marker-end="url(#ah-cl)"/><g class=""><rect x="328" y="100" width="116" height="56" rx="10" class="b"/><text x="386" y="126" text-anchor="middle" class="">🔀 Router</text><text x="386" y="143" text-anchor="middle" class="tm ts">how hard?</text></g></g><g class="s5"><path d="M446 116 C480 116 480 88 504 88" class="ln " marker-end="url(#ah-cl)"/><g class=""><rect x="508" y="64" width="116" height="48" rx="10" class="bo"/><text x="566" y="86" text-anchor="middle" class="">🐇 Small model</text><text x="566" y="103" text-anchor="middle" class="tm ts">easy · cheap</text></g></g><g class="s6"><path d="M446 140 C480 140 480 172 504 172" class="ln " marker-end="url(#ah-cl)"/><g class=""><rect x="508" y="150" width="116" height="48" rx="10" class="bw"/><text x="566" y="172" text-anchor="middle" class="">🐘 Large model</text><text x="566" y="189" text-anchor="middle" class="tm ts">hard tasks</text></g></g><circle r="6" class="dot"><animateMotion dur="3.2s" repeatCount="indefinite" path="M122 128 H322 M446 116 C480 116 480 88 504 88"/></circle><g class="s7"><rect x="16" y="212" width="608" height="36" rx="10" class="bm"/><text x="320" y="235" text-anchor="middle" class="ts">📊 log: tokens · ₹ per request · p50 / p95 · cache hit rate · prompt caching on the stable prefix</text></g></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">Check the cache first (with the user in the key). On a miss, a router sends easy requests to a small, cheap model and hard ones to the large model. Log cost and latency for every call.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Log tokens, cost and latency (time to first token and total) for every call, tagged by feature, model and prompt version.</li><li data-read>Build a dashboard of cost per request, cost per active user and p50/p95 latency per feature, with a monthly budget alert.</li><li data-read>Find the biggest spender and try a smaller model for it; keep the switch only if your evals stay within the agreed limit.</li><li data-read>Make the long prompt prefix identical across calls and enable prompt caching; measure the cache hit rate.</li><li data-read>Add a response cache for repeated questions with identity in the key and a sensible expiry.</li><li data-read>Cut tokens: shorter instructions, fewer reranked chunks, max output tokens; then stream and parallelise the remaining steps.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Key terms</h2>
+        <dl class="terms"><div data-read><dt>Model routing</dt><dd>Choosing a small or large model per request based on how hard the task is.</dd></div><div data-read><dt>Prompt caching</dt><dd>The provider reuses a long, unchanged prompt prefix so repeat calls cost less and start faster.</dd></div><div data-read><dt>Semantic cache</dt><dd>Returning a saved answer for a question that means the same as a recent one.</dd></div><div data-read><dt>p95 latency</dt><dd>The time within which 95% of requests finish; it shows the slow experience users complain about.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 See it in action</h2>
+        <div class="code-wrap"><span class="code-lang">python</span><pre><code>def answer(user, question):
+    key = f&quot;{user.tenant}:{normalise(question)}&quot;        # tenant in the key: no cross-user leaks
+    if (hit := cache.get(key)):
+        return hit                                       # ~5 ms, ₹0
+    model = &quot;small&quot; if classify_difficulty(question) == &quot;easy&quot; else &quot;large&quot;
+    res = llm.generate(
+        model=model,
+        system=[{&quot;text&quot;: LONG_POLICY_PROMPT, &quot;cache&quot;: True}],  # same prefix every time → prompt cache
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: question}],
+        max_tokens=400,
+    )
+    metrics.record(model=model, cost=res.cost, ms=res.latency_ms)
+    cache.set(key, res.text, ttl=3600)
+    return res.text</code></pre></div>
+        <p class="small muted" data-read>Check the cache first, route by difficulty, keep the long prefix cacheable, cap output, and record cost and latency.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Common mistakes to avoid</h2><ul class="deep-mistakes"><li data-read>Using the biggest model for every step, including simple classification, &quot;just to be safe&quot;.</li><li data-read>A cache key without user or tenant identity, which can leak one customer&#39;s answer to another.</li><li data-read>Optimising average latency while p95 users wait 12 seconds. Users remember the slow cases.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Quick check</h2>
+        <p class="quiz-q" data-read data-read-prefix="Quick check">You add a response cache to an internal HR assistant. What must the cache key include?</p>
+        <ol type="A"><li data-read data-read-text="Option A: The user&#39;s or tenant&#39;s identity and permissions, plus the normalised question">The user&#39;s or tenant&#39;s identity and permissions, plus the normalised question</li><li data-read data-read-text="Option B: Only the question text, so more requests hit the cache">Only the question text, so more requests hit the cache</li><li data-read data-read-text="Option C: The time of day, so answers refresh hourly">The time of day, so answers refresh hourly</li></ol>
+        <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. The user&#39;s or tenant&#39;s identity and permissions, plus the normalised question</strong>: Without identity in the key, an answer built from one person&#39;s private data can be served to someone else. That&#39;s a data leak, not a speed win.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How do I estimate cost before building?</summary><p data-read>Multiply expected requests per day by average input and output tokens and the model prices, then add 30% for retries and growth. Compare it with the value per task.</p></details><details class="deep-faq"><summary data-read>Does streaming reduce cost?</summary><p data-read>No, it reduces perceived latency: users see words sooner, but the same tokens are generated. It does let users stop early, which can save some tokens.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>Your AI feature costs too much per user. Walk me through how you would reduce cost without hurting quality.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>First I measure: cost per request and per active user by feature, model and prompt version, so I know where the money goes. Then I work through the levers in order of risk. I route simple steps, like classification or query rewriting, to a smaller model and keep the switch only if my evals stay within an agreed limit. I make the long system prompt prefix identical across calls and turn on prompt caching. I add a response cache for repeated questions, with the user or tenant in the cache key so nobody sees someone else&#39;s answer. I cut tokens with shorter instructions, fewer chunks after reranking and a max output length. Anything not needed right away moves to batch processing. I report the before and after cost together with the quality scores.</p><p class="prep-label">✅ </p><ul><li data-read>Measure cost by feature, model and version first</li><li data-read>Route easy steps to small models, checked by evals</li><li data-read>Prompt caching with a stable prefix</li><li data-read>Response cache with identity in the key</li><li data-read>Fewer tokens and batch where possible; show before and after with quality</li></ul><p class="prep-check" data-read><strong>:</strong> Cost awareness, one of the most common production questions in 2026.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Measure cost and p95 per feature; route easy tasks to small models, cache safely with identity in the key, cut tokens, stream and parallelise.</p></section>
+      <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/latency.html" title="How long a request takes from asking to getting the answer.">Latency</a></li></ul></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="ai-ux.html">← UX for AI features: designing for uncertainty</a>
+        <a href="llm-reliability.html">Reliability: timeouts, retries, fallbacks and rate limits →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Learn this as part of a full course</h2>
+        <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=llm-cost-latency">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=llm-cost-latency">Continue in the course</a>
+      </section>
+    </article>
+  </main>
+  <script src="../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "en"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../for/software-testers-qa.html">QA / testers</a></li><li><a href="../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../guide/how-it-works.html">How the consultation works</a></li><li><a href="../#app">Free AI career consultation</a></li><li><a href="../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../interview.html">Interview practice</a></li><li><a href="../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../resumes/">ATS resume samples</a></li><li><a href="../glossary/">AI dictionary (A to Z)</a></li><li><a href="../kids/">AI for kids (ages 5+)</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

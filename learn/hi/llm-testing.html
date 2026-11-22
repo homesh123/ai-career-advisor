@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code mein AI features test karna: mocks, recorded responses aur contract tests: Hinglish mein aasaan explanation | AI Path Finder</title>
+  <meta name="description" content="Model ke jawaab badalte hain, par model ke aas paas ka zyaadatar code normal code hai jise baaki code ki tarah test karna chahiye: prompts banana, outputs…" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Code mein AI features test karna: mocks, recorded responses aur contract tests: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta property="og:description" content="Model ke jawaab badalte hain, par model ke aas paas ka zyaadatar code normal code hai jise baaki code ki tarah test karna chahiye: prompts banana, outputs…" />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Code mein AI features test karna: mocks, recorded responses aur contract tests: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta name="twitter:description" content="Model ke jawaab badalte hain, par model ke aas paas ka zyaadatar code normal code hai jise baaki code ki tarah test karna chahiye: prompts banana, outputs…" />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/llm-testing.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/llm-testing.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html",
+      "name": "Code mein AI features test karna: mocks, recorded responses aur contract tests",
+      "description": "Model ke jawaab badalte hain, par model ke aas paas ka zyaadatar code normal code hai jise baaki code ki tarah test karna chahiye: prompts banana, outputs…",
+      "inLanguage": "hi-Latn",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Fake / mock model",
+        "Fixture (recorded response)",
+        "Contract test",
+        "Smoke test"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Code mein AI features test karna: mocks, recorded responses aur contract tests",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/llm-testing.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Aapke pull request test suite ko LLM ke saath kaise deal karna chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nakli model aur recorded responses use karo taaki tests tez aur dohraane layak hon; kuch live smoke tests schedule pe chalao. Live calls har test ko slow, mehnga aur flaky banaati hain. Fakes aur fixtures aapke code ka logic bharose se test karte hain, smoke tests asli integration dekhte hain, aur evals quality parakhte hain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jiska output har baar badalta hai use kaise test karein?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un hisson ko test karo jo nahi badalne chahiye: fake responses ke saath code ka logic, schemas se outputs ki shape, aur simple checks se zaroori facts. Wording ko evals se parkho."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kya tests mein temperature 0 hona chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Live smoke tests ke liye kam temperature variation kam karta hai par poora khatam nahi karta. Isiliye main test suite fakes aur fixtures use karta hai."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../#paths" data-nav="roles">AI roles</a>
+      <a href="../../learn.html" data-nav="learn">Learn</a>
+      <a href="../../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">AI Path Finder</a> › <a href="../../learn.html">Learn</a> › <span aria-current="page">Code mein AI features test karna: mocks, recorded responses aur contract tests</span></nav>
+    <article lang="hi-Latn">
+      <header>
+        <p class="eyebrow">Lesson · Hinglish · ⏱ 8 min padhne mein</p>
+        <h1 data-read>🧪 Code mein AI features test karna: mocks, recorded responses aur contract tests</h1>
+        <p class="lang-switch"><a href="../llm-testing.html" hreflang="en" lang="en">English</a><span>Hinglish</span></p>
+        <div class="listen-bar" data-reader data-listen="Suno" data-pause="Roko" data-resume="Phir chalao" data-reading="Padh kar suna raha hai…" data-paused="Ruka hua" data-unsupported="Aapka browser padh kar nahi suna sakta">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Suno</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Band karo</button>
+      <label class="listen-rate"><span class="sr-only">Padhne ki speed</span><select data-tts="rate" aria-label="Padhne ki speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Asli zindagi ki misaal</h2><p>Driving school student ki asli sadak pe driving check karne se pehle har baar gaadi ke brakes, lights aur indicators ek hi tarah test karta hai. Normal tests brake check hain: tez aur dohraane layak. Evals road test hain: driving ki quality parakhte hain. Acche AI product ko dono chahiye.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 Aasaan shabdon mein</h2><p>Model ke jawaab badalte hain, par model ke aas paas ka zyaadatar code normal code hai jise baaki code ki tarah test karna chahiye: prompts banana, outputs parse aur validate karna, tools chunna, retries aur fallbacks, permission checks aur UI states. Kuch layers use karo. Unit tests model ki jagah ek nakli (fake) rakhte hain jo tay responses deta hai, kharab bhi (galat JSON, khaali jawaab, timeout, 429), taaki check kar sako aapka code har case sambhaalta hai; yeh tez aur free hain. Recorded response tests asli model responses ek baar save karte hain (fixtures) aur unhe replay karte hain, taaki poore flow ka test har baar API call kiye bina chale; prompt ya model badlo to dobara record karo. Contract tests check karte hain ki outputs aapke schema se match karein aur prompt builder kabhi doosre users ka data leak na kare. Kuch live smoke tests schedule pe asli model call karte hain taaki provider ke badlaav pakde jaayein. Evals sabse upar quality parakhte hain. Default test run tez aur offline rakho; kisi flaky live call ko har pull request rokne mat do.</p></section>
+      <section class="ls ls-visual"><h2>🎬 Dekho kaise kaam karta hai</h2><div class="viz"><svg viewBox="0 0 640 250" role="img" aria-label="A testing pyramid: many unit tests with a fake model at the bottom, recorded response tests in the middle, a few live smoke tests at the top, and evals as a separate quality check" focusable="false"><defs><marker id="ah-lt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><g class="s1"><path d="M40 220 H420 L380 166 H80 Z" class="f2"/><text x="230" y="199" text-anchor="middle" class="ts">🧩 Unit tests + fake model · ms · every PR</text></g><g class="s2"><path d="M80 162 H380 L340 108 H120 Z" class="f1"/><text x="230" y="141" text-anchor="middle" class="ts">📼 Recorded responses · every PR</text></g><g class="s3"><path d="M120 104 H340 L280 50 H180 Z" class="f4"/><text x="230" y="83" text-anchor="middle" class="ts">🌐 Live smoke · nightly</text></g><g class="s4"><rect x="450" y="50" width="174" height="170" rx="14" class="bo"/><text x="537" y="80" text-anchor="middle" class="tb">🧪 Evals</text><text x="537" y="106" text-anchor="middle" class="ts">judge answer quality</text><text x="537" y="130" text-anchor="middle" class="tm ts">golden set · judge</text><text x="537" y="152" text-anchor="middle" class="tm ts">separate job</text><text x="537" y="186" text-anchor="middle" class="ts ok">tests ≠ evals</text></g><g class="s5"><text x="230" y="30" text-anchor="middle" class="tm ts">fake: invalid JSON · empty · timeout · 429 → retry & fallback ✓</text></g></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">AI features ke liye testing pyramid: nakli model ke saath bahut se tez unit tests, kuch replay kiye recorded responses, schedule pe thode live smoke tests, aur bagal mein quality parakhte evals.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Har model call ko ek function mein wrap karo taaki tests uski jagah nakli rakh sakein.</li><li data-read>Nakli model ke saath unit tests likho, sahi raaste ke liye aur kharab cases ke liye: galat JSON, khaali text, timeout, 429.</li><li data-read>Kuch asli responses fixtures ki tarah record karo aur end to end tests mein replay karo; prompt ya model badle to dobara record karo.</li><li data-read>Contract tests jodo: outputs schema se match karein, prompts mein sirf current user ka data ho, tools ko validated arguments milein.</li><li data-read>Pull requests se alag, schedule pe chhota live smoke test chalao, aur fail ho to alert karo.</li><li data-read>Evals ko quality parakhne wala alag job rakho, aur dono ko CI checklist mein jodo.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Zaroori shabd</h2>
+        <dl class="terms"><div data-read><dt>Fake / mock model</dt><dd>Nakli model jo tay responses deta hai taaki tests tez, free aur dohraane layak hon.</dd></div><div data-read><dt>Fixture (recorded response)</dt><dd>Saved asli model response jo API call ki jagah tests mein replay hota hai.</dd></div><div data-read><dt>Contract test</dt><dd>Test jo check karta hai ki outputs aur inputs tay schema ya rule maanein.</dd></div><div data-read><dt>Smoke test</dt><dd>Chhota live check, aksar schedule pe, ki asli integration abhi bhi kaam karta hai.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 Example dekho</h2>
+        <div class="code-wrap"><span class="code-lang">typescript</span><pre><code>import { test, expect, vi } from &quot;vitest&quot;;
+import { classifyTicket } from &quot;../lib/classify&quot;;
+import * as ai from &quot;../lib/ai&quot;;
+
+test(&quot;invalid JSON from the model → one retry, then &#39;other&#39;&quot;, async () =&gt; {
+  const call = vi.spyOn(ai, &quot;callModel&quot;)
+    .mockResolvedValueOnce({ text: &quot;Sure! The category is billing&quot; })  // not JSON
+    .mockResolvedValueOnce({ text: &quot;{oops&quot; });                          // still bad
+  const res = await classifyTicket(&quot;Refund not received&quot;);
+  expect(call).toHaveBeenCalledTimes(2);       // retried once
+  expect(res.category).toBe(&quot;other&quot;);          // safe fallback, no crash
+});
+
+test(&quot;prompt never includes another tenant&#39;s documents&quot;, async () =&gt; {
+  const prompt = await buildPrompt({ tenant: &quot;acme&quot;, question: &quot;leave policy&quot; });
+  expect(prompt).not.toContain(&quot;globex&quot;);
+});</code></pre></div>
+        <p class="small muted" data-read>Nakli model se aap kharab raaste (galat JSON, retries, fallbacks) aur data isolation milliseconds mein test kar sakte ho.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Aam galtiyaan jinse bachna hai</h2><ul class="deep-mistakes"><li data-read>Har unit test mein asli model call karna, jisse CI slow, mehnga aur bina wajah red hota hai.</li><li data-read>Sirf sahi raasta test karna, to pehla bigda response production crash kar deta hai.</li><li data-read>Evals aur tests ko ek hi cheez samajhna; dono chahiye.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Jaldi se check karo</h2>
+        <p class="quiz-q" data-read data-read-prefix="Jaldi se check karo">Aapke pull request test suite ko LLM ke saath kaise deal karna chahiye?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Nakli model aur recorded responses use karo taaki tests tez aur dohraane layak hon; kuch live smoke tests schedule pe chalao">Nakli model aur recorded responses use karo taaki tests tez aur dohraane layak hon; kuch live smoke tests schedule pe chalao</li><li data-read data-read-text="Option B: Har test mein asli model call karo taaki realistic ho">Har test mein asli model call karo taaki realistic ho</li><li data-read data-read-text="Option C: AI code test mat karo, kyunki outputs badalte hain">AI code test mat karo, kyunki outputs badalte hain</li></ol>
+        <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. Nakli model aur recorded responses use karo taaki tests tez aur dohraane layak hon; kuch live smoke tests schedule pe chalao</strong>: Live calls har test ko slow, mehnga aur flaky banaati hain. Fakes aur fixtures aapke code ka logic bharose se test karte hain, smoke tests asli integration dekhte hain, aur evals quality parakhte hain.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Jiska output har baar badalta hai use kaise test karein?</summary><p data-read>Un hisson ko test karo jo nahi badalne chahiye: fake responses ke saath code ka logic, schemas se outputs ki shape, aur simple checks se zaroori facts. Wording ko evals se parkho.</p></details><details class="deep-faq"><summary data-read>Kya tests mein temperature 0 hona chahiye?</summary><p data-read>Live smoke tests ke liye kam temperature variation kam karta hai par poora khatam nahi karta. Isiliye main test suite fakes aur fixtures use karta hai.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>LLM call karne wale code ke liye automated tests kaise likhte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Main code ki sahi hone aur jawaab ki quality ko alag rakhta hoon. Saare model calls ek function se guzarte hain, to unit tests mein use ek nakli se badal deta hoon jo tay responses deta hai, kharab bhi jaise galat JSON, khaali jawaab, timeout ya 429, aur apna parsing, retries aur fallbacks check karta hoon. End to end flows ke liye recorded asli responses fixtures ki tarah replay karta hoon, aur prompt ya model badalne pe dobara record karta hoon. Contract tests check karte hain ki outputs schema se match karein aur prompts mein sirf current user ka data ho. Chhota live smoke test schedule pe chalta hai taaki provider ke badlaav pakde jaayein. Jawaab ki quality eval suite alag se parakhta hai. Pull request suite tez, free aur deterministic rehta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Unit tests ke liye nakli model, failure cases ke saath</li><li data-read>End to end flows ke liye recorded responses</li><li data-read>Schemas aur data isolation ke liye contract tests</li><li data-read>Schedule pe live smoke tests</li><li data-read>Quality ke liye evals, tests se alag</li></ul><p class="prep-check" data-read><strong>:</strong> Non-deterministic systems ke aas paas engineering discipline.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Model ke aas paas ka code fakes aur fixtures se test karo, contracts aur data isolation check karo, schedule pe smoke tests jodo, aur quality evals ko parakhne do.</p></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="ml-train-test.html">← Train/test split aur overfitting</a>
+        <a href="llm-evals.html">AI ko evaluate karna: kaise pata chale ki sach mein kaam karta hai →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Poora course, aapke roadmap ke hisaab se</h2>
+        <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-testing&amp;lang=hi">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=llm-testing&amp;lang=hi">Course mein seekho</a>
+      </section>
+    </article>
+  </main>
+  <script src="../../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "hi"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../../for/software-testers-qa.html">QA / testers</a></li><li><a href="../../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../../guide/how-it-works.html">How the consultation works</a></li><li><a href="../../#app">Free AI career consultation</a></li><li><a href="../../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../../interview.html">Interview practice</a></li><li><a href="../../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../../resumes/">ATS resume samples</a></li><li><a href="../../glossary/">AI dictionary (A to Z)</a></li><li><a href="../../kids/">AI for kids (ages 5+)</a></li><li><a href="../../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

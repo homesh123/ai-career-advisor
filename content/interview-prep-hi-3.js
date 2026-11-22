@@ -438,6 +438,60 @@ var INTERVIEW_PREP_HI = Object.assign(typeof INTERVIEW_PREP_HI !== "undefined" ?
     answer: "High-resolution images, multi-page PDFs aur live audio saade text se kahin zyaada tokens aur bandwidth khaate hain, aur ek user retry ya multi-step loop cost ko 3× se 5× badha sakta hai. Main sirf cost per API call nahi, balki cost per successfully completed task nikaalta hoon, aur uski tulna user ki dene ki ichha ya bache hue operational kharche se karta hoon. Margins healthy rakhne ke liye main bhejne se pehle images resize karta hoon, simple extractions chhote vision model pe bhejta hoon, repeat documents cache karta hoon, aur UI ko turant visual/audio feedback aur kam confidence pe saaf human fallback ke saath design karta hoon.",
     points: ["Sirf cost per API call nahi, cost per completed task (retries samet) naapo", "High-res images aur live voice ka token/compute kharcha text se kahin zyaada hota hai", "Gross margin bachane ke liye image resizing, model routing aur caching use karo", "Latency (streaming/barge-in) aur extracted fields ki verification ke liye UX design karo"],
     check: "AI unit economics aur multimodal product samajh check karta hai."
+  },
+  "pe-structured": {
+    q: "Form ya database bharne wale feature ke liye LLM se bharosemand JSON kaise loge?",
+    answer: "Main code mein ek schema banata hoon, Zod ya Pydantic se, aur use teen tarah use karta hoon: provider ke structured output ya tool calling mode se model ko deta hoon, har response ko usse validate karta hoon, aur apne code mein type ki tarah use karta hoon. Fields chhote aur description wale rakhta hoon, categories ke liye enums, aur jo value na ho sake us field ko nullable rakhta hoon taaki model use banaaye nahi. Validation fail ho to error message ke saath ek baar retry, phir human review. Uske baad bhi business rules plain code mein check karta hoon, jaise totals milna aur IDs hona, aur asli examples ke set pe har field ki accuracy naapta hoon.",
+    points: ["Model, validation aur types ke liye ek schema", "Structured output ya tool calling mode, \"JSON mein jawaab do\" nahi", "Banaayi values rokne ke liye nullable fields aur enums", "Validate, error ke saath ek retry, phir fallback", "Code mein business rules aur field level eval set"],
+    check: "Kya aap aise AI features bana sakte ho jin pe doosra code bharosa kar sake."
+  },
+  "pe-ts-keys": {
+    q: "Aap Next.js app mein AI feature jod rahe ho. Use secure aur tez kaise banaoge?",
+    answer: "Browser kabhi model se baat nahi karta. API key server ke environment variable mein rehti hai aur model route handler ya server action se call hota hai. Har AI route user ko authenticate karta hai, rate limit aur per-user budget lagata hai, aur input ko Zod se validate karta hai. Saare model calls ek wrapper se guzarte hain jo tokens, cost, latency aur prompt version log karta hai, jisse model badalna bhi aasaan hota hai. Lambe jawaab client ko stream hote hain. Slow kaam, jaise upload kiye documents index karna, background queue mein jaata hai aur UI mein progress dikhti hai, taaki requests time out na hon. Chats aur embeddings jaisa data Postgres mein har row pe user aur tenant IDs ke saath rehta hai.",
+    points: ["Key aur model calls sirf server pe", "Har AI route pe auth, rate limit aur input validation", "Logging, cost aur model badalne ke liye ek wrapper", "Lambe jawaab stream; slow jobs queue mein", "Saare stored data pe user aur tenant IDs"],
+    check: "AI APIs ke saath practical full stack samajh."
+  },
+  "pe-context-memory": {
+    q: "Chat product mein conversation history aur memory kaise sambhaaloge?",
+    answer: "Model calls ke beech kuch yaad nahi rakhta, isliye main har request pe token budget ke andar context dobara banata hoon. Pakke instructions pehle, phir user ki baatein, relevant long term memories aur retrieve kiye documents, phir haal ki conversation, aur naya sawaal aakhir mein. Aakhri kuch turns jaise ke taise rakhta hoon aur purane turns ki jagah chalti hui summary, taaki kharch aur latency badhti na rahe. Long term memory user ki batayi pakki baatein rakhti hai, sirf permission se, aur users unhe dekh aur delete kar sakte hain. Har memory aur document query code mein user aur tenant se filter hoti hai, model se poochh kar kabhi nahi, aur main test karta hoon ki ek user kabhi doosre ka data na dekh sake.",
+    points: ["Har call pe budget ke andar context dobara banana", "Order: rules, baatein, memories, documents, haal ke turns, sawaal", "Purane turns ke liye chalti hui summary", "Memory ke liye permission, dikhana aur delete karna", "User aur tenant isolation code mein"],
+    check: "Chat products andar se asal mein kaise kaam karte hain, iski samajh."
+  },
+  "pe-cost-cut": {
+    q: "Aapka AI feature har user pe bahut mehnga pad raha hai. Quality bigaade bina cost kaise kam karoge, step by step batao.",
+    answer: "Pehle naapta hoon: feature, model aur prompt version ke hisaab se cost per request aur per active user, taaki pata chale paisa kahan ja raha hai. Phir risk ke order mein levers lagata hoon. Classification ya query rewriting jaise simple steps chhote model ko bhejta hoon aur switch tabhi rakhta hoon jab evals tay limit ke andar rahein. Lamba system prompt prefix har call mein same rakhta hoon aur prompt caching on karta hoon. Repeat sawaalon ke liye response cache lagata hoon, cache key mein user ya tenant ke saath taaki kisi ko doosre ka jawaab na dikhe. Chhote instructions, reranking ke baad kam chunks aur max output length se tokens kam karta hoon. Jo turant zaroori nahi woh batch mein. Pehle aur baad ki cost quality scores ke saath report karta hoon.",
+    points: ["Pehle feature, model aur version ke hisaab se cost naapo", "Aasaan steps chhote models ko, evals se check", "Stable prefix ke saath prompt caching", "Key mein identity ke saath response cache", "Kam tokens aur jahan ho sake batch; quality ke saath pehle aur baad dikhao"],
+    check: "Cost ki samajh, 2026 ke sabse aam production sawaalon mein se ek."
+  },
+  "pe-reliability": {
+    q: "Peak hour mein model provider ka outage ho jaata hai. Aapka AI feature kaise behave kare, aur aap ise kaise banaoge?",
+    answer: "Users ko phir bhi kuch kaam ka milna chahiye aur kuch bhi tootna ya dohraana nahi chahiye. Har call pe timeout hota hai. Main sirf temporary errors retry karta hoon, 429, 5xx aur timeouts, exponential backoff, jitter aur chhoti limit ke saath, aur Retry-After maanta hoon. Circuit breaker baar baar fail hote provider ko call karna rok deta hai, aur fallback chain sambhaalti hai: tested backup model, phir cached ya simple jawaab, phir saaf message ke saath non-AI raasta jaise template ya insaan se baat. Kuch badalne wale actions idempotency key ke saath chalte hain taaki retries do refunds na bhej dein. Per-user rate limits, error aur fallback rates pe alerts bhi hain, aur main staging mein outage ka raasta jaan boojh kar test karta hoon.",
+    points: ["Har call pe timeout", "Sirf temporary errors backoff aur limit ke saath retry", "Circuit breaker aur non-AI raaste pe khatam hoti fallback chain", "Actions ke liye idempotency keys", "Alerts aur jaan boojh kar failure testing"],
+    check: "Production ki maturity: sirf happy path nahi, failure ke liye design."
+  },
+  "pe-prompt-release": {
+    q: "Prompt ka change, ya model upgrade, users ke liye kuch tode bina kaise ship karoge?",
+    answer: "Main prompts aur model settings ko code ki tarah treat karta hoon. Woh version control ya prompt registry mein version ID ke saath rehte hain, aur har request log karti hai ki kis version ne jawaab diya. Prompt badalne wala pull request CI mein current version ke mukaable eval set chalata hai: golden questions, format checks aur safety tests, ek rule ke saath jaise koi metric do points se zyaada na gire. Badle hue jawaabon ka sample bhi padhta hoon. Merge ke baad naya version feature flag ke peeche lagbhag 5% traffic pe jaata hai, hum thumbs down, edits, escalations, latency aur cost dekhte hain, phir steps mein badhaate hain. Rollback ek switch hai. Model upgrade bhi bilkul isi process se guzarta hai.",
+    points: ["Prompts versioned aur har request pe log", "CI mein current version ke mukaable eval gate", "Sirf scores nahi, badle jawaab padho", "Feature flag ke peeche canary, online signals dekho", "Ek switch rollback; model upgrades bhi isi raaste"],
+    check: "Kya aap bina regressions ke tezi se iterate kar sakte ho."
+  },
+  "pe-online-metrics": {
+    q: "Aapka AI feature launch ho gaya. Kaise pata karoge ki woh sach mein kaam kar raha hai, aur use kaise sudhaaroge?",
+    answer: "Main layers mein naapta hoon. Woh outcome jiske liye feature bana, jaise handle time ya bina escalation ke solve hue tickets, A/B test ya holdout group se saabit. Usage: adoption, retention aur frequency. Behaviour pe based quality: accept rate, users drafts kitna edit karte hain, regenerate rate, chhodna aur escalation, saath mein wajah wala thumbs feedback, jo akele kamzor signal hai. Guardrails: shikaayatein, safety flags, latency aur cost kharab nahi hone chahiye. Har hafte privacy rules ke andar asli interactions ka sample lete hain, failures ko type se label karte hain, aur sabse bade types ko naye eval cases aur fixes mein badalte hain. Yahi loop launch ke baad feature ko sudhaarta rehta hai.",
+    points: ["A/B ya holdout se saabit outcome metric", "Usage: adoption, retention, frequency", "Edit aur accept rate jaise behaviour signals akele thumbs se behtar", "Guardrails: shikaayatein, safety, latency, cost", "Har hafte failure review jo eval set mein jaata hai"],
+    check: "Product sense aur launch ke baad ki ownership."
+  },
+  "pe-ai-tools": {
+    q: "Aap roz ke kaam mein AI coding assistants kaise use karte ho, aur kaise pakka karte ho ki code accha hai?",
+    answer: "Main roz use karta hoon, zyaadatar terminal mein agent aur editor mein completion. Ek chhoti project context file rakhta hoon jismein hamara stack, commands aur rules hain, aur har task se pehle chhota spec likhta hoon: goal, files, constraints aur done ka matlab. Pehle plan maangta hoon, phir chhote steps mein kaam karta hoon aur usse tests likhwaata ya update karwaata aur chalwaata hoon. Har diff aise padhta hoon jaise colleague ne likha ho, check karta hoon ki conventions follow kare, errors sambhaale, aur dependencies na jode ya secrets expose na kare, aur chhote tukdon mein commit karta hoon. Jaise, isse maine ticket page pe streaming summaries ek hafte ki jagah do din mein tests ke saath jodi.",
+    points: ["Context file aur har task ka chhota spec", "Pehle plan, phir chhote steps", "Har baar tests likhe aur chalaaye", "Har diff review; secrets ya bina approval ka data nahi", "Result ke saath ek pakka example"],
+    check: "Kya aap quality giraaye bina AI tools ke saath tez chal sakte ho."
+  },
+  "pe-testing": {
+    q: "LLM call karne wale code ke liye automated tests kaise likhte ho?",
+    answer: "Main code ki sahi hone aur jawaab ki quality ko alag rakhta hoon. Saare model calls ek function se guzarte hain, to unit tests mein use ek nakli se badal deta hoon jo tay responses deta hai, kharab bhi jaise galat JSON, khaali jawaab, timeout ya 429, aur apna parsing, retries aur fallbacks check karta hoon. End to end flows ke liye recorded asli responses fixtures ki tarah replay karta hoon, aur prompt ya model badalne pe dobara record karta hoon. Contract tests check karte hain ki outputs schema se match karein aur prompts mein sirf current user ka data ho. Chhota live smoke test schedule pe chalta hai taaki provider ke badlaav pakde jaayein. Jawaab ki quality eval suite alag se parakhta hai. Pull request suite tez, free aur deterministic rehta hai.",
+    points: ["Unit tests ke liye nakli model, failure cases ke saath", "End to end flows ke liye recorded responses", "Schemas aur data isolation ke liye contract tests", "Schedule pe live smoke tests", "Quality ke liye evals, tests se alag"],
+    check: "Non-deterministic systems ke aas paas engineering discipline."
   }
 });
 

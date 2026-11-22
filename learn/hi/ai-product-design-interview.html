@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI product system design: AI feature ko shuru se aakhir tak design karna: Hinglish mein aasaan explanation | AI Path Finder</title>
+  <meta name="description" content="Is round mein aapko ek prompt milta hai jaise &quot;Ek AI assistant design karo jo hamare help centre se customers ke sawaalon ka jawaab de&quot; aur 45 minute." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="AI product system design: AI feature ko shuru se aakhir tak design karna: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta property="og:description" content="Is round mein aapko ek prompt milta hai jaise &quot;Ek AI assistant design karo jo hamare help centre se customers ke sawaalon ka jawaab de&quot; aur 45 minute." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI product system design: AI feature ko shuru se aakhir tak design karna: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta name="twitter:description" content="Is round mein aapko ek prompt milta hai jaise &quot;Ek AI assistant design karo jo hamare help centre se customers ke sawaalon ka jawaab de&quot; aur 45 minute." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/ai-product-design-interview.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/ai-product-design-interview.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html",
+      "name": "AI product system design: AI feature ko shuru se aakhir tak design karna",
+      "description": "Is round mein aapko ek prompt milta hai jaise \"Ek AI assistant design karo jo hamare help centre se customers ke sawaalon ka jawaab de\" aur 45 minute.",
+      "inLanguage": "hi-Latn",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT10M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Clarifying questions",
+        "Latency budget",
+        "Launch criteria",
+        "Trade-off"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI product system design: AI feature ko shuru se aakhir tak design karna",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/ai-product-design-interview.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Interviewer kehta hai \"Ek AI feature design karo jo lambi customer calls ko summarise kare.\" Sabse pehle kya karna chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Poocho summaries kaun padhta hai, unse kya karta hai, calls kitni aur kis bhasha mein hain, aur success ka matlab kya hai. Requirements baaki sab tay karti hain: supervisor ke quality review ki summary CRM fields bharne wali summary se bahut alag hai. Pehle clarify karna product sense dikhata hai."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Model ke andar ki baaton mein kitna gehra jaana chahiye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Product roles ke liye utna hi jitna decisions pe asar daale: context limits, latency, cost, formats ki reliability. Time UX, quality aur trade-offs pe lagao."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is round ki practice kaise karein?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "10 rozmarra ke AI features chuno (email reply drafts, meeting notes, search, shopping assistant), 45 minute ka timer lagao, 7 hisse bol kar samjhao aur diagram banao. Is lesson se milaan karo."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../#paths" data-nav="roles">AI roles</a>
+      <a href="../../learn.html" data-nav="learn">Learn</a>
+      <a href="../../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">AI Path Finder</a> › <a href="../../learn.html">Learn</a> › <span aria-current="page">AI product system design: AI feature ko shuru se aakhir tak design karna</span></nav>
+    <article lang="hi-Latn">
+      <header>
+        <p class="eyebrow">Lesson · Hinglish · ⏱ 10 min padhne mein</p>
+        <h1 data-read>🏗️ AI product system design: AI feature ko shuru se aakhir tak design karna</h1>
+        <p class="lang-switch"><a href="../ai-product-design-interview.html" hreflang="en" lang="en">English</a><span>Hinglish</span></p>
+        <div class="listen-bar" data-reader data-listen="Suno" data-pause="Roko" data-resume="Phir chalao" data-reading="Padh kar suna raha hai…" data-paused="Ruka hua" data-unsupported="Aapka browser padh kar nahi suna sakta">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Suno</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Band karo</button>
+      <label class="listen-rate"><span class="sr-only">Padhne ki speed</span><select data-tts="rate" aria-label="Padhne ki speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Asli zindagi ki misaal</h2><p>Ghar design karne ko kaha gaya architect kitchen ki tiles se shuru nahi karta. Woh poochhta hai kaun rahega, budget kitna hai aur plot kitna bada hai, kamron aur unke beech aane jaane ka sketch banata hai, phir plumbing, safety aur monsoon mein kya hoga uski baat karta hai. AI design interview isi order ko inaam deta hai: pehle users aur goal, phir flow, phir mushkil hisse aur aapko kaise pata chalega ki kaam kar raha hai.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 Aasaan shabdon mein</h2><p>Is round mein aapko ek prompt milta hai jaise &quot;Ek AI assistant design karo jo hamare help centre se customers ke sawaalon ka jawaab de&quot; aur 45 minute. Ek structure jo kaam karta hai: (1) Clarify: users kaun hain, unhe kaunsa kaam karwaana hai, scale (users, documents, bhashaayein), aur success numbers mein kya hai. Poocho ki AI zaroori bhi hai ya nahi. (2) User experience: feature kahan dikhega, intezaar ke dauraan user kya dekhega, woh kaise verify aur sudhaarega, aur failure ka raasta. (3) Architecture: client, API, model wrapper, retrieval (ingestion, chunking, hybrid search, reranking), tools, storage, aur background jobs; boxes aur arrows banao. (4) Model aur prompt choices wajah ke saath: kis step ke liye kaunsa model, jahan code result use karta hai wahan structured output. (5) Quality: offline eval set, launch criteria, online signals aur feedback loop. (6) Production: har step ka latency budget, cost per request, caching, rate limits, fallbacks, privacy, permissions aur prompt injection. (7) Rollout aur iteration: canary, A/B test, version do mein kya banaoge. Trade-offs mein baat karo (&quot;chhota model 70% kharch bachaata hai; agar evals 2 points ke andar rahein to main use lunga&quot;) aur interviewer ke saath time check karte raho.</p></section>
+      <section class="ls ls-visual"><h2>🎬 Dekho kaise kaam karta hai</h2><div class="viz"><svg viewBox="0 0 640 250" role="img" aria-label="A timeline of seven stages for a 45 minute AI design interview: clarify, UX, architecture, models, quality, production and rollout, with an example trade-off sentence" focusable="false"><defs><marker id="ah-pd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><path d="M30 60 H610" class="lane"/><g class="s1"><circle cx="50" cy="60" r="20" class="ba"/><text x="50" y="66" text-anchor="middle" class="">❓</text><text x="50" y="104" text-anchor="middle" class="ts tb">Clarify</text><text x="50" y="122" text-anchor="middle" class="tm ts">0-5 min</text></g><g class="s2"><circle cx="140" cy="60" r="20" class="b"/><text x="140" y="66" text-anchor="middle" class="">🎨</text><text x="140" y="104" text-anchor="middle" class="ts tb">UX</text><text x="140" y="122" text-anchor="middle" class="tm ts">5-10 min</text></g><g class="s3"><circle cx="230" cy="60" r="20" class="b"/><text x="230" y="66" text-anchor="middle" class="">🧱</text><text x="230" y="104" text-anchor="middle" class="ts tb">Architecture</text><text x="230" y="122" text-anchor="middle" class="tm ts">10-18 min</text></g><g class="s4"><circle cx="320" cy="60" r="20" class="b"/><text x="320" y="66" text-anchor="middle" class="">🧠</text><text x="320" y="104" text-anchor="middle" class="ts tb">Models</text><text x="320" y="122" text-anchor="middle" class="tm ts">18-22 min</text></g><g class="s5"><circle cx="410" cy="60" r="20" class="b"/><text x="410" y="66" text-anchor="middle" class="">🧪</text><text x="410" y="104" text-anchor="middle" class="ts tb">Quality</text><text x="410" y="122" text-anchor="middle" class="tm ts">22-30 min</text></g><g class="s6"><circle cx="500" cy="60" r="20" class="b"/><text x="500" y="66" text-anchor="middle" class="">⚙️</text><text x="500" y="104" text-anchor="middle" class="ts tb">Production</text><text x="500" y="122" text-anchor="middle" class="tm ts">30-38 min</text></g><g class="s7"><circle cx="590" cy="60" r="20" class="b"/><text x="590" y="66" text-anchor="middle" class="">🚀</text><text x="590" y="104" text-anchor="middle" class="ts tb">Rollout</text><text x="590" y="122" text-anchor="middle" class="tm ts">38-45 min</text></g><g class="s8"><rect x="30" y="150" width="580" height="74" rx="12" class="bm"/><text x="320" y="176" text-anchor="middle" class="ts">"A smaller model cuts cost 70%; I'd accept it if evals stay within 2 points."</text><text x="320" y="202" text-anchor="middle" class="tm ts">users → flow → boxes and arrows → evals → limits → launch plan</text></g></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">AI design round ka 45 minute plan: clarify, user experience, architecture, model choices, quality, production ki limits, phir rollout. Numbers ke saath trade-offs mein baat karo.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Pehle 5 minute clarifying questions pe lagao: users, karne wala kaam, scale, bhashaayein, constraints aur success metric.</li><li data-read>User flow batao: entry point, kya stream hota hai, users kaise verify aur sudhaarte hain, aur failure ka raasta.</li><li data-read>Architecture banao: client, API, model wrapper, retrieval pipeline, tools, storage, queue; ek request ko usmein se guzaar ke dikhao.</li><li data-read>Har step ke liye model wajah ke saath chuno, aur batao kahan structured output aur kahan streaming use karoge.</li><li data-read>Quality samjhao: eval set, launch criteria, online signals, feedback loop.</li><li data-read>Production cover karo: latency budget, cost per request, caching, limits, fallbacks, privacy, permissions aur prompt injection.</li><li data-read>Rollout aur version do ke plan ke saath khatam karo, aur apne main trade-offs ek minute mein summarise karo.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Zaroori shabd</h2>
+        <dl class="terms"><div data-read><dt>Clarifying questions</dt><dd>Users, scale aur success ke baare mein sawaal jo poora design tay karte hain.</dd></div><div data-read><dt>Latency budget</dt><dd>Allowed response time ko steps mein baantna (retrieval 150 ms, model 1.5 s…).</dd></div><div data-read><dt>Launch criteria</dt><dd>Release se pehle poore hone wale eval aur safety thresholds.</dd></div><div data-read><dt>Trade-off</dt><dd>Har choice ke saath kya milta hai aur kya chhodna padta hai, yeh batana.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 Example dekho</h2>
+        <div class="code-wrap"><span class="code-lang">text</span><pre><code>Design: &quot;Ask our help centre&quot; assistant (45 min plan)
+ 0-5   Clarify   B2C app, 2M users, 1,800 articles, EN+Hindi, goal: −20% support tickets
+ 5-10  UX        chat in Help tab · streams · cites articles · 👍👎 · &quot;talk to a human&quot;
+10-22  Design    ingest (nightly + on publish) → chunk by heading → embed → hybrid search
+                 query → rewrite (small model) → retrieve 30 → rerank 5 → answer (large model)
+22-30  Quality   200 golden Qs, faithfulness ≥ 0.9, refusal when no source, Hindi set
+30-38  Prod      p95 &lt; 3 s · ₹0.30/answer · cache per locale · injection filter · PII redaction
+38-45  Rollout   5% canary → A/B on ticket rate · v2: account-aware answers via tools</code></pre></div>
+        <p class="small muted" data-read>Time ke hisaab se plan structure dikhata hai: clarify, UX, architecture, quality, production, rollout.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Aam galtiyaan jinse bachna hai</h2><ul class="deep-mistakes"><li data-read>User aur goal samjhe bina seedha model ka naam aur vector database pe kood jaana.</li><li data-read>Evaluation pe ek shabd nahi. &quot;Aapko kaise pata chalega ki kaam karta hai?&quot; interviewers ke liye sabse zaroori sawaal hai.</li><li data-read>Cost aur latency ko nazarandaaz karna, ya koi numbers hi na dena.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Jaldi se check karo</h2>
+        <p class="quiz-q" data-read data-read-prefix="Jaldi se check karo">Interviewer kehta hai &quot;Ek AI feature design karo jo lambi customer calls ko summarise kare.&quot; Sabse pehle kya karna chahiye?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Sabse accha model chuno aur uske benchmark scores samjhao">Sabse accha model chuno aur uske benchmark scores samjhao</li><li data-read data-read-text="Option B: Har service ke saath poora architecture banao">Har service ke saath poora architecture banao</li><li data-read data-read-text="Option C: Poocho summaries kaun padhta hai, unse kya karta hai, calls kitni aur kis bhasha mein hain, aur success ka matlab kya hai">Poocho summaries kaun padhta hai, unse kya karta hai, calls kitni aur kis bhasha mein hain, aur success ka matlab kya hai</li></ol>
+        <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>C. Poocho summaries kaun padhta hai, unse kya karta hai, calls kitni aur kis bhasha mein hain, aur success ka matlab kya hai</strong>: Requirements baaki sab tay karti hain: supervisor ke quality review ki summary CRM fields bharne wali summary se bahut alag hai. Pehle clarify karna product sense dikhata hai.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Model ke andar ki baaton mein kitna gehra jaana chahiye?</summary><p data-read>Product roles ke liye utna hi jitna decisions pe asar daale: context limits, latency, cost, formats ki reliability. Time UX, quality aur trade-offs pe lagao.</p></details><details class="deep-faq"><summary data-read>Is round ki practice kaise karein?</summary><p data-read>10 rozmarra ke AI features chuno (email reply drafts, meeting notes, search, shopping assistant), 45 minute ka timer lagao, 7 hisse bol kar samjhao aur diagram banao. Is lesson se milaan karo.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Team chat app ke liye AI &quot;is thread ka summary do&quot; feature design karo.</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Clarify: thread kitna lamba, bhashaayein, latency target aur privacy rules. Flow: user summarise dabaaye to backend woh messages laaye jo user dekh sakta hai, bahut lambe threads ko kaate ya chunks banaaye, aur LLM ko prompt bheje jo decisions, khule sawaal aur owners ke saath action items structured format mein maange. Result &quot;draft&quot; label aur source messages ke links ke saath UI mein stream karo. Summaries cache karo aur naye messages aane pe incremental update. Asli threads ke set se evaluate karo, chhoote decisions aur gadhe hue facts ke liye score. Usage, thumbs down aur per summary cost track karo.</p><p class="prep-label">✅ </p><ul><li data-read>Constraints clarify</li><li data-read>Permission ke hisaab se messages, lambe threads ki chunking</li><li data-read>Structured prompt; source links ke saath streaming UI</li><li data-read>Caching, evals, metrics</li></ul><p class="prep-check" data-read><strong>:</strong> Full stack AI feature design.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Pehle clarify, phir UX, architecture, quality, production ki limits aur rollout, hamesha numbers ke saath trade-offs samjhaate hue.</p></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="portfolio.html">← Aisa portfolio project banaana jo interviews dilaaye</a>
+        <a href="stakeholder-communication.html">Non-technical logon ko AI samjhaana →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Poora course, aapke roadmap ke hisaab se</h2>
+        <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=ai-product-design-interview&amp;lang=hi">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=ai-product-design-interview&amp;lang=hi">Course mein seekho</a>
+      </section>
+    </article>
+  </main>
+  <script src="../../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "hi"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../../for/software-testers-qa.html">QA / testers</a></li><li><a href="../../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../../guide/how-it-works.html">How the consultation works</a></li><li><a href="../../#app">Free AI career consultation</a></li><li><a href="../../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../../interview.html">Interview practice</a></li><li><a href="../../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../../resumes/">ATS resume samples</a></li><li><a href="../../glossary/">AI dictionary (A to Z)</a></li><li><a href="../../kids/">AI for kids (ages 5+)</a></li><li><a href="../../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

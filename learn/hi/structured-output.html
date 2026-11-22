@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structured outputs: JSON schemas, validation aur retries: Hinglish mein aasaan explanation | AI Path Finder</title>
+  <meta name="description" content="Zyaadatar AI product features chat nahi hote: woh email se fields nikaalte hain, ticket classify karte hain, form bharte hain ya UI component ke liye data…" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Structured outputs: JSON schemas, validation aur retries: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta property="og:description" content="Zyaadatar AI product features chat nahi hote: woh email se fields nikaalte hain, ticket classify karte hain, form bharte hain ya UI component ke liye data…" />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Structured outputs: JSON schemas, validation aur retries: Hinglish mein aasaan explanation | AI Path Finder" />
+  <meta name="twitter:description" content="Zyaadatar AI product features chat nahi hote: woh email se fields nikaalte hain, ticket classify karte hain, form bharte hain ya UI component ke liye data…" />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/structured-output.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/structured-output.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html",
+      "name": "Structured outputs: JSON schemas, validation aur retries",
+      "description": "Zyaadatar AI product features chat nahi hote: woh email se fields nikaalte hain, ticket classify karte hain, form bharte hain ya UI component ke liye data…",
+      "inLanguage": "hi-Latn",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "JSON schema",
+        "Zod / Pydantic",
+        "Validate and retry",
+        "Nullable field"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Structured outputs: JSON schemas, validation aur retries",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Ek invoice email mein order number nahi hai. Aapka extraction schema ise kaise sambhaale?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "orderId ko nullable rakho, description ke saath \"null if not mentioned\". Required field model ko value banaane pe majboor karta hai. Null allow karne se use imaandaari se kehne ka raasta milta hai ki data nahi hai."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Structured output ya tool calling?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Jab hamesha ek hi object wapas chahiye to structured output use karo. Jab model ko tay karna ho kaunsa action lena hai, har ek apne schema ke saath, tab tool calling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kya valid JSON mein bhi model galat values de sakta hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Haan. Sahi shape ka matlab sahi content nahi. Isiliye range checks, business rules aur field level eval set jodte ho."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../#paths" data-nav="roles">AI roles</a>
+      <a href="../../learn.html" data-nav="learn">Learn</a>
+      <a href="../../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">AI Path Finder</a> › <a href="../../learn.html">Learn</a> › <span aria-current="page">Structured outputs: JSON schemas, validation aur retries</span></nav>
+    <article lang="hi-Latn">
+      <header>
+        <p class="eyebrow">Lesson · Hinglish · ⏱ 8 min padhne mein</p>
+        <h1 data-read>🧾 Structured outputs: JSON schemas, validation aur retries</h1>
+        <p class="lang-switch"><a href="../structured-output.html" hreflang="en" lang="en">English</a><span>Hinglish</span></p>
+        <div class="listen-bar" data-reader data-listen="Suno" data-pause="Roko" data-resume="Phir chalao" data-reading="Padh kar suna raha hai…" data-paused="Ruka hua" data-unsupported="Aapka browser padh kar nahi suna sakta">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Suno</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Band karo</button>
+      <label class="listen-rate"><span class="sr-only">Padhne ki speed</span><select data-tts="rate" aria-label="Padhne ki speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Asli zindagi ki misaal</h2><p>Bank form bharte waqt fixed boxes hote hain: naam, PAN, amount. Clerk seedha system mein daal deta hai kyunki har jawaab apne box mein hai. Agar aap khula letter likh dete, to kisi ko padh kar dobara type karna padta. Structured output model se form bharwaata hai, letter nahi likhwaata, taaki aapka code jawaab seedha use kar sake.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 Aasaan shabdon mein</h2><p>Zyaadatar AI product features chat nahi hote: woh email se fields nikaalte hain, ticket classify karte hain, form bharte hain ya UI component ke liye data dete hain. Inke liye aapko schema se match karta JSON chahiye. Schema ek baar code mein banao (TypeScript mein Zod, Python mein Pydantic) aur teen tarah use karo: model ko bhejo (structured output ya tool calling mode, jo zyaadatar providers dete hain), response validate karo, aur apne code ko type karo. Schema mode ke saath bhi validate karo: values galat range mein ho sakti hain, dates banaayi hui ho sakti hain aur enums bhatak sakte hain. Validation fail ho to ek baar error message jodkar retry karo (&quot;total number hona chahiye&quot;), phir safe default ya human review pe jao. Schemas chhote aur flat rakho, har field ka description do, &quot;nahi mila&quot; ke liye null allow karo taaki model values na banaaye, aur categories ke liye enum do. Baad mein business rules plain code mein check karo: totals milte hain, dates future mein nahi hain, IDs database mein hain.</p></section>
+      <section class="ls ls-visual"><h2>🎬 Dekho kaise kaam karta hai</h2><div class="viz"><svg viewBox="0 0 640 250" role="img" aria-label="An email goes to the model with a schema, which returns JSON; code validates it, saves valid data, retries once on an invalid answer, and sends anything still wrong to human review" focusable="false"><defs><marker id="ah-so" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><g class="s1"><rect x="16" y="70" width="112" height="60" rx="10" class="b"/><text x="72" y="105" text-anchor="middle" class="">📧 Email</text></g><g class="s2"><rect x="160" y="60" width="130" height="80" rx="10" class="ba"/><text x="225" y="98" text-anchor="middle" class="">🧠 Model</text><text x="225" y="115" text-anchor="middle" class="tm ts">+ schema</text></g><g class="s3"><rect x="322" y="40" width="150" height="120" rx="10" class="b"/><text x="334" y="64" text-anchor="start" class="">{</text><text x="346" y="84" text-anchor="start" class="ts">category: "billing"</text><text x="346" y="104" text-anchor="start" class="ts ok">orderId: null</text><text x="346" y="124" text-anchor="start" class="ts">urgency: 4</text><text x="334" y="148" text-anchor="start" class="">}</text></g><path d="M130 100 H154" class="ln " marker-end="url(#ah-so)"/><path d="M292 100 H316" class="ln " marker-end="url(#ah-so)"/><g class="s4"><rect x="506" y="70" width="118" height="60" rx="10" class="bo"/><text x="565" y="98" text-anchor="middle" class="">✅ Validate</text><text x="565" y="115" text-anchor="middle" class="tm ts">Zod / Pydantic</text></g><path d="M474 100 H500" class="ln la " marker-end="url(#ah-so)"/><g class="s5"><path d="M565 132 V176" class="ln " marker-end="url(#ah-so)"/><rect x="506" y="180" width="118" height="40" rx="10" class="bo"/><text x="565" y="205" text-anchor="middle" class="ts">💾 Save</text></g><g class="s6"><path d="M520 68 C520 14 225 14 225 54" class="mk-warn " marker-end="url(#ah-so)"/><text x="372" y="24" text-anchor="middle" class="ts warn">✗ invalid → retry once with the error</text></g><g class="s7"><rect x="160" y="180" width="270" height="40" rx="10" class="bw"/><text x="295" y="205" text-anchor="middle" class="ts">still wrong → 👩 human review</text></g><text x="80" y="236" text-anchor="start" class="tm ts">null = "not found"</text></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">Model khula text likhne ki jagah schema bharta hai. Aapka code use validate karta hai: sahi data save hota hai, galat jawaab ko error ke saath ek retry milta hai, aur phir bhi galat ho to insaan ke paas jaata hai.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Pehle schema likho (Zod ya Pydantic), har field pe description, categories ke liye enums aur jo values na ho sakein unke liye nullable fields.</li><li data-read>Saade shabdon mein JSON maangne ki jagah provider ka structured output ya tool calling mode use karo aur schema do.</li><li data-read>Har response ko usi schema se validate karo; fail ho to validation error prompt mein daalkar ek baar retry karo.</li><li data-read>Business rules plain code mein check karo: totals milte hain, IDs hain, dates sahi hain. Jo fail ho use human review mein bhejo.</li><li data-read>50 ya zyaada asli inputs ka eval set banao jismein expected fields hon aur har field ki accuracy naapo, sirf &quot;valid JSON&quot; nahi.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Zaroori shabd</h2>
+        <dl class="terms"><div data-read><dt>JSON schema</dt><dd>Output mein kaunse fields, types aur allowed values honi chahiye, uska exact description.</dd></div><div data-read><dt>Zod / Pydantic</dt><dd>Libraries jo schema ek baar banaati hain aur TypeScript ya Python mein data ko uske against validate karti hain.</dd></div><div data-read><dt>Validate and retry</dt><dd>Output check karo; fail ho to error ke saath dobara poocho, phir fallback.</dd></div><div data-read><dt>Nullable field</dt><dd>Aisa field jo null ho sakta hai, taaki model guess karne ki jagah &quot;nahi mila&quot; keh sake.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 Example dekho</h2>
+        <div class="code-wrap"><span class="code-lang">typescript</span><pre><code>import { z } from &quot;zod&quot;;
+import { generateObject } from &quot;ai&quot;;
+
+const Ticket = z.object({
+  category: z.enum([&quot;billing&quot;, &quot;delivery&quot;, &quot;technical&quot;, &quot;other&quot;]),
+  orderId: z.string().regex(/^A\d{5}$/).nullable().describe(&quot;null if not mentioned&quot;),
+  urgency: z.number().int().min(1).max(5),
+  summary: z.string().max(200),
+});
+
+const { object } = await generateObject({ model, schema: Ticket, prompt: email });
+// object is typed and already validated against the schema
+if (object.orderId &amp;&amp; !(await orderExists(object.orderId))) object.orderId = null; // business rule in code</code></pre></div>
+        <p class="small muted" data-read>Ek hi schema model, validation aur aapke types chalata hai; business rules phir bhi plain code mein check hote hain.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Aam galtiyaan jinse bachna hai</h2><ul class="deep-mistakes"><li data-read>Free text jawaab se regex se JSON nikaalna. Pehle hi ajeeb reply pe toot jaata hai; schema mode aur validation use karo.</li><li data-read>Har field required rakhna, jisse model order numbers, dates aur amounts banaane pe majboor hota hai.</li><li data-read>Ek call mein 60 fields wale bade nested schemas. Behtar accuracy ke liye steps ya chhote schemas mein baanto.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Jaldi se check karo</h2>
+        <p class="quiz-q" data-read data-read-prefix="Jaldi se check karo">Ek invoice email mein order number nahi hai. Aapka extraction schema ise kaise sambhaale?</p>
+        <ol type="A"><li data-read data-read-text="Option A: orderId ko nullable rakho, description ke saath &quot;null if not mentioned&quot;">orderId ko nullable rakho, description ke saath &quot;null if not mentioned&quot;</li><li data-read data-read-text="Option B: Model se summary ke andar &quot;unknown&quot; likhwao">Model se summary ke andar &quot;unknown&quot; likhwao</li><li data-read data-read-text="Option C: orderId ko required rakho taaki model hamesha bhare">orderId ko required rakho taaki model hamesha bhare</li></ol>
+        <details class="answer-reveal"><summary>Jawaab dekho</summary><p><strong>A. orderId ko nullable rakho, description ke saath &quot;null if not mentioned&quot;</strong>: Required field model ko value banaane pe majboor karta hai. Null allow karne se use imaandaari se kehne ka raasta milta hai ki data nahi hai.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Seekhne wale yeh poochhte hain</h2><details class="deep-faq"><summary data-read>Structured output ya tool calling?</summary><p data-read>Jab hamesha ek hi object wapas chahiye to structured output use karo. Jab model ko tay karna ho kaunsa action lena hai, har ek apne schema ke saath, tab tool calling.</p></details><details class="deep-faq"><summary data-read>Kya valid JSON mein bhi model galat values de sakta hai?</summary><p data-read>Haan. Sahi shape ka matlab sahi content nahi. Isiliye range checks, business rules aur field level eval set jodte ho.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Is topic pe interviews mein poochhe jaane wale sawaal</h2><p class="small muted">Pehle khud bolkar jawaab dene ki koshish karo, phir model answer kholo.</p><details class="deep-faq"><summary data-read>Form ya database bharne wale feature ke liye LLM se bharosemand JSON kaise loge?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Main code mein ek schema banata hoon, Zod ya Pydantic se, aur use teen tarah use karta hoon: provider ke structured output ya tool calling mode se model ko deta hoon, har response ko usse validate karta hoon, aur apne code mein type ki tarah use karta hoon. Fields chhote aur description wale rakhta hoon, categories ke liye enums, aur jo value na ho sake us field ko nullable rakhta hoon taaki model use banaaye nahi. Validation fail ho to error message ke saath ek baar retry, phir human review. Uske baad bhi business rules plain code mein check karta hoon, jaise totals milna aur IDs hona, aur asli examples ke set pe har field ki accuracy naapta hoon.</p><p class="prep-label">✅ </p><ul><li data-read>Model, validation aur types ke liye ek schema</li><li data-read>Structured output ya tool calling mode, &quot;JSON mein jawaab do&quot; nahi</li><li data-read>Banaayi values rokne ke liye nullable fields aur enums</li><li data-read>Validate, error ke saath ek retry, phir fallback</li><li data-read>Code mein business rules aur field level eval set</li></ul><p class="prep-check" data-read><strong>:</strong> Kya aap aise AI features bana sakte ho jin pe doosra code bharosa kar sake.</p></div></details><details class="deep-faq"><summary data-read>LLM call karne wale code ke liye automated tests kaise likhte ho?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Main code ki sahi hone aur jawaab ki quality ko alag rakhta hoon. Saare model calls ek function se guzarte hain, to unit tests mein use ek nakli se badal deta hoon jo tay responses deta hai, kharab bhi jaise galat JSON, khaali jawaab, timeout ya 429, aur apna parsing, retries aur fallbacks check karta hoon. End to end flows ke liye recorded asli responses fixtures ki tarah replay karta hoon, aur prompt ya model badalne pe dobara record karta hoon. Contract tests check karte hain ki outputs schema se match karein aur prompts mein sirf current user ka data ho. Chhota live smoke test schedule pe chalta hai taaki provider ke badlaav pakde jaayein. Jawaab ki quality eval suite alag se parakhta hai. Pull request suite tez, free aur deterministic rehta hai.</p><p class="prep-label">✅ </p><ul><li data-read>Unit tests ke liye nakli model, failure cases ke saath</li><li data-read>End to end flows ke liye recorded responses</li><li data-read>Schemas aur data isolation ke liye contract tests</li><li data-read>Schedule pe live smoke tests</li><li data-read>Quality ke liye evals, tests se alag</li></ul><p class="prep-check" data-read><strong>:</strong> Non-deterministic systems ke aas paas engineering discipline.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Yaad rakho</h2><p>Prompt, validation aur types ke liye ek schema; null allow karo, validate karo, ek baar retry, phir fallback.</p></section>
+      <section class="ls ls-words"><h2>📖 Is lesson ke shabd (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../../glossary/structured-output.html" title="LLM se tay format mein data lena, jaise defined fields wala JSON, taaki code use use kar sake.">Structured output</a></li></ul></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="ai-chat-ui.html">← AI chat UI banana: streaming, stop, retry aur generative UI</a>
+        <a href="multimodal-ai.html">Multimodal AI: images, messy PDFs, audio aur structured extraction →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Poora course, aapke roadmap ke hisaab se</h2>
+        <p>Progress tracking, quick checks aur step-by-step order ke saath. Yeh lesson in courses ka hissa hai:</p>
+        <p><a href="../../learn.html?course=ai-product-engineer&amp;lesson=structured-output&amp;lang=hi">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../../learn.html?course=ai-product-engineer&amp;lesson=structured-output&amp;lang=hi">Course mein seekho</a>
+      </section>
+    </article>
+  </main>
+  <script src="../../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "hi"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../../for/software-testers-qa.html">QA / testers</a></li><li><a href="../../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../../guide/how-it-works.html">How the consultation works</a></li><li><a href="../../#app">Free AI career consultation</a></li><li><a href="../../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../../interview.html">Interview practice</a></li><li><a href="../../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../../resumes/">ATS resume samples</a></li><li><a href="../../glossary/">AI dictionary (A to Z)</a></li><li><a href="../../kids/">AI for kids (ages 5+)</a></li><li><a href="../../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

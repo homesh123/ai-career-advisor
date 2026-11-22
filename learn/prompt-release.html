@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping prompt changes safely: versioning, evals in CI and gradual rollout: Explained Simply With Real-Life Examples | AI Path Finder</title>
+  <meta name="description" content="Treat prompts, model names and settings (temperature, tools, retrieval settings) as code. Keep them in version control or a prompt registry with a version…" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Shipping prompt changes safely: versioning, evals in CI and gradual rollout: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta property="og:description" content="Treat prompts, model names and settings (temperature, tools, retrieval settings) as code. Keep them in version control or a prompt registry with a version…" />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shipping prompt changes safely: versioning, evals in CI and gradual rollout: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta name="twitter:description" content="Treat prompts, model names and settings (temperature, tools, retrieval settings) as code. Keep them in version control or a prompt registry with a version…" />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/prompt-release.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html",
+      "name": "Shipping prompt changes safely: versioning, evals in CI and gradual rollout",
+      "description": "Treat prompts, model names and settings (temperature, tools, retrieval settings) as code. Keep them in version control or a prompt registry with a version…",
+      "inLanguage": "en",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "Prompt registry",
+        "Eval gate in CI",
+        "Canary release",
+        "Feature flag"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Shipping prompt changes safely: versioning, evals in CI and gradual rollout",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/prompt-release.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "A teammate improved the support prompt and it reads better. What should happen before all users get it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run the eval set against the current version in CI, then release to a small share of traffic behind a flag. A prompt that reads better can still break formats or cases you rely on. Evals catch regressions before release, and a canary limits the damage of anything they miss."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How big should the CI eval set be?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with 50 to 200 cases covering common, hard and risky inputs, and add every real failure you fix. Keep it fast enough to run on every pull request."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can LLM-as-judge scores be trusted in CI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Partly. Check the judge against human labels first, use clear rubrics, and combine it with exact checks (format, required facts) that don't need a judge."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#paths" data-nav="roles">AI roles</a>
+      <a href="../learn.html" data-nav="learn">Learn</a>
+      <a href="../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">AI Path Finder</a> › <a href="../learn.html">Learn</a> › <span aria-current="page">Shipping prompt changes safely: versioning, evals in CI and gradual rollout</span></nav>
+    <article lang="en">
+      <header>
+        <p class="eyebrow">Lesson · ⏱ 8 min read</p>
+        <h1 data-read>🚦 Shipping prompt changes safely: versioning, evals in CI and gradual rollout</h1>
+        <p class="lang-switch"><span>English</span><a href="hi/prompt-release.html" hreflang="hi" lang="hi-Latn">Hinglish</a></p>
+        <div class="listen-bar" data-reader data-listen="Listen" data-pause="Pause" data-resume="Resume" data-reading="Reading aloud…" data-paused="Paused" data-unsupported="Your browser can't read aloud">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Listen</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Stop</button>
+      <label class="listen-rate"><span class="sr-only">Reading speed</span><select data-tts="rate" aria-label="Reading speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Real-life example</h2><p>A sweet shop testing a new laddoo recipe doesn&#39;t replace every box on Diwali morning. It writes the recipe down with a version number, has the staff taste it against the old one, sells it in one branch first, and keeps the old recipe ready in case customers complain. Prompts deserve the same care, because a one line prompt change can change every answer your product gives.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 In simple words</h2><p>Treat prompts, model names and settings (temperature, tools, retrieval settings) as code. Keep them in version control or a prompt registry with a version ID, and log that ID with every request so you can tell which version produced an answer. Before merging a change, run your eval set automatically in CI: the golden questions, format checks, safety tests and LLM-as-judge scores, compared against the current version, with a rule such as &quot;no metric drops by more than 2 points&quot;. Look at the failures, not just the average. Then release gradually: put the new version behind a feature flag, send 5% of traffic to it (a canary), watch online signals such as thumbs down, edits, escalations, latency and cost, then increase. If something goes wrong, roll back by switching the flag, without a redeploy. Upgrading the model itself is the same kind of change: run evals first, because a newer model can still behave differently on your tasks. Keep a short changelog explaining why each version changed.</p></section>
+      <section class="ls ls-visual"><h2>🎬 See how it works</h2><div class="viz"><svg viewBox="0 0 640 262" role="img" aria-label="A prompt change passes an eval gate in CI, is released behind a feature flag to 5%, then 25% and 100% of traffic, with a one switch rollback" focusable="false"><defs><marker id="ah-pr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><g class="s1"><rect x="16" y="30" width="120" height="56" rx="10" class="b"/><text x="76" y="56" text-anchor="middle" class="">📝 support@v14</text><text x="76" y="73" text-anchor="middle" class="tm ts">pull request</text></g><g class="s2"><path d="M138 58 H170" class="ln " marker-end="url(#ah-pr)"/><rect x="176" y="18" width="170" height="80" rx="12" class="ba"/><text x="261" y="42" text-anchor="middle" class="tb">🧪 CI eval gate</text><text x="261" y="64" text-anchor="middle" class="ts">faithfulness ≥ v13 − 2</text><text x="261" y="84" text-anchor="middle" class="ts ok">format 100% · safety ✓</text></g><g class="s3"><path d="M348 58 H380" class="ln la " marker-end="url(#ah-pr)"/><g class=""><rect x="386" y="30" width="110" height="56" rx="10" class="b"/><text x="441" y="56" text-anchor="middle" class="">🚩 flag</text><text x="441" y="73" text-anchor="middle" class="tm ts">v14 vs v13</text></g></g><text x="16" y="130" text-anchor="start" class="tb">traffic on v14</text><g class="s4"><rect x="16" y="142" width="420" height="22" rx="6" class="f1"/><rect x="16" y="142" width="21" height="22" rx="6" class="c-ok grow"/><text x="446" y="158" text-anchor="start" class="tb">5%</text></g><g class="s5"><rect x="16" y="172" width="420" height="22" rx="6" class="f1"/><rect x="16" y="172" width="105" height="22" rx="6" class="c-ok grow"/><text x="446" y="188" text-anchor="start" class="tb">25%</text></g><g class="s6"><rect x="16" y="202" width="420" height="22" rx="6" class="f1"/><rect x="16" y="202" width="420" height="22" rx="6" class="c-ok grow"/><text x="446" y="218" text-anchor="start" class="tb">100%</text></g><g class="s7"><rect x="500" y="140" width="124" height="82" rx="12" class="bw"/><text x="562" y="166" text-anchor="middle" class="tb">↩ rollback</text><text x="562" y="188" text-anchor="middle" class="ts">one switch,</text><text x="562" y="206" text-anchor="middle" class="ts">no redeploy</text></g><text x="320" y="248" text-anchor="middle" class="tm ts">watch 👎 rate · edits · escalations · p95 · cost before each step</text></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">A new prompt version must pass the eval gate in CI, then goes to 5% of users behind a flag. If online signals stay healthy it grows to 25% and 100%; if not, one switch rolls it back.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Move prompts out of scattered strings into versioned files or a prompt registry, each with an ID like support@v14.</li><li data-read>Log the prompt version and model with every request so any answer can be traced back.</li><li data-read>Add an eval job to CI that compares the candidate with the current version and fails the pull request on agreed regressions.</li><li data-read>Review a sample of changed answers side by side, not only the scores.</li><li data-read>Release behind a feature flag to 5% of traffic, watch online signals for a day or two, then increase in steps.</li><li data-read>Keep rollback to one switch, and write a changelog entry for each version.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Key terms</h2>
+        <dl class="terms"><div data-read><dt>Prompt registry</dt><dd>A versioned store of prompts and model settings that the app loads by ID.</dd></div><div data-read><dt>Eval gate in CI</dt><dd>An automatic check that blocks a change if eval scores drop below the agreed rule.</dd></div><div data-read><dt>Canary release</dt><dd>Sending a small share of traffic to the new version first and watching it.</dd></div><div data-read><dt>Feature flag</dt><dd>A switch that turns a version on or off for some users without a redeploy.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 See it in action</h2>
+        <div class="code-wrap"><span class="code-lang">yaml</span><pre><code># .github/workflows/prompt-evals.yml
+on: pull_request
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run evals -- --candidate prompts/support@v14 --baseline prompts/support@v13
+      # fails the PR if: faithfulness drops &gt; 2 pts, format errors &gt; 0, safety tests fail
+
+# After merge: flags.support_prompt = { v14: 5%, v13: 95% }
+# Watch thumbs-down rate, escalations, p95 latency, cost/request for 48 h → 25% → 100%
+# Problem? set v14: 0% (instant rollback, no redeploy)</code></pre></div>
+        <p class="small muted" data-read>Version the prompt, gate it on evals in CI, release to 5% behind a flag, then roll forward or back.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Common mistakes to avoid</h2><ul class="deep-mistakes"><li data-read>Editing the prompt directly in production on a Friday evening because &quot;it&#39;s only text&quot;.</li><li data-read>Upgrading to a newer model without running evals, assuming newer always means better for your task.</li><li data-read>An eval set that never grows, so new failure types from production keep slipping through.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Quick check</h2>
+        <p class="quiz-q" data-read data-read-prefix="Quick check">A teammate improved the support prompt and it reads better. What should happen before all users get it?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Run the eval set against the current version in CI, then release to a small share of traffic behind a flag">Run the eval set against the current version in CI, then release to a small share of traffic behind a flag</li><li data-read data-read-text="Option B: Ship it to everyone because it reads better">Ship it to everyone because it reads better</li><li data-read data-read-text="Option C: Ask the model whether the new prompt is better">Ask the model whether the new prompt is better</li></ol>
+        <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. Run the eval set against the current version in CI, then release to a small share of traffic behind a flag</strong>: A prompt that reads better can still break formats or cases you rely on. Evals catch regressions before release, and a canary limits the damage of anything they miss.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>How big should the CI eval set be?</summary><p data-read>Start with 50 to 200 cases covering common, hard and risky inputs, and add every real failure you fix. Keep it fast enough to run on every pull request.</p></details><details class="deep-faq"><summary data-read>Can LLM-as-judge scores be trusted in CI?</summary><p data-read>Partly. Check the judge against human labels first, use clear rubrics, and combine it with exact checks (format, required facts) that don&#39;t need a judge.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How do you ship a change to a prompt, or upgrade the model, without breaking things for users?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I treat prompts and model settings as code. They live in version control or a prompt registry with a version ID, and every request logs which version answered. A pull request that changes a prompt runs our eval set in CI against the current version: golden questions, format checks and safety tests, with a rule like no metric may drop more than two points. I also read a sample of answers that changed. After merge, the new version goes behind a feature flag to about 5% of traffic while we watch thumbs down, edits, escalations, latency and cost, then we increase in steps. Rollback is one switch. A model upgrade goes through exactly the same process.</p><p class="prep-label">✅ </p><ul><li data-read>Prompts versioned and logged per request</li><li data-read>Eval gate in CI against the current version</li><li data-read>Read changed answers, not only scores</li><li data-read>Canary behind a feature flag, watch online signals</li><li data-read>One switch rollback; model upgrades follow the same path</li></ul><p class="prep-check" data-read><strong>:</strong> Whether you can iterate fast without regressions.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Version prompts like code, gate changes on evals in CI, release to a small share first, and keep one-switch rollback.</p></section>
+      <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/ci-cd.html" title="Automatically testing and releasing code (and models) every time something changes.">CI/CD</a></li><li><a class="chip" href="../glossary/evals.html" title="A repeatable set of test cases and scoring rules that measures whether an AI system works well.">Evals</a></li></ul></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="llm-evals.html">← Evaluating AI: how to know it actually works</a>
+        <a href="llm-safety.html">AI safety in products: hallucinations, prompt injection and guardrails →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Learn this as part of a full course</h2>
+        <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=prompt-release">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=prompt-release">Continue in the course</a>
+      </section>
+    </article>
+  </main>
+  <script src="../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "en"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../for/software-testers-qa.html">QA / testers</a></li><li><a href="../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../guide/how-it-works.html">How the consultation works</a></li><li><a href="../#app">Free AI career consultation</a></li><li><a href="../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../interview.html">Interview practice</a></li><li><a href="../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../resumes/">ATS resume samples</a></li><li><a href="../glossary/">AI dictionary (A to Z)</a></li><li><a href="../kids/">AI for kids (ages 5+)</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

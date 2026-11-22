@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structured outputs: JSON schemas, validation and retries: Explained Simply With Real-Life Examples | AI Path Finder</title>
+  <meta name="description" content="Most AI product features are not chat: they extract fields from an email, classify a ticket, fill a form or return data for a UI component." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/structured-output.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Structured outputs: JSON schemas, validation and retries: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta property="og:description" content="Most AI product features are not chat: they extract fields from an email, classify a ticket, fill a form or return data for a UI component." />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/structured-output.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Structured outputs: JSON schemas, validation and retries: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta name="twitter:description" content="Most AI product features are not chat: they extract fields from an email, classify a ticket, fill a form or return data for a UI component." />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/structured-output.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/structured-output.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/structured-output.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/structured-output.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/structured-output.html",
+      "name": "Structured outputs: JSON schemas, validation and retries",
+      "description": "Most AI product features are not chat: they extract fields from an email, classify a ticket, fill a form or return data for a UI component.",
+      "inLanguage": "en",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT8M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "JSON schema",
+        "Zod / Pydantic",
+        "Validate and retry",
+        "Nullable field"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/structured-output.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Structured outputs: JSON schemas, validation and retries",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/structured-output.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/structured-output.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "An invoice email has no order number. How should your extraction schema handle it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Make orderId nullable with a description \"null if not mentioned\". A required field pushes the model to invent a value. Allowing null gives it an honest way to say the data isn't there."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Structured output or tool calling?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use structured output when you always want one object back. Use tool calling when the model should decide which action to take, each with its own schema."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the model still return wrong values in valid JSON?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Valid shape doesn't mean correct content. That's why you add range checks, business rules and a field level eval set."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#paths" data-nav="roles">AI roles</a>
+      <a href="../learn.html" data-nav="learn">Learn</a>
+      <a href="../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">AI Path Finder</a> › <a href="../learn.html">Learn</a> › <span aria-current="page">Structured outputs: JSON schemas, validation and retries</span></nav>
+    <article lang="en">
+      <header>
+        <p class="eyebrow">Lesson · ⏱ 8 min read</p>
+        <h1 data-read>🧾 Structured outputs: JSON schemas, validation and retries</h1>
+        <p class="lang-switch"><span>English</span><a href="hi/structured-output.html" hreflang="hi" lang="hi-Latn">Hinglish</a></p>
+        <div class="listen-bar" data-reader data-listen="Listen" data-pause="Pause" data-resume="Resume" data-reading="Reading aloud…" data-paused="Paused" data-unsupported="Your browser can't read aloud">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Listen</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Stop</button>
+      <label class="listen-rate"><span class="sr-only">Reading speed</span><select data-tts="rate" aria-label="Reading speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Real-life example</h2><p>When you fill a bank form, there are fixed boxes: name, PAN, amount. The clerk can type it straight into the system because every answer is in its box. If you wrote a free letter instead, someone would have to read and retype it. Structured output asks the model to fill the form, not write a letter, so your code can use the answer directly.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 In simple words</h2><p>Most AI product features are not chat: they extract fields from an email, classify a ticket, fill a form or return data for a UI component. For these, you want JSON that matches a schema. Define the schema once in code (Zod in TypeScript, Pydantic in Python) and use it three ways: send it to the model (structured output or tool calling mode, which most providers support), validate the response, and type your code. Even with schema mode, validate: values can be in the wrong range, dates can be invented and enums can drift. On a validation failure, retry once with the error message added (&quot;total must be a number&quot;), then fall back to a safe default or human review. Keep schemas small and flat, give every field a description, allow null for &quot;not found&quot; so the model doesn&#39;t invent values, and add an enum for categories. Check business rules in plain code afterwards: totals add up, dates are not in the future, IDs exist in your database.</p></section>
+      <section class="ls ls-visual"><h2>🎬 See how it works</h2><div class="viz"><svg viewBox="0 0 640 250" role="img" aria-label="An email goes to the model with a schema, which returns JSON; code validates it, saves valid data, retries once on an invalid answer, and sends anything still wrong to human review" focusable="false"><defs><marker id="ah-so" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><g class="s1"><rect x="16" y="70" width="112" height="60" rx="10" class="b"/><text x="72" y="105" text-anchor="middle" class="">📧 Email</text></g><g class="s2"><rect x="160" y="60" width="130" height="80" rx="10" class="ba"/><text x="225" y="98" text-anchor="middle" class="">🧠 Model</text><text x="225" y="115" text-anchor="middle" class="tm ts">+ schema</text></g><g class="s3"><rect x="322" y="40" width="150" height="120" rx="10" class="b"/><text x="334" y="64" text-anchor="start" class="">{</text><text x="346" y="84" text-anchor="start" class="ts">category: "billing"</text><text x="346" y="104" text-anchor="start" class="ts ok">orderId: null</text><text x="346" y="124" text-anchor="start" class="ts">urgency: 4</text><text x="334" y="148" text-anchor="start" class="">}</text></g><path d="M130 100 H154" class="ln " marker-end="url(#ah-so)"/><path d="M292 100 H316" class="ln " marker-end="url(#ah-so)"/><g class="s4"><rect x="506" y="70" width="118" height="60" rx="10" class="bo"/><text x="565" y="98" text-anchor="middle" class="">✅ Validate</text><text x="565" y="115" text-anchor="middle" class="tm ts">Zod / Pydantic</text></g><path d="M474 100 H500" class="ln la " marker-end="url(#ah-so)"/><g class="s5"><path d="M565 132 V176" class="ln " marker-end="url(#ah-so)"/><rect x="506" y="180" width="118" height="40" rx="10" class="bo"/><text x="565" y="205" text-anchor="middle" class="ts">💾 Save</text></g><g class="s6"><path d="M520 68 C520 14 225 14 225 54" class="mk-warn " marker-end="url(#ah-so)"/><text x="372" y="24" text-anchor="middle" class="ts warn">✗ invalid → retry once with the error</text></g><g class="s7"><rect x="160" y="180" width="270" height="40" rx="10" class="bw"/><text x="295" y="205" text-anchor="middle" class="ts">still wrong → 👩 human review</text></g><text x="80" y="236" text-anchor="start" class="tm ts">null = "not found"</text></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">The model fills a schema instead of writing free text. Your code validates it: valid data is saved, an invalid answer gets one retry with the error, and anything still wrong goes to a person.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Write the schema first (Zod or Pydantic) with a description on every field, enums for categories and nullable fields for values that may be missing.</li><li data-read>Use the provider&#39;s structured output or tool calling mode and pass the schema, instead of asking for JSON in plain words.</li><li data-read>Validate every response against the same schema; on failure, retry once with the validation error in the prompt.</li><li data-read>Check business rules in plain code: totals add up, IDs exist, dates make sense. Route anything that fails to human review.</li><li data-read>Build an eval set of 50 or more real inputs with expected fields and measure accuracy per field, not just &quot;valid JSON&quot;.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Key terms</h2>
+        <dl class="terms"><div data-read><dt>JSON schema</dt><dd>A description of the exact fields, types and allowed values the output must have.</dd></div><div data-read><dt>Zod / Pydantic</dt><dd>Libraries that define a schema once and validate data against it in TypeScript or Python.</dd></div><div data-read><dt>Validate and retry</dt><dd>Check the output; if it fails, ask again with the error, then fall back.</dd></div><div data-read><dt>Nullable field</dt><dd>A field that may be null, so the model can say &quot;not found&quot; instead of guessing.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 See it in action</h2>
+        <div class="code-wrap"><span class="code-lang">typescript</span><pre><code>import { z } from &quot;zod&quot;;
+import { generateObject } from &quot;ai&quot;;
+
+const Ticket = z.object({
+  category: z.enum([&quot;billing&quot;, &quot;delivery&quot;, &quot;technical&quot;, &quot;other&quot;]),
+  orderId: z.string().regex(/^A\d{5}$/).nullable().describe(&quot;null if not mentioned&quot;),
+  urgency: z.number().int().min(1).max(5),
+  summary: z.string().max(200),
+});
+
+const { object } = await generateObject({ model, schema: Ticket, prompt: email });
+// object is typed and already validated against the schema
+if (object.orderId &amp;&amp; !(await orderExists(object.orderId))) object.orderId = null; // business rule in code</code></pre></div>
+        <p class="small muted" data-read>One schema drives the model, the validation and your types; business rules are still checked in plain code.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Common mistakes to avoid</h2><ul class="deep-mistakes"><li data-read>Parsing JSON out of a free text answer with a regex. It breaks on the first unusual reply; use schema mode and validation.</li><li data-read>Making every field required, which pushes the model to invent order numbers, dates and amounts.</li><li data-read>Huge nested schemas with 60 fields in one call. Split into steps or smaller schemas for better accuracy.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Quick check</h2>
+        <p class="quiz-q" data-read data-read-prefix="Quick check">An invoice email has no order number. How should your extraction schema handle it?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Make orderId nullable with a description &quot;null if not mentioned&quot;">Make orderId nullable with a description &quot;null if not mentioned&quot;</li><li data-read data-read-text="Option B: Ask the model to write &quot;unknown&quot; inside the summary">Ask the model to write &quot;unknown&quot; inside the summary</li><li data-read data-read-text="Option C: Make orderId required so the model always fills it">Make orderId required so the model always fills it</li></ol>
+        <details class="answer-reveal"><summary>Show answer</summary><p><strong>A. Make orderId nullable with a description &quot;null if not mentioned&quot;</strong>: A required field pushes the model to invent a value. Allowing null gives it an honest way to say the data isn&#39;t there.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>Structured output or tool calling?</summary><p data-read>Use structured output when you always want one object back. Use tool calling when the model should decide which action to take, each with its own schema.</p></details><details class="deep-faq"><summary data-read>Can the model still return wrong values in valid JSON?</summary><p data-read>Yes. Valid shape doesn&#39;t mean correct content. That&#39;s why you add range checks, business rules and a field level eval set.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>How do you get reliable JSON out of an LLM for a feature that fills a form or a database?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I define one schema in code, with Zod or Pydantic, and use it three ways: I pass it to the model through the provider&#39;s structured output or tool calling mode, I validate every response against it, and I use it as the type in my code. I keep fields small and described, use enums for categories, and make fields nullable when the value may be missing so the model doesn&#39;t invent it. If validation fails I retry once with the error message, then fall back to human review. After that I still check business rules in plain code, like totals adding up and IDs existing, and I measure accuracy per field on a set of real examples.</p><p class="prep-label">✅ </p><ul><li data-read>One schema for the model, validation and types</li><li data-read>Structured output or tool calling mode, not &quot;please reply in JSON&quot;</li><li data-read>Nullable fields and enums to stop invented values</li><li data-read>Validate, retry once with the error, then fall back</li><li data-read>Business rules in code and a field level eval set</li></ul><p class="prep-check" data-read><strong>:</strong> Whether you can build AI features other code can depend on.</p></div></details><details class="deep-faq"><summary data-read>How do you write automated tests for code that calls an LLM?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>I separate code correctness from answer quality. All model calls go through one function, so in unit tests I replace it with a fake that returns fixed responses, including bad ones such as invalid JSON, an empty answer, a timeout or a 429, and check my parsing, retries and fallbacks. For end to end flows I replay recorded real responses as fixtures, and re-record them when the prompt or model changes. Contract tests check that outputs match the schema and that prompts only contain the current user&#39;s data. A small live smoke test runs on a schedule to catch provider changes. Answer quality is judged separately by the eval suite. The pull request suite stays fast, free and deterministic.</p><p class="prep-label">✅ </p><ul><li data-read>Fake model for unit tests, including failure cases</li><li data-read>Recorded responses for end to end flows</li><li data-read>Contract tests for schemas and data isolation</li><li data-read>Scheduled live smoke tests</li><li data-read>Evals for quality, kept separate from tests</li></ul><p class="prep-check" data-read><strong>:</strong> Engineering discipline around non-deterministic systems.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>One schema for prompt, validation and types; allow null, validate, retry once, then fall back.</p></section>
+      <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/structured-output.html" title="Making an LLM return data in a fixed format, like JSON with defined fields, so code can use it.">Structured output</a></li></ul></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="ai-chat-ui.html">← Building AI chat UIs: streaming, stop, retry and generative UI</a>
+        <a href="multimodal-ai.html">Multimodal AI: images, messy PDFs, audio and structured extraction →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Learn this as part of a full course</h2>
+        <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=structured-output">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=structured-output">Continue in the course</a>
+      </section>
+    </article>
+  </main>
+  <script src="../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "en"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../for/software-testers-qa.html">QA / testers</a></li><li><a href="../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../guide/how-it-works.html">How the consultation works</a></li><li><a href="../#app">Free AI career consultation</a></li><li><a href="../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../interview.html">Interview practice</a></li><li><a href="../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../resumes/">ATS resume samples</a></li><li><a href="../glossary/">AI dictionary (A to Z)</a></li><li><a href="../kids/">AI for kids (ages 5+)</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>

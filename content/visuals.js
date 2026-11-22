@@ -332,6 +332,170 @@ var LESSON_VISUALS = (function () {
     ].join(""), "A shared feature recipe feeds both an offline store for model training and a low-latency online store for live serving")
   };
 
+  // ---------- AI Product Engineer lessons ----------
+  V["ai-chat-ui"] = {
+    caption: ["The browser sends the question to your server route, the server streams the model's words back over SSE, and each word appears as it arrives. Stop cancels the request and the model call.", "Browser sawaal aapke server route ko bhejta hai, server model ke words SSE se wapas stream karta hai, aur har word aate hi dikhta hai. Stop request aur model call dono cancel karta hai."],
+    svg: svg("cu", 250, [
+      box(16, 18, 150, 54, "🖥️ Browser", "b", "", "useChat()"),
+      box(246, 18, 150, 54, "⚙️ /api/chat", "ba", "", "key stays here"),
+      box(476, 18, 148, 54, "🧠 Model", "bo", "", "stream: true"),
+      A("cu", "M168 38 H240", "ln la"), A("cu", "M398 38 H470", "ln"),
+      A("cu", "M470 56 H402", "fl"), A("cu", "M240 56 H172", "fl"),
+      T(320, 92, "tokens flow back over SSE", "tm ts"),
+      dot("M470 56 H172", 2.2),
+      `<g>${R(16, 110, 420, 92, "bm", 14)}</g>`,
+      T(34, 136, "🤖", "", "start"),
+      `<g class="s1">${T(62, 136, "Your order", "", "start")}</g>`,
+      `<g class="s2">${T(146, 136, "A12345", "hl-t", "start")}</g>`,
+      `<g class="s3">${T(208, 136, "ships", "", "start")}</g>`,
+      `<g class="s4">${T(254, 136, "tomorrow.", "", "start")}</g>`,
+      `<g class="s5">${R(34, 150, 230, 40, "b", 10)}${T(149, 175, "📦 Order card (generative UI)", "ts")}</g>`,
+      `<g class="pulse">${R(462, 112, 162, 38, "bw", 19)}${T(543, 136, "⏹ Stop", "tb")}</g>`,
+      `<g>${R(462, 160, 162, 38, "b", 19)}${T(543, 184, "↻ Regenerate", "")}</g>`,
+      T(320, 232, "status: submitted → streaming → done / stopped / error", "tm ts")
+    ].join(""), "A browser chat sends a question to a server route that calls the model; words stream back one by one, a tool result shows as an order card, and Stop and Regenerate buttons sit beside the answer")
+  };
+
+  V["structured-output"] = {
+    caption: ["The model fills a schema instead of writing free text. Your code validates it: valid data is saved, an invalid answer gets one retry with the error, and anything still wrong goes to a person.", "Model khula text likhne ki jagah schema bharta hai. Aapka code use validate karta hai: sahi data save hota hai, galat jawaab ko error ke saath ek retry milta hai, aur phir bhi galat ho to insaan ke paas jaata hai."],
+    svg: svg("so", 250, [
+      box(16, 70, 112, 60, "📧 Email", "b", "s1"),
+      box(160, 60, 130, 80, "🧠 Model", "ba", "s2", "+ schema"),
+      `<g class="s3">${R(322, 40, 150, 120, "b", 10)}${T(334, 64, "{", "", "start")}${T(346, 84, "category: \"billing\"", "ts", "start")}${T(346, 104, "orderId: null", "ts ok", "start")}${T(346, 124, "urgency: 4", "ts", "start")}${T(334, 148, "}", "", "start")}</g>`,
+      A("so", "M130 100 H154", "ln"), A("so", "M292 100 H316", "ln"),
+      box(506, 70, 118, 60, "✅ Validate", "bo", "s4", "Zod / Pydantic"),
+      A("so", "M474 100 H500", "ln la"),
+      `<g class="s5">${A("so", "M565 132 V176", "ln")}${R(506, 180, 118, 40, "bo", 10)}${T(565, 205, "💾 Save", "ts")}</g>`,
+      `<g class="s6">${A("so", "M520 68 C520 14 225 14 225 54", "mk-warn")}${T(372, 24, "✗ invalid → retry once with the error", "ts warn")}</g>`,
+      `<g class="s7">${R(160, 180, 270, 40, "bw", 10)}${T(295, 205, "still wrong → 👩 human review", "ts")}</g>`,
+      T(80, 236, "null = \"not found\"", "tm ts", "start")
+    ].join(""), "An email goes to the model with a schema, which returns JSON; code validates it, saves valid data, retries once on an invalid answer, and sends anything still wrong to human review")
+  };
+
+  V["ts-ai-stack"] = {
+    caption: ["The browser only talks to your server. The route checks the user, limits requests and validates input, then one wrapper calls the model and logs cost. Slow work goes to a queue.", "Browser sirf aapke server se baat karta hai. Route user check karta hai, requests limit karta hai aur input validate karta hai, phir ek wrapper model call karta hai aur cost log karta hai. Slow kaam queue mein jaata hai."],
+    svg: svg("ts", 262, [
+      box(16, 30, 120, 62, "🖥️ Browser", "b", "s1", "no API key"),
+      `<g class="s2">${R(170, 14, 190, 96, "ba", 12)}${T(265, 38, "Route handler", "tb")}${T(265, 60, "🔐 auth · ⏱️ rate limit", "ts")}${T(265, 80, "✅ Zod validation", "ts")}${T(265, 100, "🔑 key from server env", "tm ts")}</g>`,
+      box(394, 30, 112, 62, "📦 lib/ai.ts", "b", "s3", "log tokens · cost"),
+      box(530, 30, 94, 62, "🧠 Model", "bo", "s4"),
+      A("ts", "M138 61 H164", "ln la"), A("ts", "M362 61 H388", "ln"), A("ts", "M508 61 H524", "ln"),
+      dot("M138 61 H164 M362 61 H388 M508 61 H524", 3),
+      `<g class="s5">${A("ts", "M265 112 V150", "fl")}${box(190, 154, 150, 50, "📬 Queue → worker", "bw")}</g>`,
+      `<g class="s6">${A("ts", "M342 179 H404", "ln")}${box(410, 154, 214, 50, "🐘 Postgres + pgvector", "b", "", "user_id · tenant_id")}</g>`,
+      T(320, 240, "fast path streams · slow path (indexing, batch) runs in the background", "tm ts")
+    ].join(""), "A browser with no key calls a Next.js route handler that authenticates, rate limits and validates, then a wrapper calls the model; slow work goes through a queue to Postgres with pgvector")
+  };
+
+  V["context-memory"] = {
+    caption: ["Every call rebuilds the prompt from parts inside a token budget: rules first, then facts, memories and documents, a summary of old turns, the recent turns, and the question last.", "Har call token budget ke andar hisson se prompt dobara banati hai: pehle rules, phir baatein, memories aur documents, purane turns ki summary, haal ke turns, aur sawaal aakhir mein."],
+    svg: svg("cm", 262, [
+      T(16, 24, "One model call = a freshly built context", "tb", "start"),
+      ...[["📜 Rules (stable, cached)", 120, "f2"], ["👤 User facts", 60, "f1"], ["🧠 Memories (with consent)", 90, "f3"], ["📄 Retrieved docs", 150, "f1"], ["🗜️ Summary of old turns", 70, "f4"], ["💬 Recent turns", 80, "f1"], ["❓ Question", 40, "ba"]]
+        .map(([l, w, c], i) => {
+          const y = 38 + i * 28;
+          return `<g class="s${i + 1}">${R(16, y, w * 2.6, 22, c, 6)}${T(26, y + 16, l, "ts", "start")}</g>`;
+        }),
+      `<path d="M600 34 V238" class="mk-warn"/>`,
+      T(596, 252, "token budget", "ts warn", "end"),
+      T(470, 150, "filtered by user_id", "tm ts", "middle"),
+      T(470, 168, "and tenant in code", "tm ts", "middle")
+    ].join(""), "Stacked prompt parts: rules, user facts, memories, retrieved documents, a summary of old turns, recent turns and the question, all inside a token budget line")
+  };
+
+  V["llm-cost-latency"] = {
+    caption: ["Check the cache first (with the user in the key). On a miss, a router sends easy requests to a small, cheap model and hard ones to the large model. Log cost and latency for every call.", "Pehle cache dekho (key mein user ke saath). Miss hone pe router aasaan requests chhote saste model ko aur mushkil requests bade model ko bhejta hai. Har call ki cost aur latency log karo."],
+    svg: svg("cl", 262, [
+      box(16, 100, 104, 56, "❓ Request", "b", "s1"),
+      box(150, 96, 120, 64, "🗃️ Cache", "ba", "s2", "tenant:question"),
+      A("cl", "M122 128 H144", "ln"),
+      `<g class="s3">${A("cl", "M210 94 V52 H300", "mk-ok")}${R(306, 26, 160, 50, "bo", 10)}${T(386, 48, "hit → ~5 ms, ₹0", "ts ok")}${T(386, 66, "return saved answer", "tm ts")}</g>`,
+      `<g class="s4">${A("cl", "M272 128 H322", "ln la")}${box(328, 100, 116, 56, "🔀 Router", "b", "", "how hard?")}</g>`,
+      `<g class="s5">${A("cl", "M446 116 C480 116 480 88 504 88", "ln")}${box(508, 64, 116, 48, "🐇 Small model", "bo", "", "easy · cheap")}</g>`,
+      `<g class="s6">${A("cl", "M446 140 C480 140 480 172 504 172", "ln")}${box(508, 150, 116, 48, "🐘 Large model", "bw", "", "hard tasks")}</g>`,
+      dot("M122 128 H322 M446 116 C480 116 480 88 504 88", 3.2),
+      `<g class="s7">${R(16, 212, 608, 36, "bm", 10)}${T(320, 235, "📊 log: tokens · ₹ per request · p50 / p95 · cache hit rate · prompt caching on the stable prefix", "ts")}</g>`
+    ].join(""), "A request checks a cache keyed by tenant and question; a hit returns instantly, a miss goes to a router that picks a small model for easy tasks or a large model for hard ones, with cost and latency logged")
+  };
+
+  V["llm-reliability"] = {
+    caption: ["A call times out or gets a 503. The app retries with growing waits, then the circuit breaker switches to a backup model, and if that fails too, users get a helpful non-AI path.", "Call time out hota hai ya 503 milta hai. App badhte intezaar ke saath retry karta hai, phir circuit breaker backup model pe switch karta hai, aur woh bhi fail ho to users ko kaam ka non-AI raasta milta hai."],
+    svg: svg("rl", 250, [
+      box(16, 26, 110, 56, "📨 Request", "b", "s1", "timeout 10 s"),
+      box(160, 26, 130, 56, "🧠 Primary", "bw", "s2", "503 ✗"),
+      A("rl", "M128 54 H154", "ln"),
+      `<g class="s3">${T(225, 108, "retry 1 s → 2 s → 4 s", "ts warn")}${T(225, 126, "(only 429 · 5xx · timeout)", "tm ts")}</g>`,
+      `<g class="s4">${R(320, 30, 118, 48, "bw", 24)}${T(379, 59, "⚡ breaker open", "ts")}</g>`,
+      A("rl", "M292 54 H314", "ln"),
+      `<g class="s5">${A("rl", "M440 54 H468", "ln la")}${box(474, 26, 150, 56, "🧠 Backup model", "bo", "", "same evals ✓")}</g>`,
+      `<g class="s6">${A("rl", "M549 84 V150", "fl")}${R(330, 154, 294, 58, "bm", 12)}${T(477, 178, "still down → template + \"talk to a human\"", "ts")}${T(477, 198, "never a blank screen", "tm ts")}</g>`,
+      `<g class="s7">${R(16, 154, 280, 58, "b", 12)}${T(156, 178, "🔑 idempotency key on actions", "ts")}${T(156, 198, "a retry never sends two refunds", "tm ts")}</g>`,
+      T(320, 238, "alerts on error rate and fallback rate · test the outage path in staging", "tm ts")
+    ].join(""), "A request to the primary model fails with 503, is retried with backoff, a circuit breaker opens and a backup model answers; if everything fails users get a template and a human option, and actions carry idempotency keys")
+  };
+
+  V["prompt-release"] = {
+    caption: ["A new prompt version must pass the eval gate in CI, then goes to 5% of users behind a flag. If online signals stay healthy it grows to 25% and 100%; if not, one switch rolls it back.", "Naye prompt version ko CI mein eval gate paas karna hota hai, phir flag ke peeche 5% users ko jaata hai. Online signals theek rahein to 25% aur 100% tak badhta hai; nahi to ek switch se rollback."],
+    svg: svg("pr", 262, [
+      box(16, 30, 120, 56, "📝 support@v14", "b", "s1", "pull request"),
+      `<g class="s2">${A("pr", "M138 58 H170", "ln")}${R(176, 18, 170, 80, "ba", 12)}${T(261, 42, "🧪 CI eval gate", "tb")}${T(261, 64, "faithfulness ≥ v13 − 2", "ts")}${T(261, 84, "format 100% · safety ✓", "ts ok")}</g>`,
+      `<g class="s3">${A("pr", "M348 58 H380", "ln la")}${box(386, 30, 110, 56, "🚩 flag", "b", "", "v14 vs v13")}</g>`,
+      T(16, 130, "traffic on v14", "tb", "start"),
+      ...[["5%", 0.05, "s4"], ["25%", 0.25, "s5"], ["100%", 1, "s6"]].map(([l, f, s], i) =>
+        `<g class="${s}">${R(16, 142 + i * 30, 420, 22, "f1", 6)}<rect x="16" y="${142 + i * 30}" width="${Math.max(12, 420 * f)}" height="22" rx="6" class="c-ok grow"/>${T(446, 158 + i * 30, l, "tb", "start")}</g>`),
+      `<g class="s7">${R(500, 140, 124, 82, "bw", 12)}${T(562, 166, "↩ rollback", "tb")}${T(562, 188, "one switch,", "ts")}${T(562, 206, "no redeploy", "ts")}</g>`,
+      T(320, 248, "watch 👎 rate · edits · escalations · p95 · cost before each step", "tm ts")
+    ].join(""), "A prompt change passes an eval gate in CI, is released behind a feature flag to 5%, then 25% and 100% of traffic, with a one switch rollback")
+  };
+
+  V["ai-feature-metrics"] = {
+    caption: ["The data flywheel: real usage creates signals, a weekly review finds failure types, they become eval cases and fixes, and the better feature brings more usage.", "Data flywheel: asli use se signals bante hain, weekly review failure types dhoondhta hai, woh eval cases aur fixes bante hain, aur behtar feature aur use laata hai."],
+    svg: svg("fm", 262, [
+      `<circle cx="200" cy="130" r="92" class="ring-thin"/>`,
+      T(200, 126, "↻ data", "tm ts"), T(200, 144, "flywheel", "tm ts"),
+      ...[["👥 Users", 200, 38], ["📶 Signals", 292, 130], ["🔍 Weekly review", 200, 222], ["🧪 Eval cases + fixes", 108, 130]].map(([l, x, y], i) =>
+        `<g class="s${i + 1}">${R(x - 70, y - 18, 140, 36, i === 3 ? "bo" : "b", 18)}${T(x, y + 5, l, "ts")}</g>`),
+      dot("M200 38 A92 92 0 0 1 292 130 A92 92 0 0 1 200 222 A92 92 0 0 1 108 130 A92 92 0 0 1 200 38", 6),
+      `<g class="s5">${R(380, 24, 244, 214, "bm", 14)}${T(396, 50, "Measure in layers", "tb", "start")}${T(396, 80, "🎯 Outcome: handle time ↓ (A/B)", "ts", "start")}${T(396, 108, "📈 Usage: adoption · retention", "ts", "start")}${T(396, 136, "✍️ Quality: edit · accept rate", "ts", "start")}${T(396, 164, "👍👎 with a reason", "ts", "start")}${T(396, 192, "🛡️ Guardrails: complaints,", "ts", "start")}${T(414, 212, "safety, latency, cost", "ts", "start")}</g>`
+    ].join(""), "A flywheel loop from users to signals to a weekly review to eval cases and fixes and back to users, beside a list of metric layers: outcome, usage, quality and guardrails")
+  };
+
+  V["ai-product-design-interview"] = {
+    caption: ["A 45 minute plan for the AI design round: clarify, user experience, architecture, model choices, quality, production limits, then rollout. Talk in trade-offs with numbers.", "AI design round ka 45 minute plan: clarify, user experience, architecture, model choices, quality, production ki limits, phir rollout. Numbers ke saath trade-offs mein baat karo."],
+    svg: svg("pd", 250, [
+      `<path d="M30 60 H610" class="lane"/>`,
+      ...[["❓", "Clarify", "0-5"], ["🎨", "UX", "5-10"], ["🧱", "Architecture", "10-18"], ["🧠", "Models", "18-22"], ["🧪", "Quality", "22-30"], ["⚙️", "Production", "30-38"], ["🚀", "Rollout", "38-45"]].map(([ic, l, t], i) => {
+        const cx = 50 + i * 90;
+        return `<g class="s${i + 1}"><circle cx="${cx}" cy="60" r="20" class="${i === 0 ? "ba" : "b"}"/>${T(cx, 66, ic)}${T(cx, 104, l, "ts tb")}${T(cx, 122, t + " min", "tm ts")}</g>`;
+      }),
+      `<g class="s8">${R(30, 150, 580, 74, "bm", 12)}${T(320, 176, "\"A smaller model cuts cost 70%; I'd accept it if evals stay within 2 points.\"", "ts")}${T(320, 202, "users → flow → boxes and arrows → evals → limits → launch plan", "tm ts")}</g>`
+    ].join(""), "A timeline of seven stages for a 45 minute AI design interview: clarify, UX, architecture, models, quality, production and rollout, with an example trade-off sentence")
+  };
+
+  V["ai-coding-tools"] = {
+    caption: ["You lead, the assistant types: write a spec, give project context, let it plan and code in small steps, run the tests, then review the diff before you commit.", "Aap lead karte ho, assistant type karta hai: spec likho, project ka context do, use plan aur chhote steps mein code karne do, tests chalao, phir commit se pehle diff review karo."],
+    svg: svg("ac", 250, [
+      ...[["📝", "Spec", "goal · done"], ["📚", "Context", "CLAUDE.md"], ["🗺️", "Plan", "small steps"], ["⌨️", "Code", "assistant"], ["🧪", "Tests", "run every step"], ["👀", "Review", "read the diff"], ["✅", "Commit", "small pieces"]].map(([ic, l, sub], i) => {
+        const cx = 50 + i * 90;
+        return `<g class="s${i + 1}"><circle cx="${cx}" cy="62" r="24" class="${i === 5 ? "bw" : i === 6 ? "bo" : "b"}"/>${T(cx, 69, ic)}${T(cx, 112, l, "ts tb")}${T(cx, 130, sub, "tm ts")}</g>`;
+      }),
+      ...[0, 1, 2, 3, 4, 5].map(i => A("ac", `M${76 + i * 90} 62 H${112 + i * 90}`, "ln")),
+      `<g class="s8">${A("ac", "M500 140 C500 180 320 180 320 144", "mk-warn")}${T(410, 196, "✗ tests fail or diff unclear → back to small steps", "ts warn")}</g>`,
+      T(320, 236, "never paste secrets or customer data into unapproved tools", "tm ts")
+    ].join(""), "A loop for AI assisted coding: spec, project context, plan, code, tests, review the diff and commit, returning to smaller steps when tests fail")
+  };
+
+  V["llm-testing"] = {
+    caption: ["A testing pyramid for AI features: many fast unit tests with a fake model, some replayed recorded responses, a few scheduled live smoke tests, and evals judging quality on the side.", "AI features ke liye testing pyramid: nakli model ke saath bahut se tez unit tests, kuch replay kiye recorded responses, schedule pe thode live smoke tests, aur bagal mein quality parakhte evals."],
+    svg: svg("lt", 250, [
+      `<g class="s1"><path d="M40 220 H420 L380 166 H80 Z" class="f2"/>${T(230, 199, "🧩 Unit tests + fake model · ms · every PR", "ts")}</g>`,
+      `<g class="s2"><path d="M80 162 H380 L340 108 H120 Z" class="f1"/>${T(230, 141, "📼 Recorded responses · every PR", "ts")}</g>`,
+      `<g class="s3"><path d="M120 104 H340 L280 50 H180 Z" class="f4"/>${T(230, 83, "🌐 Live smoke · nightly", "ts")}</g>`,
+      `<g class="s4">${R(450, 50, 174, 170, "bo", 14)}${T(537, 80, "🧪 Evals", "tb")}${T(537, 106, "judge answer quality", "ts")}${T(537, 130, "golden set · judge", "tm ts")}${T(537, 152, "separate job", "tm ts")}${T(537, 186, "tests ≠ evals", "ts ok")}</g>`,
+      `<g class="s5">${T(230, 30, "fake: invalid JSON · empty · timeout · 429 → retry & fallback ✓", "tm ts")}</g>`
+    ].join(""), "A testing pyramid: many unit tests with a fake model at the bottom, recorded response tests in the middle, a few live smoke tests at the top, and evals as a separate quality check")
+  };
+
   return V;
 })();
 

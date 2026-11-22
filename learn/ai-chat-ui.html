@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building AI chat UIs: streaming, stop, retry and generative UI: Explained Simply With Real-Life Examples | AI Path Finder</title>
+  <meta name="description" content="An AI chat screen has more state than a normal form. Each message has a role (user or assistant), content that grows while streaming, and a status:…" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161617" />
+  <script>(function(){var d=document.documentElement,k="aipf:theme",L={auto:"Appearance: automatic (matches your device)",light:"Appearance: light",dark:"Appearance: dark"};function g(){try{return localStorage.getItem(k)||"auto"}catch(e){return"auto"}}function a(t){if(t==="auto")d.removeAttribute("data-theme");else d.setAttribute("data-theme",t);var b=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<b.length;i++){b[i].setAttribute("data-mode",t);b[i].setAttribute("aria-label",L[t]);b[i].title=L[t]}}a(g());document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-theme-toggle]");if(!b)return;var n={auto:"light",light:"dark",dark:"auto"}[g()];try{localStorage.setItem(k,n)}catch(x){}a(n)});document.addEventListener("DOMContentLoaded",function(){a(g());var r=document.querySelector(".site-header .brand");if(!r)return;var root=new URL(r.getAttribute("href"),location.href).pathname,seg=location.pathname.slice(root.length).split("/")[0].replace(/\.html$/,""),m={learn:"learn",interview:"interview",resumes:"resume","resume-builder":"resume",glossary:"glossary",kids:"kids",roles:"roles","for":"roles",guide:"roles"}[seg],x=m&&document.querySelector('.site-nav a[data-nav="'+m+'"]');if(x)x.setAttribute("aria-current","page")})})();</script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AI Path Finder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Building AI chat UIs: streaming, stop, retry and generative UI: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta property="og:description" content="An AI chat screen has more state than a normal form. Each message has a role (user or assistant), content that grows while streaming, and a status:…" />
+  <meta property="og:url" content="https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html" />
+  <meta property="og:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:modified_time" content="2026-10-28" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Building AI chat UIs: streaming, stop, retry and generative UI: Explained Simply With Real-Life Examples | AI Path Finder" />
+  <meta name="twitter:description" content="An AI chat screen has more state than a normal form. Each message has a role (user or assistant), content that grows while streaming, and a status:…" />
+  <meta name="twitter:image" content="https://homesh123.github.io/ai-career-advisor/og-image.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="en" href="https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html" />
+  <link rel="alternate" hreflang="hi" href="https://homesh123.github.io/ai-career-advisor/learn/hi/ai-chat-ui.html" />
+  <link rel="alternate" hreflang="x-default" href="https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html#lesson",
+      "url": "https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html",
+      "name": "Building AI chat UIs: streaming, stop, retry and generative UI",
+      "description": "An AI chat screen has more state than a normal form. Each message has a role (user or assistant), content that grows while streaming, and a status:…",
+      "inLanguage": "en",
+      "learningResourceType": "Lesson",
+      "educationalLevel": "Beginner",
+      "timeRequired": "PT9M",
+      "isAccessibleForFree": true,
+      "teaches": [
+        "SSE (Server-Sent Events)",
+        "AbortController",
+        "Generative UI",
+        "Time to first token (TTFT)"
+      ],
+      "datePublished": "2026-10-28",
+      "dateModified": "2026-10-28",
+      "provider": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "publisher": {
+        "@id": "https://homesh123.github.io/ai-career-advisor/#org"
+      },
+      "isPartOf": [
+        {
+          "@type": "Course",
+          "name": "AI Product Engineer course",
+          "url": "https://homesh123.github.io/ai-career-advisor/learn.html?course=ai-product-engineer"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "AI Path Finder",
+          "item": "https://homesh123.github.io/ai-career-advisor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Building AI chat UIs: streaming, stop, retry and generative UI",
+          "item": "https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://homesh123.github.io/ai-career-advisor/learn/ai-chat-ui.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "A user presses Stop halfway through a long answer. What should happen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cancel the request and the model call, keep the partial text, and mark the message as stopped. Aborting the model call saves cost and keeps the server free, and keeping the partial answer respects what the user already read."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSE or WebSockets for streaming?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SSE (or a streamed HTTP response) is enough for model answers because data flows one way and it works through most proxies. Use WebSockets when the browser must also stream to the server, such as live voice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need the Vercel AI SDK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, but it saves time: it handles streaming formats, message state, tool calls and many providers. Learn how streaming works underneath once, then use whatever your team uses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should AI features always be a chat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Many of the best AI features are a button inside an existing screen (\"Summarise\", \"Draft reply\") that streams into a panel. Use chat for open ended questions."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <a class="brand" href="../">AI Path Finder</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#paths" data-nav="roles">AI roles</a>
+      <a href="../learn.html" data-nav="learn">Learn</a>
+      <a href="../interview.html" data-nav="interview">Interview prep</a>
+      <a href="../resume-builder.html" data-nav="resume">Resume builder</a>
+      <a href="../glossary/" data-nav="glossary">AI dictionary</a>
+      <a href="../kids/" data-nav="kids">AI for kids</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Appearance"><svg class="ti ti-auto" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg><svg class="ti ti-light" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ti ti-dark" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button>
+      <a class="button btn-primary btn-small" href="../#app">Free consultation</a>
+    </div>
+  </header>
+  <main class="container article lesson-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">AI Path Finder</a> › <a href="../learn.html">Learn</a> › <span aria-current="page">Building AI chat UIs: streaming, stop, retry and generative UI</span></nav>
+    <article lang="en">
+      <header>
+        <p class="eyebrow">Lesson · ⏱ 9 min read</p>
+        <h1 data-read>💬 Building AI chat UIs: streaming, stop, retry and generative UI</h1>
+        <p class="lang-switch"><span>English</span><a href="hi/ai-chat-ui.html" hreflang="hi" lang="hi-Latn">Hinglish</a></p>
+        <div class="listen-bar" data-reader data-listen="Listen" data-pause="Pause" data-resume="Resume" data-reading="Reading aloud…" data-paused="Paused" data-unsupported="Your browser can't read aloud">
+      <button type="button" class="listen-btn" data-tts="play" aria-pressed="false">🔊 Listen</button>
+      <button type="button" class="listen-stop" data-tts="stop" hidden>⏹ Stop</button>
+      <label class="listen-rate"><span class="sr-only">Reading speed</span><select data-tts="rate" aria-label="Reading speed">
+        <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+      <span class="small muted" data-tts="status" role="status"></span>
+    </div>
+      </header>
+      <section class="ls ls-analogy" data-read><h2>🏠 Real-life example</h2><p>Think of a chai stall versus a restaurant that brings everything only when the full thali is ready. At the chai stall you watch your tea being made, you can say &quot;less sugar&quot; midway, and you get the first sip quickly. A good AI chat UI is the chai stall: words appear as they are written, the user can press Stop, ask again, or edit their question, and nothing feels frozen.</p></section>
+      <section class="ls ls-explain" data-read><h2>💡 In simple words</h2><p>An AI chat screen has more state than a normal form. Each message has a role (user or assistant), content that grows while streaming, and a status: pending, streaming, done, stopped or failed. The server calls the model with stream on and forwards chunks to the browser using Server-Sent Events (SSE) or a streamed HTTP response; the browser appends each chunk to the last assistant message. Users must be able to stop a long answer (an AbortController cancels the request and the model call, so you stop paying), regenerate an answer, and edit an earlier question. Render the answer as safe Markdown (sanitise HTML so a model can&#39;t inject a script), keep the scroll pinned to the bottom only while the user hasn&#39;t scrolled up, and show tool activity such as &quot;Searching your orders…&quot;. Generative UI goes one step further: when the model calls a tool, the UI renders a real component (an order card, a chart, a form) instead of plain text. Libraries like the Vercel AI SDK (useChat, streamText) handle most of this for React and Next.js apps.</p></section>
+      <section class="ls ls-visual"><h2>🎬 See how it works</h2><div class="viz"><svg viewBox="0 0 640 250" role="img" aria-label="A browser chat sends a question to a server route that calls the model; words stream back one by one, a tool result shows as an order card, and Stop and Regenerate buttons sit beside the answer" focusable="false"><defs><marker id="ah-cu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><g class=""><rect x="16" y="18" width="150" height="54" rx="10" class="b"/><text x="91" y="43" text-anchor="middle" class="">🖥️ Browser</text><text x="91" y="60" text-anchor="middle" class="tm ts">useChat()</text></g><g class=""><rect x="246" y="18" width="150" height="54" rx="10" class="ba"/><text x="321" y="43" text-anchor="middle" class="">⚙️ /api/chat</text><text x="321" y="60" text-anchor="middle" class="tm ts">key stays here</text></g><g class=""><rect x="476" y="18" width="148" height="54" rx="10" class="bo"/><text x="550" y="43" text-anchor="middle" class="">🧠 Model</text><text x="550" y="60" text-anchor="middle" class="tm ts">stream: true</text></g><path d="M168 38 H240" class="ln la " marker-end="url(#ah-cu)"/><path d="M398 38 H470" class="ln " marker-end="url(#ah-cu)"/><path d="M470 56 H402" class="fl " marker-end="url(#ah-cu)"/><path d="M240 56 H172" class="fl " marker-end="url(#ah-cu)"/><text x="320" y="92" text-anchor="middle" class="tm ts">tokens flow back over SSE</text><circle r="6" class="dot"><animateMotion dur="2.2s" repeatCount="indefinite" path="M470 56 H172"/></circle><g><rect x="16" y="110" width="420" height="92" rx="14" class="bm"/></g><text x="34" y="136" text-anchor="start" class="">🤖</text><g class="s1"><text x="62" y="136" text-anchor="start" class="">Your order</text></g><g class="s2"><text x="146" y="136" text-anchor="start" class="hl-t">A12345</text></g><g class="s3"><text x="208" y="136" text-anchor="start" class="">ships</text></g><g class="s4"><text x="254" y="136" text-anchor="start" class="">tomorrow.</text></g><g class="s5"><rect x="34" y="150" width="230" height="40" rx="10" class="b"/><text x="149" y="175" text-anchor="middle" class="ts">📦 Order card (generative UI)</text></g><g class="pulse"><rect x="462" y="112" width="162" height="38" rx="19" class="bw"/><text x="543" y="136" text-anchor="middle" class="tb">⏹ Stop</text></g><g><rect x="462" y="160" width="162" height="38" rx="19" class="b"/><text x="543" y="184" text-anchor="middle" class="">↻ Regenerate</text></g><text x="320" y="232" text-anchor="middle" class="tm ts">status: submitted → streaming → done / stopped / error</text></svg></div><p class="viz-caption" data-read data-read-prefix="Diagram">The browser sends the question to your server route, the server streams the model&#39;s words back over SSE, and each word appears as it arrives. Stop cancels the request and the model call.</p></section>
+      <section class="ls ls-steps"><h2>🪜 Step by step</h2><ol class="deep-steps"><li data-read>Model each message as { id, role, parts, status } where status is pending, streaming, done, stopped or failed, so the UI always knows what to show.</li><li data-read>On send, add the user message and an empty assistant message at once (optimistic UI), disable send, and show a typing indicator until the first token.</li><li data-read>Stream from a server route with SSE or a streamed response, append chunks to the assistant message, and throttle re-renders (for example every 50 ms) so long answers don&#39;t lag.</li><li data-read>Wire Stop to an AbortController that cancels the fetch and the model call; keep the partial text and mark it stopped. Add Regenerate and Edit question.</li><li data-read>Render Markdown with a sanitiser, highlight code with a copy button, and auto scroll only if the user is already at the bottom.</li><li data-read>Show tool steps as status lines (&quot;Looking up order A12345…&quot;) and render tool results as components such as an order card, not raw JSON.</li><li data-read>Handle errors per message with a Retry button, save the conversation so a refresh doesn&#39;t lose it, and test on a slow 3G connection and a phone.</li></ol></section>
+      <section class="ls ls-terms"><h2>🔑 Key terms</h2>
+        <dl class="terms"><div data-read><dt>SSE (Server-Sent Events)</dt><dd>A simple one way stream from server to browser, ideal for streaming tokens.</dd></div><div data-read><dt>AbortController</dt><dd>The browser API that cancels an in-flight request when the user presses Stop.</dd></div><div data-read><dt>Generative UI</dt><dd>Rendering real components from model tool calls, not just text.</dd></div><div data-read><dt>Time to first token (TTFT)</dt><dd>How long until the first word appears; the number users feel most.</dd></div></dl>
+      </section>
+      <section class="ls ls-example"><h2>👀 See it in action</h2>
+        <div class="code-wrap"><span class="code-lang">typescript</span><pre><code>// app/api/chat/route.ts (Next.js + Vercel AI SDK)
+import { streamText } from &quot;ai&quot;;
+import { anthropic } from &quot;@ai-sdk/anthropic&quot;;
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+  const result = streamText({
+    model: anthropic(process.env.CHAT_MODEL!), // model id kept in config, easy to upgrade
+    system: &quot;You are a helpful support assistant. Answer briefly.&quot;,
+    messages,
+    abortSignal: req.signal,          // Stop button cancels the model call too
+  });
+  return result.toUIMessageStreamResponse(); // streams chunks to the browser
+}
+
+// app/page.tsx
+const { messages, sendMessage, stop, regenerate, status } = useChat();
+// status: &quot;submitted&quot; | &quot;streaming&quot; | &quot;ready&quot; | &quot;error&quot;
+// show &lt;button onClick={stop}&gt; while streaming, &lt;button onClick={regenerate}&gt; after</code></pre></div>
+        <p class="small muted" data-read>The server streams, the client appends, and Stop cancels both the request and the model call.</p>
+      </section>
+      <section class="ls ls-mistakes"><h2>⚠️ Common mistakes to avoid</h2><ul class="deep-mistakes"><li data-read>Rendering model output as raw HTML. A crafted answer or document can inject a script; always sanitise.</li><li data-read>Stop only hides the text while the server keeps generating, so you still pay for tokens nobody reads.</li><li data-read>Forcing the scroll to the bottom while the user is trying to read an earlier part of the answer.</li></ul></section>
+      <section class="ls ls-quiz"><h2>✅ Quick check</h2>
+        <p class="quiz-q" data-read data-read-prefix="Quick check">A user presses Stop halfway through a long answer. What should happen?</p>
+        <ol type="A"><li data-read data-read-text="Option A: Delete the whole message and show an error">Delete the whole message and show an error</li><li data-read data-read-text="Option B: Cancel the request and the model call, keep the partial text, and mark the message as stopped">Cancel the request and the model call, keep the partial text, and mark the message as stopped</li><li data-read data-read-text="Option C: Hide the stream on screen but let the model keep generating in the background">Hide the stream on screen but let the model keep generating in the background</li></ol>
+        <details class="answer-reveal"><summary>Show answer</summary><p><strong>B. Cancel the request and the model call, keep the partial text, and mark the message as stopped</strong>: Aborting the model call saves cost and keeps the server free, and keeping the partial answer respects what the user already read.</p></details>
+      </section>
+      <section class="ls ls-faq"><h2>🙋 Questions learners ask</h2><details class="deep-faq"><summary data-read>SSE or WebSockets for streaming?</summary><p data-read>SSE (or a streamed HTTP response) is enough for model answers because data flows one way and it works through most proxies. Use WebSockets when the browser must also stream to the server, such as live voice.</p></details><details class="deep-faq"><summary data-read>Do I need the Vercel AI SDK?</summary><p data-read>No, but it saves time: it handles streaming formats, message state, tool calls and many providers. Learn how streaming works underneath once, then use whatever your team uses.</p></details><details class="deep-faq"><summary data-read>Should AI features always be a chat?</summary><p data-read>No. Many of the best AI features are a button inside an existing screen (&quot;Summarise&quot;, &quot;Draft reply&quot;) that streams into a panel. Use chat for open ended questions.</p></details></section>
+      <section class="ls ls-interview-qs"><h2>🎯 Asked in interviews on this topic</h2><p class="small muted">Try answering out loud first, then open the model answer.</p><details class="deep-faq"><summary data-read>Why do LLM products stream responses, and how would you implement it?</summary><div class="prep-body"><p class="prep-label">💬 </p><p data-read>Generating a full answer can take several seconds, but the first words are ready in a fraction of a second. Streaming shows text as it&#39;s generated, so the product feels fast even though total time is the same. To implement it, I call the LLM API with streaming on, read the chunks as they arrive on the server, and forward them to the browser with server sent events or a WebSocket, appending them to the UI. I handle a stop button, network errors mid stream, and I only run checks like JSON validation after the stream finishes.</p><p class="prep-label">✅ </p><ul><li data-read>Time to first token vs total time</li><li data-read>Server reads chunks, forwards via SSE or WebSocket</li><li data-read>UI appends text; supports cancel</li><li data-read>Validation and logging after completion</li></ul><p class="prep-check" data-read><strong>:</strong> Hands on product engineering.</p></div></details></section>
+
+      <section class="ls ls-remember" data-read><h2>📌 Remember</h2><p>Stream it, let users stop, retry and edit, render Markdown safely, and turn tool calls into real UI.</p></section>
+      <section class="ls ls-words"><h2>📖 Words from this lesson (AI dictionary)</h2><ul class="chips plain"><li><a class="chip" href="../glossary/chatbot.html" title="A program you talk with in natural language; modern chatbots are usually powered by LLMs.">Chatbot</a></li><li><a class="chip" href="../glossary/streaming.html" title="Showing an LLM&#39;s answer word by word as it&#39;s generated, instead of waiting for all of it.">Streaming</a></li></ul></section>
+
+      <nav class="lesson-pager" aria-label="Lessons">
+        <a href="llm-api.html">← Calling an LLM API: keys, requests and costs</a>
+        <a href="structured-output.html">Structured outputs: JSON schemas, validation and retries →</a>
+      </nav>
+
+      <section class="cta-box">
+        <h2>Learn this as part of a full course</h2>
+        <p>Track your progress, take the quick checks and follow the lessons in the right order. This lesson is part of:</p>
+        <p><a href="../learn.html?course=ai-product-engineer&amp;lesson=ai-chat-ui">AI Product Engineer</a></p>
+        <a class="button btn-primary" href="../learn.html?course=ai-product-engineer&amp;lesson=ai-chat-ui">Continue in the course</a>
+      </section>
+    </article>
+  </main>
+  <script src="../tts.js" defer></script>
+  <script>addEventListener("DOMContentLoaded", () => LessonReader.attach(document.querySelector("[data-reader]"), document.querySelector(".lesson-page article"), "en"));</script>
+  <footer class="footer">
+    <nav class="footer-links" aria-label="Site">
+      <div><h2>AI career paths</h2><ul><li><a href="../roles/ai-foundations-beginner.html">AI Foundations Path</a></li><li><a href="../roles/ml-engineer.html">ML Engineer</a></li><li><a href="../roles/ai-data-engineer.html">Data Engineer (AI focus)</a></li><li><a href="../roles/ai-product-engineer.html">AI Product Engineer</a></li><li><a href="../roles/mlops-engineer.html">MLOps / AI Platform Engineer</a></li><li><a href="../roles/llm-agent-engineer.html">LLM / Agent Engineer</a></li><li><a href="../roles/ai-research-engineer.html">AI Research Engineer</a></li><li><a href="../roles/ai-forward-deployed-engineer.html">AI Forward Deployed Engineer</a></li><li><a href="../roles/ai-product-manager.html">AI Product Manager</a></li></ul></div>
+      <div><h2>AI careers by background</h2><ul><li><a href="../for/software-testers-qa.html">QA / testers</a></li><li><a href="../for/java-dotnet-backend-developers.html">Backend developers</a></li><li><a href="../for/frontend-full-stack-developers.html">Frontend / full-stack</a></li><li><a href="../for/devops-cloud-engineers.html">DevOps / cloud</a></li><li><a href="../for/data-engineers-analysts.html">Data / BI</a></li><li><a href="../for/freshers-mca-bca-graduates.html">Freshers / MCA</a></li><li><a href="../for/non-it-professionals.html">Non-IT professionals</a></li><li><a href="../for/product-managers-business-analysts.html">PMs / BAs</a></li><li><a href="../for/senior-engineers-tech-leads.html">Senior engineers</a></li></ul></div>
+      <div><h2>Guides</h2><ul><li><a href="../guide/how-to-choose-an-ai-role.html">How to choose an AI role</a></li><li><a href="../guide/how-it-works.html">How the consultation works</a></li><li><a href="../#app">Free AI career consultation</a></li><li><a href="../learn.html">Free AI courses (English &amp; Hinglish)</a></li><li><a href="../interview.html">Interview practice</a></li><li><a href="../resume-builder.html">Resume builder (upload, edit, PDF or Word)</a></li><li><a href="../resumes/">ATS resume samples</a></li><li><a href="../glossary/">AI dictionary (A to Z)</a></li><li><a href="../kids/">AI for kids (ages 5+)</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+    </nav>
+    <p>AI Path Finder: free AI career consultation and guidance. Last updated <time datetime="2026-10-28">28 October 2026</time>. Guidance, not a job guarantee.</p>
+  </footer>
+</body>
+</html>
